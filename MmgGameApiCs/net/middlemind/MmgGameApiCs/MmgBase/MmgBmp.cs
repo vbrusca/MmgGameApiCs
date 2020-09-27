@@ -70,7 +70,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The string representation of this objects id.
         /// </summary>
-        private String idStr;
+        private string idStr;
 
         /// <summary>
         /// The integer representation of this objects id.
@@ -343,7 +343,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="rotation">The rotation value to use in id string creation.</param>
         /// <returns>A new id string.</returns>        
-        public string GetIdStr(float rotation)
+        public virtual string GetIdStr(float rotation)
         {
             return (idStr + "_" + rotation);
         }
@@ -353,7 +353,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="scaling">The scaling value to use in id string creation.</param>
         /// <returns>A new id string.</returns>
-        public string GetIdStr(MmgVector2 scaling)
+        public virtual string GetIdStr(MmgVector2 scaling)
         {
             return (idStr + "_" + scaling.GetXFloat() + "x" + scaling.GetYFloat());
         }
@@ -364,7 +364,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="rotation">The rotation value to use in id string creation.</param>
         /// <param name="scaling">The scaling value to use in id string creation.</param>
         /// <returns>A new id string.</returns>
-        public string GetIdStr(float rotation, MmgVector2 scaling)
+        public virtual string GetIdStr(float rotation, MmgVector2 scaling)
         {
             return (idStr + "_" + rotation + "_" + scaling.GetXFloat() + "x" + scaling.GetYFloat());
         }
@@ -374,7 +374,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="rotation">The rotation of the bitmap.</param>
         /// <returns>The unique id of the bitmap.</returns>
-        public int GetId(float rotation)
+        public virtual int GetId(float rotation)
         {
             
             return Int32.Parse((id + "0" + (int)(rotation)));
@@ -385,7 +385,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="scaling">The scaling to apply to the object.</param>
         /// <returns>The unique id of the bitmap.</returns>
-        public int GetId(MmgVector2 scaling)
+        public virtual int GetId(MmgVector2 scaling)
         {
             return Int32.Parse((idStr + "0" + (int)(scaling.GetXFloat() * 10) + "0" + (int)(scaling.GetYFloat() * 10)));
         }
@@ -396,7 +396,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="rotation">The rotation of the bitmap.</param>
         /// <param name="scaling">The scaling of the bitmap.</param>
         /// <returns>The unique id of the bitmap.</returns>
-        public int GetId(float rotation, MmgVector2 scaling)
+        public virtual int GetId(float rotation, MmgVector2 scaling)
         {
             return Int32.Parse((idStr + "0" + (int)(rotation) + "0" + (int)(scaling.GetXFloat() * 10) + "0" + (int)(scaling.GetYFloat() * 10)));
         }
@@ -405,7 +405,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Get the unique id of the bitmap in string form.
         /// </summary>
         /// <returns>The string form of the unique id.</returns>
-        public string GetBmpIdStr()
+        public virtual string GetBmpIdStr()
         {
             return idStr;
         }
@@ -414,7 +414,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the string form of the id.
         /// </summary>
         /// <param name="IdStr">A unique id string.</param>
-        public void SetBmpIdStr(string IdStr)
+        public virtual void SetBmpIdStr(string IdStr)
         {
             idStr = IdStr;
         }
@@ -423,7 +423,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the string form of the id.
         /// </summary>
         /// <returns>A unique id integer.</returns>
-        public int GetBmpId()
+        public virtual int GetBmpId()
         {
             return id;
         }
@@ -431,7 +431,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// Sets the unique id integer and string representations using a common method.
         /// </summary>
-        private void SetBmpId()
+        private virtual void SetBmpId()
         {
             id = MmgBmp.ID_SRC;
             idStr = (id + "");
@@ -460,7 +460,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Returns the image of this bitmap.
         /// </summary>
         /// <returns>This bitmaps image.</returns>
-        public Texture2D GetTexture2D()
+        public virtual Texture2D GetTexture2D()
         {
             return b;
         }
@@ -469,9 +469,27 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the image of this bitmap.
         /// </summary>
         /// <param name="d">The image to set for this bitmap.</param>
-        public void SetTexture2D(Texture2D d)
+        public virtual void SetTexture2D(Texture2D d)
         {
             b = d;
+        }
+
+        /// <summary>
+        /// Gets the image of this bitmap. Same as GetTexture2D.
+        /// </summary>
+        /// <returns>The image of this bitmap.</returns>
+        public virtual Texture2D GetImage()
+        {
+            return GetTexture2D();
+        }
+
+        /// <summary>
+        /// Sets the image of this bitmap. Same as SetTexture2D.
+        /// </summary>
+        /// <param name="d">The image to set for this bitmap.</param>
+        public virtual void SetImage(Texture2D d)
+        {
+            SetTexture2D(d);
         }
 
         /// <summary>
@@ -480,7 +498,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// drawing methods.
         /// </summary>
         /// <returns>The source drawing rectangle.</returns>
-        public MmgRect GetSrcRect()
+        public virtual MmgRect GetSrcRect()
         {
             return srcRect;
         }
@@ -491,7 +509,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// methods.
         /// </summary>
         /// <param name="r">The source drawing rectangle.</param>
-        public void SetSrcRect(MmgRect r)
+        public virtual void SetSrcRect(MmgRect r)
         {
             srcRect = r;
         }
@@ -500,7 +518,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the destination drawing rectangle.
         /// </summary>
         /// <returns>The destination drawing rectangle.</returns>
-        public MmgRect GetDstRect()
+        public virtual MmgRect GetDstRect()
         {
             return dstRect;
         }
@@ -509,62 +527,106 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the destination drawing rectangle.
         /// </summary>
         /// <param name="r">The destination drawing rectangle.</param>
-        public void SetDstRect(MmgRect r)
+        public virtual void SetDstRect(MmgRect r)
         {
             dstRect = r;
         }
 
-        public float GetRotation()
+        /// <summary>
+        /// Gets the rotation of the bitmap.
+        /// </summary>
+        /// <returns>The rotation of the bitmap.</returns>
+        public virtual float GetRotation()
         {
             return rotation;
         }
 
-        public void SetRotation(float r)
+        /// <summary>
+        /// Sets the rotation of the bitmap.
+        /// </summary>
+        /// <param name="r">The rotation of the bitmap.</param>
+        public virtual void SetRotation(float r)
         {
             rotation = r;
         }
 
-        public MmgVector2 GetOrigin()
+        /// <summary>
+        /// Gets the origin used in drawing the bitmap.
+        /// </summary>
+        /// <returns>The drawing origin of the bitmap.</returns>
+        public virtual MmgVector2 GetOrigin()
         {
             return origin;
         }
 
-        public void SetOrigin(MmgVector2 v)
+        /// <summary>
+        /// Sets the origin used in drawing the bitmap.
+        /// </summary>
+        /// <param name="v">The drawing origin of the bitmap.</param>
+        public virtual void SetOrigin(MmgVector2 v)
         {
             origin = v;
         }
 
-        public MmgVector2 GetScaling()
+        /// <summary>
+        /// Gets the scaling value used to scale the bitmap.
+        /// </summary>
+        /// <returns>The drawing scaling value.</returns>
+        public virtual MmgVector2 GetScaling()
         {
             return scaling;
         }
 
-        public void SetScaling(MmgVector2 v)
+        /// <summary>
+        /// Sets the scaling value used to scale the bitmap.
+        /// </summary>
+        /// <param name="v">The drawing scaling value.</param>
+        public virtual void SetScaling(MmgVector2 v)
         {
             scaling = v;
         }
 
-        public SpriteEffects GetSpriteFx()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual SpriteEffects GetSpriteFx()
         {
             return fx;
         }
 
-        public void SetSpriteFx(SpriteEffects Fx)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Fx"></param>
+        public virtual void SetSpriteFx(SpriteEffects Fx)
         {
             fx = Fx;
         }
 
-        public float GetLayerDepth()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual float GetLayerDepth()
         {
             return layerDepth;
         }
 
-        public void SetLayerDepth(float f)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="f"></param>
+        public virtual void SetLayerDepth(float f)
         {
             layerDepth = f;
         }
 
-        public double GetScaledHeight()
+        /// <summary>
+        /// Gets the scaled height of this bitmap.
+        /// </summary>
+        /// <returns>The scaled height of this bitmap.</returns>
+        public virtual double GetScaledHeight()
         {
             if (GetScaling() == null)
             {
@@ -576,27 +638,47 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        public int GetUnscaledHeight()
+        /// <summary>
+        /// Gets the unscaled, original height of the bitmap.
+        /// </summary>
+        /// <returns>The unscaled, original height of the bitmap.</returns>
+        public virtual int GetUnscaledHeight()
         {
             return base.GetHeight();
         }
 
-        public override int GetHeight()
+        /// <summary>
+        /// Gets the scaled height of the bitmap.
+        /// </summary>
+        /// <returns>The scaled height of the bitmap.</returns>
+        public virtual override int GetHeight()
         {
             return (int)GetScaledHeight();
         }
 
-        public float GetHeightFloat()
+        /// <summary>
+        /// Gets the scaled height of the bitmap in float form.
+        /// </summary>
+        /// <returns>The scaled height of the bitmap.</returns>
+        public virtual float GetHeightFloat()
         {
             return (float)GetScaledHeight();
         }
 
-        public int GetUnscaledWidth()
+        /// <summary>
+        /// Gets the un-scaled, original width of the bitmap.
+        /// </summary>
+        /// <returns>The un-scaled, original width of the bitmap.</returns>
+        public virtual int GetUnscaledWidth()
         {
             return base.GetWidth();
         }
 
-        public double GetScaledWidth()
+        /// <summary>
+        /// Gets the scaled width of the bitmap.
+        /// </summary>
+        /// <returns>The scaled width of the bitmap.</returns>
+        public virtual double GetScaledWidth()
         {
             if (GetScaling() == null)
             {
@@ -608,27 +690,95 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        public override int GetWidth()
+        /// <summary>
+        /// Gets the scaled width of the bitmap.
+        /// </summary>
+        /// <returns>The scaled width of the bitmap.</returns>
+        public virtual override int GetWidth()
         {
             return (int)GetScaledWidth();
         }
 
-        public float GetWidthFloat()
+        /// <summary>
+        /// Gets the scaled width of the bitmap in float form.
+        /// </summary>
+        /// <returns>The scaled width of the bitmap.</returns>
+        public virtual float GetWidthFloat()
         {
             return (float)GetScaledWidth();
         }
 
-        public override void MmgDraw(MmgPen p)
+        /// <summary>
+        /// The base drawing method for the bitmap object.
+        /// </summary>
+        /// <param name="p">The MmgPen used to draw this bitmap.</param>
+        public virtual override void MmgDraw(MmgPen p)
         {
-            if (GetIsVisible() == true)
+            if (isVisible == true)
             {
-                p.DrawBmp(this);
-            }
-            else
-            {
-                //do nothing
+                if (DRAW_MODE == MmgBmpDrawMode.DRAW_BMP_FULL)
+                {
+                    p.DrawBmp(this);
+                }
+                else if (DRAW_MODE == MmgBmpDrawMode.DRAW_BMP_BASIC)
+                {
+                    p.DrawBmpBasic(this);
+                }
+                else if (DRAW_MODE == MmgBmpDrawMode.DRAW_BMP_BASIC_CACHE)
+                {
+                    p.DrawBmpFromCache(this);
+                }
             }
         }
 
+        /// <summary>
+        /// A method for testing equality with other MmgBmp objects.
+        /// Takes into account the MmgObj Equals method if nothing different is
+        /// found in the MmgBmp comparison.
+        /// </summary>
+        /// <param name="obj">An MmgBmp object to check equality with.</param>
+        /// <returns>Returns true if the determination is made that the two objects are the same, false otherwise.</returns>
+        public virtual bool equals(MmgBmp obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.Equals(this))
+            {
+                return true;
+            }
+
+            /*
+            if(!(super.Equals((MmgObj)obj))) {
+                MmgHelper.wr("MmgBmp: MmgObj is not equals!");
+            }
+            */
+
+            bool ret = false;
+            if (
+                base.Equals((MmgObj)obj)
+                && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().equals(GetDstRect())))
+                && obj.GetHeight() == GetHeight()
+                && obj.GetHeightFloat() == GetHeightFloat()
+                && ((obj.GetImage() == null && GetImage() == null) || (obj.GetImage() != null && GetImage() != null && obj.GetImage().Equals(GetImage())))
+                && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().equals(GetOrigin())))
+                && obj.GetRotation() == GetRotation()
+                && obj.GetScaledHeight() == GetScaledHeight()
+                && obj.GetScaledWidth() == GetScaledWidth()
+                && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().equals(GetScaling())))
+                && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().equals(GetSrcRect())))
+                && ((obj.GetTexture2D() == null && GetTexture2D() == null) || (obj.GetTexture2D() != null && GetTexture2D() != null && obj.GetTexture2D().Equals(GetTexture2D())))
+                && obj.GetUnscaledHeight() == GetUnscaledHeight()
+                && obj.GetUnscaledWidth() == GetUnscaledWidth()
+                && obj.GetWidth() == GetWidth()
+                && obj.GetWidthFloat() == GetWidthFloat()
+                && obj.DRAW_MODE == DRAW_MODE
+            )
+            {
+                ret = true;
+            }
+            return ret;
+        }
     }
 }
