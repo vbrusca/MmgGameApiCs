@@ -208,258 +208,254 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /*
-         * Static helper method returns dark red.
-         * 
-         * @return      The color dark red.
-         */
+        /// <summary>
+        /// Static helper method returns dark red.
+        /// </summary>
+        /// <returns>The color dark red.</returns>
         public static MmgColor GetDarkRed()
         {
             System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#900C3F");
             return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /*
-         * Static helper method returns dark blue.
-         * 
-         * @return      The color dark blue.
-         */
+        /// <summary>
+        /// Static helper method returns dark blue.
+        /// </summary>
+        /// <returns>The color dark blue.</returns>
         public static MmgColor GetDarkBlue()
         {
             System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#0000A0");
             return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /*
-         * Static helper method returns light blue.
-         * 
-         * @return      The color light blue.
-         */
+        /// <summary>
+        /// Static helper method returns light blue.
+        /// </summary>
+        /// <returns>The color light blue.</returns>
         public static MmgColor GetLightBlue()
         {
             System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#ADD8E6");
             return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /*
-         * Static helper method returns olive.
-         * 
-         * @return      The color olive.
-         */
+        /// <summary>
+        /// Static helper method returns olive.
+        /// </summary>
+        /// <returns>The color olive.</returns>
         public static MmgColor GetOlive()
         {
             System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#808000");
             return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns brown.
-         * 
-         * @return      The color brown.
-         */
+        /// <summary>
+        /// Static helper method returns brown.
+        /// </summary>
+        /// <returns>The color brown.</returns>
         public static MmgColor GetBrown()
         {
-            return new MmgColor(Color.decode("#A52A2A"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#A52A2A");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns maroon.
-         * 
-         * @return      The color maroon.
-         */
+        /// <summary>
+        /// Static helper method returns maroon.
+        /// </summary>
+        /// <returns>The color maroon.</returns>
         public static MmgColor GetMaroon()
         {
-            return new MmgColor(Color.decode("#800000"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#800000");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns gun metal gray.
-         * 
-         * @return      The color gun metal gray.
-         */
+        /// <summary>
+        /// Static helper method returns gun metal gray.
+        /// </summary>
+        /// <returns>The color gun metal gray.</returns>
         public static MmgColor GetGunMetalGray()
         {
-            return new MmgColor(Color.decode("#2C3539"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#2C3539");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns night.
-         * 
-         * @return      The color night.
-         */
+        /// <summary>
+        /// Static helper method returns night.
+        /// </summary>
+        /// <returns>The color night.</returns>
         public static MmgColor GetNight()
         {
-            return new MmgColor(Color.decode("#0C090A"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#0C090A");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns midnight.
-         * 
-         * @return      The color midnight.
-         */
+        /// <summary>
+        /// Static helper method returns midnight.
+        /// </summary>
+        /// <returns>The color midnight.</returns>
         public static MmgColor GetMidnight()
         {
-            return new MmgColor(Color.decode("#2B1B17"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#2B1B17");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns charcoal.
-         * 
-         * @return      The color charcoal.
-         */
+        /// <summary>
+        /// Static helper method returns charcoal.
+        /// </summary>
+        /// <returns>The color charcoal.</returns>
         public static MmgColor GetCharcoal()
         {
-            return new MmgColor(Color.decode("#34282C"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#34282C");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns dark slate gray.
-         * 
-         * @return      The color dark slate gray.
-         */
+        /// <summary>
+        /// Static helper method returns dark slate gray.
+        /// </summary>
+        /// <returns>The color dark slate gray.</returns>
         public static MmgColor GetDarkSlateGray()
         {
-            return new MmgColor(Color.decode("#25383C"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#25383C");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns oil.
-         * 
-         * @return      The color oil.
-         */
+        /// <summary>
+        /// Static helper method returns oil.
+        /// </summary>
+        /// <returns>The color oil.</returns>
         public static MmgColor GetOil()
         {
-            return new MmgColor(Color.decode("#3B3131"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#3B3131");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns calm blue.
-         * 
-         * @return      The color calm blue.
-         */
+        /// <summary>
+        /// Static helper method returns calm blue.
+        /// </summary>
+        /// <returns>The color calm blue.</returns>
         public static MmgColor GetCalmBlue()
         {
-            return new MmgColor(Color.decode("#3B8EFF"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#3B8EFF");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns black cat.
-         * 
-         * @return      The color black cat.
-         */
+        /// <summary>
+        /// Static helper method returns black cat.
+        /// </summary>
+        /// <returns>The color black cat.</returns>
         public static MmgColor GetBlackCat()
         {
-            return new MmgColor(Color.decode("#413839"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#413839");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns iridium.
-         * 
-         * @return      The color iridium.
-         */
+        /// <summary>
+        /// Static helper method returns iridium.
+        /// </summary>
+        /// <returns>The color iridium.</returns>
         public static MmgColor GetIridium()
         {
-            return new MmgColor(Color.decode("#3D3C3A"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#3D3C3A");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns gray wolf.
-         * 
-         * @return      The color gray wolf.
-         */
+        /// <summary>
+        /// Static helper method returns gray wolf.
+        /// </summary>
+        /// <returns>The color gray wolf.</returns>
         public static MmgColor GetGrayWolf()
         {
-            return new MmgColor(Color.decode("#504A4B"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#504A4B");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns gray dolphin.
-         * 
-         * @return      The color gray dolphin.
-         */
+        /// <summary>
+        /// Static helper method returns gray dolphin.
+        /// </summary>
+        /// <returns>The color gray dolphin.</returns>
         public static MmgColor GetGrayDolphin()
         {
-            return new MmgColor(Color.decode("#5C5858"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#5C5858");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns carbon gray.
-         * 
-         * @return      The color carbon gray.
-         */
+        /// <summary>
+        /// Static helper method returns carbon gray.
+        /// </summary>
+        /// <returns>The color carbon gray.</returns>
         public static MmgColor GetCarbonGray()
         {
-            return new MmgColor(Color.decode("#625D5D"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#625D5D");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns battleship gray.
-         * 
-         * @return      The color battleship gray.
-         */
+        /// <summary>
+        /// Static helper method returns battleship gray.
+        /// </summary>
+        /// <returns>The color battleship gray.</returns>
         public static MmgColor GetBattleshipGray()
         {
-            return new MmgColor(Color.decode("#848482"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#848482");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns gray cloud.
-         * 
-         * @return      The color gray cloud.
-         */
+        /// <summary>
+        /// Static helper method returns gray cloud.
+        /// </summary>
+        /// <returns>The color gray cloud.</returns>
         public static MmgColor GetGrayCloud()
         {
-            return new MmgColor(Color.decode("#B6B6B4"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#B6B6B4");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns gray goose.
-         * 
-         * @return      The color gray goose.
-         */
+        /// <summary>
+        /// Static helper method returns gray goose.
+        /// </summary>
+        /// <returns>The color gray goose.</returns>
         public static MmgColor GetGrayGoose()
         {
-            return new MmgColor(Color.decode("#D1D0CE"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#D1D0CE");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns platinum.
-         * 
-         * @return      The color platinum.
-         */
+        /// <summary>
+        /// Static helper method returns platinum.
+        /// </summary>
+        /// <returns>The color platinum.</returns>
         public static MmgColor GetPlatinum()
         {
-            return new MmgColor(Color.decode("#E5E4E2"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#E5E4E2");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns metallic silver.
-         * 
-         * @return      The color metallic silver.
-         */
+        /// <summary>
+        /// Static helper method returns metallic silver.
+        /// </summary>
+        /// <returns>The color metallic silver.</returns>
         public static MmgColor GetMetallicSilver()
         {
-            return new MmgColor(Color.decode("#BCC6CC"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#BCC6CC");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns blue gray.
-         * 
-         * @return      The color blue gray
-         */
+        /// <summary>
+        /// Static helper method returns blue gray.
+        /// </summary>
+        /// <returns>The color blue gray.</returns>
         public static MmgColor GetBlueGray()
         {
-            return new MmgColor(Color.decode("#98AFC7"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#98AFC7");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method returns slate blue.
-         * 
-         * @return      The color slate blue.
-         */
+        /// <summary>
+        /// Static helper method returns slate blue.
+        /// </summary>
+        /// <returns>The color slate blue.</returns>
         public static MmgColor GetSlateBlue()
         {
-            return new MmgColor(Color.decode("#737CA1"));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml("#737CA1");
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
         //steel blue: #4863A0
@@ -522,36 +518,77 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         //dark violet: #842DCE
         //lavender blue: #E3E4FA
 
-        /**
-         * Static helper method that decodes an HTML color.
-         * 
-         * @param htmlColor     The HTML color to decode.
-         * @return              A new MmgColor object with the HTML color.
-         */
+        /// <summary>
+        /// Static helper method that decodes an HTML color.
+        /// </summary>
+        /// <param name="htmlColor">The HTML color to decode.</param>
+        /// <returns>A new MmgColor object with the HTML color.</returns>
         public static MmgColor GetDecodedColor(String htmlColor)
         {
-            return new MmgColor(Color.decode(htmlColor));
+            System.Drawing.Color c = System.Drawing.ColorTranslator.FromHtml(htmlColor);
+            return new MmgColor(new Color(c.R, c.G, c.B, c.A));
         }
 
-        /**
-         * Static helper method that returns a transparent color.
-         * 
-         * @return      A new MmgColor object that has transparent color.
-         */
+        /// <summary>
+        /// Static helper method that returns a transparent color.
+        /// </summary>
+        /// <returns>A new MmgColor object that has transparent color.</returns>
         public static MmgColor GetTransparent()
         {
             return new MmgColor(new Color(0f, 0f, 0f, 1f));
         }
 
-        public Color GetColor()
+        /// <summary>
+        /// Returns the color of this MmgColor object.
+        /// </summary>
+        /// <returns>The color of this object.</returns>
+        public virtual Color GetColor()
         {
             return c;
         }
 
-        public void SetColor(Color C)
+        /// <summary>
+        /// Sets the color of this MmgColor object.
+        /// </summary>
+        /// <param name="C">The color of this object.</param>
+        public virtual void SetColor(Color C)
         {
             c = C;
         }
 
+        /// <summary>
+        /// Gets a string representation of the current MmgColor object.
+        /// </summary>
+        /// <returns>A string representation of the MmgColor object.</returns>
+        public virtual string toString()
+        {
+            return "R: " + GetColor().R + " G: " + GetColor().G + " B: " + GetColor().B + " A: " + GetColor().A;
+        }
+
+        /// <summary>
+        /// A method that checks to see if this MmgColor is equal to the passed in MmgColor.
+        /// </summary>
+        /// <param name="obj">The MmgColor object instance to test for equality.</param>
+        /// <returns>Returns true if both MmgColor objects have the same color.</returns>
+        public virtual bool equals(MmgColor obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.Equals(this))
+            {
+                return true;
+            }
+
+            bool ret = false;
+            if (
+                ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().Equals(GetColor())))
+            )
+            {
+                ret = true;
+            }
+            return ret;
+        }
     }
 }

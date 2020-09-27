@@ -118,23 +118,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="v2"></param>
-        /// <param name="W"></param>
-        /// <param name="H"></param>
-        /// <param name="isv"></param>
-        /// <param name="c"></param>
-        public MmgObj(MmgVector2 v2, int W, int H, bool isv, MmgColor c)
-        {
-            pos = v2;
-            w = W;
-            h = H;
-            isVisible = isv;
-            color = c;
-        }
-
-        /// <summary>
         /// Constructor for this class that takes a width adn height as arguments.
         /// </summary>
         /// <param name="W">The width of the MmgObj.</param>
