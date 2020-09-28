@@ -541,19 +541,19 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 MmgHelper.wr("MmgObj: Width NOT equal"); 
             }        
 
-            if(!(((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().Equals(GetMmgColor()))))) { 
+            if(!(((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().equals(GetMmgColor()))))) { 
                 MmgHelper.wr("MmgObj: MmgColor NOT equal"); 
             }
 
-            if(!(((obj.GetName() == null && GetName() == null) || (obj.GetName() != null && GetName() != null && obj.GetName().equals(GetName()))))) { 
+            if(!(((obj.GetName() == null && GetName() == null) || (obj.GetName() != null && GetName() != null && obj.GetName().Equals(GetName()))))) { 
                 MmgHelper.wr("MmgObj: Name NOT equal"); 
             }
 
-            if(!(((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().Equals(GetParent()))))) { 
+            if(!(((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().equals(GetParent()))))) { 
                 MmgHelper.wr("MmgObj: Parent NOT equal"); 
             }
 
-            if(!(((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().Equals(GetPosition()))))) { 
+            if(!(((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().equals(GetPosition()))))) { 
                 MmgHelper.wr("MmgObj: Position NOT equal"); 
             }
             */

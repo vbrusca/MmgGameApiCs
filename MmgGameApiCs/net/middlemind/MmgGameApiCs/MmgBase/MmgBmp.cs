@@ -452,7 +452,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Creates a typed clone of this class.
         /// </summary>
         /// <returns>A typed clone of this class.</returns>
-        public new MmgBmp CloneTyped()
+        public virtual new MmgBmp CloneTyped()
         {
             return new MmgBmp(this);
         }
@@ -751,14 +751,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.Equals((MmgObj)obj))) {
+            if(!(super.equals((MmgObj)obj))) {
                 MmgHelper.wr("MmgBmp: MmgObj is not equals!");
             }
             */
 
             bool ret = false;
             if (
-                base.Equals((MmgObj)obj)
+                base.equals((MmgObj)obj)
                 && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().equals(GetDstRect())))
                 && obj.GetHeight() == GetHeight()
                 && obj.GetHeightFloat() == GetHeightFloat()

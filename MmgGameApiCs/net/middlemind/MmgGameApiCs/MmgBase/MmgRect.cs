@@ -381,7 +381,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the position of the rectangle.
         /// </summary>
         /// <param name="v">The position of the rectangle.</param>
-        public void SetPosition(MmgVector2 v)
+        public virtual void SetPosition(MmgVector2 v)
         {
             rect.Location = new Point(v.GetX(), v.GetY());
         }
@@ -391,7 +391,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="x">The position of the rectangle on the X axis.</param>
         /// <param name="y">The position of the rectangle on the Y axis.</param>
-        public void SetPosition(int x, int y)
+        public virtual void SetPosition(int x, int y)
         {
             rect.Location = new Point(x, y);
         }
@@ -410,7 +410,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">A MmgRect to compare with this class instance.</param>
         /// <returns>A boolean indicating if the two class instances are equal.</returns>
-        public bool equals(MmgRect obj)
+        public virtual bool equals(MmgRect obj)
         {
             if (obj == null)
             {

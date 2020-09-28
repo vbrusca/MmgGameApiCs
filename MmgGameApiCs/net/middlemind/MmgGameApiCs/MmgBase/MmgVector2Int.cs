@@ -113,7 +113,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Creates a basic clone of this class.
         /// </summary>
         /// <returns>A clone of this class.</returns>
-        public new MmgVector2Int Clone()
+        public virtual new MmgVector2Int Clone()
         {
             return new MmgVector2Int(vec[0], vec[1]);
         }
@@ -230,16 +230,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the vector values.
         /// </summary>
         /// <returns>The vector values.</returns>
-        public override double[] GetVector()
+        public virtual new int[] GetVector()
         {
-            return new double[] { GetXDouble(), GetYDouble() };
+            return new int[] { GetX(), GetY() };
         }
 
         /// <summary>
         /// Sets the vector values.
         /// </summary>
         /// <param name="v">The vector values.</param>
-        public override void SetVector(double[] v)
+        public virtual void SetVector(int[] v)
         {
             SetX(v[0]);
             SetY(v[1]);
@@ -249,7 +249,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Clones this object to a float based vector.
         /// </summary>
         /// <returns>A float based clone.</returns>
-        public new MmgVector2Int CloneFloat()
+        public virtual new MmgVector2Int CloneFloat()
         {
             return new MmgVector2Int(GetXFloat(), GetYFloat());
         }
@@ -258,7 +258,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Clones this object to a double based vector.
         /// </summary>
         /// <returns>A double based clone.</returns>
-        public new MmgVector2Int CloneDouble()
+        public virtual new MmgVector2Int CloneDouble()
         {
             return new MmgVector2Int(GetXDouble(), GetYDouble());
         }
@@ -267,7 +267,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Clones this object to an integer based vector.
         /// </summary>
         /// <returns>An integer based clone.</returns>
-        public new MmgVector2Int CloneInt()
+        public virtual new MmgVector2Int CloneInt()
         {
             return new MmgVector2Int(GetX(), GetY());
         }
@@ -304,7 +304,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An MmgVector2 object to compare for equality.</param>
         /// <returns>A boolean indicating if this object is equal to the comparison object.</returns>
-        public override bool equals(MmgVector2 obj)
+        public virtual bool equals(MmgVector2Int obj)
         {
             if (obj == null)
             {

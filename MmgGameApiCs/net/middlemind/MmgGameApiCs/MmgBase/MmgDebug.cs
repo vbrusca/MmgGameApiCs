@@ -37,10 +37,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// A static helper method for logging.
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="s"></param>
+        /// <param name="key">The key to use to log the line.</param>
+        /// <param name="s">The line to log.</param>
         public static void wr(string key, string s)
         {
             if (DEBUGGING_ON == true)

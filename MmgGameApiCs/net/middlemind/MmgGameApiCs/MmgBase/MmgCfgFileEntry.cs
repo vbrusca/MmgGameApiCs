@@ -67,7 +67,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Creates a typed clone of this class.
         /// </summary>
         /// <returns>A typed clone of this class.</returns>
-        public MmgCfgFileEntry Clone()
+        public virtual MmgCfgFileEntry Clone()
         {
             return new MmgCfgFileEntry(this);
         }
@@ -76,7 +76,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// A standard method that prints the contents of this MmgCfgFileEntry.
         /// </summary>
         /// <returns>A string representation of this class.</returns>
-        public string toString()
+        public virtual string toString()
         {
             string ret = "";
 

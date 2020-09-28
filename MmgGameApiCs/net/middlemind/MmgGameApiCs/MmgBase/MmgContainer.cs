@@ -181,7 +181,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Creates a typed clone of this class.
         /// </summary>
         /// <returns>A typed clone of this class.</returns>
-        public new MmgContainer CloneTyped()
+        public virtual new MmgContainer CloneTyped()
         {
             return new MmgContainer(this);
         }
@@ -377,7 +377,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="idx">The index of the child to get.</param>
         /// <returns>The child at the given index.</returns>
-        public MmgObj GetChildAt(int idx)
+        public virtual MmgObj GetChildAt(int idx)
         {
             return container[idx];
         }
@@ -387,7 +387,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="idx">The index of the child to get.</param>
         /// <returns>An MmgVector2 object with the relative position of the child.</returns>
-        public MmgVector2 GetChildPosRelative(int idx)
+        public virtual MmgVector2 GetChildPosRelative(int idx)
         {
             MmgObj obj = container[idx];
             MmgVector2 v1 = new MmgVector2();
@@ -401,7 +401,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="idx">The index of the child to get.</param>
         /// <returns>An MmgVector2 object with the absolute position of the child.</returns>
-        public MmgVector2 GetChildPosAbsolute(int idx)
+        public virtual MmgVector2 GetChildPosAbsolute(int idx)
         {
             return container[idx].GetPosition();
         }
@@ -471,7 +471,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgContainer object instance to test for equality.</param>
         /// <returns>Returns true if both MmgContainer objects are the same.</returns>
-        public bool equals(MmgContainer obj)
+        public virtual bool equals(MmgContainer obj)
         {
             if (obj == null)
             {

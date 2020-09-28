@@ -32,7 +32,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="v">The MmgVector2Vec to base this class off of.</param>
         public MmgVector2Vec(MmgVector2Vec v)
         {
-            vec = v.GetVector();
+            vec = new Vector2(v.GetXFloat(), v.GetYFloat());
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Creates a basic clone of this class.
         /// </summary>
         /// <returns>A clone of this class.</returns>
-        public new MmgVector2Vec Clone()
+        public virtual new MmgVector2Vec Clone()
         {
             return new MmgVector2Vec(this);
         }
@@ -222,25 +222,26 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the vector values.
         /// </summary>
         /// <returns>The vector values.</returns>
-        public new Vector2 GetVector()
+        public override double[] GetVector()
         {
-            return vec;
+            return new double[] {(double)vec.X, (double)vec.Y};
         }
 
         /// <summary>
         /// Sets the vector values.
         /// </summary>
         /// <param name="v">The vector values.</param>
-        public virtual void SetVector(Vector2 v)
+        public override void SetVector(double[] v)
         {
-            vec = v;
+            SetX(v[0]);
+            SetY(v[1]);
         }
 
         /// <summary>
         /// Clones this object to a float based vector.
         /// </summary>
         /// <returns>A float based clone.</returns>
-        public new MmgVector2Vec CloneFloat()
+        public virtual new MmgVector2Vec CloneFloat()
         {
             return new MmgVector2Vec(GetXFloat(), GetYFloat());
         }
@@ -249,7 +250,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Clones this object to a double based vector.
         /// </summary>
         /// <returns>A double based clone.</returns>
-        public new MmgVector2Vec CloneDouble()
+        public virtual new MmgVector2Vec CloneDouble()
         {
             return new MmgVector2Vec(GetXDouble(), GetYDouble());
         }
@@ -258,7 +259,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Clones this object to an integer based vector.
         /// </summary>
         /// <returns>An integer based clone.</returns>
-        public new MmgVector2Vec CloneInt()
+        public virtual new MmgVector2Vec CloneInt()
         {
             return new MmgVector2Vec(GetX(), GetY());
         }
