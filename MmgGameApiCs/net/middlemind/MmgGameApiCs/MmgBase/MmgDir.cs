@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MmgGameApiCs.net.middlemind.MmgGameApiCs.MmgBase
+namespace net.middlemind.MmgGameApiCs.MmgBase
 {
     /// <summary>
     /// A class used to map simple directions for games.
@@ -10,7 +10,6 @@ namespace MmgGameApiCs.net.middlemind.MmgGameApiCs.MmgBase
     /// </summary>
     public class MmgDir
     {
-
         /// <summary>
         /// A static integer that can be used to map the bottom, down direction, or the front of an RPG character.
         /// </summary>

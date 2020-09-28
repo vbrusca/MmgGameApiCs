@@ -9,7 +9,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// Created by Middlemind Games 08/29/2016
     ///
     /// @author Victor G.Brusca
-    /// </summary>      
+    /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgBmp : MmgObj
     {
         /// <summary>
@@ -431,7 +432,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// Sets the unique id integer and string representations using a common method.
         /// </summary>
-        private virtual void SetBmpId()
+        private void SetBmpId()
         {
             id = MmgBmp.ID_SRC;
             idStr = (id + "");
@@ -451,7 +452,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Creates a typed clone of this class.
         /// </summary>
         /// <returns>A typed clone of this class.</returns>
-        public override MmgBmp CloneTyped()
+        public new MmgBmp CloneTyped()
         {
             return new MmgBmp(this);
         }
@@ -651,7 +652,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the scaled height of the bitmap.
         /// </summary>
         /// <returns>The scaled height of the bitmap.</returns>
-        public virtual override int GetHeight()
+        public override int GetHeight()
         {
             return (int)GetScaledHeight();
         }
@@ -694,7 +695,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the scaled width of the bitmap.
         /// </summary>
         /// <returns>The scaled width of the bitmap.</returns>
-        public virtual override int GetWidth()
+        public override int GetWidth()
         {
             return (int)GetScaledWidth();
         }
@@ -712,7 +713,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// The base drawing method for the bitmap object.
         /// </summary>
         /// <param name="p">The MmgPen used to draw this bitmap.</param>
-        public virtual override void MmgDraw(MmgPen p)
+        public override void MmgDraw(MmgPen p)
         {
             if (isVisible == true)
             {

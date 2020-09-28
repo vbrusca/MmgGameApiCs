@@ -3,148 +3,317 @@ using Microsoft.Xna.Framework;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
-    //TODO: Finish this class definition.
     /// <summary>
-    /// 
+    /// Class that represents a two dimensional vector.
+    /// Created by Middlemind Games 01/06/2005
+    ///
+    /// @author Victor G.Brusca
     /// </summary>
-    public class MmgVector2Vec
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+    public class MmgVector2Vec : MmgVector2
     {
         /// <summary>
-        /// 
+        /// The vector data.
         /// </summary>
         private Vector2 vec = Vector2.Zero;
 
-        public MmgVector2()
+        /// <summary>
+        /// Constructor for this class.
+        /// </summary>
+        public MmgVector2Vec()
         {
             vec = Vector2.Zero;
         }
 
-        public MmgVector2(MmgVector2 v)
+        /// <summary>
+        /// Constructor for this class sets its values based on the attributes of the
+        /// given argument.
+        /// </summary>
+        /// <param name="v">The MmgVector2Vec to base this class off of.</param>
+        public MmgVector2Vec(MmgVector2Vec v)
         {
             vec = v.GetVector();
         }
 
-        public MmgVector2(Vector2 v)
+        /// <summary>
+        /// Constructor that sets the value of the vector.
+        /// </summary>
+        /// <param name="v">The value of the vector.</param>
+        public MmgVector2Vec(Vector2 v)
         {
             vec = v;
         }
 
-        public MmgVector2(double x, double y)
+        /// <summary>
+        /// Constructor that sets the X, Y value of the vector.
+        /// </summary>
+        /// <param name="x">The X value of the vector.</param>
+        /// <param name="y">The Y value of the vector.</param>
+        public MmgVector2Vec(double x, double y)
         {
             vec = new Vector2((float)x, (float)y);
         }
 
-        public MmgVector2(float x, float y)
+        /// <summary>
+        /// Constructor that sets the X, Y value based on one argument.
+        /// </summary>
+        /// <param name="x">The X value used to set both the X, Y coordinate.</param>
+        public MmgVector2Vec(double x)
+        {
+            vec = new Vector2((float)x, (float)x);
+        }
+
+        /// <summary>
+        /// Constructor that sets the X, Y value of the vector.
+        /// </summary>
+        /// <param name="x">The X value of the vector.</param>
+        /// <param name="y">The Y value of the vector.</param>
+        public MmgVector2Vec(float x, float y)
         {
             vec = new Vector2(x, y);
         }
 
-        public MmgVector2(int x, int y)
+        /// <summary>
+        /// Constructor that sets the X, Y value based on one argument.
+        /// </summary>
+        /// <param name="x">The X value used to set both the X, Y coordinate.</param>
+        public MmgVector2Vec(float x)
+        {
+            vec = new Vector2((float)x, (float)x);
+        }
+
+        /// <summary>
+        /// Constructor that sets the X, Y value of the vector.
+        /// </summary>
+        /// <param name="x">The X value of the vector.</param>
+        /// <param name="y">The Y value of the vector.</param>
+        public MmgVector2Vec(int x, int y)
         {
             vec = new Vector2((float)x, (float)y);
         }
 
-        public MmgVector2 Clone()
+        /// <summary>
+        /// Constructor that sets the X, Y value based on one argument.
+        /// </summary>
+        /// <param name="x">The X value used to set both the X, Y coordinate.</param>
+        public MmgVector2Vec(int x)
         {
-            MmgVector2 v = new MmgVector2(vec.X, vec.Y);
-            return v;
+            vec = new Vector2((float)x, (float)x);
         }
 
-        public void SetX(double x)
+        /// <summary>
+        /// Creates a basic clone of this class.
+        /// </summary>
+        /// <returns>A clone of this class.</returns>
+        public new MmgVector2Vec Clone()
+        {
+            return new MmgVector2Vec(this);
+        }
+
+        /// <summary>
+        /// Sets the X value of the vector.
+        /// </summary>
+        /// <param name="x">The X value of the vector.</param>
+        public override void SetX(double x)
         {
             vec.X = (float)x;
         }
 
-        public void SetY(double y)
+        /// <summary>
+        /// Sets the Y value of the vector.
+        /// </summary>
+        /// <param name="y">The Y value of the vector.</param>
+        public override void SetY(double y)
         {
             vec.Y = (float)y;
         }
 
-        public void SetX(float x)
+        /// <summary>
+        /// Sets the X value of the vector.
+        /// </summary>
+        /// <param name="x">The X value of the vector.</param>
+        public override void SetX(float x)
         {
             vec.X = x;
         }
 
-        public void SetY(float y)
+        /// <summary>
+        /// Sets the Y value of the vector.
+        /// </summary>
+        /// <param name="y">The Y value of the vector.</param>
+        public override void SetY(float y)
         {
             vec.Y = y;
         }
 
-        public void SetX(int x)
+        /// <summary>
+        /// Sets the X value of the vector.
+        /// </summary>
+        /// <param name="x">The X value of the vector.</param>
+        public override void SetX(int x)
         {
             vec.X = (float)x;
         }
 
-        public void SetY(int y)
+        /// <summary>
+        /// Sets the Y value of the vector.
+        /// </summary>
+        /// <param name="y">The Y value of the vector.</param>
+        public override void SetY(int y)
         {
             vec.Y = (float)y;
         }
 
-        public int GetX()
+        /// <summary>
+        /// Gets the X value of the vector.
+        /// </summary>
+        /// <returns>The X value of the vector.</returns>
+        public override int GetX()
         {
             return (int)vec.X;
         }
 
-        public int GetY()
+        /// <summary>
+        /// Gets the Y value of the vector.
+        /// </summary>
+        /// <returns>The Y value of the vector.</returns>
+        public override int GetY()
         {
             return (int)vec.Y;
         }
 
-        public double GetXDouble()
+        /// <summary>
+        /// Gets the X value of the vector.
+        /// </summary>
+        /// <returns>The X value of the vector.</returns>
+        public override double GetXDouble()
         {
             return (double)vec.X;
         }
 
-        public double GetYDouble()
+        /// <summary>
+        /// Gets the Y value of the vector.
+        /// </summary>
+        /// <returns>The Y value of the vector.</returns>
+        public override double GetYDouble()
         {
             return (double)vec.Y;
         }
 
-        public float GetXFloat()
+        /// <summary>
+        /// Gets the X value of the vector.
+        /// </summary>
+        /// <returns>The X value of the vector.</returns>
+        public override float GetXFloat()
         {
             return (float)vec.X;
         }
 
-        public float GetYFloat()
+        /// <summary>
+        /// Gets the Y value of the vector.
+        /// </summary>
+        /// <returns>The Y value of the vector.</returns>
+        public override float GetYFloat()
         {
             return (float)vec.Y;
         }
 
-        public Vector2 GetVector()
+        /// <summary>
+        /// Gets the vector values.
+        /// </summary>
+        /// <returns>The vector values.</returns>
+        public new Vector2 GetVector()
         {
             return vec;
         }
 
-        public void SetVector(Vector2 v)
+        /// <summary>
+        /// Sets the vector values.
+        /// </summary>
+        /// <param name="v">The vector values.</param>
+        public virtual void SetVector(Vector2 v)
         {
             vec = v;
         }
 
-        public MmgVector2 CloneFloat()
+        /// <summary>
+        /// Clones this object to a float based vector.
+        /// </summary>
+        /// <returns>A float based clone.</returns>
+        public new MmgVector2Vec CloneFloat()
         {
-            MmgVector2 v = new MmgVector2(GetXFloat(), GetYFloat());
-            return v;
+            return new MmgVector2Vec(GetXFloat(), GetYFloat());
         }
 
-        public MmgVector2 CloneDouble()
+        /// <summary>
+        /// Clones this object to a double based vector.
+        /// </summary>
+        /// <returns>A double based clone.</returns>
+        public new MmgVector2Vec CloneDouble()
         {
-            MmgVector2 v = new MmgVector2(GetXDouble(), GetYDouble());
-            return v;
+            return new MmgVector2Vec(GetXDouble(), GetYDouble());
         }
 
-        public static MmgVector2 GetOriginVec()
+        /// <summary>
+        /// Clones this object to an integer based vector.
+        /// </summary>
+        /// <returns>An integer based clone.</returns>
+        public new MmgVector2Vec CloneInt()
         {
-            return new MmgVector2(0, 0);
+            return new MmgVector2Vec(GetX(), GetY());
         }
 
-        public static MmgVector2 GetUnitVec()
+        /// <summary>
+        /// Returns a new copy of the origin vector, (0, 0).
+        /// </summary>
+        /// <returns>The origin vector.</returns>
+        public new static MmgVector2Vec GetOriginVec()
         {
-            return new MmgVector2(1, 1);
+            return new MmgVector2Vec(0, 0);
         }
 
-        public override string ToString()
+        /// <summary>
+        /// Returns a new copy of the unit vector, (1, 1).
+        /// </summary>
+        /// <returns>The unit vector.</returns>
+        public new static MmgVector2Vec GetUnitVec()
+        {
+            return new MmgVector2Vec(1, 1);
+        }
+
+        /// <summary>
+        /// Returns a string representation of the vector.
+        /// </summary>
+        /// <returns>A string representation of the vector.</returns>
+        public override string toString()
         {
             return "X: " + GetXDouble() + " Y: " + GetYDouble();
+        }
+
+        /// <summary>
+        /// A method that tests equality with another MmgVector2 object by comparing the coordinates.
+        /// </summary>
+        /// <param name="obj">An MmgVector2 object to compare for equality.</param>
+        /// <returns>A boolean indicating if this object is equal to the comparison object.</returns>
+        public virtual bool equals(MmgVector2Vec obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.equals(this))
+            {
+                return true;
+            }
+
+            bool ret = false;
+            if (obj.GetXDouble() == GetXDouble()
+                && obj.GetYDouble() == GetYDouble()
+            )
+            {
+                ret = true;
+            }
+            return ret;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MmgGameApiCs.net.middlemind.MmgGameApiCs.MmgBase
+namespace net.middlemind.MmgGameApiCs.MmgBase
 {
     /// <summary>
     /// The base event class for event handling. 
@@ -8,9 +8,9 @@ namespace MmgGameApiCs.net.middlemind.MmgGameApiCs.MmgBase
     /// 
     /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgEvent
     {
-
         /// <summary>
         /// The parent MmgEventHandler of this event.
         /// </summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MmgGameApiCs.net.middlemind.MmgGameApiCs.MmgBase
+namespace net.middlemind.MmgGameApiCs.MmgBase
 {
     /// <summary>
     /// The base event handler class for event passing. 
@@ -10,7 +10,6 @@ namespace MmgGameApiCs.net.middlemind.MmgGameApiCs.MmgBase
     /// </summary>
     public interface MmgEventHandler
     {
-
         /// <summary>
         /// Handles an MmgEvent object.
         /// </summary>

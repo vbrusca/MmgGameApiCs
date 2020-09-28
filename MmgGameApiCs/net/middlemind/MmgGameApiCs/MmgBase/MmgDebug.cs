@@ -1,10 +1,15 @@
 ﻿using System;
 
-namespace MmgGameApiCs.net.middlemind.MmgGameApiCs.MmgBase
+namespace net.middlemind.MmgGameApiCs.MmgBase
 {
     /// <summary>
+    /// A helper class that provides logging functionality. 
+    /// This class is more geared towards Android logging.
+    /// Created by Middlemind Games 08/29/2016
     /// 
+    /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgDebug
     {
         /// <summary>
@@ -13,9 +18,10 @@ namespace MmgGameApiCs.net.middlemind.MmgGameApiCs.MmgBase
         public static bool DEBUGGING_ON = true;
 
         /// <summary>
-        /// 
+        /// The prefix to add to all logged lines.
         /// </summary>
         public static string appName = "MmgApi.MmgDebug";
+
 
         /// <summary>
         /// A static helper method for logging.
