@@ -46,7 +46,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The List that holds the MmgObj objects.
         /// </summary>
-        private List<object> container;
+        private List<MmgObj> container;
 
         /// <summary>
         /// A class helper variable.
@@ -78,7 +78,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public MmgContainer() : base()
         {
-            SetContainer(new List<object>(INITIAL_SIZE));
+            SetContainer(new List<MmgObj>(INITIAL_SIZE));
             SetIsDirty(true);
         }
 
@@ -89,7 +89,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="obj">The object to get MmgObj properties from.</param>
         public MmgContainer(MmgObj obj) : base(obj)
         {
-            SetContainer(new List<object>(INITIAL_SIZE));
+            SetContainer(new List<MmgObj>(INITIAL_SIZE));
             SetIsDirty(true);
         }
 
@@ -97,7 +97,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Constructor that initializes an ArrayList of objects contained by this container object.
         /// </summary>
         /// <param name="objects">The objects to add to this container.</param>
-        public MmgContainer(List<object> objects) : base()
+        public MmgContainer(List<MmgObj> objects) : base()
         {
             SetContainer(objects);
             SetIsDirty(true);
@@ -149,15 +149,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetIsDirty(true);
         }
 
-        /*
-         * A setter method that sets the isDirty flag.
-         * 
-         * @param b     The boolean value to set the isDirty flag to.
-         */
         /// <summary>
-        /// 
+        /// A setter method that sets the isDirty flag.
         /// </summary>
-        /// <param name="b"></param>
+        /// <param name="b">The boolean value to set the isDirty flag to.</param>
         public virtual void SetIsDirty(bool b)
         {
             isDirty = b;
@@ -181,44 +176,242 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return (MmgObj)new MmgContainer(this);
         }
 
-        public void Add(MmgObj obj)
+        /// <summary>
+        /// Creates a typed clone of this class.
+        /// </summary>
+        /// <returns>A typed clone of this class.</returns>
+        public new MmgContainer CloneTyped()
         {
-            container.Add(obj);
+            return new MmgContainer(this);
         }
 
-        public void Remove(MmgObj obj)
+        /// <summary>
+        /// Adds a new MmgObj to the container.
+        /// </summary>
+        /// <param name="obj">An MmgObj to add to the container.</param>
+        public virtual void Add(MmgObj obj)
         {
-            container.Remove(obj);
+            if (obj != null)
+            {
+                container.Add(obj);
+                if (container.Contains(obj) == true)
+                {
+                    StampChild(obj);
+                }
+            }
         }
 
-        public int GetCount()
+        /// <summary>
+        /// Adds a new MmgObj to the container at the specified index.
+        /// </summary>
+        /// <param name="idx">The index to add the object at.</param>
+        /// <param name="obj">The object to add.</param>
+        public virtual void AddAt(int idx, MmgObj obj)
+        {
+            if (obj != null)
+            {
+                container.Insert(idx, obj);
+                if (container.Contains(obj) == true)
+                {
+                    StampChild(obj);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Removes an MmgObj from the container.
+        /// </summary>
+        /// <param name="obj">An MmgObj to remove from the container.</param>
+        public virtual void Remove(MmgObj obj)
+        {
+            if (obj != null)
+            {
+                if (container.Remove(obj) == true)
+                {
+                    UnstampChild(obj);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Removes an MmgObj from the container at the specified index.
+        /// </summary>
+        /// <param name="idx">The index to remove the object from.</param>
+        /// <returns>The MmgObj to remove.</returns>
+        public virtual MmgObj RemoveAt(int idx)
+        {
+            MmgObj obj = container[idx];
+            container.RemoveAt(idx);
+            if (container.Contains(obj) == false)
+            {
+                UnstampChild(obj);
+            }
+            return obj;
+        }
+
+        /// <summary>
+        /// Gets the number of objects in the container.
+        /// </summary>
+        /// <returns>The number of objects in the container.</returns>
+        public virtual int GetCount()
         {
             return container.Count;
         }
 
-        public object[] GetArray()
+        /// <summary>
+        /// Gets an array representation of the objects in the container.
+        /// </summary>
+        /// <returns></returns>
+        public virtual MmgObj[] GetArray()
         {
             return container.ToArray();
         }
 
-        public void Clear()
+        /// <summary>
+        /// Returns the MmgObj at the given index.
+        /// </summary>
+        /// <param name="idx">The index to get an MmgObj from.</param>
+        /// <returns>The MmgObj at the specified index.</returns>
+        public virtual MmgObj GetAt(int idx)
         {
+            return container[idx];
+        }
+
+        /// <summary>
+        /// Clears all objects from the container.
+        /// </summary>
+        public virtual void Clear()
+        {
+            UpdateAllChildren(ChildAction.UNSTAMP);
             container.Clear();
         }
 
-        public List<object> GetContainer()
+        /// <summary>
+        /// Resets the container object. 
+        /// </summary>
+        public virtual void Reset()
+        {
+            container = new List<MmgObj>(MmgContainer.INITIAL_SIZE);
+        }
+
+        /// <summary>
+        /// Gets the ArrayList container that holds all child objects.
+        /// </summary>
+        /// <returns>The ArrayList container of this MmgContainer object.</returns>
+        public virtual List<MmgObj> GetContainer()
         {
             return container;
         }
 
-        public void SetContainer(List<object> a)
+        /// <summary>
+        /// Sets the ArrayList container that holds all the child objects.
+        /// </summary>
+        /// <param name="a">An ArrayList to set this container's contents from.</param>
+        public virtual void SetContainer(List<MmgObj> aTmp)
         {
-            container = a;
+            if (aTmp != null)
+            {
+                container = aTmp;
+                UpdateAllChildren(ChildAction.STAMP);
+            }
+            else
+            {
+                container = null;
+            }
         }
 
+        /// <summary>
+        /// A method to update all children with the provided action.
+        /// </summary>
+        /// <param name="act">The action to perform on the child objects.</param>
+        private void UpdateAllChildren(ChildAction act)
+        {
+            int len = GetCount();
+            MmgObj obj;
+            for (int j = 0; j < len; j++)
+            {
+                obj = container[j];
+                if (obj != null)
+                {
+                    if (act == ChildAction.STAMP)
+                    {
+                        StampChild(obj);
+                    }
+                    else
+                    {
+                        UnstampChild(obj);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// A method that stamps the child as belonging to the parent.
+        /// </summary>
+        /// <param name="obj">The child to perform the operation on.</param>
+        private void StampChild(MmgObj obj)
+        {
+            if (obj != null)
+            {
+                obj.SetHasParent(true);
+                obj.SetParent(this);
+            }
+        }
+
+        /// <summary>
+        /// A method that un-stamps the child, removing it from belonging to the parent.
+        /// </summary>
+        /// <param name="obj">The child to perform the operation on. </param>
+        private void UnstampChild(MmgObj obj)
+        {
+            if (obj != null)
+            {
+                obj.SetHasParent(false);
+                obj.SetParent(null);
+            }
+        }
+
+        /// <summary>
+        /// Returns the child at the given index.
+        /// </summary>
+        /// <param name="idx">The index of the child to get.</param>
+        /// <returns>The child at the given index.</returns>
+        public MmgObj GetChildAt(int idx)
+        {
+            return container[idx];
+        }
+
+        /// <summary>
+        /// Returns the relative position of the child at the given index.
+        /// </summary>
+        /// <param name="idx">The index of the child to get.</param>
+        /// <returns>An MmgVector2 object with the relative position of the child.</returns>
+        public MmgVector2 GetChildPosRelative(int idx)
+        {
+            MmgObj obj = container[idx];
+            MmgVector2 v1 = new MmgVector2();
+            v1.SetX(obj.GetX() - this.GetX());
+            v1.SetY(obj.GetY() - this.GetY());
+            return v1;
+        }
+
+        /// <summary>
+        /// Returns the absolute position of the child at the given index.
+        /// </summary>
+        /// <param name="idx">The index of the child to get.</param>
+        /// <returns>An MmgVector2 object with the absolute position of the child.</returns>
+        public MmgVector2 GetChildPosAbsolute(int idx)
+        {
+            return container[idx].GetPosition();
+        }
+
+        /// <summary>
+        /// The base drawing method used to render this object with an MmgPen.
+        /// </summary>
+        /// <param name="p">The MmgPen that will draw this object.</param>
         public override void MmgDraw(MmgPen p)
         {
-            if (GetIsVisible() == true)
+            if (isVisible == true)
             {
                 if (container != null)
                 {
@@ -226,23 +419,105 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     for (i = 0; i < a.Length; i++)
                     {
                         mo = (MmgObj)a[i];
-                        if (mo != null && mo.GetIsVisible() == true)
+                        if (mo != null && mo.isVisible == true)
                         {
                             mo.MmgDraw(p);
                         }
-                        else
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// The MmgUpdate method used to call the update method of the child objects.
+        /// </summary>
+        /// <param name="updateTicks">The update tick number.</param>
+        /// <param name="currentTimeMs">The current time in the game in milliseconds.</param>
+        /// <param name="msSinceLastFrame">The number of milliseconds between the last frame and this frame.</param>
+        /// <returns>A boolean indicating if any work was done.</returns>
+        public override bool MmgUpdate(int updateTicks, long currentTimeMs, long msSinceLastFrame)
+        {
+            lret = false;
+
+            if (isVisible == true && isDirty == true)
+            {
+                if (mode == RenderMode.RENDER_ONLY_WHEN_DIRTY)
+                {
+                    isDirty = false;
+                }
+
+                if (container != null)
+                {
+                    a = container.ToArray();
+                    for (i = 0; i < a.Length; i++)
+                    {
+                        mo = (MmgObj)a[i];
+                        if (mo != null && mo.isVisible == true)
                         {
-                            //do nothing
+                            if (mo.MmgUpdate(updateTicks, currentTimeMs, msSinceLastFrame) == true)
+                            {
+                                lret = true;
+                            }
                         }
                     }
+                }
+            }
+            return lret;
+        }
 
+        /// <summary>
+        /// A method that checks to see if this MmgContainer is equal to the passed in MmgContainer.
+        /// </summary>
+        /// <param name="obj">The MmgContainer object instance to test for equality.</param>
+        /// <returns>Returns true if both MmgContainer objects are the same.</returns>
+        public bool equals(MmgContainer obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.Equals(this))
+            {
+                return true;
+            }
+
+            bool ret = true;
+            if (obj.container == null && container == null)
+            {
+                ret = true;
+            }
+            else if (obj.container != null && container != null)
+            {
+                int len1 = obj.GetCount();
+                int len2 = GetCount();
+                if (len1 == len2)
+                {
+                    MmgObj m1;
+                    MmgObj m2;
+
+                    for (int i = 0; i < len1; i++)
+                    {
+                        m1 = obj.container[i];
+                        m2 = container[i];
+                        if (
+                            !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.equals(m2)))
+                        )
+                        {
+                            ret = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    ret = false;
                 }
             }
             else
             {
-                //do nothing
+                ret = false;
             }
+            return ret;
         }
-
     }
 }

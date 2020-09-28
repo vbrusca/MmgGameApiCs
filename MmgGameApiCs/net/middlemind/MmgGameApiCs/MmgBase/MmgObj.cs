@@ -284,7 +284,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="currentTimeMs">The current time in milliseconds that the update was called.</param>
         /// <param name="msSinceLastFrame">The difference in milliseconds between this update call and the previous update call.</param>
         /// <returns>A boolean indicating if the update call was handled.</returns>
-        public bool MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame)
+        public virtual bool MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame)
         {
             if (isVisible == true)
             {
@@ -361,7 +361,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="x">The X coordinate to set this object position to.</param>
         /// <param name="y">The Y coordinate to set this object position to.</param>
-        public void SetPosition(int x, int y)
+        public virtual void SetPosition(int x, int y)
         {
             pos = new MmgVector2(x, y);
         }
