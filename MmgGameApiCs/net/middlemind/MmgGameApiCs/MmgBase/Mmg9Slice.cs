@@ -8,7 +8,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// A class that provides 9 slice bitmap scaling support. 
     /// Created by Middlemind Games 12/01/2016
     ///
-    /// @author Victor G.Brusca
+    /// @author Victor G. Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class Mmg9Slice : MmgObj
@@ -176,16 +176,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void DrawDest()
         {
-            //bool alpha = true;
-
-            MmgBmp b = GetSrc();
-            Texture2D img = b.GetImage();
-            GraphicsDevice gd = MmgSettings.GRAPHICS_DEVICE;
-            SpriteBatch g = new SpriteBatch(gd);
-            RenderTarget2D bg = new RenderTarget2D(gd, GetWidth(), GetHeight());
-            g.GraphicsDevice.SetRenderTarget(bg);
-
             /*
+            bool alpha = true;            
             BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(GetWidth(), GetHeight(), alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
             Graphics2D g = (Graphics2D)bg.getGraphics();
             if (MmgPen.ADV_RENDER_HINTS == true)
@@ -195,6 +187,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             }
             */
+
+            MmgBmp b = GetSrc();
+            Texture2D img = b.GetImage();
+            GraphicsDevice gd = MmgSettings.GRAPHICS_DEVICE;
+            SpriteBatch g = new SpriteBatch(gd);
+            RenderTarget2D bg = new RenderTarget2D(gd, GetWidth(), GetHeight());
+            g.GraphicsDevice.SetRenderTarget(bg);
 
             int fs = offset;
 

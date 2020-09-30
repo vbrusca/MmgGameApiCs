@@ -6,7 +6,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// Class that represents a two dimensional integer vector.
     /// Created by Middlemind Games 01/06/2005
     ///
-    /// @author Victor G.Brusca
+    /// @author Victor G. Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgVector2Int : MmgVector2

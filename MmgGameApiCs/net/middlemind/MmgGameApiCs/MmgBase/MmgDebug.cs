@@ -7,7 +7,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// This class is more geared towards Android logging.
     /// Created by Middlemind Games 08/29/2016
     /// 
-    /// @author Victor G.Brusca
+    /// @author Victor G. Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgDebug

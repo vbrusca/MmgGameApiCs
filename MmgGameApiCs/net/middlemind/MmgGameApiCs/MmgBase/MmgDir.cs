@@ -6,7 +6,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// A class used to map simple directions for games.
     /// Created by Middlemind Games 11/17/2016
     ///
-    /// @author Victor G.Brusca
+    /// @author Victor G. Brusca
     /// </summary>
     public class MmgDir
     {

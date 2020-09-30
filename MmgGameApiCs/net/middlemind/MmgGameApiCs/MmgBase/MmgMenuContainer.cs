@@ -7,7 +7,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// A class that contains a collection of MmgMenuItem objects.
     /// Created by Middlemind Games 08/29/2016
     /// 
-    /// @author Victor G.Brusca
+    /// @author Victor G. Brusca
     /// </summary>
     public class MmgMenuContainer : MmgObj
     {

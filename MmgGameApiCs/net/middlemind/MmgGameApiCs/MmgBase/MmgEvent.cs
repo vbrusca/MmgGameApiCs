@@ -6,7 +6,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// The base event class for event handling. 
     /// Created by Middlemind Games 08/29/2016
     /// 
-    /// @author Victor G.Brusca
+    /// @author Victor G. Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgEvent

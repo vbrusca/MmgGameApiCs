@@ -8,7 +8,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// Class used to store rows of information from a class config text file.
     /// Created by Middlemind Games 03/15/2020
     /// 
-    /// @author Victor G.Brusca
+    /// @author Victor G. Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgCfgFileEntry : IComparer<MmgCfgFileEntry>

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
@@ -7,7 +8,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// Class that can display text as images using an image source.
     /// Created by Middlemind Games 09/10/2020
     ///
-    /// @author Victor G.Brusca
+    /// @author Victor G. Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0066:Convert switch statement to expression", Justification = "<Pending>")]
     public class MmgBmpFont : MmgObj
@@ -186,14 +187,22 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void Prep()
         {
-            Image imgT = src.GetImage();
-            BufferedImage img = null;
+            //Image imgT = src.GetImage();
+            //BufferedImage img = null;
 
-            img = new BufferedImage(imgT.getWidth(null), imgT.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+            //img = new BufferedImage(imgT.getWidth(null), imgT.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 
-            Graphics2D g = img.createGraphics();
-            g.drawImage(imgT, 0, 0, null);
-            g.dispose();
+            //Graphics2D g = img.createGraphics();
+            //g.drawImage(imgT, 0, 0, null);
+            //g.dispose();
+
+            Texture2D imgT = src.GetImage();
+            GraphicsDevice gd = MmgSettings.GRAPHICS_DEVICE;
+            SpriteBatch g = new SpriteBatch(gd);
+            RenderTarget2D bg = new RenderTarget2D(gd, imgT.Width, imgT.Height);
+            g.GraphicsDevice.SetRenderTarget(bg);
+            g.Draw(imgT, new Vector2(0, 0), Color.Transparent);
+            g.Dispose();
 
             int width = src.GetWidth();
             int height = src.GetHeight();
