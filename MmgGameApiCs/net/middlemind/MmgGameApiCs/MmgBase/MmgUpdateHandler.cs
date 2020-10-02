@@ -8,6 +8,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     ///
     /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public interface MmgUpdateHandler
     {
         /// <summary>

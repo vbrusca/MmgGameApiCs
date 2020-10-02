@@ -7,6 +7,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// @author Victor G. Brusca
     /// Middlemind Games 01/13/2012
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgBmpFontXna : MmgObj
     {
         //TODO: Add comments

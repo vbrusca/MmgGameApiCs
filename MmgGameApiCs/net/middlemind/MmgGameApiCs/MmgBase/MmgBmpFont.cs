@@ -197,10 +197,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             //g.dispose();
 
             Texture2D imgT = src.GetImage();
-            GraphicsDevice gd = MmgSettings.GRAPHICS_DEVICE;
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
-            RenderTarget2D bg = new RenderTarget2D(gd, imgT.Width, imgT.Height);
-            g.GraphicsDevice.SetRenderTarget(bg);
+            RenderTarget2D img = new RenderTarget2D(gd, imgT.Width, imgT.Height);
+            g.GraphicsDevice.SetRenderTarget(img);
             g.Draw(imgT, new Vector2(0, 0), Color.Transparent);
             g.Dispose();
 
@@ -215,10 +215,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             int w;
             chars = new MmgBmp[MmgBmpFont.EXPECTED_CHAR_LENGTH];
             widths = new int[MmgBmpFont.EXPECTED_CHAR_LENGTH];
+            Color[] pixels = new Color[img.Width * img.Height];
+            img.GetData(pixels);
 
             for (i = 1; i < width; i++)
             {
-                Color ct = new Color(img.getRGB(i, 0));
+                Color ct = pixels[i]; /// img.getRGB(i, 0));
                 if (ct.R == 255 && ct.G == 0 && ct.B == 255)
                 {
                     pos = start;

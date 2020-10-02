@@ -190,10 +190,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             MmgBmp b = GetSrc();
             Texture2D img = b.GetImage();
-            GraphicsDevice gd = MmgSettings.GRAPHICS_DEVICE;
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, GetWidth(), GetHeight());
             g.GraphicsDevice.SetRenderTarget(bg);
+            g.Begin();
 
             int fs = offset;
 
@@ -237,6 +238,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             //g.drawImage(img, GetWidth() - fs, GetHeight() - fs, GetWidth(), GetHeight(), b.GetWidth() - fs, b.GetHeight() - fs, b.GetWidth(), b.GetHeight(), null);
             g.Draw(img, new Rectangle(GetWidth() - fs, GetHeight() - fs, GetWidth(), GetHeight()), new Rectangle(b.GetWidth() - fs, b.GetHeight() - fs, b.GetWidth(), b.GetHeight()), Color.Transparent);
 
+            g.End();
             dest = new MmgBmp(bg);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
@@ -12,6 +13,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgScreenData
     {
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        public static GraphicsDevice GRAPHICS_CONFIG;
+
         /// <summary>
         /// An enumeration used to track the scaling mode used by this class.
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
@@ -11,6 +12,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     ///
     /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgTextBlock : MmgObj
     {
         /// <summary>
@@ -206,103 +208,91 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return (MmgObj)new MmgTextBlock(this);
         }
 
-        /*
-         * Creates a typed clone of this class.
-         * 
-         * @return      A typed clone of this class.
-         */
         /// <summary>
-        /// 
+        /// Creates a typed clone of this class.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A typed clone of this class.</returns>
         public virtual new MmgTextBlock CloneTyped()
         {
             return new MmgTextBlock(this);
         }
 
-        /**
-         * Gets the lines of text created when splitting the input text to fit the width and height of this object.
-         * 
-         * @return      The lines of this text block.
-         */
-        public ArrayList<MmgFont> GetLines()
+        /// <summary>
+        /// Gets the lines of text created when splitting the input text to fit the width and height of this object.
+        /// </summary>
+        /// <returns>The lines of this text block.</returns>
+        public virtual List<MmgFont> GetLines()
         {
             return lines;
         }
 
-        /**
-         * Sets the lines of text created when splitting the input text to fit the width and height of this object.
-         * 
-         * @param a     The lines of this text block.
-         */
-        public void SetLines(ArrayList<MmgFont> a)
+        /// <summary>
+        /// Sets the lines of text created when splitting the input text to fit the width and height of this object.
+        /// </summary>
+        /// <param name="a">The lines of this text block.</param>
+        public virtual void SetLines(List<MmgFont> a)
         {
             lines = a;
         }
 
-        /**
-         * Gets the lines of text displayed on this page of text.
-         * 
-         * @return      The lines of text displayed on this page of text.
-         */
-        public ArrayList<MmgFont> GetTxt()
+        /// <summary>
+        /// Gets the lines of text displayed on this page of text.
+        /// </summary>
+        /// <returns>The lines of text displayed on this page of text.</returns>
+        public virtual List<MmgFont> GetTxt()
         {
             return txt;
         }
 
-        /**
-         * Sets the lines of text displayed on this page of text.
-         * 
-         * @param a     The lines of text displayed on this page of text.
-         */
-        public void SetTxt(ArrayList<MmgFont> a)
+        /// <summary>
+        /// Sets the lines of text displayed on this page of text.
+        /// </summary>
+        /// <param name="a">The lines of text displayed on this page of text.</param>
+        public virtual void SetTxt(List<MmgFont> a)
         {
             txt = a;
         }
 
-        /**
-         * A method used to reset the lines split from the original text and the lines displayed on this page.
-         */
-        public void Reset()
+        /// <summary>
+        /// A method used to reset the lines split from the original text and the lines displayed on this page.
+        /// </summary>
+        public virtual void Reset()
         {
-            lines = new ArrayList<MmgFont>(STARTING_LINE_COUNT);
-            txt = new ArrayList<MmgFont>(STARTING_TXT_COUNT);
+            lines = new List<MmgFont>(STARTING_LINE_COUNT);
+            txt = new List<MmgFont>(STARTING_TXT_COUNT);
         }
 
-        /**
-         * Gets the number of pages the story takes up. 
-         * The number of lines is determined after parsing the story text.
-         *
-         * @return      The number of pages the story takes up.
-         */
-        public int GetPages()
+        /// <summary>
+        /// Gets the number of pages the story takes up. 
+        /// The number of lines is determined after parsing the story text.
+        /// </summary>
+        /// <returns>The number of pages the story takes up.</returns>
+        public virtual int GetPages()
         {
             return pages;
         }
 
-        /**
-         * Sets the number of pages the story takes up. 
-         * This method should not be used with the default behavior. The number of lines is determined after
-         * parsing the story text.
-         *
-         * @param p     The number of pages in the story.
-         */
-        public void SetPages(int p)
+        /// <summary>
+        /// Sets the number of pages the story takes up. 
+        /// This method should not be used with the default behavior.The number of lines is determined after
+        /// parsing the story text.
+        /// </summary>
+        /// <param name="p">The number of pages in the story.</param>
+        public virtual void SetPages(int p)
         {
             pages = p;
         }
 
-        /**
-         * Gets the text object, MmgFont, at the given index of the array.
-         *
-         * @param i     The index of the entry in the text array.
-         * @return      Returns the text object, MmgFont, at the given index.
-         */
-        public MmgFont GetText(int i)
+        /// <summary>
+        /// Gets the text object, MmgFont, at the given index of the array.
+        /// </summary>
+        /// <param name="i">The index of the entry in the text array.</param>
+        /// <returns>Returns the text object, MmgFont, at the given index.</returns>
+        public virtual MmgFont GetText(int i)
         {
-            if (i < txt.size())
+            if (i < txt.Count)
             {
-                return txt.get(i);
+                return txt[i];
             }
             else
             {
@@ -310,188 +300,168 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        /**
-         * Sets the text object, MmgFont, at the given index of the array.
-         * This method should not be used with the default behavior.
-         *
-         * @param i     The index of the entry to replace in the text array.
-         * @param f     The text object, MmgFont, to set in the text array.
-         */
-        public void SetText(int i, MmgFont f)
+        /// <summary>
+        /// Sets the text object, MmgFont, at the given index of the array.
+        /// This method should not be used with the default behavior.
+        /// </summary>
+        /// <param name="i">The index of the entry to replace in the text array.</param>
+        /// <param name="f">The text object, MmgFont, to set in the text array.</param>
+        public virtual void SetText(int i, MmgFont f)
         {
-            if (i < txt.size())
+            if (i < txt.Count)
             {
-                txt.set(i, f);
+                txt.Insert(i, f);
             }
         }
 
-        /**
-         * Gets the Font object used to render the background story.
-         *
-         * @return      The font object used to render the story.
-         */
-        public Font GetSpriteFont()
+        /// <summary>
+        /// Gets the Font object used to render the background story.
+        /// </summary>
+        /// <returns>The font object used to render the story.</returns>
+        public virtual SpriteFont GetSpriteFont()
         {
             return paint;
         }
 
-        /**
-         * Sets the Font object used to render the background story.
-         * You may have to re-parse the story text if you change the font used to render it.
-         *
-         * @param p     Sets the Font object used to render the story.
-         */
-        public void SetSpriteFont(Font p)
+        /// <summary>
+        /// Sets the Font object used to render the background story.
+        /// You may have to re-parse the story text if you change the font used to render it.
+        /// </summary>
+        /// <param name="p">Sets the Font object used to render the story.</param>
+        public virtual void SetSpriteFont(SpriteFont p)
         {
             paint = p;
-            int len = txt.size();
+            int len = txt.Count;
             for (int i = 0; i < len; i++)
             {
-                txt.get(i).SetFont(paint);
+                txt[i].SetFont(paint);
             }
         }
 
-        /**
-         * Sets the color object, MmgColor, of the entire background story text.
-         *
-         * @param Cl    The color object, MmGColor, to apply to the story.
-         */
-        public void SetColor(MmgColor Cl)
+        /// <summary>
+        /// Sets the color object, MmgColor, of the entire background story text.
+        /// </summary>
+        /// <param name="Cl">The color object, MmGColor, to apply to the story.</param>
+        public virtual void SetColor(MmgColor Cl)
         {
             cl = Cl;
-            int len = txt.size();
+            int len = txt.Count;
             for (int i = 0; i < len; i++)
             {
-                txt.get(i).SetMmgColor(cl);
+                txt[i].SetMmgColor(cl);
             }
         }
 
-        /**
-         * Gets the color object, MmgColor, of the background story.
-         *
-         * @return      The MmgColor used when drawing text for this object.
-         */
-        public MmgColor GetColor()
+        /// <summary>
+        /// Gets the color object, MmgColor, of the background story.
+        /// </summary>
+        /// <returns>The MmgColor used when drawing text for this object.</returns>
+        public virtual MmgColor GetColor()
         {
             return cl;
         }
 
-        /**
-         * Gets the Y axis padding value;
-         *
-         * @return      The Y axis padding value.
-         */
-        public int GetPaddingY()
+        /// <summary>
+        /// Gets the Y axis padding value.
+        /// </summary>
+        /// <returns>The Y axis padding value.</returns>
+        public virtual int GetPaddingY()
         {
             return paddingY;
         }
 
-        /**
-         * Sets the Y axis padding value.
-         *
-         * @param p     The Y axis padding value.
-         */
-        public void SetPaddingY(int p)
+        /// <summary>
+        /// Sets the Y axis padding value.
+        /// </summary>
+        /// <param name="p">The Y axis padding value.</param>
+        public virtual void SetPaddingY(int p)
         {
             paddingY = p;
         }
 
-        /**
-         * Gets the X axis padding value.
-         *
-         * @return      The X axis padding value.
-         */
-        public int GetPaddingX()
+        /// <summary>
+        /// Gets the X axis padding value.
+        /// </summary>
+        /// <returns>The X axis padding value.</returns>
+        public virtual int GetPaddingX()
         {
             return paddingX;
         }
 
-        /**
-         * Sets the X axis padding value.
-         *
-         * @param p     The X axis padding value.
-         */
-        public void SetPaddingX(int p)
+        /// <summary>
+        /// Sets the X axis padding value.
+        /// </summary>
+        /// <param name="p">The X axis padding value.</param>
+        public virtual void SetPaddingX(int p)
         {
             paddingX = p;
         }
 
-        /**
-         * Gets the line height in pixels used in the display calculation of the
-         * background story.
-         *
-         * @return      The line height in pixels.
-         */
-        public int GetLineHeight()
+        /// <summary>
+        /// Gets the line height in pixels used in the display calculation of the
+        /// background story.
+        /// </summary>
+        /// <returns>The line height in pixels.</returns>
+        public virtual int GetLineHeight()
         {
             return lineHeight;
         }
 
-        /**
-         * Sets the line height in pixels used in the display calculation of the
-         * background story.
-         *
-         * @param l     The line height in pixels.
-         */
-        public void SetLineHeight(int l)
+        /// <summary>
+        /// Sets the line height in pixels used in the display calculation of the
+        /// background story.
+        /// </summary>
+        /// <param name="l">The line height in pixels.</param>
+        public virtual void SetLineHeight(int l)
         {
             lineHeight = l;
         }
 
-        /**
-         * Gets the height of the background story object.
-         *
-         * @return      The height of the background story object.
-         */
-        @Override
-    public int GetHeight()
+        /// <summary>
+        /// Gets the height of the background story object.
+        /// </summary>
+        /// <returns>The height of the background story object.</returns>
+        public override int GetHeight()
         {
             return height;
         }
 
-        /**
-         * Sets the height of the background story object.
-         * You may have to re-parse the background story if you change the display dimensions.
-         *
-         * @param h     The height of the background story object.
-         */
-        @Override
-    public void SetHeight(int h)
+        /// <summary>
+        /// Sets the height of the background story object.
+        /// You may have to re-parse the background story if you change the display dimensions.
+        /// </summary>
+        /// <param name="h">The height of the background story object.</param>
+        public override void SetHeight(int h)
         {
-            super.SetHeight(h);
+            base.SetHeight(h);
             height = h;
         }
 
-        /**
-         * Gets the width of the background story object.
-         *
-         * @return      The width of the background story object.
-         */
-        @Override
-    public int GetWidth()
+        /// <summary>
+        /// Gets the width of the background story object.
+        /// </summary>
+        /// <returns>The width of the background story object.</returns>
+        public override int GetWidth()
         {
             return width;
         }
 
-        /**
-         * Sets the width of the background story object.
-         * You may have to re-parse the background story if you change the display dimensions.
-         *
-         * @param w     The width of the background story object.
-         */
-        @Override
-    public void SetWidth(int w)
+        /// <summary>
+        /// Sets the width of the background story object.
+        /// You may have to re-parse the background story if you change the display dimensions.
+        /// </summary>
+        /// <param name="w">The width of the background story object.</param>
+        public override void SetWidth(int w)
         {
-            super.SetWidth(w);
+            base.SetWidth(w);
             width = w;
         }
 
-        /**
-         * Returns the number of lines that can be displayed in the background story box.
-         *
-         * @return      The number of lines that can be displayed in the display box.
-         */
-        public int GetLinesInBox()
+        /// <summary>
+        /// Returns the number of lines that can be displayed in the background story box.
+        /// </summary>
+        /// <returns>The number of lines that can be displayed in the display box.</returns>
+        public virtual int GetLinesInBox()
         {
             if (GetLineHeight() != 0)
             {
@@ -503,117 +473,104 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        /**
-         * Prepares the lines that represent the display box with blank text objects, MmgFont.
-         *
-         * @param len   The number of line objects to prep for text display, usually is the number of line in a page.
-         */
-        public void PrepLinesInBox(int len)
+        /// <summary>
+        /// Prepares the lines that represent the display box with blank text objects, MmgFont.
+        /// </summary>
+        /// <param name="len">The number of line objects to prep for text display, usually is the number of line in a page.</param>
+        public virtual void PrepLinesInBox(int len)
         {
             for (int i = 0; i < len; i++)
             {
-                txt.add(new MmgFont());
+                txt.Add(new MmgFont());
             }
         }
 
-        /**
-         * Prepares the lines that represent the display box with blank text objects, MmgFont.
-         *
-         */
-        public void PrepLinesInBox()
+        /// <summary>
+        /// Prepares the lines that represent the display box with blank text objects, MmgFont.
+        /// </summary>
+        public virtual void PrepLinesInBox()
         {
             int len = GetLinesInBox();
             for (int i = 0; i < len; i++)
             {
-                txt.add(new MmgFont());
+                txt.Add(new MmgFont());
             }
         }
 
-        /**
-         * Sets the position of this object in its owner's display space.
-         *
-         * @param vec   A position coordinate, MmgVector2.
-         */
-        @Override
-    public void SetPosition(MmgVector2 vec)
+        /// <summary>
+        /// Sets the position of this object in its owner's display space.
+        /// </summary>
+        /// <param name="vec">A position coordinate, MmgVector2.</param>
+        public override void SetPosition(MmgVector2 vec)
         {
-            super.SetPosition(vec.Clone());
-            int len = txt.size();
+            base.SetPosition(vec.Clone());
+            int len = txt.Count;
             for (int i = 0; i < len; i++)
             {
-                MmgFont tmp = txt.get(i);
+                MmgFont tmp = txt[i];
                 tmp.GetPosition().SetX(vec.GetX() + paddingX);
                 tmp.GetPosition().SetY(vec.GetY() + (lineHeight / 2) + paddingY + (lineHeight * i));
-                txt.set(i, tmp);
+                txt.Insert(i, tmp);
             }
         }
 
-        /**
-         * Sets the position of this object in its owner's display space.
-         * 
-         * @param x     The X coordinate of the position.
-         * @param y     The Y coordinate of the position.
-         */
-        @Override
-    public void SetPosition(int x, int y)
+        /// <summary>
+        /// Sets the position of this object in its owner's display space.
+        /// </summary>
+        /// <param name="x">The X coordinate of the position.</param>
+        /// <param name="y">The Y coordinate of the position.</param>
+        public override void SetPosition(int x, int y)
         {
             SetPosition(new MmgVector2(x, y));
         }
 
-        /**
-         * Sets the X coordinate of the MmgTextBlock object.
-         * 
-         * @param i     The X coordinate of the position.
-         */
-        @Override
-    public void SetX(int i)
+        /// <summary>
+        /// Sets the X coordinate of the MmgTextBlock object.
+        /// </summary>
+        /// <param name="i">The X coordinate of the position.</param>
+        public override void SetX(int i)
         {
             SetPosition(new MmgVector2(i, GetY()));
         }
 
-        /**
-         * Sets the Y coordinate of the MmgTextBlock object.
-         * 
-         * @param i     The Y coordinate of the position.
-         */
-        @Override
-    public void SetY(int i)
+        /// <summary>
+        /// Sets the Y coordinate of the MmgTextBlock object.
+        /// </summary>
+        /// <param name="i">The Y coordinate of the position.</param>
+        public override void SetY(int i)
         {
             SetPosition(new MmgVector2(GetX(), i));
         }
 
-        /**
-         * Gets the number of pages needed to display the background story text.
-         *
-         * @return      The number of display pages.
-         */
-        public int GetPageCount()
+        /// <summary>
+        /// Gets the number of pages needed to display the background story text.
+        /// </summary>
+        /// <returns>The number of display pages.</returns>
+        public virtual int GetPageCount()
         {
             return pages;
         }
 
-        /**
-         * Gets the number of text lines that are displayed on each page.
-         *
-         * @return      The number of lines that are displayed on each page.
-         */
-        public int GetLineCount()
+        /// <summary>
+        /// Gets the number of text lines that are displayed on each page.
+        /// </summary>
+        /// <returns>The number of lines that are displayed on each page.</returns>
+        public virtual int GetLineCount()
         {
-            return txt.size();
+            return txt.Count;
         }
 
-        /**
-         * Gets the number of used lines in the text block.
-         * 
-         * @return      The number of lines used in this text block.
-         */
-        public int GetUsedLineCount()
+        /// <summary>
+        /// Gets the number of used lines in the text block.
+        /// </summary>
+        /// <returns>The number of lines used in this text block.</returns>
+        public virtual int GetUsedLineCount()
         {
             int ret = 0;
-            int len = txt.size();
+            int len = txt.Count;
             for (int i = 0; i < len; i++)
             {
-                if (txt.get(i) != null && txt.get(i).GetText().trim().equals("") == false)
+                if (txt[i] != null && txt[i].GetText().Trim().Equals("") == false)
                 {
                     ret++;
                 }
@@ -621,34 +578,30 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return ret;
         }
 
-        /**
-         * Gets the number of words that are in the background story.
-         *
-         * @return      The number of words in the background story.
-         */
-        public int GetWordCount()
+        /// <summary>
+        /// Gets the number of words that are in the background story.
+        /// </summary>
+        /// <returns>The number of words in the background story.</returns>
+        public virtual int GetWordCount()
         {
             return words;
         }
 
-        /**
-         * Sets the number of words that are in the background story.
-         * This really should not need to be used as the text processing methods will set the value automatically.
-         * 
-         * @param i     The number of words in the background story.
-         */
-        public void SetWordCount(int i)
+        /// <summary>
+        /// Sets the number of words that are in the background story.
+        /// This really should not need to be used as the text processing methods will set the value automatically.
+        /// </summary>
+        /// <param name="i">The number of words in the background story.</param>
+        public virtual void SetWordCount(int i)
         {
             words = i;
         }
 
-        /**
-         * Prepares the text for rendering for the given page index.
-         *
-         * @param page      The page index to render text for.
-         */
-        @SuppressWarnings("UnusedAssignment")
-    public void PrepPage(int page)
+        /// <summary>
+        /// Prepares the text for rendering for the given page index.
+        /// </summary>
+        /// <param name="page">The page index to render text for.</param>
+        public virtual void PrepPage(int page)
         {
             int len = GetLineCount();
 
@@ -656,7 +609,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 for (int i = 0; i < len; i++)
                 {
-                    txt.get(i).SetText("");
+                    txt[i].SetText("");
                 }
             }
             else
@@ -669,21 +622,21 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     for (int j = 0; j < len; j++)
                     {
                         i = (page * GetLineCount()) + j;
-                        if (i >= 0 && i < lines.size())
+                        if (i >= 0 && i < lines.Count)
                         {
-                            tmp = (MmgFont)lines.get(i);
+                            tmp = (MmgFont)lines[i];
                             if (tmp != null)
                             {
-                                txt.set(j, (MmgFont)tmp.Clone());
+                                txt.Insert(j, (MmgFont)tmp.Clone());
                             }
                             else
                             {
-                                txt.get(j).SetText("");
+                                txt[j].SetText("");
                             }
                         }
                         else
                         {
-                            txt.get(j).SetText("");
+                            txt[j].SetText("");
                         }
                     }
                 }
@@ -691,36 +644,34 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     for (int i = 0; i < len; i++)
                     {
-                        txt.get(i).SetText("");
+                        txt[i].SetText("");
                     }
                 }
             }
         }
 
-        /**
-         * Parses and prepares the text for display in a paged view.
-         *
-         * @param text          The text to parse as the background story.
-         * @param typeFace      The Font to use to render the text.
-         * @param fontSize      The size of the font used to parse the text.
-         * @param width         The width to use as the maximum width for one line.
-         */
-        @SuppressWarnings("UnusedAssignment")
-    public void PrepTextSplit(String text, Font typeFace, int fontSize, int width)
+        /// <summary>
+        /// Parses and prepares the text for display in a paged view.
+        /// </summary>
+        /// <param name="text">The text to parse as the background story.</param>
+        /// <param name="typeFace">The Font to use to render the text.</param>
+        /// <param name="fontSize">The size of the font used to parse the text.</param>
+        /// <param name="width">The width to use as the maximum width for one line.</param>
+        public virtual void PrepTextSplit(string text, SpriteFont typeFace, int fontSize, int width)
         {
-            text = text.replace(" " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
-            text = text.replace("  " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
-            text = text.replace(MmgTextBlock.NEW_LINE, " " + MmgTextBlock.NEW_LINE);
-            String[] tokens = text.split(" ");
+            text = text.Replace(" " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
+            text = text.Replace("  " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
+            text = text.Replace(MmgTextBlock.NEW_LINE, " " + MmgTextBlock.NEW_LINE);
+            String[] tokens = text.Split(" ");
             int tokenPos = 0;
             int prevTokenPos = 0;
             String str = "";
             String prevStr = "";
             MmgFont desc = null;
-            boolean added = false;
-            lines = new ArrayList(STARTING_LINE_COUNT);
+            bool added = false;
+            lines = new List<MmgFont>(STARTING_LINE_COUNT);
 
-            while (tokenPos < tokens.length)
+            while (tokenPos < tokens.Length)
             {
                 desc = null;
                 desc = new MmgFont(typeFace);
@@ -730,13 +681,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 prevStr = "";
                 added = false;
 
-                while (desc.GetWidth() < width && tokenPos < tokens.length)
+                while (desc.GetWidth() < width && tokenPos < tokens.Length)
                 {
-                    if ((tokens[tokenPos] + "").equals(MmgTextBlock.NEW_LINE) == true)
+                    if ((tokens[tokenPos] + "").Equals(MmgTextBlock.NEW_LINE) == true)
                     {
                         //consume and move to the next line
                         desc.SetText(str);
-                        lines.add(desc);
+                        lines.Add(desc);
                         tokenPos++;
                         added = true;
                         break;
@@ -755,7 +706,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                             tokenPos = prevTokenPos;
                             str = prevStr;
                             desc.SetText(str);
-                            lines.add(desc);
+                            lines.Add(desc);
                             added = true;
                             break;
                         }
@@ -764,32 +715,30 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 if (added == false)
                 {
-                    lines.add(desc);
+                    lines.Add(desc);
                 }
             }
 
-            pages = (lines.size() / GetLineCount());
-            if (lines.size() % GetLineCount() != 0)
+            pages = (lines.Count / GetLineCount());
+            if (lines.Count % GetLineCount() != 0)
             {
                 pages++;
             }
-            words = tokens.length;
+            words = tokens.Length;
         }
 
-        /**
-         * Draws this object using the given pen, MmgPen.
-         *
-         * @param p     The pen to use to draw this object, MmgPen.
-         */
-        @Override
-    public void MmgDraw(MmgPen p)
+        /// <summary>
+        /// Draws this object using the given pen, MmgPen.
+        /// </summary>
+        /// <param name="p">The pen to use to draw this object, MmgPen.</param>
+        public override void MmgDraw(MmgPen p)
         {
             if (isVisible == true)
             {
                 if (MmgTextBlock.SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX == true)
                 {
                     Color c = p.GetGraphics().getColor();
-                    p.GetGraphics().setColor(Color.red);
+                    p.GetGraphics().setColor(Color.Red);
                     p.DrawRect(this);
                     p.GetGraphics().setColor(c);
                 }
@@ -797,7 +746,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 dLen = GetLineCount();
                 for (dI = 0; dI < dLen; dI++)
                 {
-                    dTmp = txt.get(dI);
+                    dTmp = txt[dI];
                     if (dTmp != null && dTmp.GetIsVisible() == true)
                     {
                         p.DrawText(dTmp);
@@ -806,19 +755,18 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        /**
-         * A method that checks the equality of this MmgTextBlock object and the given argument.
-         * 
-         * @param obj       The MmgTextBlock object to compare this object to.
-         * @return          Returns true if the two objects are equal and false otherwise.
-         */
-        public boolean Equals(MmgTextBlock obj)
+        /// <summary>
+        /// A method that checks the equality of this MmgTextBlock object and the given argument.
+        /// </summary>
+        /// <param name="obj">The MmgTextBlock object to compare this object to.</param>
+        /// <returns>Returns true if the two objects are equal and false otherwise.</returns>
+        public virtual bool Equals(MmgTextBlock obj)
         {
             if (obj == null)
             {
                 return false;
             }
-            else if (obj.equals(this))
+            else if (obj.Equals(this))
             {
                 return true;
             }
@@ -828,7 +776,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 MmgHelper.wr("MmgTextBlock: MmgObj is not equals!");
             }
 
-            if(!(((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().Equals(GetColor()))))) {
+            if(!(((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().equals(GetColor()))))) {
                 MmgHelper.wr("MmgTextBlock: Color is not equals!");
             }
 
@@ -864,7 +812,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 MmgHelper.wr("MmgTextBlock: Pages is not equals!");
             }
 
-            if(!(((obj.GetSpriteFont() == null && GetSpriteFont() == null) || (obj.GetSpriteFont() != null && GetSpriteFont() != null && obj.GetSpriteFont().equals(GetSpriteFont()))))) {
+            if(!(((obj.GetSpriteFont() == null && GetSpriteFont() == null) || (obj.GetSpriteFont() != null && GetSpriteFont() != null && obj.GetSpriteFont().Equals(GetSpriteFont()))))) {
                 MmgHelper.wr("MmgTextBlock: SpriteFont is not equals!");            
             }
 
@@ -881,10 +829,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
             */
 
-            boolean ret = false;
+            bool ret = false;
             if (
-                super.Equals((MmgObj)obj)
-                && ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().Equals(GetColor())))
+                base.Equals((MmgObj)obj)
+                && ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().equals(GetColor())))
                 && obj.GetHeight() == GetHeight()
                 && obj.GetLineCount() == GetLineCount()
                 && obj.GetLineHeight() == GetLineHeight()
@@ -893,7 +841,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 && obj.GetPaddingY() == GetPaddingY()
                 && obj.GetPageCount() == GetPageCount()
                 && obj.GetPages() == GetPages()
-                && ((obj.GetSpriteFont() == null && GetSpriteFont() == null) || (obj.GetSpriteFont() != null && GetSpriteFont() != null && obj.GetSpriteFont().equals(GetSpriteFont())))
+                && ((obj.GetSpriteFont() == null && GetSpriteFont() == null) || (obj.GetSpriteFont() != null && GetSpriteFont() != null && obj.GetSpriteFont().Equals(GetSpriteFont())))
                 && obj.GetUsedLineCount() == GetUsedLineCount()
                 && obj.GetWidth() == GetWidth()
                 && obj.GetWordCount() == GetWordCount()
@@ -906,8 +854,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 }
                 else if (obj.GetLines() != null && GetLines() != null)
                 {
-                    int len1 = obj.GetLines().size();
-                    int len2 = GetLines().size();
+                    int len1 = obj.GetLines().Count;
+                    int len2 = GetLines().Count;
                     if (len1 != len2)
                     {
                         ret = false;
@@ -916,7 +864,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     {
                         for (int i = 0; i < len1; i++)
                         {
-                            if (!obj.GetLines().get(i).Equals(GetLines().get(i)))
+                            if (!obj.GetLines()[i].Equals(GetLines()[i]))
                             {
                                 ret = false;
                                 break;

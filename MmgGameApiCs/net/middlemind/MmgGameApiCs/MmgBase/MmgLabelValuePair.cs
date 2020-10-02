@@ -9,6 +9,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     ///
     /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgLabelValuePair : MmgObj
     {
         /// <summary>
@@ -289,7 +290,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// Resets the width, height and position of this object if skipReset is false.
         /// </summary>
-        private virtual void Reset()
+        private void Reset()
         {
             if (skipReset == false)
             {

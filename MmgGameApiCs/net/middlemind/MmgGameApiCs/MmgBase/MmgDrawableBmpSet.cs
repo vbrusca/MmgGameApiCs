@@ -9,12 +9,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     ///
     /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgDrawableBmpSet
     {
         /// <summary>
         /// A lower level Java BufferedImage used for custom image creation and drawing.
         /// </summary>
-        public Texture2D buffImg;
+        public RenderTarget2D buffImg;
 
         /// <summary>
         /// A lower level Java 2D graphics object that handles drawing basic shapes, objects to a BufferedImage.
