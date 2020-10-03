@@ -201,7 +201,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D img = new RenderTarget2D(gd, imgT.Width, imgT.Height);
             g.GraphicsDevice.SetRenderTarget(img);
-            g.Draw(imgT, new Vector2(0, 0), Color.Transparent);
+            g.Draw(imgT, new Vector2(0, 0), Color.White);
             g.Dispose();
 
             int width = src.GetWidth();

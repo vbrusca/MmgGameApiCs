@@ -230,7 +230,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="ScrollBarColor">The MmgColor to use for the scroll bar.</param>
         /// <param name="ScrollBarCenterButtonColor">The MmgColor to use for the scroll bar slider.</param>
         /// <param name="IntervalX">The interval to use when moving the scroll bar.</param>
-        public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int IntervalX) : base)
+        public MmgScrollHor(MmgBmp ViewPort, MmgBmp ScrollPane, MmgColor ScrollBarColor, MmgColor ScrollBarCenterButtonColor, int IntervalX) : base()
         {
             viewPort = ViewPort;
             scrollPane = ScrollPane;

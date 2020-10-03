@@ -29,6 +29,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <returns></returns>
+        public static float ConvertToRadians(float angle)
+        {
+            return (float)((Math.PI / 180) * (double)angle);
+        }
+
+        /// <summary>
         /// Controls if logging is turned on or off.
         /// </summary>
         public static bool LOGGING = true;

@@ -144,7 +144,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 tmpL = obj.GetLines();
                 lines = new List<MmgFont>(STARTING_LINE_COUNT);
-                for (int i = 0; i < obj.GetTxt().size(); i++)
+                for (int i = 0; i < obj.GetTxt().Count; i++)
                 {
                     tmpF = tmpL[i];
                     lines.Add(tmpF.CloneTyped());
@@ -161,7 +161,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 tmpL = obj.GetTxt();
                 txt = new List<MmgFont>(STARTING_TXT_COUNT);
-                for (int i = 0; i < obj.GetTxt().size(); i++)
+                for (int i = 0; i < obj.GetTxt().Count; i++)
                 {
                     tmpF = tmpL[i];
                     txt.Add(tmpF.CloneTyped());
@@ -737,10 +737,15 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 if (MmgTextBlock.SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX == true)
                 {
-                    Color c = p.GetGraphics().getColor();
-                    p.GetGraphics().setColor(Color.Red);
+                    //Color c = p.GetGraphics().getColor();
+                    //p.GetGraphics().setColor(Color.Red);
+                    //p.DrawRect(this);
+                    //p.GetGraphics().setColor(c);
+
+                    Color c = p.GetColor();
+                    p.SetColor(Color.Red);
                     p.DrawRect(this);
-                    p.GetGraphics().setColor(c);
+                    p.SetColor(c);
                 }
 
                 dLen = GetLineCount();

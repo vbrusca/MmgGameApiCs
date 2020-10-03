@@ -1198,30 +1198,30 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     c = p.GetGraphicsColor();
 
                     //draw obj rect
-                    p.SetGraphicsColor(Color.RED);
+                    p.SetGraphicsColor(Color.Red);
                     p.DrawRect(this);
                     p.DrawRect(GetX() + GetWidth() - scrollBarWidth, GetY(), scrollBarWidth, h);
 
                     //draw view port rect
-                    p.SetGraphicsColor(Color.BLUE);
+                    p.SetGraphicsColor(Color.Blue);
                     p.DrawRect(viewPortRect);
 
                     //draw scroll pane rect
-                    p.SetGraphicsColor(Color.GREEN);
+                    p.SetGraphicsColor(Color.Green);
                     p.DrawRect(scrollPaneRect);
 
                     if (scrollBarVisible)
                     {
                         //center button
-                        p.SetGraphicsColor(Color.ORANGE);
+                        p.SetGraphicsColor(Color.Orange);
                         p.DrawRect(scrollBarCenterButtonRect);
 
                         //bottom button
-                        p.SetGraphicsColor(Color.CYAN);
+                        p.SetGraphicsColor(Color.Cyan);
                         p.DrawRect(scrollBarDownButtonRect);
 
                         //top button
-                        p.SetGraphicsColor(Color.PINK);
+                        p.SetGraphicsColor(Color.Pink);
                         p.DrawRect(scrollBarUpButtonRect);
                     }
 

@@ -495,8 +495,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 MmgScreenData.scaleX = prctDiffX;
                 MmgScreenData.scaleY = prctDiffX;
             }
-            MmgScreenData.gameWidth *= prctDiffX;
-            MmgScreenData.gameHeight *= prctDiffX;
+            MmgScreenData.gameWidth = (int)(MmgScreenData.gameWidth * prctDiffX);
+            MmgScreenData.gameHeight = (int)(MmgScreenData.gameHeight * prctDiffX);
             CalculateTop();
             CalculateLeft();
             MmgScreenData.scaleVec = new MmgVector2(MmgScreenData.scaleX, MmgScreenData.scaleY);
@@ -565,8 +565,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 MmgScreenData.scaleX = prctDiffY;
                 MmgScreenData.scaleY = prctDiffY;
             }
-            MmgScreenData.gameWidth *= prctDiffY;
-            MmgScreenData.gameHeight *= prctDiffY;
+            MmgScreenData.gameWidth = (int)(MmgScreenData.gameWidth * prctDiffY);
+            MmgScreenData.gameHeight = (int)(MmgScreenData.gameHeight * prctDiffY);
             CalculateTop();
             CalculateLeft();
             MmgScreenData.scaleVec = new MmgVector2(MmgScreenData.scaleX, MmgScreenData.scaleY);

@@ -52,7 +52,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             g.Begin();
 
             //g.drawImage(img, 0, 0, nw, nh, 0, 0, w, h, null);
-            g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.Transparent);
+            g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.White);
             g.End();
 
             return new MmgBmp(bg);
@@ -93,7 +93,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             g.Begin();
 
             //g.drawImage(img, 0, 0, nw, nh, 0, 0, w, h, null);
-            g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.Transparent);
+            g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.White);
             g.End();
 
             return new MmgBmp(bg);
@@ -146,7 +146,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             g.Begin();
 
             //g.drawImage(img, 0, 0, nw, nh, 0, 0, w, h, null);
-            g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.Transparent);
+            g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.White);
             g.End();
 
             return new MmgBmp(bg);
@@ -187,7 +187,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             g.Begin();
 
             //g.drawImage(img, 0, 0, nw, nh, 0, 0, w, h, null);
-            g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.Transparent);
+            g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.White);
             g.End();
 
             return new MmgBmp(bg);
@@ -230,7 +230,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             //g.drawImage(img, at, null);
             //g.dispose();
 
-            g.Draw(img, new Rectangle(0, 0, w, h), new Rectangle(0, 0, w, h), Color.Transparent, (float)MmgHelper.ConvertToRadians(angle), new Vector2(w/2, h/2), SpriteEffects.None, 0);
+            g.Draw(img, new Rectangle(0, 0, w, h), new Rectangle(0, 0, w, h), Color.White, (float)MmgHelper.ConvertToRadians(angle), new Vector2(w/2, h/2), SpriteEffects.None, 0);
             g.End();
             g.Dispose();
 

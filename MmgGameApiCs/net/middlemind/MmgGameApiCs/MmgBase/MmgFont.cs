@@ -238,14 +238,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (isVisible == true)
             {
-                if (fontScale != 1.0f)
-                {
-                    p.DrawText(this, fontScale);
-                }
-                else
-                {
-                    p.DrawText(this);
-                }
+                p.DrawText(this);
             }
         }
 
@@ -255,7 +248,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgFont object to compare</param>
         /// <returns>A boolean indicating if the object instance is equal to the argument object instance.</returns>
-        public bool Equals(MmgFont obj)
+        public virtual bool equals(MmgFont obj)
         {
             if (obj == null)
             {

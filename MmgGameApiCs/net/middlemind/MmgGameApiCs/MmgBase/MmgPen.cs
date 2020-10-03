@@ -77,9 +77,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// Constructor that sets the local graphics reference from the Image argument.
+        /// Constructor that sets the local graphics reference from the Texture2D argument.
         /// </summary>
-        /// <param name="img">The Image from which the graphics context is used to create this MmgPen.</param>
+        /// <param name="img">The Texture2D from which the graphics context is used to create this MmgPen.</param>
         public MmgPen(Texture2D img)
         {
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
@@ -198,27 +198,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return MmgPen.RotateImageStatic(width, height, img, angle, originX, originY);
         }
 
-        /*
-         * Rotate the given image by the given degrees.
-         * 
-         * @param width     The width of the image.
-         * @param height    The height of the image.
-         * @param img       The image to rotate.
-         * @param angle     The angle to rotate the image.
-         * @param originX   The origin X to use in rotation.
-         * @param originY   The origin Y to use in rotation.
-         * @return          A newly rotated image.
-         */
         /// <summary>
-        /// 
+        /// Rotate the given image by the given degrees.
         /// </summary>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="img"></param>
-        /// <param name="angle"></param>
-        /// <param name="originX"></param>
-        /// <param name="originY"></param>
-        /// <returns></returns>
+        /// <param name="width">The width of the image.</param>
+        /// <param name="height">The height of the image.</param>
+        /// <param name="img">The image to rotate.</param>
+        /// <param name="angle">The angle to rotate the image.</param>
+        /// <param name="originX">The origin X to use in rotation.</param>
+        /// <param name="originY">The origin Y to use in rotation.</param>
+        /// <returns>A newly rotated image.</returns>
         public static Texture2D RotateImageStatic(int width, int height, Texture2D img, int angle, int originX, int originY)
         {
             /*
@@ -233,105 +222,131 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
             */
 
-            MmgBmp b = GetSrc();
-            Texture2D img = b.GetImage();
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
-            RenderTarget2D bg = new RenderTarget2D(gd, GetWidth(), GetHeight());
+            RenderTarget2D bg = new RenderTarget2D(gd, width, height);
             g.GraphicsDevice.SetRenderTarget(bg);
 
-            AffineTransform at = new AffineTransform();
+            //AffineTransform at = new AffineTransform();
 
             if (originX == -1 || originY == -1)
             {
-                at.rotate(Math.toRadians(angle), (width / 2), (height / 2));
+                //at.rotate(Math.toRadians(angle), (width / 2), (height / 2));
+                originX = (width / 2);
+                originY = (height / 2);
             }
-            else
-            {
-                at.rotate(Math.toRadians(angle), originX, originY);
-            }
+            //else
+            //{
+            //at.rotate(Math.toRadians(angle), originX, originY);
+            //}
 
-            g.drawImage(img, 0, 0, null);
-            AffineTransformOp op = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-            bi = op.filter(bi, null);
-            g.dispose();
-            return bi;
+            //g.drawImage(img, 0, 0, null);
+            //AffineTransformOp op = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+            //bi = op.filter(bi, null);
+            //g.dispose();
+            g.Begin();
+            g.Draw(img, new Rectangle(0, 0, img.Width, img.Height), new Rectangle(0, 0, width, height), Color.White, MmgHelper.ConvertToRadians(angle), new Vector2(originX, originY), SpriteEffects.None, 0.0f);
+            g.End();
+            g.Dispose();
+
+            //return bi;
+            return (Texture2D)bg;
         }
 
-        /**
-         * Scale the given image by the given scale factor.
-         * 
-         * @param img           The image to scale.
-         * @param scaleX        The scale factor in the X axis direction.
-         * @param scaleY        The scale factor in the Y axis direction.
-         * @return              A scaled image.
-         */
-        public Image ScaleImage(Image img, double scaleX, double scaleY)
+        /// <summary>
+        /// Scale the given image by the given scale factor.
+        /// </summary>
+        /// <param name="img">The image to scale.</param>
+        /// <param name="scaleX">The scale factor in the X axis direction.</param>
+        /// <param name="scaleY">The scale factor in the Y axis direction.</param>
+        /// <returns>A scaled image.</returns>
+        public virtual Texture2D ScaleImage(Texture2D img, double scaleX, double scaleY)
         {
             return MmgPen.ScaleImageStatic(img, scaleX, scaleY);
         }
 
-        /**
-         * Scale the given image by the given scale factor.
-         * 
-         * @param img           The image to scale.
-         * @param scale         The scale factor in the X, Y axis directions.
-         * @return              A scaled image.
-         */
-        public static Image ScaleImageStatic(Image img, MmgVector2 scale)
+        /// <summary>
+        /// Scale the given image by the given scale factor.
+        /// </summary>
+        /// <param name="img">The image to scale.</param>
+        /// <param name="scale">The scale factor in the X, Y axis directions.</param>
+        /// <returns>A scaled image.</returns>
+        public static Texture2D ScaleImageStatic(Texture2D img, MmgVector2 scale)
         {
             return MmgPen.ScaleImageStatic(img, scale.GetXDouble(), scale.GetYDouble());
         }
 
-        /**
-         * Static scale method, scales the given image by the given X,Y axis directions.
-         * 
-         * @param img           The image to scale.
-         * @param scaleX        The scale factor in the X axis direction.
-         * @param scaleY        The scale factor in the Y axis direction.
-         * @return              A scaled image.
-         */
-        public static Image ScaleImageStatic(Image img, double scaleX, double scaleY)
+        /// <summary>
+        /// Static scale method, scales the given image by the given X,Y axis directions.
+        /// </summary>
+        /// <param name="img">The image to scale.</param>
+        /// <param name="scaleX">The scale factor in the X axis direction.</param>
+        /// <param name="scaleY">The scale factor in the Y axis direction.</param>
+        /// <returns>A scaled image.</returns>
+        public static Texture2D ScaleImageStatic(Texture2D img, double scaleX, double scaleY)
         {
-            int w = (int)(img.getWidth(null) * scaleX);
-            int h = (int)(img.getHeight(null) * scaleY);
-            BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g = rImage.createGraphics();
+            int w = (int)(img.Width * scaleX);
+            int h = (int)(img.Height * scaleY);
 
+            //BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+            //Graphics2D g = rImage.createGraphics();
+
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
+            SpriteBatch g = new SpriteBatch(gd);
+            RenderTarget2D rImage = new RenderTarget2D(gd, w, h);
+            g.GraphicsDevice.SetRenderTarget(rImage);
+
+            /*
             if (MmgPen.ADV_RENDER_HINTS == true)
             {
                 g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
                 g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
                 g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             }
+            */
 
-            g.drawImage(img, 0, 0, w, h, null);
-            g.dispose();
-            return rImage;
+            //g.drawImage(img, 0, 0, w, h, null);
+            //g.dispose();
+
+            g.Begin();
+            g.Draw(img, new Rectangle(0, 0, img.Width, img.Height), new Rectangle(0, 0, w, h), Color.White);
+            g.End();
+            g.Dispose();
+
+            return (Texture2D)rImage;
         }
 
-        /**
-         * Creates an Image that is filled with the specified color.
-         * 
-         * @param w         The width of the image to create.
-         * @param h         The height of the image to create.
-         * @param c         The color to use for filling the image.
-         * @return          A colored image with the width and height specified and filled with the specified color.
-         */
-        public static Image CreateColorTile(int w, int h, MmgColor c)
+        /// <summary>
+        /// Creates an Texture2D that is filled with the specified color.
+        /// </summary>
+        /// <param name="w">The width of the image to create.</param>
+        /// <param name="h">The height of the image to create.</param>
+        /// <param name="c">The color to use for filling the image.</param>
+        /// <returns>A colored image with the width and height specified and filled with the specified color.</returns>
+        public static Texture2D CreateColorTile(int w, int h, MmgColor c)
         {
-            BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g = rImage.createGraphics();
-            g.setColor(c.GetColor());
-            g.fillRect(0, 0, w, h);
-            g.dispose();
+            //BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+            //Graphics2D g = rImage.createGraphics();
+            //g.setColor(c.GetColor());
+            //g.fillRect(0, 0, w, h);
+            //g.dispose();
+
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
+            Texture2D rImage = new Texture2D(gd, w, h);
+            Color[] pixels = new Color[w * h];
+            rImage.GetData(pixels);
+
+            for(int i = 0; i < pixels.Length; i++)
+            {
+                pixels[i] = c.GetColor();
+            }
+
             return rImage;
         }
 
-        /**
-         * Sets the advanced render hints flags in the current Graphics context.
-         * @see             Graphics
-         */
+        /// <summary>
+        /// Sets the advanced render hints flags in the current Graphics context.
+        /// </summary>
         public void SetAdvRenderHints()
         {
             if (MmgPen.ADV_RENDER_HINTS == true)
@@ -350,12 +365,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param idStr         The id in string form of the image to draw.
-         * @param position      The position to draw the image.
-         */
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="idStr">The id in string form of the image to draw.</param>
+        /// <param name="position">The position to draw the image.</param>
         public void DrawBmpBasic(string idStr, MmgVector2 position)
         {
             tmpImg = MmgMediaTracker.GetBmpValue(idStr);
@@ -365,106 +379,104 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param img       The image to be drawn.
-         * @param x         The X axis offset to draw the image at.
-         * @param y         The Y axis offset to draw the image at.
-         */
-        public void DrawBmp(Image img, int x, int y)
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="img">The image to be drawn.</param>
+        /// <param name="x">The X axis offset to draw the image at.</param>
+        /// <param name="y">The Y axis offset to draw the image at.</param>
+        public virtual void DrawBmp(Texture2D img, int x, int y)
         {
-            pen.drawImage(img, x, y, null);
+            //pen.drawImage(img, x, y, null);
+            pen.Draw(img, new Vector2(x, y), Color.White);
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param b     The MmgBmp object to draw.
-         * @see         MmgBmp
-         */
-        public void DrawBmpBasic(MmgBmp b)
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="b">The MmgBmp object to draw.</param>
+        public virtual void DrawBmpBasic(MmgBmp b)
         {
             DrawBmp(b, b.GetPosition());
         }
 
-        /**
-         * Drawing method for drawing a bitmap from the central cache.
-         * 
-         * @param b     The MmgBmp object to draw.
-         * @see         MmgBmp
-         */
-        public void DrawBmpFromCache(MmgBmp b)
+        /// <summary>
+        /// Drawing method for drawing a bitmap from the central cache.
+        /// </summary>
+        /// <param name="b">The MmgBmp object to draw.</param>
+        public virtual void DrawBmpFromCache(MmgBmp b)
         {
             DrawBmpBasic(b.GetBmpIdStr(), b.GetPosition());
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param b             The MmgBmp object to draw.
-         * @param position      The position to draw the object at.
-         */
-        public void DrawBmp(MmgBmp b, MmgVector2 position)
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="b">The MmgBmp object to draw.</param>
+        /// <param name="position">The position to draw the object at.</param>
+        public virtual void DrawBmp(MmgBmp b, MmgVector2 position)
         {
             if (color != null)
             {
-                pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), color, null);
+                //pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), color, null);
+                pen.Draw(b.GetTexture2D(), new Vector2(position.GetX(), position.GetY()), color);
             }
             else if (b.GetMmgColor() != null)
             {
-                pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
+                //pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
+                pen.Draw(b.GetTexture2D(), new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
             }
             else
             {
-                pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), null);
+                //pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), null);
+                pen.Draw(b.GetTexture2D(), new Vector2(position.GetX(), position.GetY()), Color.White);
             }
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param b     The MmgBmp object to draw.
-         * @param x     The X coordinate to draw the image to.
-         * @param y     The Y coordinate to draw the image to.
-         */
-        public void DrawBmp(MmgBmp b, int x, int y)
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="b">The MmgBmp object to draw.</param>
+        /// <param name="x">The X coordinate to draw the image to.</param>
+        /// <param name="y">The Y coordinate to draw the image to.</param>
+        public virtual void DrawBmp(MmgBmp b, int x, int y)
         {
             if (color != null)
             {
-                pen.drawImage(b.GetTexture2D(), x, y, color, null);
+                //pen.drawImage(b.GetTexture2D(), x, y, color, null);
+                pen.Draw(b.GetTexture2D(), new Vector2(x, y), color);
             }
             else if (b.GetMmgColor() != null)
             {
-                pen.drawImage(b.GetTexture2D(), x, y, b.GetMmgColor().GetColor(), null);
+                //pen.drawImage(b.GetTexture2D(), x, y, b.GetMmgColor().GetColor(), null);
+                pen.Draw(b.GetTexture2D(), new Vector2(x, y), b.GetMmgColor().GetColor());
             }
             else
             {
-                pen.drawImage(b.GetTexture2D(), x, y, null);
+                //pen.drawImage(b.GetTexture2D(), x, y, null);
+                pen.Draw(b.GetTexture2D(), new Vector2(x, y), Color.White);
             }
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param b             The MmgBmp object to draw.
-         * @param position      The position to draw the object at.
-         * @param rotation      The rotation to apply to the object.
-         */
-        public void DrawBmp(MmgBmp b, MmgVector2 position, float rotation)
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="b">The MmgBmp object to draw.</param>
+        /// <param name="position">The position to draw the object at.</param>
+        /// <param name="rotation">The rotation to apply to the object.</param>
+        public virtual void DrawBmp(MmgBmp b, MmgVector2 position, float rotation)
         {
             DrawBmp(b, position, new MmgVector2(-1.0, -1.0), rotation);
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param b             The MmgBmp object to draw.
-         * @param position      The position to draw the object at.
-         * @param origin        The origin to draw the object from.
-         * @param rotation      The rotation to apply to the object.
-         */
-        public void DrawBmp(MmgBmp b, MmgVector2 position, MmgVector2 origin, float rotation)
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="b">The MmgBmp object to draw.</param>
+        /// <param name="position">The position to draw the object at.</param>
+        /// <param name="origin">The origin to draw the object from.</param>
+        /// <param name="rotation">The rotation to apply to the object.</param>
+        public virtual void DrawBmp(MmgBmp b, MmgVector2 position, MmgVector2 origin, float rotation)
         {
             tmpIdStr = b.GetIdStr(rotation);
 
@@ -490,26 +502,28 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             if (color != null)
             {
-                pen.drawImage(tmpImg, position.GetX(), position.GetY(), color, null);
+                //pen.drawImage(tmpImg, position.GetX(), position.GetY(), color, null);
+                pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), color);
             }
             else if (b.GetMmgColor() != null)
             {
-                pen.drawImage(tmpImg, position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
+                //pen.drawImage(tmpImg, position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
+                pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
             }
             else
             {
-                pen.drawImage(tmpImg, position.GetX(), position.GetY(), null);
+                //pen.drawImage(tmpImg, position.GetX(), position.GetY(), null);
+                pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), Color.White);
             }
         }
 
-        /**
-         * Draw a bitmap image onto another bitmap image using source and destination rectangles.
-         * 
-         * @param b         The MmgBmp object used to draw the source rectangle to the destination rectangle.
-         * @param srcRect   The source rectangle to use.
-         * @param dstRect   The destination rectangle to use.
-         */
-        public void DrawBmp(MmgBmp b, MmgRect srcRect, MmgRect dstRect)
+        /// <summary>
+        /// Draw a bitmap image onto another bitmap image using source and destination rectangles.
+        /// </summary>
+        /// <param name="b">The MmgBmp object used to draw the source rectangle to the destination rectangle.</param>
+        /// <param name="srcRect">The source rectangle to use.</param>
+        /// <param name="dstRect">The destination rectangle to use.</param>
+        public virtual void DrawBmp(MmgBmp b, MmgRect srcRect, MmgRect dstRect)
         {
             tmpIdStr = b.GetBmpIdStr();
 
@@ -524,35 +538,37 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             if (srcRect != null && dstRect != null)
             {
-                pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+                //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+                pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), Color.White);
             }
             else if (srcRect == null)
             {
-                pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);
+                //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);
+                pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), Color.White);
             }
             else if (dstRect == null)
             {
-                pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+                //pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+                pen.Draw(tmpImg, new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), Color.White);
             }
             else
             {
-                pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), 0, 0, b.GetWidth(), b.GetHeight(), null);
+                //pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), 0, 0, b.GetWidth(), b.GetHeight(), null);
+                pen.Draw(tmpImg, new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), Color.White);
             }
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param b             The MmgBmp object to draw.
-         * @param position      The position to draw the object at.
-         * @param srcRect       The source rectangle to draw the image from.
-         * @param dstRect       The destination rectangle to draw the image to.
-         * @param scaling       The scaling to apply to the image.
-         * @param origin        The origin to use to draw the image.
-         * @param rotation      The rotation to apply to the image.
-         * @see                 MmgBmp
-         */
-        public void DrawBmp(MmgBmp b, MmgVector2 position, MmgRect srcRect, MmgRect dstRect, MmgVector2 scaling, MmgVector2 origin, float rotation)
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="b">The MmgBmp object to draw.</param>
+        /// <param name="position">The position to draw the object at.</param>
+        /// <param name="srcRect">The source rectangle to draw the image from.</param>
+        /// <param name="dstRect">The destination rectangle to draw the image to.</param>
+        /// <param name="scaling">The scaling to apply to the image.</param>
+        /// <param name="origin">The origin to use to draw the image.</param>
+        /// <param name="rotation">The rotation to apply to the image.</param>
+        public virtual void DrawBmp(MmgBmp b, MmgVector2 position, MmgRect srcRect, MmgRect dstRect, MmgVector2 scaling, MmgVector2 origin, float rotation)
         {
             if (rotation != 0 && scaling != null && (scaling.GetXDouble() != 1.0 || scaling.GetYDouble() != 1.0))
             {
@@ -637,15 +653,18 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     if (color != null)
                     {
-                        pen.drawImage(tmpImg, position.GetX(), position.GetY(), color, null);
+                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), color, null);
+                        pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), color);
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        pen.drawImage(tmpImg, position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
+                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
+                        pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
                     }
                     else
                     {
-                        pen.drawImage(tmpImg, position.GetX(), position.GetY(), null);
+                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), null);
+                        pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), Color.White);
                     }
                 }
                 else
@@ -653,15 +672,18 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     //src rect is not null
                     if (color != null)
                     {
-                        pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), color, null);
+                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), color, null);
+                        pen.Draw(tmpImg, new Rectangle(position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight())), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), color);
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), b.GetMmgColor().GetColor(), null);
+                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), b.GetMmgColor().GetColor(), null);
+                        pen.Draw(tmpImg, new Rectangle(position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight())), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), b.GetMmgColor().GetColor());
                     }
                     else
                     {
-                        pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+                        pen.Draw(tmpImg, new Rectangle(position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight())), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), Color.White);
                     }
                 }
             }
@@ -671,170 +693,193 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     if (color != null)
                     {
-                        pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), color, null);
+                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), color, null);
+                        pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), color);
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), b.GetMmgColor().GetColor(), null);
+                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), b.GetMmgColor().GetColor(), null);
+                        pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), b.GetMmgColor().GetColor());
                     }
                     else
                     {
-                        pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);
+                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);
+                        pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), Color.White);
                     }
                 }
                 else
                 {
                     if (color != null)
                     {
-                        pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), color, null);
+                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), color, null);
+                        pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), color);
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), b.GetMmgColor().GetColor(), null);
+                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), b.GetMmgColor().GetColor(), null);
+                        pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), b.GetMmgColor().GetColor());
                     }
                     else
                     {
-                        pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
+                        pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), Color.White);
                     }
                 }
             }
         }
 
-        /**
-         * Drawing method for drawing bitmap images.
-         * 
-         * @param b         The MmgBmp object to draw.
-         * @see             MmgBmp
-         */
-        public void DrawBmp(MmgBmp b)
+        /// <summary>
+        /// Drawing method for drawing bitmap images.
+        /// </summary>
+        /// <param name="b">The MmgBmp object to draw.</param>
+        public virtual void DrawBmp(MmgBmp b)
         {
             DrawBmp(b, b.GetPosition(), b.GetSrcRect(), b.GetDstRect(), b.GetScaling(), b.GetOrigin(), b.GetRotation());
         }
 
-        /**
-         * Drawing method for drawing rectangles.
-         * 
-         * @param obj       The MmgObj to draw a rectangle for.
-         * @see             MmgObj
-         */
-        public void DrawRect(MmgObj obj)
+        /// <summary>
+        /// Drawing method for drawing rectangles.
+        /// </summary>
+        /// <param name="obj">The MmgObj to draw a rectangle for.</param>
+        public virtual void DrawRect(MmgObj obj)
         {
             DrawRect(obj.GetPosition().GetX(), obj.GetPosition().GetY(), obj.GetWidth(), obj.GetHeight());
         }
 
-        /**
-         * Drawing method for drawing rectangles.
-         * 
-         * @param obj       The MmgObj to draw a rectangle for.
-         * @param pos       The position to use when drawing the rectangle.
-         */
-        public void DrawRect(MmgObj obj, MmgVector2 pos)
+        /// <summary>
+        /// Drawing method for drawing rectangles.
+        /// </summary>
+        /// <param name="obj">The MmgObj to draw a rectangle for.</param>
+        /// <param name="pos">The position to use when drawing the rectangle.</param>
+        public virtual void DrawRect(MmgObj obj, MmgVector2 pos)
         {
             DrawRect(pos.GetX(), pos.GetY(), obj.GetWidth(), obj.GetHeight());
         }
 
-        /**
-         * Drawing method for drawing rectangles.
-         * 
-         * @param r         The MmgRect object to draw.
-         */
-        public void DrawRect(MmgRect r)
+        /// <summary>
+        /// Drawing method for drawing rectangles.
+        /// </summary>
+        /// <param name="r">The MmgRect object to draw.</param>
+        public virtual void DrawRect(MmgRect r)
         {
             DrawRect(r.GetLeft(), r.GetTop(), r.GetWidth(), r.GetHeight());
         }
 
-        /**
-         * Drawing method for drawing rectangles.
-         * 
-         * @param x     The X axis offset.
-         * @param y     The Y axis offset.
-         * @param w     The width of the rectangle.
-         * @param h     The height of the rectangle.
-         */
-        public void DrawRect(int x, int y, int w, int h)
+        /// <summary>
+        /// Drawing method for drawing rectangles.
+        /// </summary>
+        /// <param name="x">The X axis offset.</param>
+        /// <param name="y">The Y axis offset.</param>
+        /// <param name="w">The width of the rectangle.</param>
+        /// <param name="h">The height of the rectangle.</param>
+        public virtual void DrawRect(int x, int y, int w, int h)
         {
-            pen.drawRect(x, y, w, h);
+            //pen.drawRect(x, y, w, h);
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
+            int nw = 5;
+            int nh = 5;
+            RenderTarget2D img = new RenderTarget2D(gd, 5, 5);
+            Color[] pixels = new Color[nw * nh];
+            for(int i = 0; i < nh; i++)
+            {
+                for(int j = 0; j < nw; j++)
+                {
+                    if(i == 0)
+                    {
+                        //top line
+                        pixels[(i * nw) + j] = color;
+                    } else if(i == nh - 1)
+                    {
+                        //bottom line
+                        pixels[(i * nw) + j] = color;
+                    } else if(j == 0)
+                    {
+                        //left line
+                        pixels[(i * nw) + j] = color;
+                    } else if(j == nw - 1)
+                    {
+                        //right line
+                        pixels[(i * nw) + j] = color;
+                    } else
+                    {
+                        //middle
+                        pixels[(i * nw) + j] = Color.Transparent;
+                    }
+                }
+            }
+            pen.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(x, y, w, h), Color.White);
         }
 
-        /**
-         * Gets the lower level drawing class.
-         * 
-         * @return      A Graphics object. 
-         */
-        public Graphics GetSpriteBatch()
+        /// <summary>
+        /// Gets the lower level drawing class.
+        /// </summary>
+        /// <returns>A Graphics object.</returns>
+        public virtual SpriteBatch GetSpriteBatch()
         {
             return pen;
         }
 
-        /**
-         * Sets the lower level drawing class.
-         * 
-         * @param sp    A Graphic object. 
-         */
-        public void SetSpriteBatch(Graphics sp)
+        /// <summary>
+        /// Sets the lower level drawing class.
+        /// </summary>
+        /// <param name="sp">A Graphic object.</param>
+        public virtual void SetSpriteBatch(SpriteBatch sp)
         {
             pen = sp;
         }
 
-        /**
-         * Sets the lower level drawing class.
-         * 
-         * @param sp    A Graphic object. 
-         */
-        public void SetGraphics(Graphics sp)
+        /// <summary>
+        /// Sets the lower level drawing class.
+        /// </summary>
+        /// <param name="sp">A Graphic object.</param>
+        public virtual void SetGraphics(SpriteBatch sp)
         {
             SetSpriteBatch(sp);
         }
 
-        /**
-         * Gets the lower level drawing class.
-         * 
-         * @return      A Graphics object. 
-         */
-        public Graphics GetGraphics()
+        /// <summary>
+        /// Gets the lower level drawing class.
+        /// </summary>
+        /// <returns>A Graphics object.</returns>
+        public virtual SpriteBatch GetGraphics()
         {
             return GetSpriteBatch();
         }
 
-        /**
-         * Sets the color of the drawing pen.
-         * 
-         * @param c     The color to set the pen to.
-         */
-        public void SetColor(Color c)
+        /// <summary>
+        /// Sets the color of the drawing pen.
+        /// </summary>
+        /// <param name="c">The color to set the pen to.</param>
+        public virtual void SetColor(Color c)
         {
             color = c;
         }
 
-        /**
-         * Gets the color of the drawing pen.
-         * 
-         * @return      The color to set the pen to.
-         */
-        public Color GetColor()
+        /// <summary>
+        /// Gets the color of the drawing pen.
+        /// </summary>
+        /// <returns>The color to set the pen to.</returns>
+        public virtual Color GetColor()
         {
             return color;
         }
 
-        /**
-         * Sets the color of this object and the lower level Java pen.
-         * 
-         * @param c     The color of the pen.
-         */
-        public void SetGraphicsColor(Color c)
+        /// <summary>
+        /// Sets the color of this object and the lower level Java pen.
+        /// </summary>
+        /// <param name="c">The color of the pen.</param>
+        public virtual void SetGraphicsColor(Color c)
         {
             color = c;
-            pen.setColor(c);
         }
 
-        /**
-         * Gets the color of the lower level Java pen.
-         * 
-         * @return      The color of the pen.
-         */
-        public Color GetGraphicsColor()
+        /// <summary>
+        /// Gets the color of the lower level Java pen.
+        /// </summary>
+        /// <returns>The color of the pen.</returns>
+        public virtual Color GetGraphicsColor()
         {
-            return pen.getColor();
+            return color;
         }
     }
 }
