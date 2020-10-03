@@ -381,15 +381,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 if (MmgMenuItem.SHOW_MENU_ITEM_BOUNDING_BOX == true)
                 {
-                    //c = p.GetGraphics().getColor();
-                    //p.GetGraphics().setColor(Color.Red);
-                    //p.DrawRect(this);
-                    //p.GetGraphics().setColor(c);
-
-                    Color c = p.GetColor();
-                    p.SetColor(Color.Red);
+                    c = p.GetGraphicsColor();
+                    p.SetGraphicsColor(Color.Red);
                     p.DrawRect(this);
-                    p.SetColor(c);
+                    p.SetGraphicsColor(c);
                 }
 
                 current.SetPosition(GetPosition());

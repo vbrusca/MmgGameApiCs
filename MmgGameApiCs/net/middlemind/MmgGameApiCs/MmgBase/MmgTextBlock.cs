@@ -106,6 +106,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static bool SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX = false;
 
         /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private Color c;
+
+        /// <summary>
         /// Generic constructor. Sets the color and creates a clean lines, and text data object.
         /// </summary>
         public MmgTextBlock() : base()
@@ -737,15 +742,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 if (MmgTextBlock.SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX == true)
                 {
-                    //Color c = p.GetGraphics().getColor();
-                    //p.GetGraphics().setColor(Color.Red);
-                    //p.DrawRect(this);
-                    //p.GetGraphics().setColor(c);
-
-                    Color c = p.GetColor();
-                    p.SetColor(Color.Red);
+                    c = p.GetGraphicsColor();
+                    p.SetGraphicsColor(Color.Red);
                     p.DrawRect(this);
-                    p.SetColor(c);
+                    p.SetGraphicsColor(c);
                 }
 
                 dLen = GetLineCount();
