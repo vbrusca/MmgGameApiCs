@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using static net.middlemind.MmgGameApiCs.MmgBase.MmgBmp;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
@@ -397,7 +398,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 Runnable r = datLoad;
                 Thread t = new Thread(r);
-                t.start();
+                t.Start();
             }
             else
             {
