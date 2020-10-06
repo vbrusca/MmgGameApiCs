@@ -94,7 +94,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A static field that determines how quickly the cursor blinks.
         /// </summary>
-        public static long TEXT_FIELD_CURSOR_BLINK_RATE_MS = 350l;
+        public static long TEXT_FIELD_CURSOR_BLINK_RATE_MS = 350L;
 
         /// <summary>
         /// A static integer used as the max length error event id.

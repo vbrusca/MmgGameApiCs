@@ -6,12 +6,12 @@ namespace MmgGameApiCs
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private GraphicsDeviceManager g;
+        private SpriteBatch pen;
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            g = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -25,7 +25,7 @@ namespace MmgGameApiCs
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            pen = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }

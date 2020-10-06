@@ -51,7 +51,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             /// <summary>
             /// Start the display wait thread.
             /// </summary>
-            public void run()
+            public virtual void run()
             {
                 try
                 {
@@ -250,7 +250,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the update event handler.
         /// </summary>
         /// <returns>The update event handler.</returns>
-        public MmgUpdateHandler GetUpdateHandler()
+        public virtual MmgUpdateHandler GetUpdateHandler()
         {
             return update;
         }
@@ -259,7 +259,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Handles update events.
         /// </summary>
         /// <param name="obj">The update event to handle.</param>
-        public void MmgHandleUpdate(Object obj)
+        public virtual void MmgHandleUpdate(Object obj)
         {
             if (update != null)
             {
@@ -289,7 +289,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the current display time.
         /// </summary>
         /// <returns>The current display time.</returns>
-        public int GetDisplayTime()
+        public virtual int GetDisplayTime()
         {
             return displayTime;
         }
@@ -298,7 +298,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the current display time.
         /// </summary>
         /// <param name="i">The current display time.</param>
-        public void SetDisplayTime(int i)
+        public virtual void SetDisplayTime(int i)
         {
             displayTime = i;
         }
@@ -320,7 +320,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An MmgSplashScreen object instance to compare to.</param>
         /// <returns>Returns true if the objects are considered equal and false otherwise.</returns>
-        public bool equals(MmgSplashScreen obj)
+        public virtual bool equals(MmgSplashScreen obj)
         {
             if (obj == null)
             {

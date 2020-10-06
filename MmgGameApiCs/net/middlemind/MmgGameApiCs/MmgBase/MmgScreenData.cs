@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
@@ -17,6 +18,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// TODO: Add comments
         /// </summary>
         public static GraphicsDevice GRAPHICS_CONFIG;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        public static ContentManager CONTENT_MANAGER;
 
         /// <summary>
         /// An enumeration used to track the scaling mode used by this class.

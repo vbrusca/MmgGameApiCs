@@ -26,12 +26,23 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The integer value of the current font size.
         /// </summary>
-        private int fontSize;
+        private int fontSize = -1;
 
         /// <summary>
-        /// The float value needed to scale the current font up to the specified size.
+        /// TODO: Add comments
         /// </summary>
-        private float fontScale;
+        public enum FontType
+        {
+            NORMAL = 0,
+            BOLD = 1,
+            ITALIC = 2,
+            NONE = -1
+        };
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private FontType fontType = FontType.NONE;
 
         /// <summary>
         /// Constructor for this class.
@@ -197,10 +208,36 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the size of the font.
         /// </summary>
         /// <param name="sz">The size of the font.</param>
-        public virtual void SetFontSize(int sz)
+        /// <param name="ft">The type of the font.</param>
+        public virtual void SetFontSize(int sz, FontType ft)
         {
-            fontSize = sz;
-            fontScale = (float)sz / (float)GetHeight();
+            if (sz > 0 && sz <= MmgFontData.MAX_FONT_SIZE)
+            {
+                if (sz != fontSize || ft != fontType)
+                {
+                    fontSize = sz;
+                    fontType = ft;
+                    if (ft == FontType.NORMAL)
+                    {
+                        //normal
+                        font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_NORMAL + fontSize);
+                    }
+                    else if (ft == FontType.BOLD)
+                    {
+                        //bold
+                        font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_BOLD + fontSize);
+                    }
+                    else if (ft == FontType.ITALIC)
+                    {
+                        //italic
+                        font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_ITALIC + fontSize);
+                    }
+                }
+            }
+            else
+            {
+                MmgHelper.wr("MmgFont: Error size must be greater than 0 and less than " + MmgFontData.MAX_FONT_SIZE);
+            }
         }
 
         /// <summary>
