@@ -1,138 +1,91 @@
 ﻿using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
 using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
-    /*
-     * Java swing game that runs the Tyre DAT file. 
-     * STATIC MAIN ENTRY POINT EXAMPLE
-     * Created by Middlemind Games 08/01/2015
-     *
-     * @author Victor G. Brusca
-     */
     /// <summary>
-    /// 
+    /// Java swing game that runs the Tyre DAT file. 
+    /// STATIC MAIN ENTRY POINT EXAMPLE
+    /// Created by Middlemind Games 08/01/2015
+    ///
+    /// @author Victor G.Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgApiGame
     {
-        /*
-         * The main JPanel that houses the different game screens.
-         */
         /// <summary>
-        /// 
+        /// The main JPanel that houses the different game screens.
         /// </summary>
         public static MainFrame mf;
 
-        /*
-         * The frame rate worker thread.
-         */
         /// <summary>
-        /// 
+        /// The frame rate worker thread.
         /// </summary>
         public static RunFrameRate fr;
 
-        /*
-         * The thread that is associated with the frame rate worker thread.
-         */
         /// <summary>
-        /// 
+        /// The thread that is associated with the frame rate worker thread.
         /// </summary>
         public static Thread t;
 
-        /*
-         * The target window width.
-         */
         /// <summary>
-        /// 
+        /// The target window width.
         /// </summary>
         public static int WIN_WIDTH = 858;
 
-        /*
-         * The target window height.
-         */
         /// <summary>
-        /// 
+        /// The target window height. 
         /// </summary>
         public static int WIN_HEIGHT = 600;
 
-        /*
-         * The game panel width.
-         */
         /// <summary>
-        /// 
+        /// The game panel width. 
         /// </summary>
         public static int PANEL_WIDTH = 854;
 
-        /*
-         * The game panel height.
-         */
         /// <summary>
-        /// 
+        /// The game panel height.
         /// </summary>
         public static int PANEL_HEIGHT = 596; //416;
 
-        /*
-         * The game width.
-         */
         /// <summary>
-        /// 
+        /// The game width.
         /// </summary>
         public static int GAME_WIDTH = 854;
 
-        /*
-         * The game height.
-         */
         /// <summary>
-        /// 
+        /// The game height.
         /// </summary>
         public static int GAME_HEIGHT = 416;
 
-        /*
-         * The frame rate for the game, frames per second.
-         */
         /// <summary>
-        /// 
+        /// The frame rate for the game, frames per second.
         /// </summary>
         public static long FPS = 16L;
 
-        /*
-         * Base engine config files.
-         */
         /// <summary>
-        /// 
+        /// Base engine config files.
         /// </summary>
         public static string ENGINE_CONFIG_FILE = "../cfg/engine_config.xml";
 
-        /*
-         * The GamePanel used to render the game in a MainFrame instance.
-         */
         /// <summary>
-        /// 
+        /// The GamePanel used to render the game in a MainFrame instance.
         /// </summary>
         public static GamePanel pnlGame;
 
-        /*
-         * A copy of the command line arguments passed to the Java application.
-         */
         /// <summary>
-        /// 
+        /// A copy of the command line arguments passed to the Java application.
         /// </summary>
         public static string[] ARGS = null;
 
-        /*
-         * Method that searches an array for a string match.
-         *
-         * @param v     The string to find a match for.
-         * @param s     The array of string to search through.
-         * @return      The command line argument that matched the test string, v.
-         */
         /// <summary>
-        /// 
+        /// Method that searches an array for a string match.
         /// </summary>
-        /// <param name="v"></param>
-        /// <param name="s"></param>
+        /// <param name="v">The string to find a match for.</param>
+        /// <param name="s">The command line argument that matched the test string, v.</param>
         /// <returns></returns>
         public static string ArrayHasEntryLike(string v, string[] s)
         {
@@ -156,19 +109,31 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             return null;
         }
 
-        /*
-         * A static method that loads native libraries that allow access to gamepads and controllers.
-         */
         /// <summary>
-        /// 
+        /// A static method that loads native libraries that allow access to gamepads and controllers.
         /// </summary>
         public static void LoadNativeLibraries()
         {
             try
             {
-                string OS = System.getProperty("os.name").toLowerCase();
+                int p = (int)Environment.OSVersion.Platform;
+                string OS = "win"; //System.getProperty("os.name").toLowerCase();
+
+                if(p == 4 || p == 128 || RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
+                {
+                    OS = "linux";
+                }
+                else if(p == 6 || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    OS = "mac";
+                }
+                else if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    OS = "win";
+                }
+
                 MmgHelper.wr("Found platform: " + OS);
-                MmgHelper.wr("LibPath: " + System.getProperty("java.library.path"));
+                //MmgHelper.wr("LibPath: " + System.getProperty("java.library.path"));
                 //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
 
                 if (isWindows(OS))
@@ -208,127 +173,98 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
         }
 
-
-        /*
-         * A static class method for checking if this Java application is running on Windows.
-         * 
-         * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-         * @return          A bool value indicating if the Java application is running on Windows.
-         */
         /// <summary>
-        /// 
+        /// A static class method for checking if this Java application is running on Windows.
         /// </summary>
-        /// <param name="OS"></param>
-        /// <returns></returns>
+        /// <param name="OS">The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.</param>
+        /// <returns>A bool value indicating if the Java application is running on Windows.</returns>
         public static bool isWindows(string OS)
         {
             return (OS.IndexOf("win") >= 0);
         }
 
-        /*
-         * A static class method for checking if this Java application is running on a Mac.
-         * 
-         * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-         * @return          A bool value indicating if the Java application is running on a Mac.
-         */
         /// <summary>
-        /// 
+        /// A static class method for checking if this Java application is running on a Mac.
         /// </summary>
-        /// <param name="OS"></param>
-        /// <returns></returns>
+        /// <param name="OS">The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.</param>
+        /// <returns>A bool value indicating if the Java application is running on a Mac.</returns>
         public static bool isMac(string OS)
         {
             return (OS.IndexOf("mac") >= 0);
         }
 
-        /*
-         * A static class method for checking if this Java application is running on Linux.
-         * 
-         * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-         * @return          A bool value indicating if the Java application is running on Linux.
-         */
         /// <summary>
-        /// 
+        /// A static class method for checking if this Java application is running on Linux.
         /// </summary>
-        /// <param name="OS"></param>
-        /// <returns></returns>
+        /// <param name="OS">The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.</param>
+        /// <returns>A bool value indicating if the Java application is running on Linux.</returns>
         public static bool isUnix(string OS)
         {
             return (OS.IndexOf("nix") >= 0 || OS.IndexOf("nux") >= 0 || OS.IndexOf("aix") > 0);
         }
 
-        /*
-         * A static class method for checking if this Java application is running on Sun OS.
-         * 
-         * @param OS        The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.
-         * @return          A bool value indicating if the Java application is running on Sun OS.
-         */
         /// <summary>
-        /// 
+        /// A static class method for checking if this Java application is running on Sun OS.
         /// </summary>
-        /// <param name="OS"></param>
-        /// <returns></returns>
+        /// <param name="OS">The current OS, System.getProperty("os.name").toLowerCase(), that this Java application is running on.</param>
+        /// <returns>A bool value indicating if the Java application is running on Sun OS.</returns>
         public static bool isSolaris(string OS)
         {
             return (OS.IndexOf("sunos") >= 0);
         }
 
-        /**
-         * Sets the value of the field specified by the field reflection object.
-         *
-         * @param ent       Entry object that wraps the XML entry.
-         * @param f         Class member that needs to be updated.
-         * 
-         * @throws Exception
-         */
-        public static void SetField(DatConstantsEntry ent, Field f)
+        /// <summary>
+        /// Sets the value of the field specified by the field reflection object.
+        /// </summary>
+        /// <param name="ent">Entry object that wraps the XML entry.</param>
+        /// <param name="f">Class member that needs to be updated.</param>
+        public static void SetField(DatConstantsEntry ent, FieldInfo f)
         {
             if (ent.type != null && ent.type.Equals("int") == true)
             {
-                f.setInt(null, int.Parse(ent.val));
+                f.SetValue(null, int.Parse(ent.val));
 
             }
             else if (ent.type != null && ent.type.Equals("long") == true)
             {
-                f.setLong(null, long.Parse(ent.val));
+                f.SetValue(null, long.Parse(ent.val));
 
             }
             else if (ent.type != null && ent.type.Equals("float") == true)
             {
-                f.setFloat(null, float.Parse(ent.val));
+                f.SetValue(null, float.Parse(ent.val));
 
             }
             else if (ent.type != null && ent.type.Equals("double") == true)
             {
-                f.setDouble(null, double.Parse(ent.val));
+                f.SetValue(null, double.Parse(ent.val));
 
             }
             else if (ent.type != null && ent.type.Equals("short") == true)
             {
-                f.setShort(null, Int16.Parse(ent.val));
+                f.SetValue(null, Int16.Parse(ent.val));
 
             }
             else if (ent.type != null && ent.type.Equals("string") == true)
             {
-                f.set(null, ent.val);
+                f.SetValue(null, ent.val);
 
             }
             else if (ent.type != null && ent.type.Equals("bool") == true)
             {
-                f.setBoolean(null, bool.Parse(ent.val));
+                f.SetValue(null, bool.Parse(ent.val));
 
             }
             else
             {
-                f.setInt(null, int.Parse(ent.val));
+                f.SetValue(null, int.Parse(ent.val));
             }
         }
 
-        /**
-         * Static main method.
-         *
-         * @param args      The command line arguments
-         */
+        /// <summary>
+        /// Static main method.
+        /// </summary>
+        /// <param name="args">The command line arguments.</param>
         public static void main(string[] args)
         {
             if (GameSettings.LOAD_NATIVE_LIBRARIES)
@@ -373,11 +309,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     FPS = int.Parse(res.Split("=")[1]);
                 }
 
-                res = ArrayHasEntryLike("OPENGL=false", args);
-                if (res == null)
-                {
-                    System.setProperty("sun.java2d.opengl", "true");
-                }
+                //NOT APPLICABLE ON MONOGAME DESKTOP GL PROJECT
+                //res = ArrayHasEntryLike("OPENGL=false", args);
+                //if (res == null)
+                //{
+                //    System.setProperty("sun.java2d.opengl", "true");
+                //}
 
                 res = ArrayHasEntryLike("ENGINE_CONFIG_FILE=", args);
                 if (res != null)
@@ -410,7 +347,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     string[] keys = dci.GetValues().keySet().toArray(new String[len]);
                     string key;
                     DatConstantsEntry ent = null;
-                    Field f;
+                    FieldInfo f = null;
 
                     for (int i = 0; i < len; i++)
                     {

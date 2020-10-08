@@ -116,7 +116,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             checkClicked = chkClick;
         }
 
-
         /// <summary>
         /// A GpioPin constructor that sets all class field values except pinHigh and pinIn. 
         /// The pinHigh and pinIn field value are defaulted to false with this constructor.

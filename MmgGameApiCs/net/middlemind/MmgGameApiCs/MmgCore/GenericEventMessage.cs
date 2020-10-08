@@ -21,7 +21,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The information payload of this generic event message.
         /// </summary>
-        public Object payload;
+        public object payload;
 
         /// <summary>
         /// The game state of this generic event message.

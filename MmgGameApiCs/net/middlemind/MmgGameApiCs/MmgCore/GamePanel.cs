@@ -623,7 +623,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gamePadHub = new GamePadHub(GameSettings.GAMEPAD_1_INDEX);
                 gamePadRunner = new GamePadHubRunner(gamePadHub, GameSettings.GAMEPAD_1_POLLING_INTERVAL_MS, this);
                 if (GameSettings.GAMEPAD_1_THREADED_POLLING) {
-                    //gpadTr = new Thread(gamePadRunner);
+                    gpadTr = new Thread(gamePadRunner);
                     gpadTr.Start();
                 }
             }
@@ -634,7 +634,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gpioRunner = new GpioHubRunner(gpioHub, GameSettings.GPIO_GAMEPAD_POLLING_INTERVAL_MS, this);
                 if (GameSettings.GPIO_GAMEPAD_THREADED_POLLING)
                 {
-                    //gpioTr = new Thread(gpioRunner);
+                    gpioTr = new Thread(gpioRunner);
                     gpioTr.Start();
                 }
             }
@@ -829,7 +829,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 strategy = canvas.getBufferStrategy();
             } while (strategy == null);
 
-            //backgroundGraphics = (Graphics2D)background.getGraphics();
+            backgroundGraphics = (Graphics2D)background.getGraphics();
         }
 
         /// <summary>
@@ -841,7 +841,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns>Returns a BufferedImage with the desired coordinates and transparency. </returns>
         public virtual Texture2D create(int width, int height, bool alpha)
         {
-            return null; //MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+            return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         }
 
         /// <summary>
@@ -1092,7 +1092,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             {
                 try
                 {
-                    //graphics = (Graphics2D)strategy.getDrawGraphics();
+                    graphics = (Graphics2D)strategy.getDrawGraphics();
                 }
                 catch (Exception e)
                 {
@@ -1244,11 +1244,13 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             //draws a scaled version of the state of the background buffer to the screen buffer if scaling is enabled
             if (scale != 1.0)
             {
-                bg.drawImage(background, sMyX, sMyY, sWinWidth, sWinHeight, 0, 0, winWidth, winHeight, null);
+                //bg.drawImage(background, sMyX, sMyY, sWinWidth, sWinHeight, 0, 0, winWidth, winHeight, null);
+                bg.Draw(background, new Rectangle(sMyX, sMyY, sWinWidth, sWinHeight), new Rectangle(0, 0, winWidth, winHeight), Color.White);
             }
             else
             {
-                bg.drawImage(background, myX, myY, null);
+                //bg.drawImage(background, myX, myY, null);
+                bg.Draw(background, new Vector2(myX, myY), Color.White);
             }
 
             bg.Dispose();

@@ -80,68 +80,45 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
         }
 
-        /*
-         * A method that returns the polling interval in ms that the GpioHubRunner uses to monitor GPIO pins.
-         * 
-         * @return      Returns a long value that represents the number of ms of the polling interval.
-         */
         /// <summary>
-        /// 
+        /// A method that returns the polling interval in ms that the GpioHubRunner uses to monitor GPIO pins.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns a long value that represents the number of ms of the polling interval.</returns>
         public virtual long GetPollingIntervalMs()
         {
             return pollingIntervalMs;
         }
 
-        /*
-         * A method that sets the current polling interval in ms that the GpioHubRUnner uses to monitor GPIO pins.
-         * 
-         * @param intervalMs        A method argument that sets the polling interval that the GpioHubRunner uses to monitor GPIO pins.
-         */
         /// <summary>
-        /// 
+        /// A method that sets the current polling interval in ms that the GpioHubRUnner uses to monitor GPIO pins.
         /// </summary>
-        /// <param name="intervalMs"></param>
+        /// <param name="intervalMs">A method argument that sets the polling interval that the GpioHubRunner uses to monitor GPIO pins.</param>
         public virtual void SetPollingIntervalMs(long intervalMs)
         {
             pollingIntervalMs = intervalMs;
         }
 
-        /*
-         * A method that returns the current execution control variable value.
-         * 
-         * @return      Returns a bool indicating if the thread is currently running or not.
-         */
         /// <summary>
-        /// 
+        /// A method that returns the current execution control variable value.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns a bool indicating if the thread is currently running or not.</returns>
         public virtual bool IsRunning()
         {
             return running;
         }
 
-        /*
-         * A method that sets the current execution control variable value.
-         * 
-         * @param b     A method argument that sets the value of the thread execution control variable.
-         */
         /// <summary>
-        /// 
+        /// A method that sets the current execution control variable value.
         /// </summary>
-        /// <param name="b"></param>
+        /// <param name="b">A method argument that sets the value of the thread execution control variable.</param>
         public virtual void SetRunning(bool b)
         {
             running = b;
         }
 
-        /*
-         * The PollGpio method is used to update the GPIO pin state and call event handler methods from the GamePadSimple interface. 
-         * The last step in the process is to call the CleanUp method of the GpioHub class.
-         */
         /// <summary>
-        /// 
+        /// The PollGpio method is used to update the GPIO pin state and call event handler methods from the GamePadSimple interface. 
+        /// The last step in the process is to call the CleanUp method of the GpioHub class.
         /// </summary>
         public virtual void PollGpio()
         {
@@ -313,11 +290,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
         }
 
-        /*
-         * The run method of the Runnable interface. Called when a new thread is created and started.
-         */
         /// <summary>
-        /// 
+        /// The run method of the Runnable interface. Called when a new thread is created and started.
         /// </summary>
         public virtual void run()
         {
