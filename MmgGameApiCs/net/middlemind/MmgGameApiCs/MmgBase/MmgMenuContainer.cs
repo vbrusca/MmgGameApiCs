@@ -103,7 +103,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public override MmgObj Clone()
@@ -210,7 +210,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgMenuContainer object instance to test for equality.</param>
         /// <returns>Returns true if both MmgMenuContainer objects are the same.</returns>
-        public bool Equals(MmgMenuContainer obj)
+        public bool equals(MmgMenuContainer obj)
         {
             if (obj == null)
             {

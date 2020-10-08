@@ -16,6 +16,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// @author Victor G.Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "<Pending>")]
     public class MmgHelper
     {
         /// <summary>
@@ -900,6 +901,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 System.Diagnostics.Debug.WriteLine("ErrorLog: " + e.Message);
                 Console.WriteLine("ErrorLog: " + e.Message);
+
                 System.Diagnostics.Debug.WriteLine("ErrorLog: " + e.StackTrace);
                 Console.WriteLine("ErrorLog: " + e.StackTrace);
             }
@@ -1183,25 +1185,15 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return r;
         }
 
-        /*
-         * Gets a basic MmgMenuItem instance.
-         *
-         * @param handler       The event handler of the menu item.
-         * @param name          The name of the menu item.
-         * @param eventId       The id of the menu item event.
-         * @param eventType     The type of the menu item event.
-         * @param img           The image used to display the menu item.
-         * @return              A new configured MmgMenuItem.
-         */
         /// <summary>
-        /// 
+        /// Gets a basic MmgMenuItem instance.
         /// </summary>
-        /// <param name="handler"></param>
-        /// <param name="name"></param>
-        /// <param name="eventId"></param>
-        /// <param name="eventType"></param>
-        /// <param name="img"></param>
-        /// <returns></returns>
+        /// <param name="handler">The event handler of the menu item.</param>
+        /// <param name="name">The name of the menu item.</param>
+        /// <param name="eventId">The id of the menu item event.</param>
+        /// <param name="eventType">The type of the menu item event.</param>
+        /// <param name="img">The image used to display the menu item.</param>
+        /// <returns>A new configured MmgMenuItem.</returns>
         public static MmgMenuItem GetBasicMenuItem(MmgEventHandler handler, string name, int eventId, int eventType, MmgBmp img)
         {
             MmgMenuItem itm;

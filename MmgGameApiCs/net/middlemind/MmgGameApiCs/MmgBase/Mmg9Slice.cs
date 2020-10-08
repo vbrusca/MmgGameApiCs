@@ -28,11 +28,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         private MmgBmp dest;
 
-        /*
-         * Environment graphics configuration data to use when creating new bitmaps to draw on.
-         */
-        //public static final GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-
         /// <summary>
         /// Default constructor that takes a source MmgBmp to slice an offset and dimensions for the expanded source bitmap.
         /// </summary>
@@ -301,13 +296,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 return false;
             }
-            else if (obj.equals(this))
+            else if (obj.Equals(this))
             {
                 return true;
             }
 
             /*
-            if(!(super.Equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("Mmg9Slice MmgObj is not equals!");
             }
 

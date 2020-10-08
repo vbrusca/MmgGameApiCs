@@ -31,7 +31,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (DEBUGGING_ON == true)
             {
-                //System.Diagnostics.Debug.WriteLine(appName + ": " + s);
                 MmgApiUtils.wr(appName + ": " + s);
             }
         }
@@ -45,7 +44,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (DEBUGGING_ON == true)
             {
-                //System.Diagnostics.Debug.WriteLine(key + ": " + s);
                 MmgApiUtils.wr(key + ": " + s);
             }
         }
@@ -58,7 +56,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (DEBUGGING_ON == true)
             {
-                //System.Diagnostics.Debug.WriteLine(appName + " [" + DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + "]: " + s);
                 MmgApiUtils.wr(appName + " [" + DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + "]: " + s);
             }
         }

@@ -30,7 +30,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// Unique sound id string form.
         /// </summary>
-        private String idStr;
+        private string idStr;
 
         /// <summary>
         /// The lower level sound object.
@@ -52,11 +52,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         private float gain;
 
-        ///
-        /// A Java internal class that is used to adjust the volume of the given sound clip.
-        ///
-        //private FloatControl vol;
-
         /// <summary>
         /// The current set volume for this MmgSound object. 
         /// </summary>
@@ -68,7 +63,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private float currentRate;
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         private SoundEffectInstance soundInst;
 

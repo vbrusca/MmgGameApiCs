@@ -372,7 +372,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("mmg loading bar: mmgobj is not equals!");
             }
 

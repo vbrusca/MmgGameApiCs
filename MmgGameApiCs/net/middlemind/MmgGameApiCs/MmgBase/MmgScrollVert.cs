@@ -159,7 +159,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private MmgEvent clickDown = new MmgEvent(null, "vert_click_down", MmgScrollVert.SCROLL_VERT_SCROLL_DOWN_EVENT_ID, MmgScrollVert.SCROLL_VERT_CLICK_EVENT_TYPE, null, null);
 
         /// <summary>
-        /// TODO: Add comments
+        /// TODO: Add comment
         /// </summary>
         public static int SCROLL_VERT_CLICK_EVENT_TYPE = 1;
 
@@ -472,7 +472,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Finalizes the scroll view's preparation.
         /// Called at the end of the PrepDimensions method.
         /// </summary>
-        public void PrepScrollPane()
+        public virtual void PrepScrollPane()
         {
             if (scrollPaneHeight - viewPortHeight > 0)
             {
@@ -952,7 +952,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the height difference between the view port and the scroll pane.
         /// </summary>
         /// <returns>The height difference between the view port and the scroll pane.</returns>
-        public int GetHeightDiff()
+        public virtual int GetHeightDiff()
         {
             return heightDiff;
         }
@@ -997,7 +997,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets a bool value indicating if the vertical scroll bar is visible.
         /// </summary>
         /// <param name="b">A bool indicating if the vertical scroll bar is visible.</param>
-        public void SetScrollBarVisible(bool b)
+        public virtual void SetScrollBarVisible(bool b)
         {
             scrollBarVisible = b;
         }
@@ -1033,7 +1033,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the MmgColor of the scroll bar slider.
         /// </summary>
         /// <param name="c">The MmgColor of the scroll bar.</param>
-        public void SetScrollBarCenterButtonColor(MmgColor c)
+        public virtual void SetScrollBarCenterButtonColor(MmgColor c)
         {
             scrollBarCenterButtonColor = c;
         }
@@ -1270,7 +1270,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgScrollVert object to compare to.</param>
         /// <returns>A bool indicating if the two objects are equal or not.</returns>
-        public bool equals(MmgScrollVert obj)
+        public virtual bool equals(MmgScrollVert obj)
         {
             if (obj == null)
             {

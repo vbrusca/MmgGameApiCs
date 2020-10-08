@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using static net.middlemind.MmgGameApiCs.MmgBase.MmgFont;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
@@ -106,7 +107,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static bool SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX = false;
 
         /// <summary>
-        /// TODO: Add comments
+        /// TODO: Add comment
         /// </summary>
         private Color c;
 
@@ -662,7 +663,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="typeFace">The Font to use to render the text.</param>
         /// <param name="fontSize">The size of the font used to parse the text.</param>
         /// <param name="width">The width to use as the maximum width for one line.</param>
-        public virtual void PrepTextSplit(string text, SpriteFont typeFace, int fontSize, int width)
+        public virtual void PrepTextSplit(string text, SpriteFont typeFace, int fontSize, int width, FontType fontType)
         {
             text = text.Replace(" " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
             text = text.Replace("  " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
@@ -680,7 +681,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 desc = null;
                 desc = new MmgFont(typeFace);
-                desc.SetFontSize(fontSize);
+                desc.SetFontSize(fontSize, fontType);
                 desc.SetText("");
                 str = "";
                 prevStr = "";
@@ -765,7 +766,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgTextBlock object to compare this object to.</param>
         /// <returns>Returns true if the two objects are equal and false otherwise.</returns>
-        public virtual bool Equals(MmgTextBlock obj)
+        public virtual bool equals(MmgTextBlock obj)
         {
             if (obj == null)
             {
@@ -777,7 +778,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.Equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("MmgTextBlock: MmgObj is not equals!");
             }
 
@@ -836,7 +837,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.Equals((MmgObj)obj)
+                base.equals((MmgObj)obj)
                 && ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().equals(GetColor())))
                 && obj.GetHeight() == GetHeight()
                 && obj.GetLineCount() == GetLineCount()
@@ -869,7 +870,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     {
                         for (int i = 0; i < len1; i++)
                         {
-                            if (!obj.GetLines()[i].Equals(GetLines()[i]))
+                            if (!obj.GetLines()[i].equals(GetLines()[i]))
                             {
                                 ret = false;
                                 break;

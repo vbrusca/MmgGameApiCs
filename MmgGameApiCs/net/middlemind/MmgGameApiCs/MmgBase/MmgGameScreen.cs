@@ -1200,7 +1200,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 return false;
             }
-            else if (obj.equals(this))
+            else if (obj.Equals(this))
             {
                 return true;
             }

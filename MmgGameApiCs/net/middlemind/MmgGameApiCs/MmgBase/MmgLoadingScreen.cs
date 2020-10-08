@@ -209,7 +209,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the loading bar object of this class.
         /// </summary>
         /// <returns>A loading bar.</returns>
-        public MmgLoadingBar GetLoadingBar()
+        public virtual MmgLoadingBar GetLoadingBar()
         {
             return loadingBar;
         }
@@ -218,7 +218,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Get the loading bar's bottom offset.
         /// </summary>
         /// <returns>The loading bar's bottom offset.</returns>
-        public float GetLoadingBarOffsetBottom()
+        public virtual float GetLoadingBarOffsetBottom()
         {
             return loadingBarOffsetBottom;
         }
@@ -228,7 +228,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="lb">The loading bar to use for this game screen.</param>
         /// <param name="lBarOff">The bottom offset to use for the loading bar.</param>
-        public void SetLoadingBar(MmgLoadingBar lb, float lBarOff)
+        public virtual void SetLoadingBar(MmgLoadingBar lb, float lBarOff)
         {
             loadingBar = lb;
             loadingBarOffsetBottom = lBarOff;
@@ -275,7 +275,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.equals((MmgGameScreen)obj))) {
+            if(!(base.equals((MmgGameScreen)obj))) {
                 MmgHelper.wr("MmgGameScreen is not equal!");
             }
 

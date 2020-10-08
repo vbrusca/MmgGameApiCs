@@ -9,6 +9,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     ///
     /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgScrollHorVert : MmgObj
     {
         /// <summary>
@@ -831,43 +832,28 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             clickLeft = e;
         }
 
-        /*
-         * Gets the scroll right event.
-         * 
-         * @return      The scroll right event.
-         */
         /// <summary>
-        /// 
+        /// Gets the scroll right event.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The scroll right event.</returns>
         public virtual MmgEvent GetClickRight()
         {
             return clickRight;
         }
 
-        /*
-         * Sets the scroll right event.
-         * 
-         * @param e     The scroll right event.
-         */
         /// <summary>
-        /// 
+        /// Sets the scroll right event.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The scroll right event.</param>
         public virtual void SetClickRight(MmgEvent e)
         {
             clickRight = e;
         }
 
-        /*
-         * Sets the X coordinate of this scroll view.
-         * 
-         * @param inX       The X coordinate of this scroll view.
-         */
         /// <summary>
-        /// 
+        /// Sets the X coordinate of this scroll view.
         /// </summary>
-        /// <param name="inX"></param>
+        /// <param name="inX">The X coordinate of this scroll view.</param>
         public override void SetX(int inX)
         {
             base.SetX(inX);
@@ -897,15 +883,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        /*
-         * Sets the Y coordinate of this scroll view.
-         * 
-         * @param inY       The Y coordinate of this scroll view.
-         */
         /// <summary>
-        /// 
+        /// Sets the Y coordinate of this scroll view.
         /// </summary>
-        /// <param name="inY"></param>
+        /// <param name="inY">The Y coordinate of this scroll view.</param>
         public override void SetY(int inY)
         {
             base.SetX(inY);
@@ -1533,7 +1514,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the height difference between the view port and the scroll pane.
         /// </summary>
         /// <param name="HeightDiff">The height difference between the view port and the scroll pane.</param>
-        public void SetHeightDiff(int HeightDiff)
+        public virtual void SetHeightDiff(int HeightDiff)
         {
             heightDiff = HeightDiff;
         }
@@ -1542,7 +1523,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the width difference percentage between the view port and the scroll pane.
         /// </summary>
         /// <returns>The width difference percentage between the view port and the scroll pane.</returns>
-        public double GetWidthDiffPrct()
+        public virtual double GetWidthDiffPrct()
         {
             return widthDiffPrct;
         }
@@ -2027,7 +2008,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 return false;
             }
-            else if (obj.equals(this))
+            else if (obj.Equals(this))
             {
                 return true;
             }

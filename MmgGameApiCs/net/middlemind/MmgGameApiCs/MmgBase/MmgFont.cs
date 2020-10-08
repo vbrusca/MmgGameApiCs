@@ -297,7 +297,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                MmgHelper.wr("MmgFont: MmgObj is not equals!"); 
             }
 

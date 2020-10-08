@@ -31,25 +31,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public static int MMG_POSITION_TWEEN_REACH_START_TYPE = 1;
 
-        /*
-         * 
-         */
         /// <summary>
         /// The subject of this position tween.
         /// </summary>
         private MmgObj subj;
 
-        /*
-         * 
-         */
         /// <summary>
         /// A bool indicating the tween is at the start position.
         /// </summary>
         private bool atStart;
 
-        /*
-         * 
-         */
         /// <summary>
         /// A bool indicating the tween is at the finish position.
         /// </summary>
@@ -723,7 +714,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.Equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("MmgPositionTween: MmgObj not equals!");
             }
 

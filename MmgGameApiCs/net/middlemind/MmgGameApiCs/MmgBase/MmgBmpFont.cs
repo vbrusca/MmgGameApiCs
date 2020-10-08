@@ -31,7 +31,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The text to render using the loaded font.
         /// </summary>
-        private String text;
+        private string text;
 
         /// <summary>
         /// An array of widths for the loaded font characters.
@@ -63,7 +63,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="Src">A source MmgBmp object that holds the font as individual images of characters in a series.</param>
         /// <param name="Text">The test to render using the loaded font.</param>
-        public MmgBmpFont(MmgBmp Src, String Text) : base()
+        public MmgBmpFont(MmgBmp Src, string Text) : base()
         {
             SetSrc(Src);
             Prep();
@@ -986,7 +986,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 return false;
             }
-            else if (obj.equals(this))
+            else if (obj.Equals(this))
             {
                 return true;
             }
@@ -1003,7 +1003,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 int i = 0;
                 for (i = 0; i < len; i++)
                 {
-                    if (!obj.GetChar(i).Equals(GetChar(i)))
+                    if (!obj.GetChar(i).equals(GetChar(i)))
                     {
                         ret = false;
                         break;

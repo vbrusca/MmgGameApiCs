@@ -32,5 +32,4 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public MmgBmp img;
     }
-
 }

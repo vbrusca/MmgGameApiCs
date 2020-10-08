@@ -588,7 +588,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual SpriteEffects GetSpriteFx()
@@ -597,7 +597,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="Fx"></param>
         public virtual void SetSpriteFx(SpriteEffects Fx)
@@ -606,7 +606,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual float GetLayerDepth()
@@ -615,7 +615,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="f"></param>
         public virtual void SetLayerDepth(float f)
@@ -751,7 +751,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("MmgBmp: MmgObj is not equals!");
             }
             */

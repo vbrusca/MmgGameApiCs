@@ -980,7 +980,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgBmpFont object to compare to.</param>
         /// <returns>A boolean indicating if the two objects are equal or not.</returns>
-        public virtual bool Equals(MmgBmpFont obj)
+        public virtual bool equals(MmgBmpFont obj)
         {
             if (obj == null)
             {

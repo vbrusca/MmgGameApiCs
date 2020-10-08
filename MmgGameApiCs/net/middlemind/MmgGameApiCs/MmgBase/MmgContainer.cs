@@ -75,7 +75,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private bool lret = false;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         public MmgContainer() : base()
         {

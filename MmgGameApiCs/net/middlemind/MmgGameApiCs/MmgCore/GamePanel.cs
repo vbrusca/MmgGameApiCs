@@ -200,17 +200,17 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// A BufferedImage used to render the game screen to. 
         /// The background image is then rendered to the panel once it is done drawing.
         /// </summary>
-        public BufferedImage background;
+        public Texture2D background;
 
         /// <summary>
         /// A Java rendering API for drawing graphics to a BufferedImage.
         /// </summary>
-        public Graphics2D backgroundGraphics;
+        public SpriteBatch backgroundGraphics;
 
         /// <summary>
         /// A Java rendering API for drawing graphics to the JFrame.
         /// </summary>
-        public Graphics2D graphics;
+        public SpriteBatch graphics;
 
         /// <summary>
         /// An optional scale value that will scale the background image before drawing it to the JFrame.
@@ -288,12 +288,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// A Java rendering API instance that is used to draw to the JFrame.
         /// </summary>
-        public Graphics2D bg;
+        public SpriteBatch bg;
 
         /// <summary>
         /// A Java rendering API instance that is used to draw the game screen to a buffered image.
         /// </summary>
-        public Graphics2D g;
+        public SpriteBatch g;
 
         /// <summary>
         /// An instance of the ScreenSplash class that is used to draw the game's splash screen.
@@ -393,8 +393,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             prev = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
-            canvas = new Canvas(MmgBmpScaler.GRAPHICS_CONFIG);
-            canvas.setSize(winWidth, winHeight);
+            //canvas = new Canvas(MmgBmpScaler.GRAPHICS_CONFIG);
+            //canvas.setSize(winWidth, winHeight);
 
             MmgHelper.wr("");
             MmgHelper.wr("GamePanel Window Width: " + winWidth);
@@ -623,7 +623,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gamePadHub = new GamePadHub(GameSettings.GAMEPAD_1_INDEX);
                 gamePadRunner = new GamePadHubRunner(gamePadHub, GameSettings.GAMEPAD_1_POLLING_INTERVAL_MS, this);
                 if (GameSettings.GAMEPAD_1_THREADED_POLLING) {
-                    gpadTr = new Thread(gamePadRunner);
+                    //gpadTr = new Thread(gamePadRunner);
                     gpadTr.Start();
                 }
             }
@@ -634,7 +634,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gpioRunner = new GpioHubRunner(gpioHub, GameSettings.GPIO_GAMEPAD_POLLING_INTERVAL_MS, this);
                 if (GameSettings.GPIO_GAMEPAD_THREADED_POLLING)
                 {
-                    gpioTr = new Thread(gpioRunner);
+                    //gpioTr = new Thread(gpioRunner);
                     gpioTr.Start();
                 }
             }
@@ -829,7 +829,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 strategy = canvas.getBufferStrategy();
             } while (strategy == null);
 
-            backgroundGraphics = (Graphics2D)background.getGraphics();
+            //backgroundGraphics = (Graphics2D)background.getGraphics();
         }
 
         /// <summary>
@@ -839,9 +839,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="height">The desired height of the BufferedImage.</param>
         /// <param name="alpha">The desired transparency flag of the BufferedImage.</param>
         /// <returns>Returns a BufferedImage with the desired coordinates and transparency. </returns>
-        public virtual BufferedImage create(int width, int height, bool alpha)
+        public virtual Texture2D create(int width, int height, bool alpha)
         {
-            return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+            return null; //MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
         }
 
         /// <summary>
@@ -1086,15 +1086,15 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// Returns a Graphics2D instance that is based on the default screen configuration used for drawing on the JFrame.
         /// </summary>
         /// <returns>A Graphics2D instance that is used to draw on the JFrame.</returns>
-        public virtual Graphics2D GetBuffer()
+        public virtual SpriteBatch GetBuffer()
         {
             if (graphics == null)
             {
                 try
                 {
-                    graphics = (Graphics2D)strategy.getDrawGraphics();
+                    //graphics = (Graphics2D)strategy.getDrawGraphics();
                 }
-                catch (IllegalStateException e)
+                catch (Exception e)
                 {
                     return null;
                 }
@@ -1148,7 +1148,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns></returns>
         public virtual bool UpdateScreen()
         {
-            graphics.dispose();
+            graphics.Dispose();
             graphics = null;
             try
             {
@@ -1251,7 +1251,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 bg.drawImage(background, myX, myY, null);
             }
 
-            bg.dispose();
+            bg.Dispose();
 
             UpdateScreen();
         }

@@ -55,7 +55,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// The DEFAULT_LANGUAGE static class string can be used to load strings of a different language
         /// in the static class method, LOAD_EXT_STRINGS.
         /// </summary>
-        public static String DEFAULT_LANGUAGE = "en";
+        public static string DEFAULT_LANGUAGE = "en";
 
         /// <summary>
         /// The LOAD_EXT_STRINGS static class method is used to load strings by static ID into the EXT Hashtable.
@@ -73,7 +73,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// different languages.
         /// </summary>
         /// <param name="langCode">A string argument the defines a language code that can be used to load different strings based on the language code.</param>
-        public static void LOAD_EXT_STRINGS(String langCode)
+        public static void LOAD_EXT_STRINGS(string langCode)
         {
             //Called when loading bar complete generic event is processed
             if (EXT.ContainsKey(EXT_TALK_NOBODY_HERE) == false)

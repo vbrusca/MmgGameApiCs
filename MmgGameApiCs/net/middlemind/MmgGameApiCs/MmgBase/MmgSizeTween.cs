@@ -37,7 +37,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private MmgObj subj;
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         private MmgObj subjOrig;
 
@@ -102,17 +102,17 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private MmgVector2 tmpV;
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         private MmgEventHandler onReachFinish;
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         private MmgEventHandler onReachStart;
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         private MmgScaleHandler onSubjScale;
 
@@ -264,7 +264,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         /// <param name="o"></param>
         public virtual void SetOnSubjScale(MmgScaleHandler o)
@@ -273,7 +273,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         /// <returns></returns>
         public virtual MmgScaleHandler GetOnSubjScale()
@@ -291,7 +291,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         /// <param name="o"></param>
         public virtual void SetSubjOrig(MmgObj o)
@@ -748,7 +748,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the size of the subject.
         /// </summary>
         /// <param name="v">The desired size of the subject represented as an MmgVector2.</param>
-        public void SetSize(MmgVector2 v)
+        public virtual void SetSize(MmgVector2 v)
         {
             subj.SetWidth(v.GetX());
             subj.SetHeight(v.GetY());
@@ -760,7 +760,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgPositionTween object to compare to.</param>
         /// <returns>A boolean indicating if the two objects are equal or not.</returns>
-        public bool equals(MmgSizeTween obj)
+        public virtual bool equals(MmgSizeTween obj)
         {
             if (obj == null)
             {
@@ -772,7 +772,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.Equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("MmgSizeTween: MmgObj not equals!");
             }
 

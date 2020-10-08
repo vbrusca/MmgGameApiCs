@@ -303,7 +303,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// TODO: Add comment
         /// </summary>
         private void threadWork()
         {

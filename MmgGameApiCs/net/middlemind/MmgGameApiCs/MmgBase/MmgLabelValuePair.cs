@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Graphics;
+using static net.middlemind.MmgGameApiCs.MmgBase.MmgFont;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
@@ -323,10 +324,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the size of the font.
         /// </summary>
         /// <param name="sz">The size of the font.</param>
-        public virtual void SetFontSize(int sz)
+        public virtual void SetFontSize(int sz, FontType valFontType, FontType lblFontType)
         {
-            val.SetFontSize(sz);
-            lbl.SetFontSize(sz);
+            val.SetFontSize(sz,valFontType);
+            lbl.SetFontSize(sz, lblFontType);
             Reset();
         }
 
@@ -404,7 +405,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the Font object used to draw the label text.
         /// </summary>
         /// <param name="ft">The font used to draw the label text.</param>
-        public void SetLabelFont(SpriteFont ft)
+        public virtual void SetLabelFont(SpriteFont ft)
         {
             lbl.SetFont(ft);
             Reset();
@@ -517,7 +518,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             /*
             MmgHelper.wr("MmgLabelValuePair: MmgObj");
-            if(!(super.Equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("MmgLabelValuePair: MmgObj is not equals!");
             }
 
@@ -549,5 +550,4 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return ret;
         }
     }
-
 }

@@ -10,90 +10,88 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgBmpFontXna : MmgObj
     {
-        //TODO: Add comments
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private int[] font_xpos;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private int[] font_width;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private int font_height;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private MmgBmp fontimg;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
-        private String text;
+        private string text;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private byte[] carddata;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private char[] c;
 
-        //TEMP VARIABLES
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private int tx;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private int i;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private int tmp;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private int n;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private int len;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private BinaryReader ifile;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private MemoryStream bai;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private MmgRect tmpDstRect;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         private MmgRect tmpSrcRect;
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         public MmgBmpFontXna() : base()
         {
@@ -107,7 +105,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="obj"></param>
         public MmgBmpFontXna(MmgObj obj) : base(obj)
@@ -122,7 +120,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="obj"></param>
         public MmgBmpFontXna(MmgBmpFontXna obj)
@@ -168,12 +166,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="img"></param>
         /// <param name="cd"></param>
         /// <param name="Text"></param>
-        public MmgBmpFontXna(MmgBmp img, byte[] cd, String Text)
+        public MmgBmpFontXna(MmgBmp img, byte[] cd, string Text)
         {
             LoadFont(img, cd);
             text = Text;
@@ -188,7 +186,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual char[] GetCharArray()
@@ -197,7 +195,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="chr"></param>
         public virtual void SetCharArray(char[] chr)
@@ -206,7 +204,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual byte[] GetCardData()
@@ -215,7 +213,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="b"></param>
         public virtual void SetCardData(byte[] b)
@@ -224,7 +222,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual string GetText()
@@ -233,7 +231,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="s"></param>
         public virtual void SetText(string s)
@@ -242,7 +240,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual MmgBmp GetFontImg()
@@ -251,7 +249,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="i"></param>
         public virtual void SetFontImg(MmgBmp i)
@@ -260,7 +258,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual int GetFontHeight()
@@ -269,7 +267,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="h"></param>
         public virtual void SetFontHeight(int h)
@@ -278,7 +276,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual int[] GetFontWidth()
@@ -287,7 +285,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="h"></param>
         public virtual void SetFontWidth(int[] h)
@@ -296,7 +294,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public virtual int[] GetFontXpos()
@@ -305,7 +303,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="h"></param>
         public virtual void SetFontXpos(int[] h)
@@ -314,7 +312,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <returns></returns>
         public override MmgObj Clone()
@@ -323,7 +321,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="abyte0"></param>
         /// <returns></returns>
@@ -333,7 +331,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="abyte0"></param>
         /// <param name="flag"></param>
@@ -369,7 +367,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="abyte0"></param>
         /// <param name="i"></param>
@@ -385,7 +383,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="img"></param>
         /// <param name="cd"></param>
@@ -444,7 +442,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="pen"></param>
         public virtual void CreateTextImg(MmgPen pen)
@@ -487,7 +485,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -512,7 +510,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="p"></param>
         public override void MmgDraw(MmgPen p)

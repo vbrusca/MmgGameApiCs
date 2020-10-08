@@ -10,6 +10,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     ///
     /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
     public class MmgBmpScaler
     {
         /// <summary>
@@ -17,6 +18,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         //public static GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
         public static GraphicsDevice GRAPHICS_CONFIG;
+
 
         /// <summary>
         /// A static class method that scales an MmgBmp object to the size of the game screen.

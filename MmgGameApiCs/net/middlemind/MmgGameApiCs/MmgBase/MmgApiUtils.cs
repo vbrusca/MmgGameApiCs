@@ -39,6 +39,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
                 Console.WriteLine(e.Message);
+
                 System.Diagnostics.Debug.WriteLine(e.StackTrace);
                 Console.WriteLine(e.StackTrace);
             }

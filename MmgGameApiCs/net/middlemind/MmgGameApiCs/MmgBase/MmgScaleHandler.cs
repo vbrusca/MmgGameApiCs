@@ -3,12 +3,12 @@
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
     /// <summary>
-    /// TODO: Add comments.
+    /// TODO: Add comments
     /// </summary>
     public interface MmgScaleHandler
     {
         /// <summary>
-        /// 
+        /// TODO: Add comments
         /// </summary>
         /// <param name="v"></param>
         /// <param name="orig"></param>

@@ -32,12 +32,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private int height;
 
         /// <summary>
-        /// TODO: Add comments.
+        /// TODO: Add comment
         /// </summary>
         private int rowCount;
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         private int colCount;
 
@@ -147,7 +147,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO 
+        /// TODO: Add comment
         /// </summary>
         /// <returns></returns>
         public virtual int GetRowCount()
@@ -156,7 +156,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         /// <param name="i"></param>
         public virtual void SetRowCount(int i)
@@ -165,7 +165,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO
+        /// TODO: Add comment
         /// </summary>
         /// <returns></returns>
         public virtual int GetColCount()
@@ -174,7 +174,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         /// <param name="i"></param>
         public virtual void SetColCount(int i)

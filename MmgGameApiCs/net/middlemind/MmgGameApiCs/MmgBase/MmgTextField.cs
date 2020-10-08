@@ -111,15 +111,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public static int DEFAULT_MAX_LENGTH = 20;
 
-        /*
-         * 
-         * 
-         * @param BgroundSrc        
-         * @param Font              
-         * @param Width             
-         * @param Height            
-         * @param Padding           
-         */
         /// <summary>
         /// The default constructor that sets all the basic needs for this class to display properly.
         /// </summary>
@@ -416,29 +407,19 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return isDirty;
         }
 
-        /*
-         * Sets a boolean flag used to indicate that drawing needs to be done in the next MmgUpdate call.
-         * 
-         * @param b     A boolean flag used to indicate that drawing needs to be done in the next MmgUpdate call.
-         */
         /// <summary>
-        /// 
+        /// Sets a boolean flag used to indicate that drawing needs to be done in the next MmgUpdate call.
         /// </summary>
-        /// <param name="b"></param>
+        /// <param name="b">A boolean flag used to indicate that drawing needs to be done in the next MmgUpdate call.</param>
         public virtual void SetIsDirty(bool b)
         {
             isDirty = b;
         }
 
-        /*
-         * Sets the position of the text field and MmgFont text with slight adjustments to the font based on the value of the padding class field.
-         * 
-         * @param pos   The position of the text field.
-         */
         /// <summary>
-        /// 
+        /// Sets the position of the text field and MmgFont text with slight adjustments to the font based on the value of the padding class field.
         /// </summary>
-        /// <param name="pos"></param>
+        /// <param name="pos">The position of the text field.</param>
         public override void SetPosition(MmgVector2 pos)
         {
             base.SetPosition(pos);
@@ -446,17 +427,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             font.SetPosition(new MmgVector2(pos.GetX() + padding, pos.GetY() + GetHeight() - padding));
         }
 
-        /*
-         * Sets the position of the text field and MmgFont text with slight adjustments to the font based on the value of the padding class field.
-         * 
-         * @param x     The X position to use when setting the position of the text field.
-         * @param y     The Y position to use when setting the position of the text field.
-         */
         /// <summary>
-        /// 
+        /// Sets the position of the text field and MmgFont text with slight adjustments to the font based on the value of the padding class field.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The X position to use when setting the position of the text field.</param>
+        /// <param name="y">The Y position to use when setting the position of the text field.</param>
         public override void SetPosition(int x, int y)
         {
             base.SetPosition(x, y);
@@ -602,13 +577,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 return false;
             }
-            else if (obj.equals(this))
+            else if (obj.Equals(this))
             {
                 return true;
             }
 
             /*
-            if(!(super.equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("MmgTextField MmgObj not equals!");
             }
 

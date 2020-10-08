@@ -146,7 +146,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="f">The MmgFont object to draw.</param>
         /// <param name="x">The x position to draw the object.</param>
         /// <param name="y">The y position to draw the object.</param>
-        public void DrawText(MmgFont f, int x, int y)
+        public virtual void DrawText(MmgFont f, int x, int y)
         {
             /*
             tmpF = pen.getFont();
@@ -167,7 +167,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="f">The MmgFont object to draw.</param>
         /// <param name="pos">The position to draw the object.</param>
-        public void DrawText(MmgFont f, MmgVector2 pos)
+        public virtual void DrawText(MmgFont f, MmgVector2 pos)
         {
             /*
             tmpF = pen.getFont();
@@ -193,7 +193,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="originX">The origin X to use in rotation.</param>
         /// <param name="originY">The origin Y to use in rotation.</param>
         /// <returns>A newly rotated image.</returns>
-        public Texture2D RotateImage(int width, int height, Texture2D img, int angle, int originX, int originY)
+        public virtual Texture2D RotateImage(int width, int height, Texture2D img, int angle, int originX, int originY)
         {
             return MmgPen.RotateImageStatic(width, height, img, angle, originX, originY);
         }
@@ -347,7 +347,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// Sets the advanced render hints flags in the current Graphics context.
         /// </summary>
-        public void SetAdvRenderHints()
+        public virtual void SetAdvRenderHints()
         {
             if (MmgPen.ADV_RENDER_HINTS == true)
             {
@@ -370,7 +370,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="idStr">The id in string form of the image to draw.</param>
         /// <param name="position">The position to draw the image.</param>
-        public void DrawBmpBasic(string idStr, MmgVector2 position)
+        public virtual void DrawBmpBasic(string idStr, MmgVector2 position)
         {
             tmpImg = MmgMediaTracker.GetBmpValue(idStr);
             if (tmpImg != null)

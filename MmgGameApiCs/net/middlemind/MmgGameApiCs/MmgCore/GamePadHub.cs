@@ -146,10 +146,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// A default constructor for the GpioHub class that checks to see if GPIO is supported on the system.
         /// Creates a default array of 6 GpioPin instances using values from the GameSettings class to set the GPIO pin numbers
         /// and the events that should be tracked.
-        /// 
-        /// @param GamePadIndex      The index of the gamepad on the OS. 
         /// </summary>
-        /// <param name="GamePadIndex"></param>
+        /// <param name="GamePadIndex">The index of the gamepad on the OS.</param>
         public GamePadHub(int GamePadIndex)
         {
             gamePadIdx = GamePadIndex;
@@ -246,7 +244,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// A constructor for the GpioHub that takes an array of GpioPin instances which is used to set the buttons class field.
         /// </summary>
         /// <param name="Buttons">An array of 6 GpioPin instances used to set the buttons class field.</param>
-        /// <param name="GamePad">TODO:</param>
+        /// <param name="GamePad">TODO: Add comment</param>
         public GamePadHub(GamePadInput[] Buttons, Controller GamePad)
         {
             gamePad = GamePad;
@@ -800,4 +798,3 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
     }
 }
-           

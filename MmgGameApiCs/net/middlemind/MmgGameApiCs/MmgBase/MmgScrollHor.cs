@@ -863,7 +863,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the MmgBmp that is used for the horizontal slider.
         /// </summary>
         /// <returns>The MmgBmp used for the horizontal slider.</returns>
-        public MmgBmp GetScrollBarCenterButton()
+        public virtual MmgBmp GetScrollBarCenterButton()
         {
             return scrollBarCenterButton;
         }
@@ -878,28 +878,18 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             scrollBarCenterButton = b;
         }
 
-        /*
-         * Gets the MmgRect dimensions for the horizontal slider.
-         * 
-         * @return      The MmgRect dimensions for the horizontal slider.
-         */
         /// <summary>
-        /// 
+        /// Gets the MmgRect dimensions for the horizontal slider.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The MmgRect dimensions for the horizontal slider.</returns>
         public virtual MmgRect GetScrollBarCenterButtonRect()
         {
             return scrollBarCenterButtonRect;
         }
 
-        /*
-         * Sets the MmgRect dimensions for the horizontal slider.
-         * Changing the slider dimensions requires a call to PrepDimensions.
-         * 
-         * @param r     The MmgRect dimensions for the horizontal slider.
-         */
         /// <summary>
-        /// 
+        /// Sets the MmgRect dimensions for the horizontal slider.
+        /// Changing the slider dimensions requires a call to PrepDimensions.
         /// </summary>
         /// <param name="r"></param>
         public virtual void SetScrollBarCenterButtonRect(MmgRect r)
@@ -907,30 +897,20 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             scrollBarCenterButtonRect = r;
         }
 
-        /*
-         * Gets the MmgBmp used for the slider up button.
-         * 
-         * @return      The MmgBmp used for the slider up button.
-         */
         /// <summary>
-        /// 
+        /// Gets the MmgBmp used for the slider up button.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The MmgBmp used for the slider up button.</returns>
         public virtual MmgBmp GetScrollBarLeftButton()
         {
             return scrollBarLeftButton;
         }
 
-        /*
-         * Sets the MmgBmp used for the slider up button.
-         * Changing the slider up button requires a call to PrepDimensions.
-         * 
-         * @param b     The MmgBmp used for the slider up button.
-         */
         /// <summary>
-        /// 
+        /// Sets the MmgBmp used for the slider up button.
+        /// Changing the slider up button requires a call to PrepDimensions.
         /// </summary>
-        /// <param name="b"></param>
+        /// <param name="b">The MmgBmp used for the slider up button.</param>
         public virtual void SetScrollBarLeftButton(MmgBmp b)
         {
             scrollBarLeftButton = b;
@@ -1309,18 +1289,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        /*
-         * A method used to check the equality of this MmgScrollHor when compared to another MmgScrollHor.
-         * Compares object fields to determine equality.
-         * 
-         * @param obj     The MmgScrollHor object to compare to.
-         * @return      A bool indicating if the two objects are equal or not.
-         */
         /// <summary>
-        /// 
+        /// A method used to check the equality of this MmgScrollHor when compared to another MmgScrollHor.
+        /// Compares object fields to determine equality.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The MmgScrollHor object to compare to.</param>
+        /// <returns>A bool indicating if the two objects are equal or not.</returns>
         public virtual bool equals(MmgScrollHor obj)
         {
             if (obj == null)
@@ -1333,7 +1307,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(super.Equals((MmgObj)obj))) {
+            if(!(base.equals((MmgObj)obj))) {
                 MmgHelper.wr("MmgScrollHor: MmgObj is not equals!");
             }
 
