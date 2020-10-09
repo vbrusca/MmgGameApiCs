@@ -2,6 +2,7 @@
 
 namespace MmgGameApiCs
 {
+    /*
     public static class Program
     {
         [STAThread]
@@ -11,4 +12,5 @@ namespace MmgGameApiCs
                 game.Run();
         }
     }
+    */
 }

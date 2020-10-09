@@ -300,7 +300,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     }
                     catch (Exception ex)
                     {
-
+                        wrErr(ex);
                     }
 
                     ret = true;
@@ -363,7 +363,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     }
                     catch (Exception ex)
                     {
-
+                        wrErr(ex);
                     }
 
                     ret = true;
@@ -454,7 +454,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     }
                     catch (Exception ex)
                     {
-
+                        wrErr(ex);
                     }
                 }
             }

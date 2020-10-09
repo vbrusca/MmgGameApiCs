@@ -45,12 +45,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A private class field to track the range of volume for the given sound clip.
         /// </summary>
-        private float range;
+        //NOTES: Gain is not used in Monogame version because range is 0 - 1.
+        //private float range;
 
         /// <summary>
         /// A private class field to track the gain or volume used to set the audio clip's volume.
         /// </summary>
-        private float gain;
+        //private float gain;
 
         /// <summary>
         /// The current set volume for this MmgSound object. 
@@ -103,7 +104,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             //range = vol.getMaximum() - vol.getMinimum();
             //gain = (range * usedVolume) + vol.getMinimum();
             //vol.setValue(gain);
-            currentRate = gain;
+            //currentRate = usedVolume;
             currentVolume = usedVolume;
         }
 

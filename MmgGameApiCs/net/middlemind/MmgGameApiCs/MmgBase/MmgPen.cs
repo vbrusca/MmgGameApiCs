@@ -46,12 +46,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A private class field used to hold a temporary reference to the Font used.
         /// </summary>
-        private SpriteFont tmpF;
+        //private SpriteFont tmpF;
 
         /// <summary>
         /// A private class field used to hold a temporary reference to the Color used.
         /// </summary>
-        private Color tmpC;
+        //private Color tmpC;
 
         /// <summary>
         /// A static class field that holds a reference to a transparent Color class instance.

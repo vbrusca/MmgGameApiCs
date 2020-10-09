@@ -81,12 +81,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A temporary MmgObj instance used in the Equals method.
         /// </summary>
-        private MmgObj o1;
+        //private MmgObj o1;
 
         /// <summary>
         /// A temporary MmgObj instance used in the Equals method.
         /// </summary>
-        private MmgObj o2;
+        //private MmgObj o2;
 
         /// <summary>
         /// The strategy to use when drawing bitmaps.

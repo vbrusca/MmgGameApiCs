@@ -273,6 +273,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                         }
                         catch (Exception e)
                         {
+                            MmgHelper.wrErr(e);
                         }
 
                         if (exitLoad)
@@ -314,7 +315,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                         }
                         catch (Exception e)
                         {
-
+                            MmgHelper.wrErr(e);
                         }
 
                         if (exitLoad)

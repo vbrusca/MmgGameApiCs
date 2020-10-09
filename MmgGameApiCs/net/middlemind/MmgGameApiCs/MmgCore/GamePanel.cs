@@ -851,7 +851,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             //    strategy = canvas.getBufferStrategy();
             //} while (strategy == null);
 
-            backgroundGraphics = (Graphics2D)background.getGraphics();
+            //backgroundGraphics = (Graphics2D)background.getGraphics();
         }
 
         /// <summary>
@@ -1111,6 +1111,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns>A Graphics2D instance that is used to draw on the JFrame.</returns>
         public virtual SpriteBatch GetBuffer()
         {
+            /*
             if (graphics == null)
             {
                 try
@@ -1122,6 +1123,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     return null;
                 }
             }
+            */
             return graphics;
         }
 
@@ -1171,6 +1173,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns></returns>
         public virtual bool UpdateScreen()
         {
+            /*
             graphics.Dispose();
             graphics = null;
             try
@@ -1183,6 +1186,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             {
                 return true;
             }
+            */
+            return true;
         }
 
         /// <summary>
@@ -1237,6 +1242,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
             else
             {
+                /*
                 //clear background
                 g.setColor(Color.DarkGray);
                 g.fillRect(0, 0, winWidth, winHeight);
@@ -1247,6 +1253,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 g.setColor(Color.Black);
                 g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
+                */
 
                 p.SetGraphics(g);
                 p.SetAdvRenderHints();
@@ -1254,6 +1261,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 if (MmgHelper.LOGGING == true)
                 {
+                    /*
                     tmpF = g.getFont();
                     g.setFont(debugFont);
                     g.setColor(debugColor);
@@ -1261,6 +1269,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     g.drawString("Var1: " + GamePanel.VAR1, 15, 35);
                     g.drawString("Var2: " + GamePanel.VAR2, 15, 55);
                     g.setFont(tmpF);
+                    */
                 }
             }
 

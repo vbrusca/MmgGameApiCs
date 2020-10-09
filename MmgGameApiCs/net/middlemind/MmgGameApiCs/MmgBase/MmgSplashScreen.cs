@@ -65,7 +65,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 }
                 catch (Exception e)
                 {
-
+                    MmgHelper.wrErr(e);
                 }
             }
         }

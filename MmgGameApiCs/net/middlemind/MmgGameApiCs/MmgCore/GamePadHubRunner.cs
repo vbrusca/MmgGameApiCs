@@ -313,7 +313,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
             catch (Exception e)
             {
-
+                MmgHelper.wrErr(e);
             }
 
             while (running == true)
