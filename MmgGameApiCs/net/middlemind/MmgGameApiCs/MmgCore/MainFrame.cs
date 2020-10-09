@@ -10,6 +10,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
     ///
     /// @author Victor G.Brusca
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MainFrame
     {
         /// <summary>
@@ -100,6 +101,54 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             gameHeight = GameHeight;
             myX = (winWidth - panelWidth) / 2;
             myY = (winHeight - panelHeight) / 2;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="w"></param>
+        /// <param name="h"></param>
+        public void setSize(int w, int h)
+        {
+            pnlGame.gdm.PreferredBackBufferWidth = w;
+            pnlGame.gdm.PreferredBackBufferHeight = h;
+            pnlGame.gdm.ApplyChanges();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="b"></param>
+        public void setResizable(bool b)
+        {
+            pnlGame.Window.AllowUserResizing = b;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        public void setName(string n)
+        {
+            pnlGame.name = n;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="b"></param>
+        public void setVisible(bool b)
+        {
+            pnlGame.visible = b;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        public void setTitle(string s)
+        {
+            Window.Title = s;
         }
 
         /// <summary>
@@ -212,68 +261,28 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             MmgHelper.wr("MainFrame: Found Screen Dimen: " + winWidth + "x" + winHeight);
             MmgHelper.wr("MainFrame: Found Position: " + myX + "x" + myY);
-            add(pnlGame.GetCanvas());
+            pnlGame.Exiting += windowClosing;
+        }
 
-            pnlGame.GetCanvas().setFocusable(true);
-            pnlGame.GetCanvas().requestFocus();
-            pnlGame.GetCanvas().requestFocusInWindow();
-
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            /*
-            addWindowListener(new WindowListener() {
-
-                @Override
-                public void windowOpened(WindowEvent e)
-                {
-                }
-
-                @Override
-                @SuppressWarnings("CallToPrintStackTrace")
-                public void windowClosing(WindowEvent e)
-                {
-                    try
-                    {
-                        MmgHelper.wr("WindowClosing");
-
-                        GamePanel.PAUSE = true;
-                        GamePanel.EXIT = true;
-                        RunFrameRate.PAUSE = true;
-                        RunFrameRate.RUNNING = false;
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MmgHelper.wrErr(ex);
-                    }
-                    dispose();
-                }
-
-                @Override
-                    public void windowClosed(WindowEvent e)
-                {
-                }
-
-                @Override
-                    public void windowIconified(WindowEvent e)
-                {
-                }
-
-                @Override
-                    public void windowDeiconified(WindowEvent e)
-                {
-                }
-
-                @Override
-                    public void windowActivated(WindowEvent e)
-                {
-                }
-
-                @Override
-                    public void windowDeactivated(WindowEvent e)
-                {
-                }
-            });
-            */
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void windowClosing(object sender, EventArgs e)
+        {
+            try
+            {
+                MmgHelper.wr("WindowClosing");
+                GamePanel.PAUSE = true;
+                GamePanel.EXIT = true;
+                RunFrameRate.PAUSE = true;
+                RunFrameRate.RUNNING = false;
+            }
+            catch (Exception ex)
+            {
+                MmgHelper.wrErr(ex);
+            }
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     /// @author Victor G. Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-    public class MmgVector2Vec : MmgVector2
+    public class MmgVector2Xna : MmgVector2
     {
         /// <summary>
         /// The vector data.
@@ -20,7 +20,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// Constructor for this class.
         /// </summary>
-        public MmgVector2Vec()
+        public MmgVector2Xna()
         {
             vec = Vector2.Zero;
         }
@@ -30,7 +30,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// given argument.
         /// </summary>
         /// <param name="v">The MmgVector2Vec to base this class off of.</param>
-        public MmgVector2Vec(MmgVector2Vec v)
+        public MmgVector2Xna(MmgVector2Xna v)
         {
             vec = new Vector2(v.GetXFloat(), v.GetYFloat());
         }
@@ -39,7 +39,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Constructor that sets the value of the vector.
         /// </summary>
         /// <param name="v">The value of the vector.</param>
-        public MmgVector2Vec(Vector2 v)
+        public MmgVector2Xna(Vector2 v)
         {
             vec = v;
         }
@@ -49,7 +49,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="x">The X value of the vector.</param>
         /// <param name="y">The Y value of the vector.</param>
-        public MmgVector2Vec(double x, double y)
+        public MmgVector2Xna(double x, double y)
         {
             vec = new Vector2((float)x, (float)y);
         }
@@ -58,7 +58,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Constructor that sets the X, Y value based on one argument.
         /// </summary>
         /// <param name="x">The X value used to set both the X, Y coordinate.</param>
-        public MmgVector2Vec(double x)
+        public MmgVector2Xna(double x)
         {
             vec = new Vector2((float)x, (float)x);
         }
@@ -68,7 +68,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="x">The X value of the vector.</param>
         /// <param name="y">The Y value of the vector.</param>
-        public MmgVector2Vec(float x, float y)
+        public MmgVector2Xna(float x, float y)
         {
             vec = new Vector2(x, y);
         }
@@ -77,7 +77,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Constructor that sets the X, Y value based on one argument.
         /// </summary>
         /// <param name="x">The X value used to set both the X, Y coordinate.</param>
-        public MmgVector2Vec(float x)
+        public MmgVector2Xna(float x)
         {
             vec = new Vector2((float)x, (float)x);
         }
@@ -87,7 +87,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="x">The X value of the vector.</param>
         /// <param name="y">The Y value of the vector.</param>
-        public MmgVector2Vec(int x, int y)
+        public MmgVector2Xna(int x, int y)
         {
             vec = new Vector2((float)x, (float)y);
         }
@@ -96,7 +96,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Constructor that sets the X, Y value based on one argument.
         /// </summary>
         /// <param name="x">The X value used to set both the X, Y coordinate.</param>
-        public MmgVector2Vec(int x)
+        public MmgVector2Xna(int x)
         {
             vec = new Vector2((float)x, (float)x);
         }
@@ -105,9 +105,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Creates a basic clone of this class.
         /// </summary>
         /// <returns>A clone of this class.</returns>
-        public virtual new MmgVector2Vec Clone()
+        public virtual new MmgVector2Xna Clone()
         {
-            return new MmgVector2Vec(this);
+            return new MmgVector2Xna(this);
         }
 
         /// <summary>
@@ -241,45 +241,45 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Clones this object to a float based vector.
         /// </summary>
         /// <returns>A float based clone.</returns>
-        public virtual new MmgVector2Vec CloneFloat()
+        public virtual new MmgVector2Xna CloneFloat()
         {
-            return new MmgVector2Vec(GetXFloat(), GetYFloat());
+            return new MmgVector2Xna(GetXFloat(), GetYFloat());
         }
 
         /// <summary>
         /// Clones this object to a double based vector.
         /// </summary>
         /// <returns>A double based clone.</returns>
-        public virtual new MmgVector2Vec CloneDouble()
+        public virtual new MmgVector2Xna CloneDouble()
         {
-            return new MmgVector2Vec(GetXDouble(), GetYDouble());
+            return new MmgVector2Xna(GetXDouble(), GetYDouble());
         }
 
         /// <summary>
         /// Clones this object to an integer based vector.
         /// </summary>
         /// <returns>An integer based clone.</returns>
-        public virtual new MmgVector2Vec CloneInt()
+        public virtual new MmgVector2Xna CloneInt()
         {
-            return new MmgVector2Vec(GetX(), GetY());
+            return new MmgVector2Xna(GetX(), GetY());
         }
 
         /// <summary>
         /// Returns a new copy of the origin vector, (0, 0).
         /// </summary>
         /// <returns>The origin vector.</returns>
-        public new static MmgVector2Vec GetOriginVec()
+        public new static MmgVector2Xna GetOriginVec()
         {
-            return new MmgVector2Vec(0, 0);
+            return new MmgVector2Xna(0, 0);
         }
 
         /// <summary>
         /// Returns a new copy of the unit vector, (1, 1).
         /// </summary>
         /// <returns>The unit vector.</returns>
-        public new static MmgVector2Vec GetUnitVec()
+        public new static MmgVector2Xna GetUnitVec()
         {
-            return new MmgVector2Vec(1, 1);
+            return new MmgVector2Xna(1, 1);
         }
 
         /// <summary>
@@ -296,7 +296,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An MmgVector2 object to compare for equality.</param>
         /// <returns>A boolean indicating if this object is equal to the comparison object.</returns>
-        public virtual bool equals(MmgVector2Vec obj)
+        public virtual bool equals(MmgVector2Xna obj)
         {
             if (obj == null)
             {

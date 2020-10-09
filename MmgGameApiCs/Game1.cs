@@ -9,11 +9,41 @@ namespace MmgGameApiCs
         private GraphicsDeviceManager g;
         private SpriteBatch pen;
 
+        private bool visible = true;
+        private string name = "";
+
         public Game1()
         {
             g = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+        }
+
+        public void setSize(int w, int h)
+        {
+            g.PreferredBackBufferWidth = w;
+            g.PreferredBackBufferHeight = h;
+            g.ApplyChanges();            
+        }
+
+        public void setResizable(bool b)
+        {
+            Window.AllowUserResizing = b;
+        }
+
+        public void setName(string n)
+        {
+            name = n;
+        }
+
+        public void setVisible(bool b)
+        {
+            visible = b;
+        }
+
+        public void setTitle(string s)
+        {
+            Window.Title = s;
         }
 
         protected override void Initialize()

@@ -214,6 +214,28 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="fields"></param>
+        /// <returns></returns>
+        public static FieldInfo getField(string key, FieldInfo[] fields)
+        {
+            if(fields != null && fields.Length > 0)
+            {
+                int len = fields.Length;
+                for(int i = 0; i < len; i++)
+                {
+                    if(fields[i].Name.Equals(key))
+                    {
+                        return fields[i];
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Sets the value of the field specified by the field reflection object.
         /// </summary>
         /// <param name="ent">Entry object that wraps the XML entry.</param>
@@ -265,7 +287,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// Static main method.
         /// </summary>
         /// <param name="args">The command line arguments.</param>
-        public static void main(string[] args)
+        [STAThread]
+        public static void Main(string[] args)
         {
             if (GameSettings.LOAD_NATIVE_LIBRARIES)
             {
@@ -309,12 +332,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     FPS = int.Parse(res.Split("=")[1]);
                 }
 
-                //NOT APPLICABLE ON MONOGAME DESKTOP GL PROJECT
-                //res = ArrayHasEntryLike("OPENGL=false", args);
-                //if (res == null)
-                //{
-                //    System.setProperty("sun.java2d.opengl", "true");
-                //}
+                res = ArrayHasEntryLike("OPENGL=false", args);
+                if (res == null)
+                {
+                    //System.setProperty("sun.java2d.opengl", "true");
+                    Console.WriteLine("OpenGL command line option is not available on MonoGame DesktopGL projects.");
+                }
 
                 res = ArrayHasEntryLike("ENGINE_CONFIG_FILE=", args);
                 if (res != null)
@@ -343,8 +366,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     bool r = dci.ImportGameSettings(MmgApiGame.ENGINE_CONFIG_FILE);
                     MmgHelper.wr("Engine config load result: " + r);
 
-                    int len = dci.GetValues().keySet().size();
-                    string[] keys = dci.GetValues().keySet().toArray(new String[len]);
+                    int len = dci.GetValues().Keys.Count;
+                    string[] keys = new string[len];
+                    dci.GetValues().Keys.CopyTo(keys, 0);
                     string key;
                     DatConstantsEntry ent = null;
                     FieldInfo f = null;
@@ -354,11 +378,14 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                         try
                         {
                             key = keys[i];
-                            ent = dci.GetValues().get(key);
+                            ent = dci.GetValues()[key];
+
+                            Type myType = typeof(GameSettings);
+                            FieldInfo[] myFields = myType.GetFields();
 
                             if (ent.from != null && ent.from.Equals("GameSettings") == true)
                             {
-                                //f = GameSettings.class.getField(ent.key);
+                                f = getField(ent.key, myFields);
                                 if (f != null)
                                 {
                                     MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
@@ -367,7 +394,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                             }
                             else if (ent.from != null && ent.from.Equals("Helper") == true)
                             {
-                                //f = GameSettings.class.getField(ent.key);
+                                f = getField(ent.key, myFields);
                                 if (f != null)
                                 {
                                     MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
@@ -376,7 +403,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                             }
                             else if (ent.from != null && ent.from.Equals("StaticMain") == true)
                             {
-                                //f = MmgApiGame.class.getField(ent.key);
+                                f = getField(ent.key, myFields);
                                 if (f != null)
                                 {
                                     MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
@@ -428,10 +455,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 mf.setTitle(GameSettings.TITLE + " - " + GameSettings.DEVELOPER_COMPANY + " (" + GameSettings.VERSION + ")");
             }
 
-            mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             mf.GetGamePanel().PrepBuffers();
-            t = new Thread(fr);
-            t.Start();
+            //t = new Thread(fr);
+            //t.Start();
         }
     }
 }

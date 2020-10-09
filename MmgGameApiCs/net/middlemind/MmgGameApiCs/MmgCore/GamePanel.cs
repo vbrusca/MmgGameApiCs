@@ -15,7 +15,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
     /// @author Victor G.Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-    public class GamePanel : GenericEventHandler, GamePadSimple
+    public class GamePanel : Game, GenericEventHandler, GamePadSimple
     {
         /// <summary>
         /// An enumeration that lists all of the game states.
@@ -189,12 +189,27 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// A canvas object used to draw to the JFrame.
         /// </summary>
-        public Canvas canvas;
+        public GameWindow canvas;
 
         /// <summary>
         /// A Java rendering API drawing strategy class.
         /// </summary>
-        public BufferStrategy strategy;
+        //public BufferStrategy strategy;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public GraphicsDeviceManager gdm;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool visible = true;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string name = "";
 
         /// <summary>
         /// A BufferedImage used to render the game screen to. 
@@ -372,6 +387,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="GameHeight"></param>
         public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight)
         {
+            gdm = new GraphicsDeviceManager(this);
+            MmgScreenData.GRAPHICS_CONFIG = gdm.GraphicsDevice;
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
+
             mf = Mf;
             winWidth = WinWidth;
             winHeight = WinHeight;
@@ -623,7 +643,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gamePadHub = new GamePadHub(GameSettings.GAMEPAD_1_INDEX);
                 gamePadRunner = new GamePadHubRunner(gamePadHub, GameSettings.GAMEPAD_1_POLLING_INTERVAL_MS, this);
                 if (GameSettings.GAMEPAD_1_THREADED_POLLING) {
-                    gpadTr = new Thread(gamePadRunner);
+                    ThreadStart ts = new ThreadStart(gamePadRunner.run);
+                    gpadTr = new Thread(ts);
                     gpadTr.Start();
                 }
             }
@@ -634,7 +655,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gpioRunner = new GpioHubRunner(gpioHub, GameSettings.GPIO_GAMEPAD_POLLING_INTERVAL_MS, this);
                 if (GameSettings.GPIO_GAMEPAD_THREADED_POLLING)
                 {
-                    gpioTr = new Thread(gpioRunner);
+                    ThreadStart ts = new ThreadStart(gpioRunner.run);
+                    gpioTr = new Thread(ts);
                     gpioTr.Start();
                 }
             }
@@ -684,7 +706,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessARelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src"></param>
+        /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessARelease(int src)
         {
             currentScreen.ProcessARelease(src);
@@ -693,7 +715,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessAClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src"></param>
+        /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessAClick(int src)
         {
             currentScreen.ProcessAClick(src);
@@ -702,7 +724,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessBPress method is used to pass B button press events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src"></param>
+        /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessBPress(int src)
         {
             currentScreen.ProcessBPress(src);
@@ -711,7 +733,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessBRelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src"></param>
+        /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessBRelease(int src)
         {
             currentScreen.ProcessBRelease(src);
@@ -720,7 +742,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessBClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src"></param>
+        /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessBClick(int src)
         {
             currentScreen.ProcessBClick(src);
@@ -739,7 +761,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// The ProcessKeyPress method is used to send key press events to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
         /// <param name="c">The c argument is the character of the keyboard press event.</param>
-        /// <param name="code"></param>
+        /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyPress(char c, int code)
         {
             currentScreen.ProcessKeyPress(c, code);
@@ -749,7 +771,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// The ProcessKeyRelease method is used to send key release events to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
         /// <param name="c">The c argument is the character of the keyboard release event.</param>
-        /// <param name="code"></param>
+        /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyRelease(char c, int code)
         {
             currentScreen.ProcessKeyRelease(c, code);
@@ -759,7 +781,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// The ProcessKeyClick method is used to send key click events to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
         /// <param name="c">The c argument is the character of the keyboard click event.</param>
-        /// <param name="code"></param>
+        /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyClick(char c, int code)
         {
             currentScreen.ProcessKeyClick(c, code);
@@ -822,12 +844,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             // Background & Buffer
             background = create(winWidth, winHeight, false);
-            canvas.createBufferStrategy(2);
+            //canvas.createBufferStrategy(2);
 
-            do
-            {
-                strategy = canvas.getBufferStrategy();
-            } while (strategy == null);
+            //do
+            //{
+            //    strategy = canvas.getBufferStrategy();
+            //} while (strategy == null);
 
             backgroundGraphics = (Graphics2D)background.getGraphics();
         }
@@ -841,7 +863,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns>Returns a BufferedImage with the desired coordinates and transparency. </returns>
         public virtual Texture2D create(int width, int height, bool alpha)
         {
-            return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+            //return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
+            return new RenderTarget2D(MmgBmpScaler.GRAPHICS_CONFIG, width, height);
         }
 
         /// <summary>
@@ -866,9 +889,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// Gets the Canvas instance for drawing on the JFrame.
         /// </summary>
         /// <returns>The Canvas class instance for drawing on the JFrame.</returns>
-        public virtual Canvas GetCanvas()
+        public virtual GameWindow GetCanvas()
         {
-            return canvas;
+            return base.Window;
         }
 
         /// <summary>
