@@ -663,7 +663,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="typeFace">The Font to use to render the text.</param>
         /// <param name="fontSize">The size of the font used to parse the text.</param>
         /// <param name="width">The width to use as the maximum width for one line.</param>
-        public virtual void PrepTextSplit(string text, SpriteFont typeFace, int fontSize, int width, FontType fontType)
+        public virtual void PrepTextSplit(string text, SpriteFont typeFace, int fontSize, int width)
         {
             text = text.Replace(" " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
             text = text.Replace("  " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
@@ -681,7 +681,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 desc = null;
                 desc = new MmgFont(typeFace);
-                desc.SetFontSize(fontSize, fontType);
+                desc.SetFontSize(fontSize);
                 desc.SetText("");
                 str = "";
                 prevStr = "";

@@ -148,7 +148,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="s"></param>
         public void setTitle(string s)
         {
-            Window.Title = s;
+            pnlGame.Window.Title = s;
         }
 
         /// <summary>

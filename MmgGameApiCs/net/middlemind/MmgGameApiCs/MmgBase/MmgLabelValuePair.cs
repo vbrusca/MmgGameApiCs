@@ -321,13 +321,49 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <returns></returns>
+        public virtual void SetValueFontType(FontType ft)
+        {
+            val.SetFontType(ft);
+        }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <returns></returns>
+        public virtual FontType GetValueFontType()
+        {
+            return val.GetFontType();
+        }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <returns></returns>
+        public virtual void SetLabelFontType(FontType ft)
+        {
+            lbl.SetFontType(ft);
+        }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <returns></returns>
+        public virtual FontType GetLabelFontType()
+        {
+            return lbl.GetFontType();
+        }
+
+        /// <summary>
         /// Sets the size of the font.
         /// </summary>
         /// <param name="sz">The size of the font.</param>
-        public virtual void SetFontSize(int sz, FontType valFontType, FontType lblFontType)
+        public virtual void SetFontSize(int sz)
         {
-            val.SetFontSize(sz,valFontType);
-            lbl.SetFontSize(sz, lblFontType);
+            val.SetFontSize(sz);
+            lbl.SetFontSize(sz);
             Reset();
         }
 

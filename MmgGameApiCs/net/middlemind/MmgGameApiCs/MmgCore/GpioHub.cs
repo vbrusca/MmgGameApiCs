@@ -649,7 +649,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     for (k = 0; k < LEN; k++)
                     {
                         btn3 = buttons[k];
-                        tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn3.pinNum + "/value").getInputStream().read();
+                        tmp = runTime.exec("cat /sys/class/gpio/gpio" + btn3.pinNum + "/value"); //.getInputStream().read();
 
                         if (tmp == char0toInt)
                         {

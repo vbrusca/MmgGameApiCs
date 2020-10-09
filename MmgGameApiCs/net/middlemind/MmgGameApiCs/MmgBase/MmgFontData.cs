@@ -104,7 +104,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             MmgFont fnt = new MmgFont(fontBold);
             int fntSize = 12;
             int maxFntSize = MAX_FONT_SIZE;
-            fnt.SetFontSize(fntSize, MmgFont.FontType.BOLD);
+            fnt.SetFontType(MmgFont.FontType.BOLD);
+            fnt.SetFontSize(fntSize);
             fnt.SetText("Font Test");
             int max = 50;
             int count = 0;
@@ -117,7 +118,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     count++;
                     fntSize++;
-                    fnt.SetFontSize(fntSize, MmgFont.FontType.BOLD);
+                    fnt.SetFontSize(fntSize);
                     fnt.SetText("Font Test");
 
                     if (count >= max)
@@ -133,7 +134,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     count++;
                     fntSize--;
-                    fnt.SetFontSize(fntSize, MmgFont.FontType.BOLD);
+                    fnt.SetFontSize(fntSize);
                     fnt.SetText("Font Test");
 
                     if (count >= max)

@@ -205,29 +205,46 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <returns></returns>
+        public virtual FontType GetFontType()
+        {
+            return fontType;
+        }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <param name="ft"></param>
+        public virtual void SetFontType(FontType ft)
+        {
+            fontType = ft;
+        }
+
+        /// <summary>
         /// Sets the size of the font.
         /// </summary>
         /// <param name="sz">The size of the font.</param>
         /// <param name="ft">The type of the font.</param>
-        public virtual void SetFontSize(int sz, FontType ft)
+        public virtual void SetFontSize(int sz)
         {
             if (sz > 0 && sz <= MmgFontData.MAX_FONT_SIZE)
             {
-                if (sz != fontSize || ft != fontType)
+                if (sz != fontSize)
                 {
                     fontSize = sz;
-                    fontType = ft;
-                    if (ft == FontType.NORMAL)
+                    if (fontType == FontType.NORMAL)
                     {
                         //normal
                         font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_NORMAL + fontSize);
                     }
-                    else if (ft == FontType.BOLD)
+                    else if (fontType == FontType.BOLD)
                     {
                         //bold
                         font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_BOLD + fontSize);
                     }
-                    else if (ft == FontType.ITALIC)
+                    else if (fontType == FontType.ITALIC)
                     {
                         //italic
                         font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_ITALIC + fontSize);

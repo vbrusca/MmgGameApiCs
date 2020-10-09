@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using static net.middlemind.MmgGameApiCs.MmgBase.MmgBmp;
@@ -339,8 +340,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             try
             {
-                File ald = new File(GameSettings.AUTO_IMAGE_LOAD_DIR);
-                File[] files = ald.listFiles();
+                DirectoryInfo ald = new DirectoryInfo(GameSettings.AUTO_IMAGE_LOAD_DIR);
+                FileInfo[] files = ald.GetFiles();
 
                 if (files != null && files.Length > 0)
                 {
@@ -348,8 +349,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 }
                 else
                 {
-                    ald = new File(GameSettings.AUTO_SOUND_LOAD_DIR);
-                    files = ald.listFiles();
+                    ald = new DirectoryInfo(GameSettings.AUTO_SOUND_LOAD_DIR);
+                    files = ald.GetFiles();
 
                     if (files != null && files.Length > 0)
                     {
@@ -357,8 +358,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     }
                     else
                     {
-                        ald = new File(GameSettings.PROGRAM_IMAGE_LOAD_DIR);
-                        files = ald.listFiles();
+                        ald = new DirectoryInfo(GameSettings.PROGRAM_IMAGE_LOAD_DIR);
+                        files = ald.GetFiles();
 
                         if (files != null && files.Length > 0)
                         {
@@ -366,8 +367,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                         }
                         else
                         {
-                            ald = new File(GameSettings.PROGRAM_SOUND_LOAD_DIR);
-                            files = ald.listFiles();
+                            ald = new DirectoryInfo(GameSettings.PROGRAM_SOUND_LOAD_DIR);
+                            files = ald.GetFiles();
 
                             if (files != null && files.Length > 0)
                             {
@@ -396,7 +397,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 datLoad.SetSlowDown(slowDown);
                 datLoad.SetUpdateHandler(this);
 
-                Runnable r = datLoad;
+                //Runnable r = datLoad;
+                ThreadStart r = new ThreadStart(datLoad.run);
                 Thread t = new Thread(r);
                 t.Start();
             }

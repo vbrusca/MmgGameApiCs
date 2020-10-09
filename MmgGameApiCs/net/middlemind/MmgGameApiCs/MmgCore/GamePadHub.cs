@@ -65,12 +65,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// A JInput controller to read gamepad data from.
         /// </summary>
-        public Controller gamePad = null;
+        //public Controller gamePad = null;
 
         /// <summary>
         /// An array of components supported by this gamepad.
         /// </summary>
-        public Component[] components = null;
+        //public Component[] components = null;
 
         /// <summary>
         /// An integer representing the index of the gampepad on the host operating system.
@@ -135,7 +135,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// A private array of controller found on the operating system. 
         /// </summary>
-        private Controller[] ca;
+        //private Controller[] ca;
 
         /// <summary>
         /// A private bool flag for input processing. 
@@ -151,7 +151,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public GamePadHub(int GamePadIndex)
         {
             gamePadIdx = GamePadIndex;
-
+            /*
             ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
             if (ca != null && gamePadIdx >= 0 && gamePadIdx < ca.Length)
             {
@@ -161,7 +161,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             {
                 gamePad = null;
             }
-
+            */
+            /*
             gamePadSrc = GameSettings.SRC_GAMEPAD_1;
             gamePadUp = GameSettings.UP_GAMEPAD_1;
             gamePadDown = GameSettings.DOWN_GAMEPAD_1;
@@ -175,7 +176,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             buttons[3] = new GamePadInput(GameSettings.GAMEPAD_1_RIGHT_INDEX, GameSettings.GAMEPAD_1_RIGHT_VALUE_ON, GameSettings.GAMEPAD_1_RIGHT_VALUE_OFF, GamePadButton.BtnRight, GameSettings.GAMEPAD_1_RIGHT_CHECK_PRESS, GameSettings.GAMEPAD_1_RIGHT_CHECK_RELEASE, GameSettings.GAMEPAD_1_RIGHT_CHECK_CLICK);
             buttons[4] = new GamePadInput(GameSettings.GAMEPAD_1_A_INDEX, GameSettings.GAMEPAD_1_A_VALUE_ON, GameSettings.GAMEPAD_1_A_VALUE_OFF, GamePadButton.BtnA, GameSettings.GAMEPAD_1_A_CHECK_PRESS, GameSettings.GAMEPAD_1_A_CHECK_RELEASE, GameSettings.GAMEPAD_1_A_CHECK_CLICK);
             buttons[5] = new GamePadInput(GameSettings.GAMEPAD_1_B_INDEX, GameSettings.GAMEPAD_1_B_VALUE_ON, GameSettings.GAMEPAD_1_B_VALUE_OFF, GamePadButton.BtnB, GameSettings.GAMEPAD_1_B_CHECK_PRESS, GameSettings.GAMEPAD_1_B_CHECK_RELEASE, GameSettings.GAMEPAD_1_B_CHECK_CLICK);
-
+            */
             AddListener();
             Prep();
         }
@@ -190,7 +191,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public GamePadHub(bool player1, int GamePadIndex)
         {
             gamePadIdx = GamePadIndex;
-
+            /*
             ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
             if (ca != null && gamePadIdx >= 0 && gamePadIdx < ca.Length)
             {
@@ -200,9 +201,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             {
                 gamePad = null;
             }
-
+            */
             buttons = new GamePadInput[6];
 
+            /*
             if (player1)
             {
                 gamePadSrc = GameSettings.SRC_GAMEPAD_1;
@@ -235,7 +237,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 buttons[5] = new GamePadInput(GameSettings.GAMEPAD_2_B_INDEX, GameSettings.GAMEPAD_2_B_VALUE_ON, GameSettings.GAMEPAD_2_B_VALUE_OFF, GamePadButton.BtnB, GameSettings.GAMEPAD_2_B_CHECK_PRESS, GameSettings.GAMEPAD_2_B_CHECK_RELEASE, GameSettings.GAMEPAD_2_B_CHECK_CLICK);
 
             }
-
+            */
             AddListener();
             Prep();
         }
@@ -245,9 +247,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="Buttons">An array of 6 GpioPin instances used to set the buttons class field.</param>
         /// <param name="GamePad">TODO: Add comment</param>
-        public GamePadHub(GamePadInput[] Buttons, Controller GamePad)
+        public GamePadHub(GamePadInput[] Buttons, int GamePadIdx) //Controller GamePad)
         {
-            gamePad = GamePad;
+            gamePadIdx = GamePadIdx;
+            //gamePad = GamePad;
             buttons = Buttons;
 
             AddListener();
@@ -323,6 +326,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             try
             {
+                /*
                 prepped = false;
                 if (gamePad == null)
                 {
@@ -354,7 +358,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                     }
                 }
-
+                */
                 prepped = true;
                 MmgHelper.wr("Gamepad hub prep is complete. State: Prepped: " + prepped + " Enabled: " + gamePadEnabled + "");
 
@@ -747,6 +751,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public virtual void GetState()
         {
+            /*
             if (gamePadEnabled == true) {
                 btmp = gamePad.poll();
                 if (btmp == true)
@@ -795,6 +800,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 }
             }
+            */
         }
     }
 }

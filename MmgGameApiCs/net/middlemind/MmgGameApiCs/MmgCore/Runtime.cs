@@ -21,7 +21,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// TODO: Add comment
         /// </summary>
         /// <param name="cmd"></param>
-        public void exec(string cmd)
+        public int exec(string cmd)
         {
             var escapedArgs = cmd.Replace("\"", "\\\"");
 
@@ -39,6 +39,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             process.Start();
             string result = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
+            return process.ExitCode;
             //return result;
         }
     }
