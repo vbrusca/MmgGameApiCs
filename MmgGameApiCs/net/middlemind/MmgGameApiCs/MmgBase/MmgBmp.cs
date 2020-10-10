@@ -59,16 +59,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private float rotation;
 
         /// <summary>
-        /// 
-        /// </summary>
-        private SpriteEffects fx;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private float layerDepth;
-
-        /// <summary>
         /// The string representation of this objects id.
         /// </summary>
         private string idStr;
@@ -79,19 +69,20 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private int id;
 
         /// <summary>
-        /// A temporary MmgObj instance used in the Equals method.
-        /// </summary>
-        //private MmgObj o1;
-
-        /// <summary>
-        /// A temporary MmgObj instance used in the Equals method.
-        /// </summary>
-        //private MmgObj o2;
-
-        /// <summary>
         /// The strategy to use when drawing bitmaps.
         /// </summary>
         public MmgBmpDrawMode DRAW_MODE = MmgBmpDrawMode.DRAW_BMP_BASIC;
+
+        //NOTES: These fields are required for Monogame port to support drawing routine arguments.
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        private SpriteEffects fx;
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        private float layerDepth;
 
         /// <summary>
         /// Generic constructor.
@@ -242,7 +233,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetSrcRect(Src);
             SetDstRect(Dst);
             SetTexture2D(t);
-            SetLayerDepth(0);
 
             SetPosition(MmgVector2.GetOriginVec());
             SetWidth(b.Width);
@@ -250,6 +240,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetIsVisible(true);
             SetMmgColor(null);
             SetBmpId();
+
+            SetSpriteFx(SpriteEffects.None);
+            SetLayerDepth(0);
         }
 
         /// <summary>
@@ -270,7 +263,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetSrcRect(Src);
             SetDstRect(Dst);
             SetTexture2D(t);
-            SetLayerDepth(0);
 
             SetPosition(MmgVector2.GetOriginVec());
             SetWidth(b.Width);
@@ -280,6 +272,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetBmpId();
 
             SetSpriteFx(Fx);
+            SetLayerDepth(0);
         }
 
         /// <summary>
@@ -299,7 +292,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetSrcRect(r);
             SetDstRect(null);
             SetTexture2D(t);
-            SetLayerDepth(0);
 
             SetPosition(Position);
             SetWidth(b.Width);
@@ -307,6 +299,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetIsVisible(true);
             SetMmgColor(null);
             SetBmpId();
+
+            SetSpriteFx(SpriteEffects.None);
+            SetLayerDepth(0);
         }
 
         /// <summary>
@@ -327,7 +322,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetSrcRect(r);
             SetDstRect(null);
             SetTexture2D(t);
-            SetLayerDepth(0);
 
             SetPosition(Position);
             SetWidth(b.Width);
@@ -337,6 +331,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetBmpId();
 
             SetSpriteFx(Fx);
+            SetLayerDepth(0);
         }
 
         /// <summary>
@@ -587,6 +582,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             scaling = v;
         }
 
+        //NOTES: Get and set methods for class fields used by the Monogame drawing routines.
         /// <summary>
         /// TODO: Add comments
         /// </summary>

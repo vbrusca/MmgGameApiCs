@@ -43,17 +43,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private float usedVolume;
 
         /// <summary>
-        /// A private class field to track the range of volume for the given sound clip.
-        /// </summary>
-        //NOTES: Gain is not used in Monogame version because range is 0 - 1.
-        //private float range;
-
-        /// <summary>
-        /// A private class field to track the gain or volume used to set the audio clip's volume.
-        /// </summary>
-        //private float gain;
-
-        /// <summary>
         /// The current set volume for this MmgSound object. 
         /// </summary>
         private float currentVolume;
@@ -63,6 +52,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         private float currentRate;
 
+        //NOTES: Required for Monogame sound support.
         /// <summary>
         /// TODO: Add comment
         /// </summary>
@@ -222,11 +212,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void Play()
         {
-            //if (sound.isRunning())
-            //{
-            //    sound.stop();
-            //}
-
             if (soundInst.State == SoundState.Playing)
             {
                 soundInst.Stop();
@@ -236,10 +221,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 ApplyVolume();
             }
-
-            //sound.setFramePosition(0);
-            //sound.loop(0);
-            //sound.start();
 
             soundInst.IsLooped = false;
             soundInst.Volume = currentVolume;
@@ -254,11 +235,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="rate">The rate variable used when playing this sound.</param>
         public virtual void Play(int loop, float rate)
         {
-            //if (sound.isRunning())
-            //{
-            //    sound.stop();
-            //}
-
             if (soundInst.State == SoundState.Playing)
             {
                 soundInst.Stop();
@@ -273,10 +249,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 ApplyRate(rate);
             }
-
-            //sound.setFramePosition(0);
-            //sound.loop(loop);
-            //sound.start();
 
             if (loop <= 0)
             {
@@ -296,7 +268,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void Stop()
         {
-            //sound.stop();
             soundInst.Stop();
 
             if (usedVolume != MmgSound.MMG_SOUND_GLOBAL_VOLUME)
@@ -311,7 +282,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>The string representation of this class.</returns>
         public virtual string toString()
         {
-            return "Sound: " + idStr + " Clip Length MS: " + (sound.Duration.TotalMilliseconds);
+            return "MmgSound: " + idStr + " Clip Length MS: " + (sound.Duration.TotalMilliseconds);
         }
 
         /// <summary>

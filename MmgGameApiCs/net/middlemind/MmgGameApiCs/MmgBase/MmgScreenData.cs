@@ -19,6 +19,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public static GraphicsDevice GRAPHICS_CONFIG;
 
+        //NOTES: Monogame specific change required for XNA content loading of fonts.
         /// <summary>
         /// TODO: Add comments
         /// </summary>

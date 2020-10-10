@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
+    //NOTES: Monogame specific MmgVector2 class, carried over from a previous implementation in XNA.
     /// <summary>
     /// Class that represents a two dimensional vector.
     /// Created by Middlemind Games 01/06/2005

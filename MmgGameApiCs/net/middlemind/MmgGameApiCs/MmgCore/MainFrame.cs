@@ -3,6 +3,7 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
+    //XNA: Monogame: Needs to be reviewed.
     /// <summary>
     /// The main frame of the game, extends the JFrame class. 
     /// Handles housing the GamePanel, JPanel, that draws each game state by making the corresponding game screen the active screen.
@@ -103,6 +104,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             myY = (winHeight - panelHeight) / 2;
         }
 
+        //NOTES: Added to the Monogame port to mimic Java API behavior.
         /// <summary>
         /// 
         /// </summary>
@@ -264,6 +266,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             pnlGame.Exiting += windowClosing;
         }
 
+        //NOTES: Added to the Monogame port to mimic the Java window closing implementation.
         /// <summary>
         /// TODO: Add comment
         /// </summary>
@@ -273,7 +276,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             try
             {
-                MmgHelper.wr("WindowClosing");
+                MmgHelper.wr("MainFrame: WindowClosing");
                 GamePanel.PAUSE = true;
                 GamePanel.EXIT = true;
                 RunFrameRate.PAUSE = true;

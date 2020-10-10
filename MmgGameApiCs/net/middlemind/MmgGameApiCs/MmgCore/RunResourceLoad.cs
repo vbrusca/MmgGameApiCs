@@ -7,105 +7,68 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
-    /*
-     * A worker thread that handles loading the game resources.
-     * Created by Middlemind Games 08/01/2015
-     *
-     * @author Victor G. Brusca
-     */
     /// <summary>
-    /// 
+    /// A worker thread that handles loading the game resources.
+    /// Created by Middlemind Games 08/01/2015
+    ///
+    /// @author Victor G.Brusca
     /// </summary>
     public class RunResourceLoad
     {
-
-        /*
-         * A bool result of the loading process.
-         */
         /// <summary>
-        /// 
+        /// A bool result of the loading process.
         /// </summary>
         public bool readResult;
 
-        /*
-         * A bool result of the last read operation.
-         */
         /// <summary>
-        /// 
+        /// A bool result of the last read operation.
         /// </summary>
         public bool readComplete;
 
-        /*
-         * Helper variables for the read process.
-         */
         /// <summary>
-        /// 
+        /// Helper variables for the read process.
         /// </summary>
         public int readPos;
 
-        /*
-         * Helper variables for the read process.
-         */
         /// <summary>
-        /// 
+        /// Helper variables for the read process.
         /// </summary>
         public int readLen;
 
-        /*
-         * A value used to increase the size of the steps to process. 
-         * In case there are only a few load operations to perform this number will change that
-         * value to 1000's so that the progress bar math stays away from small number division.
-         */
         /// <summary>
-        /// 
+        /// A value used to increase the size of the steps to process. 
+        /// In case there are only a few load operations to perform this number will change that
+        /// value to 1000's so that the progress bar math stays away from small number division.
         /// </summary>
         public int loadMultiplier = 1000;
 
-        /*
-         * An event handler for receiving update messages from the DAT loader.
-         */
         /// <summary>
-        /// 
+        /// An event handler for receiving update messages from the DAT loader.
         /// </summary>
         public LoadResourceUpdateHandler update;
 
-        /*
-         * A private class field used to track the total number of files to process in a processing loop.
-         */
         /// <summary>
-        /// 
+        /// A private class field used to track the total number of files to process in a processing loop.
         /// </summary>
         private int tlen;
 
-        /*
-         * A private class field used to track each loop iteration when processing resource files.
-         */
         /// <summary>
-        /// 
+        /// A private class field used to track each loop iteration when processing resource files.
         /// </summary>
         private int i;
 
-        /*
-         * The number of milliseconds to apply as a slow down to the resource loading process.
-         */
         /// <summary>
-        /// 
+        /// The number of milliseconds to apply as a slow down to the resource loading process.
         /// </summary>
         public long slowDown;
 
-        /*
-         * A bool flag inidcating if the resource loading should exit.
-         */
         /// <summary>
-        /// 
+        /// A bool flag inidcating if the resource loading should exit.
         /// </summary>
         public bool exitLoad;
 
-        /*
-         * A constructor that sets the thin load option, don't load binary image or sound data yet, and sets the source byte array to parse.
-         */
         /// <summary>
-        /// 
+        /// A constructor that sets the thin load option, don't load binary image or sound data yet, and sets the source byte array to parse.
         /// </summary>
         public RunResourceLoad()
         {
@@ -117,15 +80,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             slowDown = 0;
         }
 
-        /*
-         * A method for passing on LoadDatUpdate events.
-         *
-         * @param Update The handler subscribing to events.
-         */
         /// <summary>
-        /// 
+        /// A method for passing on LoadDatUpdate events.
         /// </summary>
-        /// <param name="Update"></param>
+        /// <param name="Update">Update The handler subscribing to events.</param>
         public void SetUpdateHandler(LoadResourceUpdateHandler Update)
         {
             update = Update;
@@ -300,7 +258,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                     for (i = 0; i < tlen; i++)
                     {
-                        MmgHelper.wr("Found auto_load file: " + adFiles[i].Name + " Path: " + adFiles[i].FullName);
+                        MmgHelper.wr("RunResourceLoad: Found auto_load file: " + adFiles[i].Name + " Path: " + adFiles[i].FullName);
                         MmgHelper.GetBasicCachedBmp(adFiles[i].FullName, adFiles[i].Name);
                         readPos = i * loadMultiplier;
 
@@ -340,39 +298,26 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
         }
 
-        /*
-         * Gets the slow down value that will slow down the loading process when there are only a few resources to load.
-         * 
-         * @return      The slow down time in milliseconds.
-         */
         /// <summary>
-        /// 
+        /// Gets the slow down value that will slow down the loading process when there are only a few resources to load.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The slow down time in milliseconds.</returns>
         public long GetSlowDown()
         {
             return slowDown;
         }
 
-        /*
-         * Sets the slow down value that will slow down the loading process when there are only a few resources to load.
-         * 
-         * @param l     The slow down time in milliseconds.
-         */
         /// <summary>
-        /// 
+        /// Sets the slow down value that will slow down the loading process when there are only a few resources to load.
         /// </summary>
-        /// <param name="l"></param>
+        /// <param name="l">The slow down time in milliseconds.</param>
         public void SetSlowDown(long l)
         {
             slowDown = l;
         }
 
-        /*
-         * Stops the current DAT load.
-         */
         /// <summary>
-        /// 
+        /// Stops the current DAT load.
         /// </summary>
         public void StopLoad()
         {

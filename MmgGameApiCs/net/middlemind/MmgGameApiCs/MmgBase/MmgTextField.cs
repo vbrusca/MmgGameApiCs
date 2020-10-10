@@ -77,7 +77,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private bool isDirty;
 
         /// <summary>
-        /// An MmgEvent to fire when the max length error has occured, needs to have its event handler set.
+        /// An MmgEvent to fire when the max length error has occurred, needs to have its event handler set.
         /// </summary>
         private MmgEvent errorMaxLength = new MmgEvent(null, "error_max_length", MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_EVENT_ID, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_TYPE, null, null);
 
@@ -89,7 +89,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A static field that determines what character is used for the cursor.
         /// </summary>
-        public static String TEXT_FIELD_CURSOR = "_";
+        public static string TEXT_FIELD_CURSOR = "_";
 
         /// <summary>
         /// A static field that determines how quickly the cursor blinks.
@@ -211,7 +211,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void Prep()
         {
-            //cursorBlinkStart = System.currentTimeMillis();
             cursorBlinkStart = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             fontHeight = font.GetHeight();
             textFieldString = "";
@@ -509,7 +508,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (isVisible == true)
             {
-                //tmpL = System.currentTimeMillis();
                 tmpL = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
                 if (tmpL - cursorBlinkStart >= MmgTextField.TEXT_FIELD_CURSOR_BLINK_RATE_MS)
                 {

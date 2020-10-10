@@ -44,16 +44,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static bool ADV_RENDER_HINTS = true;
 
         /// <summary>
-        /// A private class field used to hold a temporary reference to the Font used.
-        /// </summary>
-        //private SpriteFont tmpF;
-
-        /// <summary>
-        /// A private class field used to hold a temporary reference to the Color used.
-        /// </summary>
-        //private Color tmpC;
-
-        /// <summary>
         /// A static class field that holds a reference to a transparent Color class instance.
         /// </summary>
         public static Color TRANSPARENT = new Color(0f, 0f, 0f, 1f);
@@ -126,17 +116,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="f">The MmgFont object to draw.</param>
         public virtual void DrawText(MmgFont f)
         {
-            /*
-            tmpF = pen.getFont();
-            tmpC = pen.getColor();
-
-            pen.setColor(f.GetMmgColor().GetColor());
-            pen.setFont(f.GetFont());
-            pen.drawstring(f.GetText(), f.GetPosition().GetX(), f.GetPosition().GetY());
-
-            pen.setFont(tmpF);
-            pen.setColor(tmpC);
-            */
             pen.DrawString(f.GetFont(), f.GetText(), new Vector2(f.GetX(), f.GetY()), f.GetMmgColor().GetColor());
         }
 
@@ -148,17 +127,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="y">The y position to draw the object.</param>
         public virtual void DrawText(MmgFont f, int x, int y)
         {
-            /*
-            tmpF = pen.getFont();
-            tmpC = pen.getColor();
-
-            pen.setColor(f.GetMmgColor().GetColor());
-            pen.setFont(f.GetFont());
-            pen.drawstring(f.GetText(), x, y);
-
-            pen.setFont(tmpF);
-            pen.setColor(tmpC);
-            */
             pen.DrawString(f.GetFont(), f.GetText(), new Vector2(x, y), f.GetMmgColor().GetColor());
         }
 
@@ -169,17 +137,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="pos">The position to draw the object.</param>
         public virtual void DrawText(MmgFont f, MmgVector2 pos)
         {
-            /*
-            tmpF = pen.getFont();
-            tmpC = pen.getColor();
-
-            pen.setColor(f.GetMmgColor().GetColor());
-            pen.setFont(f.GetFont());
-            pen.drawstring(f.GetText(), pos.GetX(), pos.GetY());
-
-            pen.setFont(tmpF);
-            pen.setColor(tmpC);
-            */
             pen.DrawString(f.GetFont(), f.GetText(), new Vector2(pos.GetX(), pos.GetY()), f.GetMmgColor().GetColor());
         }
 
@@ -210,46 +167,21 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A newly rotated image.</returns>
         public static Texture2D RotateImageStatic(int width, int height, Texture2D img, int angle, int originX, int originY)
         {
-            /*
-            BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g = bi.createGraphics();
-
-            if (MmgPen.ADV_RENDER_HINTS == true)
-            {
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            }
-            */
-
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, width, height);
             g.GraphicsDevice.SetRenderTarget(bg);
 
-            //AffineTransform at = new AffineTransform();
-
             if (originX == -1 || originY == -1)
             {
-                //at.rotate(Math.toRadians(angle), (width / 2), (height / 2));
                 originX = (width / 2);
                 originY = (height / 2);
             }
-            //else
-            //{
-            //at.rotate(Math.toRadians(angle), originX, originY);
-            //}
-
-            //g.drawImage(img, 0, 0, null);
-            //AffineTransformOp op = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-            //bi = op.filter(bi, null);
-            //g.dispose();
             g.Begin();
             g.Draw(img, new Rectangle(0, 0, img.Width, img.Height), new Rectangle(0, 0, width, height), Color.White, MmgHelper.ConvertToRadians(angle), new Vector2(originX, originY), SpriteEffects.None, 0.0f);
             g.End();
             g.Dispose();
 
-            //return bi;
             return (Texture2D)bg;
         }
 
@@ -287,32 +219,15 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             int w = (int)(img.Width * scaleX);
             int h = (int)(img.Height * scaleY);
-
-            //BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-            //Graphics2D g = rImage.createGraphics();
-
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D rImage = new RenderTarget2D(gd, w, h);
             g.GraphicsDevice.SetRenderTarget(rImage);
 
-            /*
-            if (MmgPen.ADV_RENDER_HINTS == true)
-            {
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            }
-            */
-
-            //g.drawImage(img, 0, 0, w, h, null);
-            //g.dispose();
-
             g.Begin();
             g.Draw(img, new Rectangle(0, 0, img.Width, img.Height), new Rectangle(0, 0, w, h), Color.White);
             g.End();
             g.Dispose();
-
             return (Texture2D)rImage;
         }
 
@@ -325,12 +240,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A colored image with the width and height specified and filled with the specified color.</returns>
         public static Texture2D CreateColorTile(int w, int h, MmgColor c)
         {
-            //BufferedImage rImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-            //Graphics2D g = rImage.createGraphics();
-            //g.setColor(c.GetColor());
-            //g.fillRect(0, 0, w, h);
-            //g.dispose();
-
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             Texture2D rImage = new Texture2D(gd, w, h);
             Color[] pixels = new Color[w * h];
@@ -351,12 +260,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (MmgPen.ADV_RENDER_HINTS == true)
             {
-                /*
-                Graphics2D g = (Graphics2D)pen;
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                */
                 MmgHelper.wr("ADV_RENDER_HINTS does nothing in this port.");
             }
             else
@@ -387,7 +290,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="y">The Y axis offset to draw the image at.</param>
         public virtual void DrawBmp(Texture2D img, int x, int y)
         {
-            //pen.drawImage(img, x, y, null);
             pen.Draw(img, new Vector2(x, y), Color.White);
         }
 
@@ -418,17 +320,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (color != null)
             {
-                //pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), color, null);
                 pen.Draw(b.GetTexture2D(), new Vector2(position.GetX(), position.GetY()), color);
             }
             else if (b.GetMmgColor() != null)
             {
-                //pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
                 pen.Draw(b.GetTexture2D(), new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
             }
             else
             {
-                //pen.drawImage(b.GetTexture2D(), position.GetX(), position.GetY(), null);
                 pen.Draw(b.GetTexture2D(), new Vector2(position.GetX(), position.GetY()), Color.White);
             }
         }
@@ -443,17 +342,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (color != null)
             {
-                //pen.drawImage(b.GetTexture2D(), x, y, color, null);
                 pen.Draw(b.GetTexture2D(), new Vector2(x, y), color);
             }
             else if (b.GetMmgColor() != null)
             {
-                //pen.drawImage(b.GetTexture2D(), x, y, b.GetMmgColor().GetColor(), null);
                 pen.Draw(b.GetTexture2D(), new Vector2(x, y), b.GetMmgColor().GetColor());
             }
             else
             {
-                //pen.drawImage(b.GetTexture2D(), x, y, null);
                 pen.Draw(b.GetTexture2D(), new Vector2(x, y), Color.White);
             }
         }
@@ -502,17 +398,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             if (color != null)
             {
-                //pen.drawImage(tmpImg, position.GetX(), position.GetY(), color, null);
                 pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), color);
             }
             else if (b.GetMmgColor() != null)
             {
-                //pen.drawImage(tmpImg, position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
                 pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
             }
             else
             {
-                //pen.drawImage(tmpImg, position.GetX(), position.GetY(), null);
                 pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), Color.White);
             }
         }
@@ -538,22 +431,18 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             if (srcRect != null && dstRect != null)
             {
-                //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
                 pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), Color.White);
             }
             else if (srcRect == null)
             {
-                //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);
                 pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), Color.White);
             }
             else if (dstRect == null)
             {
-                //pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
                 pen.Draw(tmpImg, new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), Color.White);
             }
             else
             {
-                //pen.drawImage(tmpImg, 0, 0, b.GetWidth(), b.GetHeight(), 0, 0, b.GetWidth(), b.GetHeight(), null);
                 pen.Draw(tmpImg, new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), Color.White);
             }
         }
@@ -653,17 +542,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     if (color != null)
                     {
-                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), color, null);
                         pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), color);
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), b.GetMmgColor().GetColor(), null);
                         pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
                     }
                     else
                     {
-                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), null);
                         pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), Color.White);
                     }
                 }
@@ -672,17 +558,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     //src rect is not null
                     if (color != null)
                     {
-                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), color, null);
                         pen.Draw(tmpImg, new Rectangle(position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight())), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), color);
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), b.GetMmgColor().GetColor(), null);
                         pen.Draw(tmpImg, new Rectangle(position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight())), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), b.GetMmgColor().GetColor());
                     }
                     else
                     {
-                        //pen.drawImage(tmpImg, position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight()), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
                         pen.Draw(tmpImg, new Rectangle(position.GetX(), position.GetY(), (position.GetX() + srcRect.GetWidth()), (position.GetY() + srcRect.GetHeight())), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), Color.White);
                     }
                 }
@@ -693,17 +576,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     if (color != null)
                     {
-                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), color, null);
                         pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), color);
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), b.GetMmgColor().GetColor(), null);
                         pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), b.GetMmgColor().GetColor());
                     }
                     else
                     {
-                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), 0, 0, b.GetWidth(), b.GetHeight(), null);
                         pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(0, 0, b.GetWidth(), b.GetHeight()), Color.White);
                     }
                 }
@@ -711,17 +591,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     if (color != null)
                     {
-                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), color, null);
                         pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), color);
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), b.GetMmgColor().GetColor(), null);
                         pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), b.GetMmgColor().GetColor());
                     }
                     else
                     {
-                        //pen.drawImage(tmpImg, dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom(), srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom(), null);
                         pen.Draw(tmpImg, new Rectangle(dstRect.GetLeft(), dstRect.GetTop(), dstRect.GetRight(), dstRect.GetBottom()), new Rectangle(srcRect.GetLeft(), srcRect.GetTop(), srcRect.GetRight(), srcRect.GetBottom()), Color.White);
                     }
                 }
@@ -774,7 +651,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="h">The height of the rectangle.</param>
         public virtual void DrawRect(int x, int y, int w, int h)
         {
-            //pen.drawRect(x, y, w, h);
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             int nw = 5;
             int nh = 5;

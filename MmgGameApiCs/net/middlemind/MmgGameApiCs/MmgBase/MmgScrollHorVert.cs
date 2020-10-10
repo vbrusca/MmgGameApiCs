@@ -728,7 +728,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 scrollBarVertVisible = false;
             }
 
-            //p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
             p = new MmgPen(viewPort.GetImage());
             p.SetAdvRenderHints();
         }

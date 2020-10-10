@@ -59,7 +59,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                     if (update != null)
                     {
-                        MmgHelper.wr("MmgHandleUpdate");
+                        MmgHelper.wr("MmgSplashScreen: run: Calling MmgHandleUpdate");
                         update.MmgHandleUpdate(null);
                     }
                 }
@@ -228,10 +228,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             MmgSplashScreenTimer s = new MmgSplashScreenTimer(displayTime);
             s.SetUpdateHandler(this);
-            //Runnable r = s;
-            //Thread t = new Thread(r);
-            //t.start();
-
             ThreadStart ts = new ThreadStart(s.run);
             Thread t = new Thread(ts);
             t.Start();

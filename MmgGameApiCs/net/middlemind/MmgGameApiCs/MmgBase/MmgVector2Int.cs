@@ -230,7 +230,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets the vector values.
         /// </summary>
         /// <returns>The vector values.</returns>
-        public virtual new int[] GetVector()
+        public virtual int[] GetVectorInt()
         {
             return new int[] { GetX(), GetY() };
         }
@@ -239,7 +239,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the vector values.
         /// </summary>
         /// <param name="v">The vector values.</param>
-        public virtual void SetVector(int[] v)
+        public virtual void SetVectorIt(int[] v)
         {
             SetX(v[0]);
             SetY(v[1]);
@@ -296,7 +296,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A string representation of the vector.</returns>
         public override string toString()
         {
-            return "X: " + GetXDouble() + " Y:" + GetYDouble();
+            return "MmgVector2Int: X: " + GetXDouble() + " Y:" + GetYDouble();
         }
 
         /// <summary>

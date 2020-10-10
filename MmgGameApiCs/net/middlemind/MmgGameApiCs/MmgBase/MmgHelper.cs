@@ -273,29 +273,21 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 if (data != null && data.Length > 0)
                 {
-                    MmgCfgFileEntry cfe = null;                    
-                    //FileWriter fw = new FileWriter(file, false);
-                    //BufferedWriter bw = new BufferedWriter(fw);
-
+                    MmgCfgFileEntry cfe = null;
                     FileStream fw = new FileStream(file, FileMode.Create, FileAccess.Write);
                     StreamWriter bw = new StreamWriter(fw);
 
-                    //Arrays.sort(data);
                     Array.Sort(data);
                     int len = data.Length;
 
                     for (int i = 0; i < len; i++)
                     {
                         cfe = data[i];
-                        //bw.write(cfe.Tostring());
-                        //bw.newLine();
-
                         bw.WriteLine(cfe.toString());
                     }
 
                     try
                     {
-                        //bw.close();
                         bw.Close();
                     }
                     catch (Exception ex)
@@ -338,15 +330,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 if (data != null && data.Count > 0)
                 {
                     MmgCfgFileEntry cfe = null;
-                    //FileWriter fw = new FileWriter(file, false);
-                    //BufferedWriter bw = new BufferedWriter(fw);
                     FileStream fw = new FileStream(file, FileMode.Create, FileAccess.Write);
                     StreamWriter bw = new StreamWriter(fw);
-
                     Dictionary<string, MmgCfgFileEntry>.KeyCollection keys = data.Keys;
                     string[] nKeys = new string[keys.Count];
                     keys.CopyTo(nKeys, 0);
-
                     Array.Sort(nKeys);
                     int len = nKeys.Length;
 
@@ -354,7 +342,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     {
                         cfe = data[nKeys[i]];
                         bw.WriteLine(cfe.toString());
-                        //bw.newLine();
                     }
 
                     try
@@ -408,11 +395,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 if (f.Exists)
                 {
-                    //FileReader fr = new FileReader(file);
-                    //BufferedReader br = new BufferedReader(fr);
                     FileStream fr = new FileStream(file, FileMode.Open, FileAccess.Read);
                     StreamReader br = new StreamReader(fr);
-
                     string line = br.ReadLine();
                     string[] data = null;
 
@@ -490,8 +474,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static MmgDrawableBmpSet CreateDrawableBmpSet(int width, int height, bool alpha)
         {
             MmgDrawableBmpSet dBmpSet = new MmgDrawableBmpSet();
-            //dBmpSet.buffImg = MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
-            GraphicsDevice gd = MmgBmpScaler.GRAPHICS_CONFIG;
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             dBmpSet.buffImg = new RenderTarget2D(gd, width, height);
             dBmpSet.graphics = new SpriteBatch(gd);
             dBmpSet.p = new MmgPen();
@@ -514,11 +497,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static MmgDrawableBmpSet CreateDrawableBmpSet(int width, int height, bool alpha, MmgColor color)
         {
             MmgDrawableBmpSet dBmpSet = MmgHelper.CreateDrawableBmpSet(width, height, alpha);
-
-            //Color c = dBmpSet.graphics.getColor();
-            //dBmpSet.graphics.setColor(color.GetColor());
-            //dBmpSet.graphics.fillRect(0, 0, width, height);
-            //dBmpSet.graphics.setColor(c);
             Color[] rawData = new Color[dBmpSet.buffImg.Width * dBmpSet.buffImg.Height];
             dBmpSet.buffImg.GetData<Color>(rawData);
             int len = rawData.Length;
@@ -1089,7 +1067,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             try
             {
                 b = Texture2D.FromFile(MmgScreenData.GRAPHICS_CONFIG, src);
-                //b = ImageIO.read(new File(src));
             }
             catch (Exception e)
             {
@@ -1121,7 +1098,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             try
             {
-                //b = ImageIO.read(new ByteArrayInputStream(d));
                 b = Texture2D.FromStream(MmgScreenData.GRAPHICS_CONFIG, new MemoryStream(d));
             }
             catch (Exception e)

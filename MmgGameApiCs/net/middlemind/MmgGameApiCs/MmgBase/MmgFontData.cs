@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Graphics;
+using static net.middlemind.MmgGameApiCs.MmgBase.MmgFont;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
@@ -21,7 +22,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The default font type.
         /// </summary>
-        public static int DEFAULT_FONT_TYPE = 0; //0=plain, 1=bold, 2=italic
+        public static FontType DEFAULT_FONT_TYPE = FontType.NORMAL;
 
         /// <summary>
         /// Current font size.
@@ -191,12 +192,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (sz > 0 && sz < MmgFontData.MAX_FONT_SIZE)
             {
-                if (DEFAULT_FONT_TYPE == 1)
+                if (DEFAULT_FONT_TYPE == FontType.BOLD)
                 {
                     //bold
                     return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + sz);
                 }
-                else if (DEFAULT_FONT_TYPE == 2)
+                else if (DEFAULT_FONT_TYPE == FontType.ITALIC)
                 {
                     //italic
                     return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + sz);
@@ -210,12 +211,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             else
             {
                 MmgHelper.wr("MmgFont: Error size must be greater than 0 and less than " + MmgFontData.MAX_FONT_SIZE);
-                if (DEFAULT_FONT_TYPE == 1)
+                if (DEFAULT_FONT_TYPE == FontType.BOLD)
                 {
                     //bold
                     return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + fontSize);
                 }
-                else if (DEFAULT_FONT_TYPE == 2)
+                else if (DEFAULT_FONT_TYPE == FontType.ITALIC)
                 {
                     //italic
                     return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + fontSize);
@@ -328,12 +329,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance that is of the default font family, normal font, and a small font size.</returns>
         public static SpriteFont CreateDefaultFontSm()
         {
-            if (DEFAULT_FONT_TYPE == 1)
+            if (DEFAULT_FONT_TYPE == FontType.BOLD)
             {
                 //bold
                 return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + (fontSize - 2));
             }
-            else if (DEFAULT_FONT_TYPE == 2)
+            else if (DEFAULT_FONT_TYPE == FontType.ITALIC)
             {
                 //italic
                 return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + (fontSize - 2));
@@ -378,12 +379,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance that is of the default font family, normal font, and an extra small font size.</returns>
         public static SpriteFont CreateDefaultFontExtraSm()
         {
-            if (DEFAULT_FONT_TYPE == 1)
+            if (DEFAULT_FONT_TYPE == FontType.BOLD)
             {
                 //bold
                 return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + (fontSize - 4));
             }
-            else if (DEFAULT_FONT_TYPE == 2)
+            else if (DEFAULT_FONT_TYPE == FontType.ITALIC)
             {
                 //italic
                 return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + (fontSize - 4));
@@ -464,12 +465,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new Font instance based on the default font family, default font type, large font size.</returns>
         public static SpriteFont CreateDefaultFontLg()
         {
-            if (DEFAULT_FONT_TYPE == 1)
+            if (DEFAULT_FONT_TYPE == FontType.BOLD)
             {
                 //bold
                 return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + (fontSize + 2));
             }
-            else if (DEFAULT_FONT_TYPE == 2)
+            else if (DEFAULT_FONT_TYPE == FontType.ITALIC)
             {
                 //italic
                 return MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + (fontSize + 2));

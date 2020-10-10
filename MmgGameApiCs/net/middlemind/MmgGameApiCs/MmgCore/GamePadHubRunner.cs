@@ -65,19 +65,19 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             if (gamePadHub == null)
             {
-                MmgHelper.wr("GamePadHub is null! Turning off GamePadHubRunner.");
+                MmgHelper.wr("GamePadHub: GamePadHub is null! Turning off GamePadHubRunner.");
                 running = false;
             }
 
             if (gamePadHub != null && gamePadHub.IsPrepped() == false)
             {
-                MmgHelper.wr("GamePadHub has not had its pins prepped! Turning off GamePadHubRunner.");
+                MmgHelper.wr("GamePadHub: GamePadHub has not had its pins prepped! Turning off GamePadHubRunner.");
                 running = false;
             }
 
             if (gamePad == null)
             {
-                MmgHelper.wr("GamePad is null! Turning off GamePadHubRunner.");
+                MmgHelper.wr("GamePadHub: GamePad is null! Turning off GamePadHubRunner.");
             }
         }
 
@@ -296,16 +296,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// The run method of the Runnable interface. Called when a new thread is created and started.
         /// </summary>
         public virtual void run()
-        {
-            ThreadStart ts = new ThreadStart(threadWork);
-            Thread t = new Thread(ts);
-            t.Start();
-        }
-
-        /// <summary>
-        /// TODO: Add comment
-        /// </summary>
-        private void threadWork()
         {
             try
             {

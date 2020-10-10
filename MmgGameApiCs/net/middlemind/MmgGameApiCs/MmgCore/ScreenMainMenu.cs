@@ -534,7 +534,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public virtual void DrawScreen()
         {
-            //int mainY;
             pause = true;
             menu = new MmgMenuContainer();
             menu.SetMmgColor(null);

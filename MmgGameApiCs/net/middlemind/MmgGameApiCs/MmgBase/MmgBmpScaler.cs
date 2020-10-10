@@ -14,13 +14,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     public class MmgBmpScaler
     {
         /// <summary>
-        /// Environment graphics configuration data to use when creating new bitmaps to draw on.
-        /// </summary>
-        //public static GraphicsConfiguration GRAPHICS_CONFIG = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-        public static GraphicsDevice GRAPHICS_CONFIG;
-
-
-        /// <summary>
         /// A static class method that scales an MmgBmp object to the size of the game screen.
         /// </summary>
         /// <param name="subj">The MmgBmp object to scale to the size of the screen.</param>
@@ -47,7 +40,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
             */
 
-            GraphicsDevice gd = GRAPHICS_CONFIG;
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, nw, nh);
             g.GraphicsDevice.SetRenderTarget(bg);
@@ -73,31 +66,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             int h = subj.GetHeight();
             int nw = newSize.GetX();
             int nh = newSize.GetY();
-            //Image img = subj.GetImage();
             Texture2D img = subj.GetImage();
 
-            //BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
-            //Graphics2D g = (Graphics2D)bg.getGraphics();
-
-            /*
-            if (MmgPen.ADV_RENDER_HINTS == true)
-            {
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            }
-            */
-
-            GraphicsDevice gd = GRAPHICS_CONFIG;
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, nw, nh);
             g.GraphicsDevice.SetRenderTarget(bg);
-            g.Begin();
 
-            //g.drawImage(img, 0, 0, nw, nh, 0, 0, w, h, null);
+            g.Begin();
             g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.White);
             g.End();
-
             return new MmgBmp(bg);
         }
 
@@ -126,28 +104,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 nh = (int)(h * MmgScreenData.GetScaleY());
             }
 
-            //Image img = subj.GetImage();
             Texture2D img = subj.GetImage();
-
-            //BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
-            //Graphics2D g = (Graphics2D)bg.getGraphics();
-
-            /*
-            if (MmgPen.ADV_RENDER_HINTS == true)
-            {
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            }
-            */
-
-            GraphicsDevice gd = GRAPHICS_CONFIG;
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, nw, nh);
             g.GraphicsDevice.SetRenderTarget(bg);
-            g.Begin();
 
-            //g.drawImage(img, 0, 0, nw, nh, 0, 0, w, h, null);
+            g.Begin();
             g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.White);
             g.End();
 
@@ -167,28 +130,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             int h = subj.GetHeight();
             int nw = (int)(w * scale);
             int nh = (int)(h * scale);
-            //Image img = subj.GetImage();
             Texture2D img = subj.GetImage();
 
-            //BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(nw, nh, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
-            //Graphics2D g = (Graphics2D)bg.getGraphics();
-
-            /*
-            if (MmgPen.ADV_RENDER_HINTS == true)
-            {
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            }
-            */
-
-            GraphicsDevice gd = GRAPHICS_CONFIG;
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, nw, nh);
             g.GraphicsDevice.SetRenderTarget(bg);
-            g.Begin();
 
-            //g.drawImage(img, 0, 0, nw, nh, 0, 0, w, h, null);
+            g.Begin();
             g.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(0, 0, w, h), Color.White);
             g.End();
 
@@ -206,32 +155,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             int w = subj.GetWidth();
             int h = subj.GetHeight();
-            //Image img = subj.GetImage();
             Texture2D img = subj.GetImage();
 
-            //BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(w, h, alpha ? Transparency.BITMASK : Transparency.OPAQUE);
-            //Graphics2D g = (Graphics2D)bg.getGraphics();
-
-            /*
-            if (MmgPen.ADV_RENDER_HINTS == true)
-            {
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            }
-            */
-
-            GraphicsDevice gd = GRAPHICS_CONFIG;
+            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, w, h);
             g.GraphicsDevice.SetRenderTarget(bg);
+
             g.Begin();
-
-            //AffineTransform at = new AffineTransform();
-            //at.rotate(Math.toRadians(angle), (w / 2), (h / 2));
-            //g.drawImage(img, at, null);
-            //g.dispose();
-
             g.Draw(img, new Rectangle(0, 0, w, h), new Rectangle(0, 0, w, h), Color.White, (float)MmgHelper.ConvertToRadians(angle), new Vector2(w/2, h/2), SpriteEffects.None, 0);
             g.End();
             g.Dispose();

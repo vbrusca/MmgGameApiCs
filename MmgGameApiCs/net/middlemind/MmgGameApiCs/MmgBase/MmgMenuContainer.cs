@@ -103,9 +103,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Creates a basic clone of this class.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A clone of this class.</returns>
         public override MmgObj Clone()
         {
             return (MmgObj)new MmgMenuContainer(this);

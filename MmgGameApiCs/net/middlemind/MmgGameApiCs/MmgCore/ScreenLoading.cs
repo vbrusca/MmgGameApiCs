@@ -397,7 +397,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 datLoad.SetSlowDown(slowDown);
                 datLoad.SetUpdateHandler(this);
 
-                //Runnable r = datLoad;
                 ThreadStart r = new ThreadStart(datLoad.run);
                 Thread t = new Thread(r);
                 t.Start();
@@ -443,7 +442,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     }
                 }
 
-                MmgHelper.wr("LoadingScreen POS: " + obj.GetPos() + " LEN: " + obj.GetLen() + " PRCT: " + prct + " LR: " + GetLoadResult() + " LC: " + GetLoadComplete());
+                MmgHelper.wr("LoadingScreen: POS: " + obj.GetPos() + " LEN: " + obj.GetLen() + " PRCT: " + prct + " LR: " + GetLoadResult() + " LC: " + GetLoadComplete());
             }
         }
 

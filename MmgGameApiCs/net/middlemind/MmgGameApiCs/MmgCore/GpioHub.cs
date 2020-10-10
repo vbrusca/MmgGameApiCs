@@ -129,12 +129,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 DirectoryInfo f = new DirectoryInfo("/sys/class/gpio");
                 if (!f.Exists)
                 {
-                    MmgHelper.wr("GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
+                    MmgHelper.wr("GpioHub: GPIO directory, /sys/class/gpio/, does not exist. Disabling class functionality.");
                     gpioEnabled = false;
                 }
                 else
                 {
-                    MmgHelper.wr("GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
+                    MmgHelper.wr("GpioHub: GPIO directory, /sys/class/gpio/, exists! Enabling class functionality.");
                     gpioEnabled = true;
                 }
 

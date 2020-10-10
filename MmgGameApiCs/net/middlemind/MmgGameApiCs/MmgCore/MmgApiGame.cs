@@ -69,7 +69,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// Base engine config files.
         /// </summary>
-        public static string ENGINE_CONFIG_FILE = "../cfg/engine_config.xml";
+        public static string ENGINE_CONFIG_FILE = "../../../cfg/engine_config.xml";
 
         /// <summary>
         /// The GamePanel used to render the game in a MainFrame instance.
@@ -85,8 +85,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// Method that searches an array for a string match.
         /// </summary>
         /// <param name="v">The string to find a match for.</param>
-        /// <param name="s">The command line argument that matched the test string, v.</param>
-        /// <returns></returns>
+        /// <param name="s">The array of string to search through.</param>
+        /// <returns>The command line argument that matched the test string, v.</returns>
         public static string ArrayHasEntryLike(string v, string[] s)
         {
             if (v == null || s == null)
@@ -133,31 +133,25 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 }
 
                 MmgHelper.wr("Found platform: " + OS);
-                //MmgHelper.wr("LibPath: " + System.getProperty("java.library.path"));
-                //System.load("/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/lib/jinput-platform/native-libs/libjinput-osx.jnilib");
 
                 if (isWindows(OS))
                 {
                     MmgHelper.wr("This is Windows");
-                    //System.loadLibrary("jinput-dx8_64");
 
                 }
                 else if (isMac(OS))
                 {
                     MmgHelper.wr("This is Mac");
-                    //System.loadLibrary("jinput-osx");
 
                 }
                 else if (isUnix(OS))
                 {
                     MmgHelper.wr("This is Unix or Linux");
-                    //System.loadLibrary("jinput-linux64");
 
                 }
                 else if (isSolaris(OS))
                 {
                     MmgHelper.wr("This is Solaris");
-                    //System.loadLibrary("jinput-linux");
 
                 }
                 else
@@ -213,8 +207,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             return (OS.IndexOf("sunos") >= 0);
         }
 
+        //NOTES: Added to the Monogame port to mimic the Java reflection implementation.
         /// <summary>
-        /// 
+        /// TODO: Add comments.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="fields"></param>
@@ -335,7 +330,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 res = ArrayHasEntryLike("OPENGL=false", args);
                 if (res == null)
                 {
-                    //System.setProperty("sun.java2d.opengl", "true");
                     Console.WriteLine("OpenGL command line option is not available on MonoGame DesktopGL projects.");
                 }
 
@@ -413,7 +407,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                         }
                         catch (Exception e)
                         {
-                            MmgHelper.wr("Ignoring dat constants field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
+                            MmgHelper.wr("Ignoring field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
                             MmgHelper.wrErr(e);
                         }
                     }

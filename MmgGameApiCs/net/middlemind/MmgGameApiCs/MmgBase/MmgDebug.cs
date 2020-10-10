@@ -22,7 +22,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public static string appName = "MmgApi.MmgDebug";
 
-
         /// <summary>
         /// A static helper method for logging.
         /// </summary>

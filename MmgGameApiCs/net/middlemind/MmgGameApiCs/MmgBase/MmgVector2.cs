@@ -287,7 +287,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A string representation of the vector.</returns>
         public virtual string toString()
         {
-            return "X: " + GetXDouble() + " Y:" + GetYDouble();
+            return "MmgVector2: X: " + GetXDouble() + " Y:" + GetYDouble();
         }
 
         /// <summary>

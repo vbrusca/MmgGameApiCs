@@ -40,7 +40,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             version = nodeMain.Attributes["version"].Value;
             XmlNodeList nodeList = nodeMain.ChildNodes;
 
-            if (version != null && version.Equals("1.0") == true)
+            if (version != null && version.Equals(GameSettings.TARGET_GAME_SETTINGS_XML_VERSION) == true)
             {
                 for (int i = 0; i < nodeList.Count; i++)
                 {
@@ -74,53 +74,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             {
                 throw new Exception("Currently only supports version 1.0 of engine configuration files.");
             }
-
-            /*
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-
-            // Load the input XML document, parse it and return an instance of the document class
-            Document document = builder.parse(new File(xmlFile));
-            values = new Dictionary<string, DatConstantsEntry>();
-            Node nodeMain = document.getElementsByTagName("engineconfig").item(0);
-            version = nodeMain.getAttributes().getNamedItem("version").getNodeValue();
-            NodeList nodeList = nodeMain.getChildNodes();
-
-            if (version != null && version.equals("1.0") == true)
-            {
-                for (int i = 0; i < nodeList.getLength(); i++)
-                {
-                    Node node = nodeList.item(i);
-
-                    if (node.getNodeType() == Node.ELEMENT_NODE && node.getNodeName().equals("entry"))
-                    {
-                        Element elem = (Element)node;
-                        string key = node.getAttributes().getNamedItem("key").getNodeValue().toUpperCase();
-                        string val = node.getAttributes().getNamedItem("val").getNodeValue();
-                        string type = "int";
-                        string from = "DatConstants";
-
-                        if (node.getAttributes().getNamedItem("type") != null)
-                        {
-                            type = node.getAttributes().getNamedItem("type").getNodeValue().toLowerCase();
-                        }
-
-                        if (node.getAttributes().getNamedItem("from") != null)
-                        {
-                            from = node.getAttributes().getNamedItem("from").getNodeValue();
-                        }
-
-                        DatConstantsEntry ent = new DatConstantsEntry(key, val, type, from);
-                        MmgHelper.wr("Found Key: " + key + " Value: " + val + " Type: " + type + " From: " + from);
-                        values.put(from + "." + key, ent);
-                    }
-                }
-            }
-            else
-            {
-                throw new Exception("Currently only supports version 1.0 of engine configuration files.");
-            }
-            */
         }
 
         /// <summary>

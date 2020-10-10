@@ -99,7 +99,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_splash.txt");
 
             MmgBmp tB = null;
-            //MmgPen p;
             string key = "";
             double scale = 1.0;
             int tmp = 0;
@@ -110,9 +109,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             {
                 base.SetDisplayTime((int)classConfig[key].number);
             }
-
-            //p = new MmgPen();
-            //p.SetCacheOn(false);
 
             key = "bmpLogo";
             if (classConfig.ContainsKey(key))

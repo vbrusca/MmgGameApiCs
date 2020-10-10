@@ -3,6 +3,7 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
+    //XNA: Monogame: Needs to be reviewed.
     /// <summary>
     /// The GamePadHub class is used to provide access to up to 6 buttons from a USB game pad.
     /// Created by Middlemind Games 01/05/2020
@@ -62,6 +63,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public bool gamePadEnabled = false;
 
+        //NOTES: Not supported in a Monogame implementation, input checking is explicit.
         /// <summary>
         /// A JInput controller to read gamepad data from.
         /// </summary>
@@ -151,6 +153,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public GamePadHub(int GamePadIndex)
         {
             gamePadIdx = GamePadIndex;
+
             /*
             ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
             if (ca != null && gamePadIdx >= 0 && gamePadIdx < ca.Length)
@@ -162,6 +165,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gamePad = null;
             }
             */
+
             /*
             gamePadSrc = GameSettings.SRC_GAMEPAD_1;
             gamePadUp = GameSettings.UP_GAMEPAD_1;
@@ -177,6 +181,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             buttons[4] = new GamePadInput(GameSettings.GAMEPAD_1_A_INDEX, GameSettings.GAMEPAD_1_A_VALUE_ON, GameSettings.GAMEPAD_1_A_VALUE_OFF, GamePadButton.BtnA, GameSettings.GAMEPAD_1_A_CHECK_PRESS, GameSettings.GAMEPAD_1_A_CHECK_RELEASE, GameSettings.GAMEPAD_1_A_CHECK_CLICK);
             buttons[5] = new GamePadInput(GameSettings.GAMEPAD_1_B_INDEX, GameSettings.GAMEPAD_1_B_VALUE_ON, GameSettings.GAMEPAD_1_B_VALUE_OFF, GamePadButton.BtnB, GameSettings.GAMEPAD_1_B_CHECK_PRESS, GameSettings.GAMEPAD_1_B_CHECK_RELEASE, GameSettings.GAMEPAD_1_B_CHECK_CLICK);
             */
+
             AddListener();
             Prep();
         }
@@ -191,6 +196,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public GamePadHub(bool player1, int GamePadIndex)
         {
             gamePadIdx = GamePadIndex;
+
             /*
             ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
             if (ca != null && gamePadIdx >= 0 && gamePadIdx < ca.Length)
@@ -202,6 +208,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gamePad = null;
             }
             */
+
             buttons = new GamePadInput[6];
 
             /*
@@ -238,6 +245,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             }
             */
+
             AddListener();
             Prep();
         }
@@ -330,7 +338,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 prepped = false;
                 if (gamePad == null)
                 {
-                    MmgHelper.wr("Gamepad is null, disabling gamepad.");
+                    MmgHelper.wr("GamePadHub: Gamepad is null, disabling gamepad.");
                     gamePadEnabled = false;
 
                 }
@@ -339,7 +347,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     components = gamePad.getComponents();
                     if (components == null)
                     {
-                        MmgHelper.wr("Gamepad components is null, disabling gamepad.");
+                        MmgHelper.wr("GamePadHub: Gamepad components is null, disabling gamepad.");
                         gamePadEnabled = false;
 
                     }
@@ -350,7 +358,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                             btn1 = buttons[i];
                             if (btn1.btnIdx < 0 || btn1.btnIdx >= components.Length)
                             {
-                                MmgHelper.wr("Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");
+                                MmgHelper.wr("GamePadHub: Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");
                                 gamePadEnabled = false;
                             }
                         }
@@ -796,7 +804,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 else
                 {
                     gamePadEnabled = false;
-                    throw new Exception("Gamepad poll failed!");
+                    throw new Exception("GamePadHub: Gamepad poll failed!");
 
                 }
             }

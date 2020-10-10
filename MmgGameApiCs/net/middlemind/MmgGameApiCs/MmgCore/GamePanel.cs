@@ -7,6 +7,7 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
+    //XNA: Monogame: Needs to be reviewed.
     /// <summary>
     /// The Canvas used to render the game to. 
     /// This is the connection point between native UI rendering and the game rendering.
@@ -73,7 +74,17 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             GAME_SCREEN_27,
             GAME_SCREEN_28,
             GAME_SCREEN_29,
-            GAME_SCREEN_30
+            GAME_SCREEN_30,
+            GAME_SCREEN_31,
+            GAME_SCREEN_32,
+            GAME_SCREEN_33,
+            GAME_SCREEN_34,
+            GAME_SCREEN_35,
+            GAME_SCREEN_36,
+            GAME_SCREEN_37,
+            GAME_SCREEN_38,
+            GAME_SCREEN_39,
+            GAME_SCREEN_40
         }
 
         /// <summary>
@@ -191,23 +202,25 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public GameWindow canvas;
 
+        //NOTES: Not required for Monogame implementation, no equivalent.
         /// <summary>
         /// A Java rendering API drawing strategy class.
         /// </summary>
         //public BufferStrategy strategy;
 
+        //NOTES: Added to the Monogame port to mimic Java API behavior.
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         public GraphicsDeviceManager gdm;
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         public bool visible = true;
 
         /// <summary>
-        /// 
+        /// TODO: Add comment
         /// </summary>
         public string name = "";
 
@@ -864,7 +877,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public virtual Texture2D create(int width, int height, bool alpha)
         {
             //return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
-            return new RenderTarget2D(MmgBmpScaler.GRAPHICS_CONFIG, width, height);
+            return new RenderTarget2D(MmgScreenData.GRAPHICS_CONFIG, width, height);
         }
 
         /// <summary>
@@ -920,7 +933,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="g">The game state to switch to.</param>
         public virtual void SwitchGameState(GameStates g)
         {
-            MmgHelper.wr("Switching Game State To: " + g);
+            MmgHelper.wr("GamePanel: Switching Game State To: " + g);
 
             if (gameState != prevGameState)
             {
@@ -1081,7 +1094,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="obj">A GenericEventMessage instance that has information about the generic event that was fired.</param>
         public virtual void HandleGenericEvent(GenericEventMessage obj)
         {
-            MmgHelper.wr("HandleGenericEvent");
+            MmgHelper.wr("GamePanel: HandleGenericEvent");
             if (obj != null)
             {
                 if (obj.GetGameState() == GameStates.LOADING)

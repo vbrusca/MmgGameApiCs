@@ -3,9 +3,12 @@ using System.Diagnostics;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
+    //XNA: Monogame: Class created to mimic the Java Runtime class used to run shell commands
+    //to determine the state of gpio pins.
     /// <summary>
     /// TODO: Add comment
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class Runtime
     {
         /// <summary>
@@ -37,10 +40,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 }
             };
             process.Start();
-            string result = process.StandardOutput.ReadToEnd();
+            process.StandardOutput.ReadToEnd();
             process.WaitForExit();
             return process.ExitCode;
-            //return result;
         }
     }
 }

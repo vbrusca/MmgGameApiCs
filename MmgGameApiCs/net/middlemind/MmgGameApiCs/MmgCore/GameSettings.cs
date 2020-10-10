@@ -13,6 +13,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class GameSettings
     {
+        public static string TARGET_GAME_SETTINGS_XML_VERSION = "1.0";
+
         public static int SRC_KEYBOARD = 0;
         public static int DOWN_KEYBOARD = 0;
         public static int UP_KEYBOARD = 1;
@@ -50,13 +52,13 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public static bool RUN_OS_SPECIFIC_CODE = true;
 
         //Image dirs must end with a file path separator
-        public static string IMAGE_LOAD_DIR = "../cfg/drawable/";
-        public static string SOUND_LOAD_DIR = "../cfg/playable/";
-        public static string PROGRAM_IMAGE_LOAD_DIR = "../cfg/drawable/";
-        public static string PROGRAM_SOUND_LOAD_DIR = "../cfg/playable/";
-        public static string AUTO_IMAGE_LOAD_DIR = "../cfg/drawable/auto_load/";
-        public static string AUTO_SOUND_LOAD_DIR = "../cfg/playable/auto_load/";
-        public static string CLASS_CONFIG_DIR = "../cfg/class_config/";
+        public static string IMAGE_LOAD_DIR = "../../../cfg/drawable/";
+        public static string SOUND_LOAD_DIR = "../../../cfg/playable/";
+        public static string PROGRAM_IMAGE_LOAD_DIR = "../../../cfg/drawable/";
+        public static string PROGRAM_SOUND_LOAD_DIR = "../../../cfg/playable/";
+        public static string AUTO_IMAGE_LOAD_DIR = "../../../cfg/drawable/auto_load/";
+        public static string AUTO_SOUND_LOAD_DIR = "../../../cfg/playable/auto_load/";
+        public static string CLASS_CONFIG_DIR = "../../../cfg/class_config/";
 
         public static string NAME = "Unknown";
         public static bool DEVELOPMENT_MODE_ON = true;

@@ -159,7 +159,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private MmgEvent clickDown = new MmgEvent(null, "vert_click_down", MmgScrollVert.SCROLL_VERT_SCROLL_DOWN_EVENT_ID, MmgScrollVert.SCROLL_VERT_CLICK_EVENT_TYPE, null, null);
 
         /// <summary>
-        /// TODO: Add comment
+        /// An event type for a scroll pane click event.
         /// </summary>
         public static int SCROLL_VERT_CLICK_EVENT_TYPE = 1;
 
@@ -487,7 +487,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 scrollBarVisible = false;
             }
 
-            //p = new MmgPen((Graphics2D)viewPort.GetImage().getGraphics());
             p = new MmgPen(viewPort.GetImage());
             p.SetAdvRenderHints();
         }

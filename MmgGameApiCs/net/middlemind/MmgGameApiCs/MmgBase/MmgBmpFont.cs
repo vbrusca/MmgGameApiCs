@@ -187,15 +187,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void Prep()
         {
-            //Image imgT = src.GetImage();
-            //BufferedImage img = null;
-
-            //img = new BufferedImage(imgT.getWidth(null), imgT.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-
-            //Graphics2D g = img.createGraphics();
-            //g.drawImage(imgT, 0, 0, null);
-            //g.dispose();
-
             Texture2D imgT = src.GetImage();
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
@@ -220,7 +211,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             for (i = 1; i < width; i++)
             {
-                Color ct = pixels[i]; /// img.getRGB(i, 0));
+                Color ct = pixels[i];
                 if (ct.R == 255 && ct.G == 0 && ct.B == 255)
                 {
                     pos = start;
@@ -442,6 +433,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 case '~':
                     return 94;
                 default:
+                    MmgHelper.wr("MmgBmpFont: GetIndexOf: Unknown character, using default value '-1'.");
                     return -1;
             }
         }
@@ -668,8 +660,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 case 94:
                     return '~';
                 default:
-                    //TODO: Check what the best default value should be.
-                    //return null;
+                    MmgHelper.wr("MmgBmpFont: GetCharAt: Unknown character index, using default character '_'.");
                     return '_';
             }
         }
