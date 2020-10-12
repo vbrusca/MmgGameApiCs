@@ -1,55 +1,35 @@
 ﻿using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
 using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
     /// <summary>
-    /// Java swing game that runs the Tyre DAT file. 
-    /// STATIC MAIN ENTRY POINT EXAMPLE
-    /// Created by Middlemind Games 08/01/2015
-    ///
-    /// @author Victor G.Brusca
+    /// TODO: Add comment
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-    public class MmgApiGame
+    public static class MmgApiGame
     {
-        /// <summary>
-        /// The main JPanel that houses the different game screens.
-        /// </summary>
-        public static MainFrame mf;
-
-        /// <summary>
-        /// The frame rate worker thread.
-        /// </summary>
-        public static RunFrameRate fr;
-
-        /// <summary>
-        /// The thread that is associated with the frame rate worker thread.
-        /// </summary>
-        public static Thread t;
-
         /// <summary>
         /// The target window width.
         /// </summary>
-        public static int WIN_WIDTH = 858;
+        public static int WIN_WIDTH = 860;
 
         /// <summary>
         /// The target window height. 
         /// </summary>
-        public static int WIN_HEIGHT = 600;
+        public static int WIN_HEIGHT = 602;
 
         /// <summary>
         /// The game panel width. 
         /// </summary>
-        public static int PANEL_WIDTH = 854;
+        public static int PANEL_WIDTH = 856;
 
         /// <summary>
         /// The game panel height.
         /// </summary>
-        public static int PANEL_HEIGHT = 596; //416;
+        public static int PANEL_HEIGHT = 598; //416;
 
         /// <summary>
         /// The game width.
@@ -72,14 +52,14 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public static string ENGINE_CONFIG_FILE = "../../../cfg/engine_config.xml";
 
         /// <summary>
-        /// The GamePanel used to render the game in a MainFrame instance.
-        /// </summary>
-        public static GamePanel pnlGame;
-
-        /// <summary>
         /// A copy of the command line arguments passed to the Java application.
         /// </summary>
         public static string[] ARGS = null;
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        public static GamePanel pnlGame = null;
 
         /// <summary>
         /// Method that searches an array for a string match.
@@ -119,15 +99,15 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 int p = (int)Environment.OSVersion.Platform;
                 string OS = "win"; //System.getProperty("os.name").toLowerCase();
 
-                if(p == 4 || p == 128 || RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
+                if (p == 4 || p == 128 || RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
                 {
                     OS = "linux";
                 }
-                else if(p == 6 || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                else if (p == 6 || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 {
                     OS = "mac";
                 }
-                else if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     OS = "win";
                 }
@@ -216,12 +196,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns></returns>
         public static FieldInfo getField(string key, FieldInfo[] fields)
         {
-            if(fields != null && fields.Length > 0)
+            if (fields != null && fields.Length > 0)
             {
                 int len = fields.Length;
-                for(int i = 0; i < len; i++)
+                for (int i = 0; i < len; i++)
                 {
-                    if(fields[i].Name.Equals(key))
+                    if (fields[i].Name.Equals(key))
                     {
                         return fields[i];
                     }
@@ -279,11 +259,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// Static main method.
+        /// 
         /// </summary>
-        /// <param name="args">The command line arguments.</param>
+        /// <param name="args"></param>
         [STAThread]
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             if (GameSettings.LOAD_NATIVE_LIBRARIES)
             {
@@ -429,30 +409,15 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             MmgHelper.wr("Game Width: " + GAME_WIDTH);
             MmgHelper.wr("Game Height: " + GAME_HEIGHT);
 
-            mf = new MainFrame(MmgApiGame.WIN_WIDTH, MmgApiGame.WIN_HEIGHT, MmgApiGame.PANEL_WIDTH, MmgApiGame.PANEL_HEIGHT, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
-            pnlGame = new GamePanel(mf, MmgApiGame.PANEL_WIDTH, MmgApiGame.PANEL_HEIGHT, (MmgApiGame.WIN_WIDTH - MmgApiGame.PANEL_WIDTH) / 2, (MmgApiGame.WIN_HEIGHT - MmgApiGame.PANEL_HEIGHT) / 2, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
-            mf.SetGamePanel(pnlGame);
-            mf.InitComponents();
-            fr = new RunFrameRate(mf, FPS);
-
-            mf.setSize(MmgApiGame.WIN_WIDTH, MmgApiGame.WIN_HEIGHT);
-            mf.setResizable(false);
-            mf.setVisible(true);
-            mf.setName(GameSettings.NAME);
-
-            if (GameSettings.DEVELOPMENT_MODE_ON == false)
+            try
             {
-                mf.setTitle(GameSettings.TITLE);
+                pnlGame = new GamePanel(MmgApiGame.PANEL_WIDTH, MmgApiGame.PANEL_HEIGHT, (MmgApiGame.WIN_WIDTH - MmgApiGame.PANEL_WIDTH) / 2, (MmgApiGame.WIN_HEIGHT - MmgApiGame.PANEL_HEIGHT) / 2, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
+                pnlGame.Run();
             }
-            else
+            catch(Exception e)
             {
-                mf.setTitle(GameSettings.TITLE + " - " + GameSettings.DEVELOPER_COMPANY + " (" + GameSettings.VERSION + ")");
+                MmgHelper.wrErr(e);
             }
-
-            //mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            mf.GetGamePanel().PrepBuffers();
-            //t = new Thread(fr);
-            //t.Start();
         }
     }
 }

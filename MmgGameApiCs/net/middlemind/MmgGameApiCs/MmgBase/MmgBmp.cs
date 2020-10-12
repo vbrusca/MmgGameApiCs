@@ -711,6 +711,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="p">The MmgPen used to draw this bitmap.</param>
         public override void MmgDraw(MmgPen p)
         {
+            //MmgHelper.wr("MmgBmp: MmgDraw: " + DRAW_MODE);
             if (isVisible == true)
             {
                 if (DRAW_MODE == MmgBmpDrawMode.DRAW_BMP_FULL)

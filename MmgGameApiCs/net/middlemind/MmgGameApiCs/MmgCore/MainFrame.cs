@@ -17,7 +17,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The GamePanel, extends JFrame, class that handles drawing the different game states.
         /// </summary>
-        public GamePanel pnlGame;
+        public GamePanelOld pnlGame;
 
         /// <summary>
         /// The window width.
@@ -123,7 +123,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="b"></param>
         public void setResizable(bool b)
         {
-            pnlGame.Window.AllowUserResizing = b;
+            pnlGame.GetCanvas().AllowUserResizing = b;
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="s"></param>
         public void setTitle(string s)
         {
-            pnlGame.Window.Title = s;
+            pnlGame.GetCanvas().Title = s;
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (pnlGame != null)
             {
-                GamePanel.FPS = "Drawing FPS: " + fr + " Actual FPS: " + rfr;
+                GamePanelOld.FPS = "Drawing FPS: " + fr + " Actual FPS: " + rfr;
             }
         }
 
@@ -170,7 +170,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// Sets the GamePanel for this class to use as the game being displayed.
         /// </summary>
         /// <param name="gp">The GamePanel to display.</param>
-        public virtual void SetGamePanel(GamePanel gp)
+        public virtual void SetGamePanel(GamePanelOld gp)
         {
             pnlGame = gp;
         }
@@ -179,7 +179,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// Gets the current GamePanel this classing is using to display a game.
         /// </summary>
         /// <returns>The current GamePanel being displayed.</returns>
-        public virtual GamePanel GetGamePanel()
+        public virtual GamePanelOld GetGamePanel()
         {
             return pnlGame;
         }
@@ -277,8 +277,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             try
             {
                 MmgHelper.wr("MainFrame: WindowClosing");
-                GamePanel.PAUSE = true;
-                GamePanel.EXIT = true;
+                GamePanelOld.PAUSE = true;
+                GamePanelOld.EXIT = true;
                 RunFrameRate.PAUSE = true;
                 RunFrameRate.RUNNING = false;
             }

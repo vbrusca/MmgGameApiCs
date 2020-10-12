@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using net.middlemind.MmgGameApiCs.MmgCore;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
@@ -21,6 +22,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public class MmgSplashScreenTimer
         {
             /// <summary>
+            /// TODO: Add comment
+            /// </summary>
+            public CrossThreadWrite xTrdW;
+
+            /// <summary>
             /// The display time to show the given splash screen.
             /// </summary>
             private long displayTime;
@@ -36,6 +42,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             /// <param name="DisplayTime">Splash screen display time in ms.</param>
             public MmgSplashScreenTimer(long DisplayTime)
             {
+                xTrdW = new CrossThreadWrite();
                 displayTime = DisplayTime;
             }
 
@@ -57,10 +64,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     Thread.Sleep((int)displayTime);
 
-                    if (update != null)
+                    //if (update != null)
+                    //{
+                        //MmgHelper.wr("MmgSplashScreen: run: Calling MmgHandleUpdate");
+                        //update.MmgHandleUpdate(null);
+                        //callUpdateHandler = true;
+                    //}
+
+                    if(xTrdW != null)
                     {
-                        MmgHelper.wr("MmgSplashScreen: run: Calling MmgHandleUpdate");
-                        update.MmgHandleUpdate(null);
+                        xTrdW.AddCommand("MmgHandleUpdate", null);
                     }
                 }
                 catch (Exception e)
@@ -84,6 +97,21 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// The default display time.
         /// </summary>
         public static int DEFAULT_DISPLAY_TIME_MS = 3000;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private CrossThreadRead xTrdR;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private MmgSplashScreenTimer s;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private CrossThreadCommand xTrdC;
 
         /// <summary>
         /// Constructor that sets the display time to the default display time.
@@ -226,8 +254,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void StartDisplay()
         {
-            MmgSplashScreenTimer s = new MmgSplashScreenTimer(displayTime);
+            s = new MmgSplashScreenTimer(displayTime);
             s.SetUpdateHandler(this);
+            xTrdR = new CrossThreadRead(s.xTrdW);
             ThreadStart ts = new ThreadStart(s.run);
             Thread t = new Thread(ts);
             t.Start();
@@ -297,6 +326,32 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public virtual void SetDisplayTime(int i)
         {
             displayTime = i;
+        }
+
+        /// <summary>
+        /// Update the current sprite animation frame index.
+        /// </summary>
+        /// <param name="updateTick">The index of the MmgUpdate call.</param>
+        /// <param name="currentTimeMs">The current time in milliseconds of the MmgUpdate call.</param>
+        /// <param name="msSinceLastFrame">The number of milliseconds since the last MmgUpdate call.</param>
+        /// <returns>A bool flag indicating if any work was done.</returns>
+        public override bool MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame)
+        {
+            if(isVisible)
+            {
+                base.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+                xTrdC = xTrdR.GetNextCommand();
+                if (xTrdC != null && xTrdC.name.Equals("MmgHandleUpdate"))
+                {                    
+                    MmgHandleUpdate(null);
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>

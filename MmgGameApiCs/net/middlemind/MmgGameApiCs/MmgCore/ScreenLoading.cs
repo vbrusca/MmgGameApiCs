@@ -56,6 +56,16 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public Dictionary<string, MmgCfgFileEntry> classConfig;
 
         /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        public CrossThreadRead xTrdR;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private CrossThreadCommand xTrdC;
+
+        /// <summary>
         /// Constructor, sets the loading bar, the loading bar offset, the game state of this game screen, and the GamePanel that owns this game screen.
         /// </summary>
         /// <param name="LoadingBar">A loading bar object, MmgLoadingBar, to use as this screen's loading bar.</param>
@@ -397,9 +407,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 datLoad.SetSlowDown(slowDown);
                 datLoad.SetUpdateHandler(this);
 
+                xTrdR = new CrossThreadRead(datLoad.xTrdW);
+                //datLoad.run();
+                
                 ThreadStart r = new ThreadStart(datLoad.run);
                 Thread t = new Thread(r);
-                t.Start();
+                t.Start();                
             }
             else
             {
@@ -434,6 +447,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     GetLoadingBar().SetFillAmt(prct);
                 }
 
+                /*
                 if (GetLoadComplete() == true)
                 {
                     if (handler != null)
@@ -441,6 +455,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                         handler.HandleGenericEvent(new GenericEventMessage(ScreenLoading.EVENT_LOAD_COMPLETE, null, GetGameState()));
                     }
                 }
+                */
 
                 MmgHelper.wr("LoadingScreen: POS: " + obj.GetPos() + " LEN: " + obj.GetLen() + " PRCT: " + prct + " LR: " + GetLoadResult() + " LC: " + GetLoadComplete());
             }
@@ -476,6 +491,48 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             else
             {
                 MmgHelper.wr("ScreenLoading: GetLoadComplete: The datLoad field is NULL!!");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Update the current sprite animation frame index.
+        /// </summary>
+        /// <param name="updateTick">The index of the MmgUpdate call.</param>
+        /// <param name="currentTimeMs">The current time in milliseconds of the MmgUpdate call.</param>
+        /// <param name="msSinceLastFrame">The number of milliseconds since the last MmgUpdate call.</param>
+        /// <returns>A bool flag indicating if any work was done.</returns>
+        public override bool MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame)
+        {
+            if (isVisible)
+            {
+                base.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+                xTrdC = xTrdR.GetNextCommand();
+                if (xTrdC != null && xTrdC.name.Equals("GetBasicCachedSound"))
+                {
+                    MmgHelper.wr("ByteArrayLength: " + ((byte[])xTrdC.payload[1]).Length);
+                    MmgHelper.wr("FileName: " + ((string)xTrdC.payload[0]));
+                    MmgHelper.GetBasicCachedSound((byte[])xTrdC.payload[1], (string)xTrdC.payload[0]);
+                }
+                else if(xTrdC != null && xTrdC.name.Equals("GetBasicCachedBmp") && xTrdC.payload != null && xTrdC.payload.Length >= 2)
+                {
+                    MmgHelper.wr("ByteArrayLength: " + ((byte[])xTrdC.payload[1]).Length);
+                    MmgHelper.wr("FileName: " + ((string)xTrdC.payload[0]));
+                    MmgHelper.GetBasicCachedBmp((byte[])xTrdC.payload[1], (string)xTrdC.payload[0]);
+                }
+                
+                if (GetLoadComplete() == true)
+                {
+                    if (handler != null)
+                    {
+                        handler.HandleGenericEvent(new GenericEventMessage(ScreenLoading.EVENT_LOAD_COMPLETE, null, GetGameState()));
+                    }
+                }
+
+                return true;
+            }
+            else
+            {
                 return false;
             }
         }

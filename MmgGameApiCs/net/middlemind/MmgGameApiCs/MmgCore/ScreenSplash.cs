@@ -96,6 +96,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             SetWidth(MmgScreenData.GetGameWidth());
             SetPosition(MmgScreenData.GetPosition());
 
+            MmgHelper.wr("ScreenSplash: LoadResources: " + GameSettings.CLASS_CONFIG_DIR + "screen_splash.txt");
             classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + "screen_splash.txt");
 
             MmgBmp tB = null;
@@ -121,6 +122,13 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
 
             tB = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + file);
+
+            if(tB != null)
+            {
+                MmgHelper.wr("ScreenSplash: LoadResources: ScreenSplash Logo is NOT null.");
+                MmgHelper.wr("ScreenSplash: LoadResources: " + GameSettings.IMAGE_LOAD_DIR + file);
+            }
+
             if (tB != null)
             {
                 key = "splashLogoScale";
@@ -164,6 +172,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 }
             }
 
+            MmgHelper.wr("ScreenSplash: Loadresources: " + this.GetObjects().GetCount());
             ready = true;
             pause = false;
         }

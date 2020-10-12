@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using static net.middlemind.MmgGameApiCs.MmgBase.MmgFont;
 
@@ -62,17 +63,17 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The normal font to use.
         /// </summary>
-        private static SpriteFont fontNorm = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_NORMAL + fontSize);        //new Font(DEFAULT_FONT_FAMILY, Font.PLAIN, MmgFontData.fontSize);
+        private static SpriteFont fontNorm;
 
         /// <summary>
         /// The bold font to use.
         /// </summary>
-        private static SpriteFont fontBold = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + fontSize);        //new Font(DEFAULT_FONT_FAMILY, Font.BOLD, MmgFontData.fontSize);
+        private static SpriteFont fontBold;// = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + fontSize);        //new Font(DEFAULT_FONT_FAMILY, Font.BOLD, MmgFontData.fontSize);
 
         /// <summary>
         /// The italic font to use.
         /// </summary>
-        private static SpriteFont fontItalic = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + fontSize);    //new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, MmgFontData.fontSize);
+        private static SpriteFont fontItalic;// = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + fontSize);    //new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, MmgFontData.fontSize);
 
         /// <summary>
         /// An MmgFont class that wraps the normal font.
@@ -94,6 +95,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public MmgFontData()
         {
+            fontNorm = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_NORMAL + fontSize);
+            fontBold = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + fontSize);
+            fontItalic = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + fontSize);
             MmgFontData.CalculateScale();
         }
 

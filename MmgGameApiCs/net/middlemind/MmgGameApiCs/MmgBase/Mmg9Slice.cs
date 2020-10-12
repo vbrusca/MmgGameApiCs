@@ -189,7 +189,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, GetWidth(), GetHeight());
             g.GraphicsDevice.SetRenderTarget(bg);
-            g.Begin();
+            g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
             int fs = offset;
 
@@ -234,6 +234,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             g.Draw(img, new Rectangle(GetWidth() - fs, GetHeight() - fs, GetWidth(), GetHeight()), new Rectangle(b.GetWidth() - fs, b.GetHeight() - fs, b.GetWidth(), b.GetHeight()), Color.White);
 
             g.End();
+            g.GraphicsDevice.SetRenderTarget(null);
             dest = new MmgBmp(bg);
         }
 

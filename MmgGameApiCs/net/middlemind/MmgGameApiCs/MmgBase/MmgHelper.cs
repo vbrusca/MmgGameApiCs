@@ -497,16 +497,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static MmgDrawableBmpSet CreateDrawableBmpSet(int width, int height, bool alpha, MmgColor color)
         {
             MmgDrawableBmpSet dBmpSet = MmgHelper.CreateDrawableBmpSet(width, height, alpha);
-            Color[] rawData = new Color[dBmpSet.buffImg.Width * dBmpSet.buffImg.Height];
-            dBmpSet.buffImg.GetData<Color>(rawData);
-            int len = rawData.Length;
+            Color[] pixels = new Color[dBmpSet.buffImg.Width * dBmpSet.buffImg.Height];
+            dBmpSet.buffImg.GetData<Color>(pixels);
+            int len = pixels.Length;
             for(int i = 0; i < len; i++)
             {
-                rawData[i].R = color.GetColor().R;
-                rawData[i].G = color.GetColor().G;
-                rawData[i].B = color.GetColor().B;
-                rawData[i].A = color.GetColor().A;
+                pixels[i] = color.GetColor();
             }
+            dBmpSet.buffImg.SetData<Color>(pixels);
             return dBmpSet;
         }
 
@@ -929,6 +927,34 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A static method used to create an MmgSound object from a sound resource file.
         /// </summary>
+        /// <param name="path">The path of the sound resource loaded.</param>
+        /// <param name="sndId">The id to use when storing the sound resource in the sound resource cache.</param>
+        /// <returns>An MmgSound object created from the specified resource file or loaded from the sound resource cache.</returns>
+        public static MmgSound GetBasicCachedSound(byte[] data, string sndId)
+        {
+            MmgSound lval = null;
+            if (SND_CACHE_ON == true)
+            {
+                if (MmgMediaTracker.HasSoundKey(sndId) == true)
+                {
+                    lval = new MmgSound(MmgMediaTracker.GetSoundValue(sndId));
+                }
+                else
+                {
+                    lval = MmgHelper.GetBinarySound(data);
+                    MmgMediaTracker.CacheSound(sndId, lval.GetSound());
+                }
+            }
+            else
+            {
+                lval = MmgHelper.GetBinarySound(data);
+            }
+            return lval;
+        }
+
+        /// <summary>
+        /// A static method used to create an MmgSound object from a sound resource file.
+        /// </summary>
         /// <param name="sndId">The id to use when pulling the sound resource from the sound cache.</param>
         /// <returns>An MmgSound object loaded from the sound resource cache.</returns>
         public static MmgSound GetBasicCachedSound(string sndId)
@@ -969,6 +995,35 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             else
             {
                 lval = MmgHelper.GetBasicBmp(path);
+            }
+            return lval;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="imgId"></param>
+        /// <returns></returns>
+        public static MmgBmp GetBasicCachedBmp(byte[] data, string imgId)
+        {
+            MmgBmp lval = null;
+            if (BMP_CACHE_ON == true)
+            {
+                if (MmgMediaTracker.HasBmpKey(imgId) == true)
+                {
+                    lval = new MmgBmp(MmgMediaTracker.GetBmpValue(imgId));
+                    lval.SetMmgColor(null);
+                }
+                else
+                {
+                    lval = MmgHelper.GetBinaryBmp(data);
+                    MmgMediaTracker.CacheImage(imgId, lval.GetImage());
+                }
+            }
+            else
+            {
+                lval = MmgHelper.GetBinaryBmp(data);
             }
             return lval;
         }
@@ -1116,6 +1171,29 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             return r;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="src"></param>
+        /// <returns></returns>
+        public static MmgSound GetBinarySound(byte[] d)
+        {
+            SoundEffect inS = null;
+            MmgSound snd = null;
+
+            try
+            {
+                inS = SoundEffect.FromStream(new MemoryStream(d));
+                snd = new MmgSound(inS);
+            }
+            catch (Exception e)
+            {
+                wrErr(e);
+            }
+
+            return snd;
         }
 
         /// <summary>

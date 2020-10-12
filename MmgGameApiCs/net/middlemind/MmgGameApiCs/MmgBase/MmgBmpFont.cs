@@ -191,9 +191,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D img = new RenderTarget2D(gd, imgT.Width, imgT.Height);
+
             g.GraphicsDevice.SetRenderTarget(img);
+            g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             g.Draw(imgT, new Vector2(0, 0), Color.White);
-            g.Dispose();
+            g.End();
+            g.GraphicsDevice.SetRenderTarget(null);
 
             int width = src.GetWidth();
             int height = src.GetHeight();
@@ -207,7 +210,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             chars = new MmgBmp[MmgBmpFont.EXPECTED_CHAR_LENGTH];
             widths = new int[MmgBmpFont.EXPECTED_CHAR_LENGTH];
             Color[] pixels = new Color[img.Width * img.Height];
-            img.GetData(pixels);
+            img.GetData<Color>(pixels);
 
             for (i = 1; i < width; i++)
             {

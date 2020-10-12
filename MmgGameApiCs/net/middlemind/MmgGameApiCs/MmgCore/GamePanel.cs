@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using net.middlemind.MmgGameApiCs.MmgBase;
+using net.middlemind.MmgGameApiCs.MmgCore;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
-    //XNA: Monogame: Needs to be reviewed.
     /// <summary>
-    /// The Canvas used to render the game to. 
-    /// This is the connection point between native UI rendering and the game rendering.
-    /// Created by Middlemind Games 08/01/2015
-    ///
-    /// @author Victor G.Brusca
+    /// TODO: Add comments
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class GamePanel : Game, GenericEventHandler, GamePadSimple
     {
@@ -86,11 +84,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             GAME_SCREEN_39,
             GAME_SCREEN_40
         }
-
-        /// <summary>
-        /// The MainFrame that this panel is displayed in.
-        /// </summary>
-        public MainFrame mf;
 
         /// <summary>
         /// The width of the window this panel is displayed in.
@@ -202,33 +195,31 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public GameWindow canvas;
 
-        //NOTES: Not required for Monogame implementation, no equivalent.
         /// <summary>
-        /// A Java rendering API drawing strategy class.
+        /// TODO: Add comments
         /// </summary>
-        //public BufferStrategy strategy;
-
-        //NOTES: Added to the Monogame port to mimic Java API behavior.
-        /// <summary>
-        /// TODO: Add comment
-        /// </summary>
-        public GraphicsDeviceManager gdm;
+        private GraphicsDeviceManager gdm;
 
         /// <summary>
-        /// TODO: Add comment
+        /// TODO: Add comments
         /// </summary>
-        public bool visible = true;
+        private SpriteBatch pen;
 
         /// <summary>
-        /// TODO: Add comment
+        /// TODO: Add comments
         /// </summary>
-        public string name = "";
+        private bool visible = true;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private string name = "";
 
         /// <summary>
         /// A BufferedImage used to render the game screen to. 
         /// The background image is then rendered to the panel once it is done drawing.
         /// </summary>
-        public Texture2D background;
+        public RenderTarget2D background;
 
         /// <summary>
         /// A Java rendering API for drawing graphics to a BufferedImage.
@@ -389,27 +380,89 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public Thread gpioTr;
 
         /// <summary>
-        /// Constructor, sets the MainFrame, window dimensions, and position of this Canvas.
+        /// TODO: Add comments
         /// </summary>
-        /// <param name="Mf">The MainFrame class this panel belongs to.</param>
-        /// <param name="WinWidth">The target window width.</param>
-        /// <param name="WinHeight">The target window height.</param>
-        /// <param name="X">The X coordinate of this Canvas.</param>
-        /// <param name="Y">The Y coordinate of this Canvas.</param>
-        /// <param name="GameWidth">TODO: Add comments</param>
-        /// <param name="GameHeight"></param>
-        public GamePanel(MainFrame Mf, int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight)
-        {
-            gdm = new GraphicsDeviceManager(this);
-            MmgScreenData.GRAPHICS_CONFIG = gdm.GraphicsDevice;
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+        private MmgBmp sqrWhite = null;
 
-            mf = Mf;
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private MmgBmp sqrBlack = null;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private Color DarkGray = new Color(64, 64, 64);
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private MmgFont mmgDebugFont = null;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private MmgBmp test = null;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private List<Keys> keysDown;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private List<string> buttonsDown;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private KeyboardState stateK;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private KeyboardState statePrevK;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private bool keyShiftDown = false;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private bool keyCapsLockOn = false;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private MouseState stateM;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private MouseState statePrevM;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="WinWidth"></param>
+        /// <param name="WinHeight"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="GameWidth"></param>
+        /// <param name="GameHeight"></param>
+        public GamePanel(int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) : base()
+        {
+            keysDown = new List<Keys>();
+            buttonsDown = new List<string>();
+            gdm = new GraphicsDeviceManager(this);
+
             winWidth = WinWidth;
             winHeight = WinHeight;
-            GamePanel.GAME_WIDTH = GameWidth;
-            GamePanel.GAME_HEIGHT = GameHeight;
+            MmgApiGame.GAME_WIDTH = GameWidth;
+            MmgApiGame.GAME_HEIGHT = GameHeight;
             sWinWidth = (int)(winWidth * scale);
             sWinHeight = (int)(winHeight * scale);
 
@@ -426,8 +479,122 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             prev = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
-            //canvas = new Canvas(MmgBmpScaler.GRAPHICS_CONFIG);
-            //canvas.setSize(winWidth, winHeight);
+            Exiting += windowClosing;
+            Activated += windowActivated;
+        }
+
+        //NOTES: Added to the Monogame port to mimic the Java window closing implementation.
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void windowActivated(object sender, EventArgs e)
+        {
+            canvas = Window;
+            setSize(MmgApiGame.WIN_WIDTH, MmgApiGame.WIN_HEIGHT);
+            setResizable(false);
+            setVisible(true);
+            setName(GameSettings.NAME);
+        }
+
+        //NOTES: Added to the Monogame port to mimic the Java window closing implementation.
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void windowClosing(object sender, EventArgs e)
+        {
+            try
+            {
+                MmgHelper.wr("GamePanel: WindowClosing");
+                GamePanel.PAUSE = true;
+                GamePanel.EXIT = true;
+                //RunFrameRate.PAUSE = true;
+                //RunFrameRate.RUNNING = false;
+                Dispose();
+                Environment.Exit(0);
+                //Environment.FailFast("0");
+            }
+            catch (Exception ex)
+            {
+                MmgHelper.wrErr(ex);
+            }
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="w"></param>
+        /// <param name="h"></param>
+        public void setSize(int w, int h)
+        {
+            gdm.PreferredBackBufferWidth = w;
+            gdm.PreferredBackBufferHeight = h;
+            gdm.ApplyChanges();            
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="b"></param>
+        public void setResizable(bool b)
+        {
+            canvas.AllowUserResizing = b;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="n"></param>
+        public void setName(string n)
+        {
+            name = n;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="b"></param>
+        public void setVisible(bool b)
+        {
+            visible = b;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="s"></param>
+        public void setTitle(string s)
+        {
+            canvas.Title = s;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        protected override void Initialize()
+        {
+            base.Initialize();
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        protected override void LoadContent()
+        {
+            MmgHelper.wr("===============LoadContent");
+
+            MmgScreenData.GRAPHICS_CONFIG = gdm.GraphicsDevice;
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
+
+            MmgScreenData.CONTENT_MANAGER = this.Content;
+            graphics = new SpriteBatch(MmgScreenData.GRAPHICS_CONFIG);
+
+            sqrWhite = MmgHelper.CreateFilledBmp(1, 1, MmgColor.GetWhite());
+            sqrBlack = MmgHelper.CreateFilledBmp(1, 1, MmgColor.GetBlack());
 
             MmgHelper.wr("");
             MmgHelper.wr("GamePanel Window Width: " + winWidth);
@@ -435,7 +602,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             MmgHelper.wr("GamePanel Offset X: " + myX);
             MmgHelper.wr("GamePanel Offset Y: " + myY);
 
-            screenData = new MmgScreenData(winWidth, winHeight, GamePanel.GAME_WIDTH, GamePanel.GAME_HEIGHT);
+            screenData = new MmgScreenData(winWidth, winHeight, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
             MmgHelper.wr("");
             MmgHelper.wr("--- MmgScreenData ---");
             MmgHelper.wr(MmgScreenData.toString());
@@ -445,9 +612,13 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             MmgHelper.wr("--- MmgFontData ---");
             MmgHelper.wr(MmgFontData.toString());
             debugFont = MmgFontData.CreateDefaultFontSm();
+            mmgDebugFont = new MmgFont(debugFont, "Test", 0, 0, MmgColor.GetWhite());
+
+            MmgHelper.wr("FontHeight: " + mmgDebugFont.GetHeight() + ", " + MmgFontData.GetFontSize());
 
             p = new MmgPen();
             MmgPen.ADV_RENDER_HINTS = true;
+            PrepBuffers();
 
             screenSplash = new ScreenSplash(GameStates.SPLASH, this);
             screenLoading = new ScreenLoading(GameStates.LOADING, this);
@@ -460,202 +631,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             gameScreens = new Dictionary<GameStates, MmgGameScreen>();
             gameState = GameStates.BLANK;
 
-            /*
-            canvas.addMouseMotionListener(new MouseMotionListener() {
-                @Override
-                public void mouseDragged(MouseEvent e)
-                {
-                    lastX = e.getX();
-                    lastY = e.getY();
-                }
-
-                @Override
-                    public void mouseMoved(MouseEvent e)
-                {
-                    lastX = e.getX();
-                    lastY = e.getY();
-                    ProcessMouseMove(lastX, lastY);
-                }
-
-            });
-
-            canvas.addKeyListener(new KeyListener()
+            if (GameSettings.GAMEPAD_1_ON)
             {
-                @Override
-                    public void keyTyped(KeyEvent e)
-                {
-                    if (e.getKeyChar() == ' ' || e.getKeyChar() == '\n')
-                    {
-                        ProcessAClick(GameSettings.SRC_KEYBOARD);
-
-                    }
-                    else if (e.getKeyChar() == '+')
-                    {
-                        //increase speed
-
-                    }
-                    else if (e.getKeyChar() == '-')
-                    {
-                        //decrease speed
-
-                    }
-                    else if (e.getKeyChar() == 'p' || e.getKeyChar() == 'P')
-                    {
-                        if (gameState == GameStates.MAIN_GAME)
-                        {
-                            //pause game
-                        }
-
-                    }
-                    else if (e.getKeyChar() == 'f' || e.getKeyChar() == 'F')
-                    {
-                        //clear game flags
-
-                    }
-                    else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A')
-                    {
-                        ProcessAClick(GameSettings.SRC_KEYBOARD);
-
-                    }
-                    else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B')
-                    {
-                        ProcessBClick(GameSettings.SRC_KEYBOARD);
-
-                    }
-                    else if (e.getKeyChar() == 'd' || e.getKeyChar() == 'D')
-                    {
-                        ProcessDebugClick();
-
-                    }
-
-                    ProcessKeyClick(e.getKeyChar(), e.getExtendedKeyCode());
-                }
-
-                @Override
-                public void keyPressed(KeyEvent e)
-                {
-                    //Ignore Enter and Space bar presses, handle them as A and B button clicks.
-                    if (e.getKeyCode() != 32 && e.getKeyCode() != 10)
-                    {
-                        lastKeyPressEvent = System.currentTimeMillis();
-                        if (e.getKeyCode() == 40)
-                        {
-                            ProcessDpadPress(GameSettings.DOWN_KEYBOARD);
-
-                        }
-                        else if (e.getKeyCode() == 38)
-                        {
-                            ProcessDpadPress(GameSettings.UP_KEYBOARD);
-
-                        }
-                        else if (e.getKeyCode() == 37)
-                        {
-                            ProcessDpadPress(GameSettings.LEFT_KEYBOARD);
-
-                        }
-                        else if (e.getKeyCode() == 39)
-                        {
-                            ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
-
-                        }
-                        else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A')
-                        {
-                            ProcessAPress(GameSettings.SRC_KEYBOARD);
-
-                        }
-                        else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B')
-                        {
-                            ProcessBPress(GameSettings.SRC_KEYBOARD);
-
-                        }
-
-                        ProcessKeyPress(e.getKeyChar(), e.getExtendedKeyCode());
-                    }
-                }
-
-                @Override
-                public void keyReleased(KeyEvent e)
-                {
-                    //Ignore Enter and Space bar releases, handle them as A and B button clicks.                
-                    if (e.getKeyCode() != 32 && e.getKeyCode() != 10)
-                    {
-                        if (e.getKeyCode() == 40)
-                        {
-                            ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
-                            ProcessDpadClick(GameSettings.DOWN_KEYBOARD);
-
-                        }
-                        else if (e.getKeyCode() == 38)
-                        {
-                            ProcessDpadRelease(GameSettings.UP_KEYBOARD);
-                            ProcessDpadClick(GameSettings.UP_KEYBOARD);
-
-                        }
-                        else if (e.getKeyCode() == 37)
-                        {
-                            ProcessDpadRelease(GameSettings.LEFT_KEYBOARD);
-                            ProcessDpadClick(GameSettings.LEFT_KEYBOARD);
-
-                        }
-                        else if (e.getKeyCode() == 39)
-                        {
-                            ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
-                            ProcessDpadClick(GameSettings.RIGHT_KEYBOARD);
-
-                        }
-                        else if (e.getKeyChar() == 'a' || e.getKeyChar() == 'A')
-                        {
-                            ProcessARelease(GameSettings.SRC_KEYBOARD);
-
-                        }
-                        else if (e.getKeyChar() == 'b' || e.getKeyChar() == 'B')
-                        {
-                            ProcessBRelease(GameSettings.SRC_KEYBOARD);
-
-                        }
-
-                        ProcessKeyRelease(e.getKeyChar(), e.getExtendedKeyCode());
-                    }
-                }
-            });
-
-            canvas.addMouseListener(new MouseListener()
-            {
-                @Override
-                    public void mouseClicked(MouseEvent e)
-                {
-                    ProcessMouseClick(e.getX(), e.getY());
-                }
-
-                @Override
-                    public void mousePressed(MouseEvent e)
-                {
-                    ProcessMousePress(e.getX(), e.getY());
-                }
-
-                @Override
-                    public void mouseReleased(MouseEvent e)
-                {
-                    ProcessMouseRelease(e.getX(), e.getY());
-                }
-
-                @Override
-                    public void mouseEntered(MouseEvent e)
-                {
-                }
-
-                @Override
-                    public void mouseExited(MouseEvent e)
-                {
-                }
-
-            });
-            */
-
-            if (GameSettings.GAMEPAD_1_ON) {
                 gamePadHub = new GamePadHub(GameSettings.GAMEPAD_1_INDEX);
                 gamePadRunner = new GamePadHubRunner(gamePadHub, GameSettings.GAMEPAD_1_POLLING_INTERVAL_MS, this);
-                if (GameSettings.GAMEPAD_1_THREADED_POLLING) {
+                if (GameSettings.GAMEPAD_1_THREADED_POLLING)
+                {
                     ThreadStart ts = new ThreadStart(gamePadRunner.run);
                     gpadTr = new Thread(ts);
                     gpadTr.Start();
@@ -673,6 +654,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     gpioTr.Start();
                 }
             }
+
+            test = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + "logo_large2.png");
 
             SwitchGameState(GameStates.SPLASH);
         }
@@ -857,14 +840,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             // Background & Buffer
             background = create(winWidth, winHeight, false);
-            //canvas.createBufferStrategy(2);
-
-            //do
-            //{
-            //    strategy = canvas.getBufferStrategy();
-            //} while (strategy == null);
-
-            //backgroundGraphics = (Graphics2D)background.getGraphics();
+            backgroundGraphics = new SpriteBatch(MmgScreenData.GRAPHICS_CONFIG);
+            MmgScreenData.GRAPHICS_CONFIG.SetRenderTarget(background);
+            p.SetGraphics(backgroundGraphics);
+            p.SetAdvRenderHints();
         }
 
         /// <summary>
@@ -874,9 +853,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="height">The desired height of the BufferedImage.</param>
         /// <param name="alpha">The desired transparency flag of the BufferedImage.</param>
         /// <returns>Returns a BufferedImage with the desired coordinates and transparency. </returns>
-        public virtual Texture2D create(int width, int height, bool alpha)
+        public virtual RenderTarget2D create(int width, int height, bool alpha)
         {
-            //return MmgBmpScaler.GRAPHICS_CONFIG.createCompatibleImage(width, height, alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
             return new RenderTarget2D(MmgScreenData.GRAPHICS_CONFIG, width, height);
         }
 
@@ -1103,6 +1081,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     {
                         //Final loading steps
                         DatExternalStrings.LOAD_EXT_STRINGS();
+                        MmgHelper.wr("HandleMainMenuEvent: MmgHandleEvent: Switch to MainMenu.");
                         SwitchGameState(GameStates.MAIN_MENU);
                     }
 
@@ -1113,7 +1092,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     {
                         SwitchGameState(GameStates.LOADING);
                     }
-
                 }
             }
         }
@@ -1124,19 +1102,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns>A Graphics2D instance that is used to draw on the JFrame.</returns>
         public virtual SpriteBatch GetBuffer()
         {
-            /*
-            if (graphics == null)
-            {
-                try
-                {
-                    graphics = (Graphics2D)strategy.getDrawGraphics();
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
-            }
-            */
             return graphics;
         }
 
@@ -1186,21 +1151,813 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns></returns>
         public virtual bool UpdateScreen()
         {
-            /*
-            graphics.Dispose();
-            graphics = null;
-            try
+            //NOTES: Monogame port doesn't need this function but it is included for compatability with the Java version.
+            return true;
+        }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <param name="gameTime"></param>
+        protected override void Update(GameTime gameTime)
+        {
+            if(EXIT == true)
             {
-                strategy.show();
-                Toolkit.getDefaultToolkit().sync();
-                return (!strategy.contentsLost());
+                Exit();
             }
-            catch (Exception e)
+            else if (PAUSE == true)
             {
+                return;
+            }
+
+            UpdateGame();
+            base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        private bool HasKeyBeenClicked(Keys key, KeyboardState state)
+        {
+            if (state.IsKeyDown(key))
+            {
+                //key down
+                if (!keysDown.Contains(key))
+                {
+                    keysDown.Add(key);
+                }
+                return false;
+            }
+            else
+            {
+                //key up
+                if (keysDown.Contains(key))
+                {
+                    keysDown.Remove(key);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="bState"></param>
+        /// <param name="mState"></param>
+        /// <returns></returns>
+        private bool HasButtonBeenClicked(ButtonState bState, MouseState mState, string key)
+        {
+            if (bState == ButtonState.Pressed)
+            {
+                //button down
+                if (!buttonsDown.Contains(key))
+                {
+                    buttonsDown.Add(key);
+                }
+                return false;
+            }
+            else
+            {
+                //button up
+                if (buttonsDown.Contains(key))
+                {
+                    buttonsDown.Remove(key);
+                }
                 return true;
             }
-            */
-            return true;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        private char ConvertKeyToChar(Keys k)
+        {
+            if(k == Keys.A)
+            {
+                if(keyShiftDown || keyCapsLockOn)
+                {
+                    return 'A';
+                }
+                else
+                {
+                    return 'a';
+                }
+            }
+            else if (k == Keys.Add)
+            {
+                return '+';
+            }
+            else if(k == Keys.Apps)
+            {
+                return (char)((byte)93);
+            }
+            else if(k == Keys.B)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'B';
+                }
+                else
+                {
+                    return 'b';
+                }
+            }
+            else if(k == Keys.Back)
+            {
+                return (char)((byte)8);
+            }
+            else if(k == Keys.C)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'C';
+                }
+                else
+                {
+                    return 'c';
+                }
+            }
+            else if(k == Keys.CapsLock)
+            {
+                return (char)((byte)20);
+            }
+            else if(k == Keys.D)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'D';
+                }
+                else
+                {
+                    return 'd';
+                }
+            }
+            else if(k == Keys.Decimal)
+            {
+                return '.';
+            }
+            else if(k == Keys.Delete)
+            {
+                return (char)((byte)46);
+            }
+            else if(k == Keys.Divide)
+            {
+                return '/';
+            }
+            else if(k == Keys.Down)
+            {
+                return (char)((byte)40);
+            }
+            else if(k == Keys.E)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'E';
+                }
+                else
+                {
+                    return 'e';
+                }
+            }
+            else if(k == Keys.End)
+            {
+                return (char)((byte)35);
+            }
+            else if(k == Keys.Enter)
+            {
+                return '\n';
+            }
+            else if(k == Keys.Escape)
+            {
+                return (char)((byte)27);
+            }
+            else if(k == Keys.F)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'F';
+                }
+                else
+                {
+                    return 'f';
+                }
+            }
+            else if(k == Keys.F1)
+            {
+                return (char)((byte)112);
+            }
+            else if(k == Keys.F2)
+            {
+                return (char)((byte)113);
+            }
+            else if (k == Keys.F3)
+            {
+                return (char)((byte)114);
+            }
+            else if (k == Keys.F4)
+            {
+                return (char)((byte)115);
+            }
+            else if (k == Keys.F5)
+            {
+                return (char)((byte)116);
+            }
+            else if (k == Keys.F6)
+            {
+                return (char)((byte)117);
+            }
+            else if (k == Keys.F7)
+            {
+                return (char)((byte)118);
+            }
+            else if (k == Keys.F8)
+            {
+                return (char)((byte)119);
+            }
+            else if (k == Keys.F9)
+            {
+                return (char)((byte)120);
+            }
+            else if (k == Keys.F10)
+            {
+                return (char)((byte)121);
+            }
+            else if (k == Keys.F11)
+            {
+                return (char)((byte)122);
+            }
+            else if (k == Keys.F12)
+            {
+                return (char)((byte)123);
+            }
+            else if(k == Keys.G)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'G';
+                }
+                else
+                {
+                    return 'g';
+                }
+            }
+            else if(k == Keys.H)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'H';
+                }
+                else
+                {
+                    return 'h';
+                }
+            }
+            else if(k == Keys.Home)
+            {
+                return (char)((byte)36);
+            }
+            else if(k == Keys.I)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'I';
+                }
+                else
+                {
+                    return 'i';
+                }
+            }
+            else if (k == Keys.Insert)
+            {
+                return (char)((byte)45);
+            }
+            else if(k == Keys.J)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'J';
+                }
+                else
+                {
+                    return 'j';
+                }
+            }
+            else if(k == Keys.K)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'K';
+                }
+                else
+                {
+                    return 'k';
+                }
+            }
+            else if(k == Keys.L)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'L';
+                }
+                else
+                {
+                    return 'l';
+                }
+            }
+            else if(k == Keys.Left)
+            {
+                return (char)((byte)37);
+            }
+            else if(k == Keys.LeftAlt)
+            {
+                return (char)((byte)164);
+            }
+            else if(k == Keys.LeftControl)
+            {
+                return (char)((byte)162);
+            }
+            else if(k == Keys.LeftWindows)
+            {
+                return (char)((byte)91);
+            }
+            else if(k == Keys.M)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'M';
+                }
+                else
+                {
+                    return 'm';
+                }
+            }
+            else if(k == Keys.Multiply)
+            {
+                return '*';
+            }
+            else if(k == Keys.N)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'N';
+                }
+                else
+                {
+                    return 'n';
+                }
+            }
+            else if(k == Keys.NumLock)
+            {
+                return (char)((byte)144);
+            }
+            else if(k == Keys.NumPad0)
+            {
+                return '0';
+            }
+            else if (k == Keys.NumPad1)
+            {
+                return '1';
+            }
+            else if (k == Keys.NumPad2)
+            {
+                return '2';
+            }
+            else if (k == Keys.NumPad3)
+            {
+                return '3';
+            }
+            else if (k == Keys.NumPad4)
+            {
+                return '4';
+            }
+            else if (k == Keys.NumPad5)
+            {
+                return '5';
+            }
+            else if (k == Keys.NumPad6)
+            {
+                return '6';
+            }
+            else if (k == Keys.NumPad7)
+            {
+                return '7';
+            }
+            else if (k == Keys.NumPad8)
+            {
+                return '8';
+            }
+            else if (k == Keys.NumPad9)
+            {
+                return '9';
+            }
+            else if(k == Keys.O)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'O';
+                }
+                else
+                {
+                    return 'o';
+                }
+            }
+            else if(k == Keys.P)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'P';
+                }
+                else
+                {
+                    return 'p';
+                }
+            }
+            else if(k == Keys.PageDown)
+            {
+                return (char)((byte)34);
+            }
+            else if(k == Keys.PageUp)
+            {
+                return (char)((byte)33);
+            }
+            else if(k == Keys.Pause)
+            {
+                return (char)((byte)19);
+            }
+            else if(k == Keys.PrintScreen)
+            {
+                return (char)((byte)44);
+            }
+            else if(k == Keys.Q)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'Q';
+                }
+                else
+                {
+                    return 'q';
+                }
+            }
+            else if(k == Keys.R)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'R';
+                }
+                else
+                {
+                    return 'r';
+                }
+            }
+            else if(k == Keys.Right)
+            {
+                return (char)((byte)39);
+            }
+            else if(k == Keys.RightAlt)
+            {
+                return (char)((byte)165);
+            }
+            else if(k == Keys.RightControl)
+            {
+                return (char)((byte)163);
+            }
+            else if(k == Keys.RightWindows)
+            {
+                return (char)((byte)92);
+            }
+            else if(k == Keys.S)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'S';
+                }
+                else
+                {
+                    return 's';
+                }
+            }
+            else if(k == Keys.Scroll)
+            {
+                return (char)((byte)145);
+            }
+            else if(k == Keys.Space)
+            {
+                return ' ';
+            }
+            else if(k == Keys.Subtract)
+            {
+                return '-';
+            }
+            else if(k == Keys.T)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'T';
+                }
+                else
+                {
+                    return 't';
+                }
+            }
+            else if(k == Keys.Tab)
+            {
+                return (char)((byte)9);
+            }
+            else if(k == Keys.U)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'U';
+                }
+                else
+                {
+                    return 'u';
+                }
+            }
+            else if(k == Keys.Up)
+            {
+                return (char)((byte)38);
+            }
+            else if(k == Keys.V)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'V';
+                }
+                else
+                {
+                    return 'v';
+                }
+            }
+            else if(k == Keys.W)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'W';
+                }
+                else
+                {
+                    return 'w';
+                }
+            }
+            else if (k == Keys.X)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'X';
+                }
+                else
+                {
+                    return 'x';
+                }
+            }
+            else if (k == Keys.Y)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'Y';
+                }
+                else
+                {
+                    return 'y';
+                }
+            }
+            else if (k == Keys.Z)
+            {
+                if (keyShiftDown || keyCapsLockOn)
+                {
+                    return 'Z';
+                }
+                else
+                {
+                    return 'z';
+                }
+            }
+            else if (k == Keys.Insert)
+            {
+                return (char)((byte)45);
+            }
+            else if (k == Keys.Delete)
+            {
+                return (char)((byte)46);
+            }
+
+            return '_';
+        }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        private void ProcessAllPlayer1Input()
+        {
+            statePrevM = stateM;
+            stateM = Mouse.GetState();
+
+            //handle mouse drag
+            if (stateM.LeftButton == ButtonState.Pressed && statePrevM.LeftButton == ButtonState.Pressed)
+            {
+                lastX = stateM.X;
+                lastY = stateM.Y;
+            }
+
+            if (stateM.X != statePrevM.X || stateM.Y != statePrevM.Y)
+            {
+                lastX = stateM.X;
+                lastY = stateM.Y;
+                ProcessMouseMove(lastX, lastY);
+            }
+
+            //handle key typed
+            statePrevK = stateK;
+            stateK = Keyboard.GetState();
+            if (HasKeyBeenClicked(Keys.Space, stateK) || HasKeyBeenClicked(Keys.Enter, stateK))
+            {
+                ProcessAClick(GameSettings.SRC_KEYBOARD);
+            }
+            else if (HasKeyBeenClicked(Keys.Add, stateK))
+            {
+                //increase speed
+            }
+            else if (HasKeyBeenClicked(Keys.Subtract, stateK))
+            {
+                //decrease speed
+            }
+            else if (HasKeyBeenClicked(Keys.P, stateK))
+            {
+                if (gameState == GameStates.MAIN_GAME)
+                {
+                    //pause game
+                }
+            }
+            else if (HasKeyBeenClicked(Keys.F, stateK))
+            {
+                //clear game flags
+            }
+            else if (HasKeyBeenClicked(Keys.A, stateK))
+            {
+                ProcessAClick(GameSettings.SRC_KEYBOARD);
+            }
+            else if (HasKeyBeenClicked(Keys.B, stateK))
+            {
+                ProcessBClick(GameSettings.SRC_KEYBOARD);
+            }
+            else if (HasKeyBeenClicked(Keys.D, stateK))
+            {
+                ProcessDebugClick();
+            }
+
+            if(HasKeyBeenClicked(Keys.CapsLock, stateK))
+            {
+                keyCapsLockOn = !keyCapsLockOn;
+            }
+
+            if(stateK.IsKeyDown(Keys.LeftShift) || stateK.IsKeyDown(Keys.RightShift))
+            {
+                keyShiftDown = true;
+            }
+            else if(stateK.IsKeyUp(Keys.LeftShift) && stateK.IsKeyUp(Keys.RightShift))
+            {
+                keyShiftDown = false;
+            }
+
+            //handle key pressed
+            if(stateK.GetPressedKeyCount() > 0)
+            {
+                lastKeyPressEvent = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            }
+
+            if(stateK.IsKeyDown(Keys.Down))
+            {
+                ProcessDpadPress(GameSettings.DOWN_KEYBOARD);
+            }
+            else if (stateK.IsKeyDown(Keys.Up))
+            {
+                ProcessDpadPress(GameSettings.UP_KEYBOARD);
+            }
+            else if(stateK.IsKeyDown(Keys.Left))
+            {
+                ProcessDpadPress(GameSettings.LEFT_KEYBOARD);
+            }
+            else if(stateK.IsKeyDown(Keys.Right))
+            {
+                ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
+            }
+            else if(stateK.IsKeyDown(Keys.A))
+            {
+                ProcessAPress(GameSettings.SRC_KEYBOARD);
+            }
+            else if (stateK.IsKeyDown(Keys.B))
+            {
+                ProcessBPress(GameSettings.SRC_KEYBOARD);
+            }
+
+            //handle key released
+            //MmgHelper.wr("handle key released");
+            if (HasKeyBeenClicked(Keys.Down, stateK))
+            {
+                ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
+                ProcessDpadClick(GameSettings.DOWN_KEYBOARD);
+                //MmgHelper.wr("dpad down release click");
+            }
+            else if (HasKeyBeenClicked(Keys.Up, stateK))
+            {
+                ProcessDpadRelease(GameSettings.UP_KEYBOARD);
+                ProcessDpadClick(GameSettings.UP_KEYBOARD);
+            }
+            else if (HasKeyBeenClicked(Keys.Left, stateK))
+            {
+                ProcessDpadRelease(GameSettings.LEFT_KEYBOARD);
+                ProcessDpadClick(GameSettings.LEFT_KEYBOARD);
+            }
+            else if (HasKeyBeenClicked(Keys.Right, stateK))
+            {
+                ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
+                ProcessDpadClick(GameSettings.RIGHT_KEYBOARD);
+            }
+            else if (HasKeyBeenClicked(Keys.A, stateK))
+            {
+                ProcessARelease(GameSettings.SRC_KEYBOARD);
+                ProcessAClick(GameSettings.SRC_KEYBOARD);
+            }
+            else if (HasKeyBeenClicked(Keys.B, stateK))
+            {
+                ProcessBRelease(GameSettings.SRC_KEYBOARD);
+                ProcessBClick(GameSettings.SRC_KEYBOARD);
+            }
+
+            char c;
+            foreach (Keys k in stateK.GetPressedKeys())
+            {
+                c = ConvertKeyToChar(k);
+
+                if (k != Keys.Space && k != Keys.Enter)
+                {
+                    ProcessKeyPress(c, (int)c);
+                }
+                //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' Keys: '" + k.ToString() + " has been pressed.");
+            }
+
+            foreach(Keys k in keysDown)
+            {
+                c = ConvertKeyToChar(k);
+
+                if (HasKeyBeenClicked(k, stateK))
+                {
+                    ProcessKeyRelease(c, (int)c);
+                    //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been released.");
+
+                    ProcessKeyClick(c, (int)c);
+                    //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been clicked.");
+                }
+            }
+
+            if(stateM.LeftButton == ButtonState.Pressed)
+            {
+                ProcessMousePress(stateM.X, stateM.Y);
+            }
+
+            if(HasButtonBeenClicked(stateM.LeftButton, stateM, "LeftButton"))
+            {
+                ProcessMouseRelease(stateM.X, stateM.Y);
+                ProcessMouseClick(stateM.X, stateM.Y);
+            }
+
+            if (HasButtonBeenClicked(stateM.MiddleButton, stateM, "MiddleButton"))
+            {
+                ProcessMouseRelease(stateM.X, stateM.Y);
+                ProcessMouseClick(stateM.X, stateM.Y);
+            }
+
+            if (HasButtonBeenClicked(stateM.RightButton, stateM, "RightButton"))
+            {
+                ProcessMouseRelease(stateM.X, stateM.Y);
+                ProcessMouseClick(stateM.X, stateM.Y);
+            }
+
+            //MmgHelper.wr("Mouse: LastX: '" + lastX + "' LastY: '" + lastY + "'");
+        }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <param name="gameTime"></param>
+        protected override void Draw(GameTime gameTime)
+        {
+            if(EXIT == true)
+            {
+                return;
+            }
+
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+            RenderGame();            
+            base.Draw(gameTime);
         }
 
         /// <summary>
@@ -1210,6 +1967,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public virtual void UpdateGame()
         {
             updateTick++;
+
+            if (PAUSE == true || EXIT == true)
+            {
+                //do nothing
+                return;
+            }
 
             prev = now;
             now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
@@ -1224,6 +1987,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 gpioRunner.PollGpio();
             }
 
+            ProcessAllPlayer1Input();
+
             // update game logic here
             if (currentScreen != null)
             {
@@ -1236,13 +2001,14 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public virtual void RenderGame()
         {
-            if (PAUSE == true || EXIT == true)
+            if (visible == false)
             {
-                //do nothing
+                return;
             }
-            else
+            
+            if (EXIT == true)
             {
-                UpdateGame();
+                return;
             }
 
             //update graphics
@@ -1255,50 +2021,46 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
             else
             {
-                /*
-                //clear background
-                g.setColor(Color.DarkGray);
-                g.fillRect(0, 0, winWidth, winHeight);
-
-                //draw border
-                g.setColor(Color.White);
-                g.drawRect(MmgScreenData.GetGameLeft() - 1, MmgScreenData.GetGameTop() - 1, MmgScreenData.GetGameWidth() + 1, MmgScreenData.GetGameHeight() + 1);
-
-                g.setColor(Color.Black);
-                g.fillRect(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight());
-                */
-
+                g.GraphicsDevice.SetRenderTarget(background);
                 p.SetGraphics(g);
                 p.SetAdvRenderHints();
-                currentScreen.MmgDraw(p);
 
+                g.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
+
+                //clear background
+                g.GraphicsDevice.Clear(DarkGray);
+                g.Draw(sqrWhite.GetImage(), new Rectangle(MmgScreenData.GetGameLeft() - 1, MmgScreenData.GetGameTop() - 1, MmgScreenData.GetGameWidth() + 2, MmgScreenData.GetGameHeight() + 2), new Rectangle(0, 0, sqrWhite.GetWidth(), sqrWhite.GetHeight()), Color.White);
+                g.Draw(sqrBlack.GetImage(), new Rectangle(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight()), new Rectangle(0, 0, sqrBlack.GetWidth(), sqrBlack.GetHeight()), Color.White);
+
+                currentScreen.MmgDraw(p);
+                
                 if (MmgHelper.LOGGING == true)
                 {
-                    /*
-                    tmpF = g.getFont();
-                    g.setFont(debugFont);
-                    g.setColor(debugColor);
-                    g.drawString(GamePanel.FPS, 15, 15);
-                    g.drawString("Var1: " + GamePanel.VAR1, 15, 35);
-                    g.drawString("Var2: " + GamePanel.VAR2, 15, 55);
-                    g.setFont(tmpF);
-                    */
+                    g.DrawString(debugFont, GamePanel.FPS, new Vector2(15, 15 - mmgDebugFont.GetHeight() + 2), Color.White);
+                    g.DrawString(debugFont, "Var1: " + GamePanel.VAR1, new Vector2(15, 35 - mmgDebugFont.GetHeight() + 2), Color.White);
+                    g.DrawString(debugFont, "Var2: " + GamePanel.VAR2, new Vector2(15, 55 - mmgDebugFont.GetHeight() + 2), Color.White);
                 }
-            }
 
+                g.End();
+                g.GraphicsDevice.SetRenderTarget(null);
+            }
+            
+            bg.GraphicsDevice.SetRenderTarget(null);
+            p.SetGraphics(bg);
+            p.SetAdvRenderHints();
+
+            bg.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
             //draws a scaled version of the state of the background buffer to the screen buffer if scaling is enabled
             if (scale != 1.0)
             {
-                //bg.drawImage(background, sMyX, sMyY, sWinWidth, sWinHeight, 0, 0, winWidth, winHeight, null);
                 bg.Draw(background, new Rectangle(sMyX, sMyY, sWinWidth, sWinHeight), new Rectangle(0, 0, winWidth, winHeight), Color.White);
             }
             else
             {
-                //bg.drawImage(background, myX, myY, null);
                 bg.Draw(background, new Vector2(myX, myY), Color.White);
+                //bg.Draw(test.GetImage(), Vector2.One, Color.White);
             }
-
-            bg.Dispose();
+            bg.End();
 
             UpdateScreen();
         }

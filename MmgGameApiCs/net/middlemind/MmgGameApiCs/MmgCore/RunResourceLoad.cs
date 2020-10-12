@@ -68,6 +68,16 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public bool exitLoad;
 
         /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        public CrossThreadWrite xTrdW;
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        private byte[] fileData;
+
+        /// <summary>
         /// A constructor that sets the thin load option, don't load binary image or sound data yet, and sets the source byte array to parse.
         /// </summary>
         public RunResourceLoad()
@@ -78,6 +88,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             readComplete = false;
             exitLoad = false;
             slowDown = 0;
+            xTrdW = new CrossThreadWrite();
         }
 
         /// <summary>
@@ -87,6 +98,23 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public void SetUpdateHandler(LoadResourceUpdateHandler Update)
         {
             update = Update;
+        }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        private byte[] ReadFileData(string file)
+        {
+            byte[] ret = null;
+            FileInfo fInf = new FileInfo(file);
+            FileStream fs = new FileStream(file, FileMode.Open);
+            int len = (int)fInf.Length;
+            ret = new byte[len];
+            fs.Read(ret, 0, len);
+            fs.Close();
+            return ret;
         }
 
         /// <summary>
@@ -207,6 +235,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 MmgHelper.wrErr(e);
             }
 
+            fileData = null;
             try
             {
                 //auto load audio files
@@ -217,7 +246,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     for (i = 0; i < tlen; i++)
                     {
                         MmgHelper.wr("Found auto_load file: " + asFiles[i].Name + " Path: " + asFiles[i].FullName);
-                        MmgHelper.GetBasicCachedSound(asFiles[i].FullName, asFiles[i].Name);
+                        //MmgHelper.GetBasicCachedSound(asFiles[i].FullName, asFiles[i].Name);
+                        fileData = ReadFileData(asFiles[i].FullName);
+                        xTrdW.AddCommand("GetBasicCachedSound", new object[] { asFiles[i].Name, fileData });
                         readPos = i * loadMultiplier;
 
                         if (update != null)
@@ -258,8 +289,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                     for (i = 0; i < tlen; i++)
                     {
-                        MmgHelper.wr("RunResourceLoad: Found auto_load file: " + adFiles[i].Name + " Path: " + adFiles[i].FullName);
-                        MmgHelper.GetBasicCachedBmp(adFiles[i].FullName, adFiles[i].Name);
+                        MmgHelper.wr("Found auto_load file: " + adFiles[i].Name + " Path: " + adFiles[i].FullName);
+                        //MmgHelper.GetBasicCachedBmp(adFiles[i].FullName, adFiles[i].Name);
+                        fileData = ReadFileData(adFiles[i].FullName);
+                        xTrdW.AddCommand("GetBasicCachedBmp", new object[] { adFiles[i].Name, fileData });
                         readPos = i * loadMultiplier;
 
                         if (update != null)

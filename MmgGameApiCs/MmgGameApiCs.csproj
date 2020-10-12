@@ -31,5 +31,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="net\middlemind\MmgGameApiCs\MmgCore\" />
+    <Folder Include="net\middlemind\MmgGameApiCs\MmgTestSpace\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="net\middlemind\MmgGameApiCs\MmgCore\GamePanelOld.cs" />
+    <Compile Remove="net\middlemind\MmgGameApiCs\MmgCore\MainFrame.cs" />
+    <Compile Remove="net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="net\middlemind\MmgGameApiCs\MmgCore\GamePanelOld.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <None Include="net\middlemind\MmgGameApiCs\MmgCore\MainFrame.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <None Include="net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <None Include="net\middlemind\MmgGameApiCs\MmgCore\MmgApiGameOld.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
 </Project>
