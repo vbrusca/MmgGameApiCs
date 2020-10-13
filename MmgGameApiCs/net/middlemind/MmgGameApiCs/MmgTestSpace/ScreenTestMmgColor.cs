@@ -12,7 +12,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
     ///
     /// @author Victor G.Brusca
     /// </summary>
-    public class ScreenTestMmg9Slice : MmgGameScreen, GenericEventHandler, MmgEventHandler
+    public class ScreenTestMmgColor : MmgGameScreen, GenericEventHandler, MmgEventHandler
     {
         /// <summary>
         /// The game state this screen has.
@@ -20,49 +20,79 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         protected readonly GameStates gameState;
 
         /// <summary>
-        /// Event handler for firing generic events. Events would fire when the
-        /// screen has non UI actions to broadcast.
+        /// Event handler for firing generic events. 
+        /// Events would fire when the screen has non UI actions to broadcast.
         /// </summary>
         protected GenericEventHandler handler;
 
         /// <summary>
-        /// The GamePanel that owns this game screen. Usually a JPanel instance that
-        /// holds a reference to this game screen object.
+        /// The GamePanel that owns this game screen.
+        /// Usually a JPanel instance that holds a reference to this game screen object.
         /// </summary>
         protected readonly GamePanel owner;
 
         /// <summary>
-        /// An MmgFont class instance used to label the background MmgBmp class.
+        /// An MmgFont instance used as a label for the first color entry.
         /// </summary>
-        private MmgFont bgroundLabel;
+        private MmgFont color1Label;
 
         /// <summary>
-        /// An MmgFont class instance used as the title of this test screen.
+        /// An MmgFont instance used as a label for the second color entry.
+        /// </summary>
+        private MmgFont color2Label;
+
+        /// <summary>
+        /// An MmgFont instance used as a label for the third color entry.
+        /// </summary>
+        private MmgFont color3Label;
+
+        /// <summary>
+        /// An MmgFont instance used as a label for the fourth color entry.
+        /// </summary>
+        private MmgFont color4Label;
+
+        /// <summary>
+        /// An MmgFont instance used as a label for the fifth color entry.
+        /// </summary>
+        private MmgFont color5Label;
+
+        /// <summary>
+        /// An MmgFont instance used as a label for the sixth color entry.
+        /// </summary>
+        private MmgFont color6Label;
+
+        /// <summary>
+        /// An MmgFont instance used as a label for the seventh color entry.
+        /// </summary>
+        private MmgFont color7Label;
+
+        /// <summary>
+        /// An MmgFont instance used as a label for the eighth color entry.
+        /// </summary>
+        private MmgFont color8Label;
+
+        /// <summary>
+        /// An MmgFont instance used as a label for the ninth color entry.
+        /// </summary>
+        private MmgFont color9Label;
+
+        /// <summary>
+        /// An MmgFont instance used as a label for the tenth color entry.
+        /// </summary>
+        private MmgFont color10Label;
+
+        /// <summary>
+        /// An MmgFont class instance used as the title of the test game screen.
         /// </summary>
         private MmgFont title;
 
         /// <summary>
-        /// An MmgBmp class instance used as the source of the Mmg9Slice scaling object.
-        /// </summary>
-        private MmgBmp bground;
-
-        /// <summary>
-        /// An MmgFont class instance used as the Mmg9Slice label.
-        /// </summary>
-        private MmgFont menuBgroundLabel;
-
-        /// <summary>
-        /// An Mmg9Slice class instance used to scale the MmgBmp bground object.
-        /// </summary>
-        private Mmg9Slice menuBground;
-
-        /// <summary>
-        /// A private bool flag indicating that there is work to be done on the next MmgUpdate call.
+        /// A bool flag indicating if there is work to do in the next MmgUpdate call.
         /// </summary>
         private bool isDirty = false;
 
         /// <summary>
-        /// A private bool flag indicating work was done during the MmgUpdate method call.
+        /// A private bool flag used in the MmgUpdate method during the update process.
         /// </summary>
         private bool lret = false;
 
@@ -71,13 +101,13 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         /// <param name="State">The game state of this game screen.</param>
         /// <param name="Owner">The owner of this game screen.</param>
-        public ScreenTestMmg9Slice(GameStates State, GamePanel Owner) : base()
+        public ScreenTestMmgColor(GameStates State, GamePanel Owner) : base()
         {
             pause = false;
             ready = false;
             gameState = State;
             owner = Owner;
-            MmgHelper.wr("ScreenTestMmg9Slice.Constructor");
+            MmgHelper.wr("ScreenTestMmgColor.Constructor");
         }
 
         /// <summary>
@@ -86,7 +116,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <param name="Handler">A class that implements the GenericEventHandler interface.</param>
         public virtual void SetGenericEventHandler(GenericEventHandler Handler)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.SetGenericEventHandler");
+            MmgHelper.wr("ScreenTestMmgColor.SetGenericEventHandler");
             handler = Handler;
         }
 
@@ -104,51 +134,105 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         public virtual void LoadResources()
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.LoadResources");
+            MmgHelper.wr("ScreenTestMmgColor.LoadResources");
             pause = true;
             SetHeight(MmgScreenData.GetGameHeight());
             SetWidth(MmgScreenData.GetGameWidth());
             SetPosition(MmgScreenData.GetPosition());
 
-            MmgPen p;
-            p = new MmgPen();
-            p.SetCacheOn(false);
-
-            int width = MmgHelper.ScaleValue(345);
-            int height = MmgHelper.ScaleValue(300);
-
             title = MmgFontData.CreateDefaultBoldMmgFontLg();
-            title.SetText("<  Screen Test Mmg 9 Slice (2 / " + GamePanel.TOTAL_TESTS + ")  >");
+            title.SetText("<  Screen Test Mmg Color (11 / " + GamePanel.TOTAL_TESTS + ")  >");
             MmgHelper.CenterHorAndTop(title);
             title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
             AddObj(title);
 
-            bground = MmgHelper.GetBasicCachedBmp("popup_window_base.png");
-            MmgHelper.CenterHorAndVert(bground);
-            bground.SetX(bground.GetX() - MmgHelper.ScaleValue(200));
-            bground.SetY(bground.GetY() - MmgHelper.ScaleValue(32));
-            AddObj(bground);
+            int yDiff = MmgHelper.ScaleValue(40);
+            int yStrt = GetY() + MmgHelper.ScaleValue(140);
+            int xLeft = MmgHelper.ScaleValue(200);
+            int i = 0;
 
-            bgroundLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-            bgroundLabel.SetText("Original MmgBmp");
-            bgroundLabel.SetPosition(bground.GetPosition().Clone());
-            bgroundLabel.SetY(bgroundLabel.GetY() - bgroundLabel.GetHeight());
-            AddObj(bgroundLabel);
+            color1Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color1Label.SetMmgColor(MmgColor.GetBlueGray());
+            color1Label.SetText("Color: BlueGray");
+            color1Label.SetX(xLeft);
+            color1Label.SetY(yStrt + (yDiff * i));
+            AddObj(color1Label);
+            i++;
 
-            menuBground = new Mmg9Slice(MmgHelper.ScaleValue(16), bground, width, height);
-            menuBground.SetPosition(MmgVector2.GetOriginVec());
-            menuBground.SetWidth(width);
-            menuBground.SetHeight(height);
-            MmgHelper.CenterHorAndVert(menuBground);
-            menuBground.SetX(menuBground.GetX() + MmgHelper.ScaleValue(200));
-            menuBground.SetY(menuBground.GetY() + MmgHelper.ScaleValue(36));
-            AddObj(menuBground);
+            color2Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color2Label.SetMmgColor(MmgColor.GetCarbonGray());
+            color2Label.SetText("Color: CarbonGray");
+            color2Label.SetX(xLeft);
+            color2Label.SetY(yStrt + (yDiff * i));
+            AddObj(color2Label);
+            i++;
 
-            menuBgroundLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-            menuBgroundLabel.SetText("MmgBmp Resized By Mmg9Slice");
-            menuBgroundLabel.SetPosition(menuBground.GetPosition().Clone());
-            menuBgroundLabel.SetY(menuBgroundLabel.GetY() - menuBgroundLabel.GetHeight());
-            AddObj(menuBgroundLabel);
+            color3Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color3Label.SetMmgColor(MmgColor.GetDarkRed());
+            color3Label.SetText("Color: DarkRed");
+            color3Label.SetX(xLeft);
+            color3Label.SetY(yStrt + (yDiff * i));
+            AddObj(color3Label);
+            i++;
+
+            color4Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color4Label.SetMmgColor(MmgColor.GetIridium());
+            color4Label.SetText("Color: Iridium");
+            color4Label.SetX(xLeft);
+            color4Label.SetY(yStrt + (yDiff * i));
+            AddObj(color4Label);
+            i++;
+
+            color5Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color5Label.SetMmgColor(MmgColor.GetLimeGreen());
+            color5Label.SetText("Color: LimeGreen");
+            color5Label.SetX(xLeft);
+            color5Label.SetY(yStrt + (yDiff * i));
+            AddObj(color5Label);
+            i++;
+
+            xLeft = GetWidth() / 2 + MmgHelper.ScaleValue(70);
+            i = 0;
+
+            color6Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color6Label.SetMmgColor(MmgColor.GetMaroon());
+            color6Label.SetText("Color: Maroon");
+            color6Label.SetX(xLeft);
+            color6Label.SetY(yStrt + (yDiff * i));
+            AddObj(color6Label);
+            i++;
+
+            color7Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color7Label.SetMmgColor(MmgColor.GetOil());
+            color7Label.SetText("Color: Oil");
+            color7Label.SetX(xLeft);
+            color7Label.SetY(yStrt + (yDiff * i));
+            AddObj(color7Label);
+            i++;
+
+            color8Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color8Label.SetMmgColor(MmgColor.GetOlive());
+            color8Label.SetText("Color: Olive");
+            color8Label.SetX(xLeft);
+            color8Label.SetY(yStrt + (yDiff * i));
+            AddObj(color8Label);
+            i++;
+
+            color9Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color9Label.SetMmgColor(MmgColor.GetOrange());
+            color9Label.SetText("Color: Orange");
+            color9Label.SetX(xLeft);
+            color9Label.SetY(yStrt + (yDiff * i));
+            AddObj(color9Label);
+            i++;
+
+            color10Label = MmgFontData.CreateDefaultBoldMmgFontLg();
+            color10Label.SetMmgColor(MmgColor.GetPlatinum());
+            color10Label.SetText("Color: Platinum");
+            color10Label.SetX(xLeft);
+            color10Label.SetY(yStrt + (yDiff * i));
+            AddObj(color10Label);
+            i++;
 
             ready = true;
             pause = false;
@@ -161,7 +245,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public override bool ProcessMousePress(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessScreenPress");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessScreenPress");
             return ProcessMousePress(v.GetX(), v.GetY());
         }
 
@@ -173,7 +257,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public override bool ProcessMousePress(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessScreenPress");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessScreenPress");
             return true;
         }
 
@@ -184,7 +268,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public override bool ProcessMouseRelease(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessScreenRelease");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessScreenRelease");
             return ProcessMousePress(v.GetX(), v.GetY());
         }
 
@@ -196,7 +280,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public override bool ProcessMouseRelease(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessScreenRelease");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessScreenRelease");
             return true;
         }
 
@@ -207,7 +291,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessAClick(int src)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessAClick");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessAClick");
             return true;
         }
 
@@ -218,7 +302,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessBClick(int src)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessBClick");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessBClick");
             return true;
         }
 
@@ -227,7 +311,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         public override void ProcessDebugClick()
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessDebugClick");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessDebugClick");
         }
 
         /// <summary>
@@ -237,7 +321,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessDpadPress(int dir)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessDpadPress: " + dir);
+            MmgHelper.wr("ScreenTestMmgColor.ProcessDpadPress: " + dir);
             return true;
         }
 
@@ -248,15 +332,15 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessDpadRelease(int dir)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessDpadRelease: " + dir);
+            MmgHelper.wr("ScreenTestMmgColor.ProcessDpadRelease: " + dir);
             if (dir == GameSettings.RIGHT_KEYBOARD)
             {
-                owner.SwitchGameState(GameStates.GAME_SCREEN_03);
+                owner.SwitchGameState(GameStates.GAME_SCREEN_12);
 
             }
             else if (dir == GameSettings.LEFT_KEYBOARD)
             {
-                owner.SwitchGameState(GameStates.GAME_SCREEN_01);
+                owner.SwitchGameState(GameStates.GAME_SCREEN_10);
 
             }
             return true;
@@ -269,7 +353,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessDpadClick(int dir)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessDpadClick: " + dir);
+            MmgHelper.wr("ScreenTestMmgColor.ProcessDpadClick: " + dir);
             return true;
         }
 
@@ -281,12 +365,12 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>bool indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
         public override bool ProcessMouseClick(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessScreenClick");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessScreenClick");
             return ProcessMouseClick(v.GetX(), v.GetY());
         }
 
         /// <summary>
-        /// Process a screen click. 
+        /// Process a screen click.
         /// Expects coordinate that don't take into account the offset of the game and panel.
         /// </summary>
         /// <param name="x">The X axis coordinate of the screen click.</param>
@@ -294,7 +378,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>bool indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
         public override bool ProcessMouseClick(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessScreenClick");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessScreenClick");
             return true;
         }
 
@@ -306,7 +390,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessKeyClick(char c, int code)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.ProcessKeyClick");
+            MmgHelper.wr("ScreenTestMmgColor.ProcessKeyClick");
             return true;
         }
 
@@ -317,12 +401,8 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         {
             pause = true;
             SetBackground(null);
-            bground = null;
-            bgroundLabel = null;
             title = null;
-            menuBground = null;
-            menuBgroundLabel = null;
-            base.ClearObjs();
+            ClearObjs();
             ready = false;
         }
 
@@ -353,7 +433,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <param name="obj">A GenericEventMessage object instance to process.</param>
         public virtual void HandleGenericEvent(GenericEventMessage obj)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+            MmgHelper.wr("ScreenTestMmgColor.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
         }
 
         /// <summary>
@@ -362,7 +442,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <param name="e">An MmgEvent object instance to process.</param>
         public virtual void MmgHandleEvent(MmgEvent e)
         {
-            MmgHelper.wr("ScreenTestMmg9Slice.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+            MmgHelper.wr("ScreenTestMmgColor.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
         }
     }
 }

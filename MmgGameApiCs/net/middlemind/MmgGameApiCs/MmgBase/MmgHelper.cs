@@ -897,6 +897,27 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="w"></param>
+        /// <param name="h"></param>
+        /// <param name="c"></param>
+        /// <param name="dBmp"></param>
+        public static void FillRectWithColor(int x, int y, int w, int h, Color c, Texture2D buffImg)
+        {
+            int len = w * h;
+            Color[] pixels = new Color[len];
+            buffImg.GetData<Color>(0, new Rectangle(x, y, w, h), pixels, 0, len);
+            for(int i = 0; i < len; i ++)
+            {
+                pixels[i] = c;
+            }
+            buffImg.SetData<Color>(pixels);
+        }
+
+        /// <summary>
         /// A static method used to create an MmgSound object from a sound resource file.
         /// </summary>
         /// <param name="path">The path of the sound resource loaded.</param>
