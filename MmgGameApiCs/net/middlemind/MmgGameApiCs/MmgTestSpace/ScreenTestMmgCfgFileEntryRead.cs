@@ -15,7 +15,6 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
     /// </summary>
     public class ScreenTestMmgCfgFileEntryRead : MmgGameScreen, GenericEventHandler, MmgEventHandler
     {
-
         /// <summary>
         /// The game state this screen has.
         /// </summary>

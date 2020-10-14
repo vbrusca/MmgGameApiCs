@@ -1,19 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
 namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 {
+    /*
+     * A game screen class that extends the MmgGameScreen base class.
+     * This class is for testing API classes.
+     * Created by Middlemind Games 02/25/2020
+     * 
+     * @author Victor G. Brusca
+     */
     /// <summary>
-    /// A game screen class that extends the MmgGameScreen base class.
-    /// This class is for testing API classes.
-    /// Created by Middlemind Games 02/25/2020
-    ///
-    /// @author Victor G.Brusca
+    /// 
     /// </summary>
-    public class ScreenTestMmgCfgFileEntryWrite : MmgGameScreen, GenericEventHandler, MmgEventHandler
+    public class ScreenTestMmgRect : MmgGameScreen, GenericEventHandler, MmgEventHandler
     {
         /// <summary>
         /// The game state this screen has.
@@ -21,56 +24,41 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         protected readonly GameStates gameState;
 
         /// <summary>
-        /// Event handler for firing generic events. Events would fire when the
-        /// screen has non UI actions to broadcast.
+        /// Event handler for firing generic events.
+        /// Events would fire when the screen has non UI actions to broadcast.
         /// </summary>
         protected GenericEventHandler handler;
 
         /// <summary>
-        /// The GamePanel that owns this game screen. Usually a JPanel instance that
-        /// holds a reference to this game screen object.
+        /// The GamePanel that owns this game screen.
+        /// Usually a JPanel instance that holds a reference to this game screen object.
         /// </summary>
         protected readonly GamePanel owner;
 
         /// <summary>
-        /// An MmgFont class instance that is used to label the String value pulled from the class configuration file.
+        /// An MmgRect class instance used as an example of drawing rectangles in this test game screen.
         /// </summary>
-        private MmgFont cfgFileStringLabel;
+        private MmgRect rect1;
 
         /// <summary>
-        /// An MmgFont class instance that is used to label the float value pulled from the class configuration file.
+        /// An MmgRect class instance used as an example of drawing rectangles in this test game screen.
         /// </summary>
-        private MmgFont cfgFileFloatLabel;
+        private MmgRect rect2;
 
         /// <summary>
-        /// An MmgFont class instance that is used to label the int value pulled from the class configuration file.
+        /// An MmgRect class instance used as an example of drawing rectangles in this test game screen.
         /// </summary>
-        private MmgFont cfgFileIntLabel;
+        private MmgRect rect3;
 
         /// <summary>
-        /// An MmgFont class instance that is used to label the class configuration entries with information about the file used to load the values.
-        /// </summary>
-        private MmgFont infoLabel1;
-
-        /// <summary>
-        /// An MmgFont class instance that is used to label the commands to run a write configuration file test.
-        /// </summary>
-        private MmgFont infoLabel2;
-
-        /// <summary>
-        /// An MmgFont class instance that is used to label the path where the configuration file is written.
-        /// </summary>
-        private MmgFont infoLabel3;
-
-        /// <summary>
-        /// An MmgFont class instance used as the title of the test game screen.
+        /// An MmgFont class instance used as the title for the test game screen.
         /// </summary>
         private MmgFont title;
 
         /// <summary>
-        /// A data structure that stores all the class configuration file entries from the target file.
+        /// An instance of the lower level Java Color class used to adjust the color of the MmgPen class.
         /// </summary>
-        public Dictionary<string, MmgCfgFileEntry> classConfig;
+        private Color c;
 
         /// <summary>
         /// A bool flag indicating if there is work to do in the next MmgUpdate call.
@@ -87,22 +75,22 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         /// <param name="State">The game state of this game screen.</param>
         /// <param name="Owner">The owner of this game screen.</param>
-        public ScreenTestMmgCfgFileEntryWrite(GameStates State, GamePanel Owner) : base()
+        public ScreenTestMmgRect(GameStates State, GamePanel Owner) : base()
         {
             pause = false;
             ready = false;
             gameState = State;
             owner = Owner;
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.Constructor");
+            MmgHelper.wr("ScreenTestMmgRect.Constructor");
         }
 
         /// <summary>
         /// Sets a generic event handler that will receive generic events from this object.
         /// </summary>
         /// <param name="Handler">A class that implements the GenericEventHandler interface.</param>
-        public virtual void SetGenericEventHandler(GenericEventHandler Handler)
+        public void SetGenericEventHandler(GenericEventHandler Handler)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.SetGenericEventHandler");
+            MmgHelper.wr("ScreenTestMmgRect.SetGenericEventHandler");
             handler = Handler;
         }
 
@@ -110,7 +98,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// Gets the GenericEventHandler this game screen uses to handle GenericEvents.
         /// </summary>
         /// <returns>The GenericEventHandler this screen uses to handle GenericEvents.</returns>
-        public virtual GenericEventHandler GetGenericEventHandler()
+        public GenericEventHandler GetGenericEventHandler()
         {
             return handler;
         }
@@ -118,87 +106,23 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <summary>
         /// Loads all the resources needed to display this game screen.
         /// </summary>
-        public virtual void LoadResources()
+        public void LoadResources()
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.LoadResources");
+            MmgHelper.wr("ScreenTestMmgRect.LoadResources");
             pause = true;
             SetHeight(MmgScreenData.GetGameHeight());
             SetWidth(MmgScreenData.GetGameWidth());
             SetPosition(MmgScreenData.GetPosition());
 
-            classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry.txt");
-
             title = MmgFontData.CreateDefaultBoldMmgFontLg();
-            title.SetText("<  Screen Test Mmg Cfg File Entry Write (20 / " + GamePanel.TOTAL_TESTS + ")  >");
+            title.SetText("<  Screen Test Mmg Rect (17 / " + GamePanel.TOTAL_TESTS + ")  >");
             MmgHelper.CenterHorAndTop(title);
             title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
             AddObj(title);
 
-            String val = "";
-            float fval = 0.0f;
-            int ival = 0;
-
-            cfgFileStringLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-            if (classConfig.ContainsKey("example_string"))
-            {
-                val = classConfig["example_string"].str;
-            }
-            else
-            {
-                val = "Unknown Example String";
-            }
-            cfgFileStringLabel.SetText("Config File Entry String Value: " + val);
-            MmgHelper.CenterHorAndVert(cfgFileStringLabel);
-            cfgFileStringLabel.SetY(cfgFileStringLabel.GetY() - MmgHelper.ScaleValue(60));
-            AddObj(cfgFileStringLabel);
-
-            cfgFileFloatLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-            if (classConfig.ContainsKey("example_float"))
-            {
-                fval = (float)classConfig["example_float"].number;
-                val = (fval + "");
-            }
-            else
-            {
-                val = "Unknown Example Float";
-            }
-            cfgFileFloatLabel.SetText("Config File Entry Float Value: " + val);
-            MmgHelper.CenterHorAndVert(cfgFileFloatLabel);
-            cfgFileFloatLabel.SetY(cfgFileStringLabel.GetY() + MmgHelper.ScaleValue(40));
-            AddObj(cfgFileFloatLabel);
-
-            cfgFileIntLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-            if (classConfig.ContainsKey("example_int"))
-            {
-                ival = (int)classConfig["example_int"].number;
-                val = (ival + "");
-            }
-            else
-            {
-                val = "Unknown Example Integer";
-            }
-            cfgFileIntLabel.SetText("Config File Entry Int Value: " + val);
-            MmgHelper.CenterHorAndVert(cfgFileIntLabel);
-            cfgFileIntLabel.SetY(cfgFileFloatLabel.GetY() + MmgHelper.ScaleValue(40));
-            AddObj(cfgFileIntLabel);
-
-            infoLabel1 = MmgFontData.CreateDefaultBoldMmgFontSm();
-            infoLabel1.SetText("Class config loaded from: screen_test_mmg_cfg_file_entry.txt");
-            MmgHelper.CenterHorAndVert(infoLabel1);
-            infoLabel1.SetY(cfgFileIntLabel.GetY() + MmgHelper.ScaleValue(40));
-            AddObj(infoLabel1);
-
-            infoLabel2 = MmgFontData.CreateDefaultBoldMmgFontSm();
-            infoLabel2.SetText("Press 'w' to write config entries to: screen_test_mmg_cfg_file_entry_output.txt");
-            MmgHelper.CenterHorAndVert(infoLabel2);
-            infoLabel2.SetY(infoLabel1.GetY() + MmgHelper.ScaleValue(40));
-            AddObj(infoLabel2);
-
-            infoLabel3 = MmgFontData.CreateDefaultBoldMmgFontSm();
-            infoLabel3.SetText(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry_output.txt");
-            MmgHelper.CenterHorAndVert(infoLabel3);
-            infoLabel3.SetY(infoLabel2.GetY() + MmgHelper.ScaleValue(40));
-            AddObj(infoLabel3);
+            rect1 = new MmgRect(MmgHelper.ScaleValue(100), MmgHelper.ScaleValue(190), MmgHelper.ScaleValue(190) + GetHeight() / 4, GetWidth() - MmgHelper.ScaleValue(100));
+            rect2 = new MmgRect(MmgHelper.ScaleValue(100), MmgHelper.ScaleValue(210) + GetHeight() / 4, MmgHelper.ScaleValue(210) + GetHeight() / 4 + GetHeight() / 4, GetWidth() - MmgHelper.ScaleValue(100));
+            rect3 = new MmgRect(MmgHelper.ScaleValue(90), MmgHelper.ScaleValue(180), MmgHelper.ScaleValue(90) + GetHeight() / 2 + GetHeight() / 4 + MmgHelper.ScaleValue(28), GetWidth() - MmgHelper.ScaleValue(90));
 
             ready = true;
             pause = false;
@@ -211,7 +135,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public override bool ProcessMousePress(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenPress");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessScreenPress");
             return ProcessMousePress(v.GetX(), v.GetY());
         }
 
@@ -223,7 +147,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public override bool ProcessMousePress(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenPress");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessScreenPress");
             return true;
         }
 
@@ -234,7 +158,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public override bool ProcessMouseRelease(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenRelease");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessScreenRelease");
             return ProcessMousePress(v.GetX(), v.GetY());
         }
 
@@ -246,7 +170,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public override bool ProcessMouseRelease(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenRelease");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessScreenRelease");
             return true;
         }
 
@@ -257,7 +181,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessAClick(int src)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessAClick");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessAClick");
             return true;
         }
 
@@ -268,7 +192,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessBClick(int src)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessBClick");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessBClick");
             return true;
         }
 
@@ -277,7 +201,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         public override void ProcessDebugClick()
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDebugClick");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessDebugClick");
         }
 
         /// <summary>
@@ -287,7 +211,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessDpadPress(int dir)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadPress: " + dir);
+            MmgHelper.wr("ScreenTestMmgRect.ProcessDpadPress: " + dir);
             return true;
         }
 
@@ -298,15 +222,15 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessDpadRelease(int dir)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadRelease: " + dir);
+            MmgHelper.wr("ScreenTestMmgRect.ProcessDpadRelease: " + dir);
             if (dir == GameSettings.RIGHT_KEYBOARD)
             {
-                owner.SwitchGameState(GameStates.GAME_SCREEN_21);
+                owner.SwitchGameState(GameStates.GAME_SCREEN_18);
 
             }
             else if (dir == GameSettings.LEFT_KEYBOARD)
             {
-                owner.SwitchGameState(GameStates.GAME_SCREEN_19);
+                owner.SwitchGameState(GameStates.GAME_SCREEN_16);
 
             }
             return true;
@@ -319,32 +243,32 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessDpadClick(int dir)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessDpadClick: " + dir);
+            MmgHelper.wr("ScreenTestMmgRect.ProcessDpadClick: " + dir);
             return true;
         }
 
         /// <summary>
-        /// Process a screen click. 
+        /// Process a screen click.
         /// Expects coordinate that don't take into account the offset of the game and panel.
         /// </summary>
         /// <param name="v">The coordinates of the click.</param>
-        /// <returns>bool indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
+        /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
         public override bool ProcessMouseClick(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenClick");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessScreenClick");
             return ProcessMouseClick(v.GetX(), v.GetY());
         }
 
         /// <summary>
-        /// Process a screen click. 
+        /// Process a screen click.
         /// Expects coordinate that don't take into account the offset of the game and panel.
         /// </summary>
         /// <param name="x">The X axis coordinate of the screen click.</param>
         /// <param name="y">The Y axis coordinate of the screen click.</param>
-        /// <returns>bool indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
+        /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
         public override bool ProcessMouseClick(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessScreenClick");
+            MmgHelper.wr("ScreenTestMmgRect.ProcessScreenClick");
             return true;
         }
 
@@ -356,13 +280,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <returns>A bool indicating if this event was handled or not.</returns>
         public override bool ProcessKeyClick(char c, int code)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.ProcessKeyClick");
-            if (c == 'w' || c == 'W')
-            {
-                MmgHelper.WriteClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_test_mmg_cfg_file_entry_output.txt", classConfig);
-                infoLabel1.SetText("Class config written to: screen_test_mmg_cfg_file_entry_output.txt on: " + DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-                MmgHelper.CenterHor(infoLabel1);
-            }
+            MmgHelper.wr("ScreenTestMmgRect.ProcessKeyClick");
             return true;
         }
 
@@ -373,15 +291,12 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         {
             pause = true;
             SetBackground(null);
-            title = null;
 
-            cfgFileFloatLabel = null;
-            cfgFileIntLabel = null;
-            cfgFileStringLabel = null;
-            classConfig = null;
-            infoLabel1 = null;
-            infoLabel2 = null;
-            infoLabel3 = null;
+            rect1 = null;
+            rect2 = null;
+            rect3 = null;
+            title = null;
+            color = null;
 
             ClearObjs();
             ready = false;
@@ -405,6 +320,18 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             if (pause == false && isVisible == true)
             {
                 base.MmgDraw(p);
+                c = p.GetGraphicsColor();
+
+                p.SetGraphicsColor(MmgColor.GetLimeGreen().GetColor());
+                p.DrawRect(rect1);
+
+                p.SetGraphicsColor(MmgColor.GetPink().GetColor());
+                p.DrawRect(rect2);
+
+                p.SetGraphicsColor(MmgColor.GetYellowOrange().GetColor());
+                p.DrawRect(rect3);
+
+                p.SetGraphicsColor(c);
             }
         }
 
@@ -414,7 +341,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <param name="obj">A GenericEventMessage object instance to process.</param>
         public virtual void HandleGenericEvent(GenericEventMessage obj)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+            MmgHelper.wr("ScreenTestMmgRect.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
         }
 
         /// <summary>
@@ -423,7 +350,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <param name="e">An MmgEvent object instance to process.</param>
         public virtual void MmgHandleEvent(MmgEvent e)
         {
-            MmgHelper.wr("ScreenTestMmgCfgFileEntryWrite.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+            MmgHelper.wr("ScreenTestMmgRect.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
         }
     }
 }

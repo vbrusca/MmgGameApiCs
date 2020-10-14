@@ -12,7 +12,8 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
     ///
     /// @author Victor G.Brusca
     /// </summary>
-    public class ScreenTestMmgFont : MmgGameScreen, GenericEventHandler, MmgEventHandler {
+    public class ScreenTestMmgFont : MmgGameScreen, GenericEventHandler, MmgEventHandler
+    {
         /// <summary>
         /// The game state this screen has.
         /// </summary>

@@ -117,7 +117,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="defaultValue">The default value for this class configuration key.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
         /// <returns></returns>
-        public static string ContainsKeystring(string key, string defaultValue, Dictionary<string, MmgCfgFileEntry> classConfig)
+        public static string ContainsKeyString(string key, string defaultValue, Dictionary<string, MmgCfgFileEntry> classConfig)
         {
             string ret = defaultValue;
             if (classConfig.ContainsKey(key))
