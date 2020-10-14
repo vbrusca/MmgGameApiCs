@@ -6,13 +6,13 @@ using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 {
     /// <summary>
-    /// A game screen class that extends the MmgGameScreen base class.
-    /// This class is for testing API classes.
+    /// A game screen object, ScreenTest, that : the MmgGameScreen base class.
+    /// This class is for testing new UI widgets, etc.
     /// Created by Middlemind Games 02/25/2020
-    ///
-    /// @author Victor G.Brusca
+    /// 
+    /// @author Victor G. Brusca
     /// </summary>
-    public class ScreenTestMmgScrollVert : MmgGameScreen, GenericEventHandler, MmgEventHandler
+    public class ScreenTestMmgTextField : MmgGameScreen, GenericEventHandler, MmgEventHandler
     {
         /// <summary>
         /// The game state this screen has.
@@ -20,31 +20,46 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         protected readonly GameStates gameState;
 
         /// <summary>
-        /// Event handler for firing generic events. Events would fire when the
-        /// screen has non UI actions to broadcast.
+        /// Event handler for firing generic events.
+        /// Events would fire when the screen has non UI actions to broadcast.
         /// </summary>
         protected GenericEventHandler handler;
 
         /// <summary>
-        /// The GamePanel that owns this game screen. Usually a JPanel instance that
-        /// holds a reference to this game screen object.
+        /// The GamePanel that owns this game screen.
+        /// Usually a JPanel instance that holds a reference to this game screen object.
         /// </summary>
         protected readonly GamePanel owner;
 
         /// <summary>
-        /// An MmgScrollVert class instance used in this test game screen.
-        /// </summary>
-        protected MmgScrollVert scrollVert;
-
-        /// <summary>
-        /// An MmgBmp class instance used as the source for an Mmg9Slice resizing.
+        /// An MmgBmp class instance used as the background for the MmgTextField test object.
         /// </summary>
         private MmgBmp bground;
 
         /// <summary>
-        /// An Mmg9Slice class instance used as the background for the MmgScrollHor scroll panel.
+        /// An MmgTextField class instance used as the example object in this test game screen.
         /// </summary>
-        private Mmg9Slice menuBground;
+        private MmgTextField txtField;
+
+        /// <summary>
+        /// An MmgFont class instance used as a label for the text field.
+        /// </summary>
+        private MmgFont txtFieldLabel;
+
+        /// <summary>
+        /// An MmgFont class instance used as a label for the maximum length of the text field.
+        /// </summary>
+        private MmgFont maxLenLabel;
+
+        /// <summary>
+        /// An MmgFont class instance that displays the text held by the MmgTextField.
+        /// </summary>
+        private MmgFont txtFieldText;
+
+        /// <summary>
+        /// An MmgFont class instance that displays error information when a maximum length error occurs in the MmgTextField test object.
+        /// </summary>
+        private MmgFont txtFieldMaxLenError;
 
         /// <summary>
         /// An MmgFont class instance used as the title for the test game screen.
@@ -52,53 +67,46 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         private MmgFont title;
 
         /// <summary>
-        /// An MmgFont class instance used to display instructions on this test game screen.
-        /// </summary>
-        private MmgFont instr;
-
-        /// <summary>
-        /// An MmgFont class instance used to display event information from the MmgScrollHor class instance.
-        /// </summary>
-        private MmgFont wgdEvent;
-
-        /// <summary>
         /// A bool flag indicating if there is work to do in the next MmgUpdate call.
         /// </summary>
         private bool isDirty = false;
 
         /// <summary>
-        /// A private bool flag used in the MmgUpdate method during the update process. 
+        /// A private bool flag used in the MmgUpdate method during the update process.
         /// </summary>
         private bool lret = false;
 
         /// <summary>
         /// Constructor, sets the game state associated with this screen, and sets the owner GamePanel instance.
-        /// </summary>
+        /// 
         /// <param name="State">The game state of this game screen.</param>
         /// <param name="Owner">The owner of this game screen.</param>
-        public ScreenTestMmgScrollVert(GameStates State, GamePanel Owner) : base()
+        /// </summary>
+        public ScreenTestMmgTextField(GameStates State, GamePanel Owner) : base()
         {
             pause = false;
             ready = false;
             gameState = State;
             owner = Owner;
-            MmgHelper.wr("ScreenTestMmgScrollVert.Constructor");
+            MmgHelper.wr("ScreenTestMsgTextField.Constructor");
         }
 
         /// <summary>
         /// Sets a generic event handler that will receive generic events from this object.
+        /// 
+        /// <param name="Handler">A class that , the GenericEventHandler interface.</param>
         /// </summary>
-        /// <param name="Handler">A class that implements the GenericEventHandler interface.</param>
         public virtual void SetGenericEventHandler(GenericEventHandler Handler)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.SetGenericEventHandler");
+            MmgHelper.wr("ScreenTestMsgTextField.SetGenericEventHandler");
             handler = Handler;
         }
 
         /// <summary>
         /// Gets the GenericEventHandler this game screen uses to handle GenericEvents.
-        /// </summary>
+        /// 
         /// <returns>The GenericEventHandler this screen uses to handle GenericEvents.</returns>
+        /// </summary>
         public virtual GenericEventHandler GetGenericEventHandler()
         {
             return handler;
@@ -109,161 +117,132 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         public virtual void LoadResources()
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.LoadResources");
+            MmgHelper.wr("ScreenTestMsgTextField.LoadResources");
             pause = true;
             SetHeight(MmgScreenData.GetGameHeight());
             SetWidth(MmgScreenData.GetGameWidth());
             SetPosition(MmgScreenData.GetPosition());
 
+            int width = MmgHelper.ScaleValue(200);
+            int height = MmgHelper.ScaleValue(50);
+
             title = MmgFontData.CreateDefaultBoldMmgFontLg();
-            title.SetText("<  Screen Test Mmg Scroll Vert (15 / " + GamePanel.TOTAL_TESTS + ")  >");
+            title.SetText("<  Screen Test Mmg Text Field (4 / " + GamePanel.TOTAL_TESTS + ")  >");
             MmgHelper.CenterHorAndTop(title);
             title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
             AddObj(title);
 
-            instr = MmgFontData.CreateDefaultBoldMmgFontLg();
-            instr.SetText("Press 'A' to navigate left, press 'B' to navigate right.");
-            MmgHelper.CenterHorAndTop(instr);
-            instr.SetY(instr.GetY() + MmgHelper.ScaleValue(70));
-            AddObj(instr);
-
-            MmgPen p;
-            p = new MmgPen();
-            p.SetCacheOn(false);
-
-            int totalWidth = MmgHelper.ScaleValue(235);
-            int totalHeight = MmgHelper.ScaleValue(210);
             bground = MmgHelper.GetBasicCachedBmp("popup_window_base.png");
-            menuBground = new Mmg9Slice(16, bground, totalWidth, totalHeight);
-            menuBground.SetPosition(MmgVector2.GetOriginVec());
-            menuBground.SetWidth(totalWidth);
-            menuBground.SetHeight(totalHeight);
-            MmgHelper.CenterHorAndVert(menuBground);
-            AddObj(menuBground);
 
-            MmgBmp vPort = null;
-            MmgBmp sPane = null;
-            MmgDrawableBmpSet dBmpSetScrollPane = null;
-            MmgDrawableBmpSet dBmpSetViewPort = null;
-            MmgColor sBarColor;
-            MmgColor sBarSldrColor;
-            int sBarWidth = 0;
-            int sBarSldrHeight = 0;
-            int interval = 0;
-            int hund2 = MmgHelper.ScaleValue(200);
-            int hund4 = MmgHelper.ScaleValue(400);
-            int sWidth = MmgHelper.ScaleValue(200);
-            int sHeight = MmgHelper.ScaleValue(200);
+            txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), width, height, 12, 15);
+            MmgHelper.CenterHorAndVert(txtField);
+            txtField.SetMaxLengthOn(true);
+            txtField.SetEventHandler(this);
+            txtField.SetY(txtField.GetY() - MmgHelper.ScaleValue(30));
+            AddObj(txtField);
 
-            dBmpSetScrollPane = MmgHelper.CreateDrawableBmpSet(hund2, hund4, false, MmgColor.GetBlack());
-            dBmpSetScrollPane.graphics.setColor(Color.RED);
-            dBmpSetScrollPane.graphics.fillRect(0, 0, hund2, hund4 / 4);
-            dBmpSetScrollPane.graphics.setColor(Color.BLUE);
-            dBmpSetScrollPane.graphics.fillRect(0, hund4 / 4, hund2, hund4 / 4);
-            dBmpSetScrollPane.graphics.setColor(Color.GREEN);
-            dBmpSetScrollPane.graphics.fillRect(0, hund4 / 2, hund2, hund4 / 4);
+            txtFieldLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+            txtFieldLabel.SetText("MmgTextField Example");
+            MmgHelper.CenterHorAndVert(txtFieldLabel);
+            txtFieldLabel.SetY(txtFieldLabel.GetY() - MmgHelper.ScaleValue(55));
+            AddObj(txtFieldLabel);
 
-            dBmpSetViewPort = MmgHelper.CreateDrawableBmpSet(hund2, hund2, false, MmgColor.GetBlack());
-            dBmpSetViewPort.graphics.setColor(Color.LIGHT_GRAY);
-            dBmpSetViewPort.graphics.fillRect(0, 0, hund2, hund2);
+            txtFieldText = MmgFontData.CreateDefaultBoldMmgFontLg();
+            txtFieldText.SetText("Text Field Text: ");
+            MmgHelper.CenterHorAndVert(txtFieldText);
+            txtFieldText.SetY(txtFieldText.GetY() + MmgHelper.ScaleValue(40));
+            AddObj(txtFieldText);
 
-            vPort = dBmpSetViewPort.img;
-            sPane = dBmpSetScrollPane.img;
+            maxLenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
+            maxLenLabel.SetText("Max Len Error On: " + txtField.GetMaxLengthOn() + " Max Len: " + MmgTextField.DEFAULT_MAX_LENGTH);
+            MmgHelper.CenterHorAndVert(maxLenLabel);
+            maxLenLabel.SetY(maxLenLabel.GetY() + MmgHelper.ScaleValue(70));
+            AddObj(maxLenLabel);
 
-            sBarColor = MmgColor.GetLightGray();
-            sBarSldrColor = MmgColor.GetGray();
-            sBarWidth = MmgHelper.ScaleValue(15);
-            sBarSldrHeight = MmgHelper.ScaleValue(30);
-            interval = 10;
-
-            scrollVert = new MmgScrollVert(vPort, sPane, sBarColor, sBarSldrColor, sBarWidth, sBarSldrHeight, interval);
-            scrollVert.SetIsVisible(true);
-            scrollVert.SetWidth(sWidth + scrollVert.GetScrollBarWidth());
-            scrollVert.SetHeight(sHeight);
-            scrollVert.SetEventHandler(this);
-            MmgScrollVert.SHOW_CONTROL_BOUNDING_BOX = true;
-            MmgHelper.CenterHorAndVert(scrollVert);
-            AddObj(scrollVert);
-
-            wgdEvent = MmgFontData.CreateDefaultMmgFontSm();
-            wgdEvent.SetText("Event: ");
-            MmgHelper.CenterHorAndTop(wgdEvent);
-            wgdEvent.SetY(scrollVert.GetY() + scrollVert.GetHeight() + MmgHelper.ScaleValue(30));
-            AddObj(wgdEvent);
+            txtFieldMaxLenError = MmgFontData.CreateDefaultBoldMmgFontLg();
+            txtFieldMaxLenError.SetText("Max Len Error Current Time MS: ");
+            MmgHelper.CenterHorAndVert(txtFieldMaxLenError);
+            txtFieldMaxLenError.SetY(txtFieldMaxLenError.GetY() + MmgHelper.ScaleValue(100));
+            AddObj(txtFieldMaxLenError);
 
             ready = true;
             pause = false;
         }
 
         /// <summary>
-        /// Expects a relative X, Y vector that takes into account the game's offset and the current panel's offset.
-        /// </summary>
+        /// Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+        /// offset.
+        /// 
         /// <param name="v">The coordinates of the mouse event.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessMousePress(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenPress");
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenPress");
             return ProcessMousePress(v.GetX(), v.GetY());
         }
 
         /// <summary>
-        /// Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
-        /// </summary>
+        /// Expects a relative X, Y values that takes into account the game's offset and the current panel's
+        /// offset.
+        /// 
         /// <param name="x">The X coordinate of the mouse.</param>
         /// <param name="y">The Y coordinate of the mouse.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessMousePress(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenPress");
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenPress");
             return true;
         }
 
         /// <summary>
-        /// Expects a relative X, Y vector that takes into account the game's offset and the current panel's offset.
-        /// </summary>
+        /// Expects a relative X, Y vector that takes into account the game's offset and the current panel's
+        /// offset.
+        /// 
         /// <param name="v">The coordinates of the mouse event.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessMouseRelease(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenRelease");
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
             return ProcessMousePress(v.GetX(), v.GetY());
         }
 
         /// <summary>
         /// Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
-        /// </summary>
+        /// 
         /// <param name="x">The X coordinate of the event.</param>
         /// <param name="y">The Y coordinate of the event.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessMouseRelease(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenRelease");
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenRelease");
             return true;
         }
 
         /// <summary>
         /// A method to handle A click events.
-        /// </summary>
+        /// 
         /// <param name="src">The source gamepad, keyboard of the A event.</param>
         /// <returns>A bool indicating if this event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessAClick(int src)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessAClick");
-            //Go Left
-            owner.SwitchGameState(GameStates.GAME_SCREEN_14);
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessAClick");
             return true;
         }
 
         /// <summary>
         /// A method to handle B click events.
-        /// </summary>
+        /// 
         /// <param name="src">The source gamepad, keyboard of the B event.</param>
         /// <returns>A bool indicating if this event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessBClick(int src)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessBClick");
-            //Go Right
-            owner.SwitchGameState(GameStates.GAME_SCREEN_16);
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessBClick");
             return true;
         }
 
@@ -272,80 +251,101 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         public override void ProcessDebugClick()
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessDebugClick");
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessDebugClick");
         }
 
         /// <summary>
         /// A method to handle dpad press events.
-        /// </summary>
+        /// 
         /// <param name="dir">The direction id for the dpad event.</param>
         /// <returns>A bool indicating if this event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessDpadPress(int dir)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessDpadPress: " + dir);
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessDpadPress: " + dir);
             return true;
         }
 
         /// <summary>
         /// A method to handle dpad release events.
-        /// </summary>
+        /// 
         /// <param name="dir">The direction id for the dpad event.</param>
         /// <returns>A bool indicating if this event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessDpadRelease(int dir)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessDpadRelease: " + dir);
-            scrollVert.ProcessDpadRelease(dir);
-            isDirty = true;
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessDpadRelease: " + dir);
+            if (dir == GameSettings.RIGHT_KEYBOARD)
+            {
+                owner.SwitchGameState(GameStates.GAME_SCREEN_05);
+
+            }
+            else if (dir == GameSettings.LEFT_KEYBOARD)
+            {
+                owner.SwitchGameState(GameStates.GAME_SCREEN_03);
+
+            }
             return true;
         }
 
         /// <summary>
         /// A method to handle dpad click events.
-        /// </summary>
+        /// 
         /// <param name="dir">The direction id for the dpad event.</param>
         /// <returns>A bool indicating if this event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessDpadClick(int dir)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessDpadClick: " + dir);
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessDpadClick: " + dir);
             return true;
         }
 
         /// <summary>
-        /// Process a screen click. 
+        /// Process a screen click.
         /// Expects coordinate that don't take into account the offset of the game and panel.
-        /// </summary>
+        /// 
         /// <param name="v">The coordinates of the click.</param>
-        /// <returns>bool indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>        
+        /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
+        /// </summary>
         public override bool ProcessMouseClick(MmgVector2 v)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenClick");
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenClick");
             return ProcessMouseClick(v.GetX(), v.GetY());
         }
 
         /// <summary>
-        /// Process a screen click. 
+        /// Process a screen click.
         /// Expects coordinate that don't take into account the offset of the game and panel.
-        /// </summary>
+        /// 
         /// <param name="x">The X axis coordinate of the screen click.</param>
         /// <param name="y">The Y axis coordinate of the screen click.</param>
-        /// <returns>bool indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>        
+        /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
+        /// </summary>
         public override bool ProcessMouseClick(int x, int y)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenClick");
-            scrollVert.ProcessScreenClick(x, y);
-            isDirty = true;
+            MmgHelper.wr("ScreenTestMsgTextField.ProcessScreenClick");
             return true;
         }
 
         /// <summary>
         /// A method to handle keyboard click events.
-        /// </summary>
+        /// 
         /// <param name="c">The key used in the event.</param>
         /// <param name="code">The code of the key used in the event.</param>
         /// <returns>A bool indicating if this event was handled or not.</returns>
+        /// </summary>
         public override bool ProcessKeyClick(char c, int code)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.ProcessKeyClick");
+            if (Char.IsLetter(c) || Char.IsDigit(c))
+            {
+                txtField.ProcessKeyClick(c, code);
+            }
+            else if (code == 8)
+            {
+                txtField.DeleteChar();
+            }
+            txtFieldText.SetText("Text Field Text: " + txtField.GetTextFieldString());
+            MmgHelper.CenterHor(txtFieldText);
             return true;
         }
 
@@ -357,12 +357,12 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             pause = true;
             SetBackground(null);
 
-            scrollVert = null;
             bground = null;
-            menuBground = null;
+            txtField = null;
             title = null;
-            instr = null;
-            wgdEvent = null;
+            txtFieldLabel = null;
+            txtFieldMaxLenError = null;
+            txtFieldText = null;
 
             ClearObjs();
             ready = false;
@@ -370,26 +370,44 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 
         /// <summary>
         /// Returns the game state of this game screen.
-        /// </summary>
+        /// 
         /// <returns>The game state of this game screen.</returns>
+        /// </summary>
         public virtual GameStates GetGameState()
         {
             return gameState;
         }
 
         /// <summary>
-        /// The MmgUpdate method used to call the update method of the child objects.
+        /// Base draw method, handles drawing this class.
+        /// 
+        /// <param name="p">The MmgPen used to draw this object.</param>
         /// </summary>
-        /// <param name="updateTick">The update tick number.</param>
+        public override void MmgDraw(MmgPen p)
+        {
+            if (pause == false && isVisible == true)
+            {
+                base.MmgDraw(p);
+            }
+        }
+
+        /// <summary>
+        /// The MmgUpdate method used to call the update method of the child objects.
+        /// 
+        /// <param name="updateTicks">The update tick number.</param>
         /// <param name="currentTimeMs">The current time in the game in milliseconds.</param>
         /// <param name="msSinceLastFrame">The number of milliseconds between the last frame and this frame.</param>
-        /// <returns>A bool indicating if any work was done this game frame.</returns>        
+        /// <returns>A bool indicating if any work was done this game frame.</returns>
+        /// </summary>
         public override bool MmgUpdate(int updateTick, long currentTimeMs, long msSinceLastFrame)
         {
             lret = false;
 
             if (pause == false && isVisible == true)
             {
+                //always run this update
+                txtField.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
+
                 if (isDirty == true)
                 {
                     base.GetObjects().SetIsDirty(true);
@@ -405,45 +423,28 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         }
 
         /// <summary>
-        /// Base draw method, handles drawing this class.
-        /// </summary>
-        /// <param name="p">The MmgPen used to draw this object.</param>
-        public override void MmgDraw(MmgPen p)
-        {
-            if (pause == false && isVisible == true)
-            {
-                base.MmgDraw(p);
-            }
-        }
-
-        /// <summary>
         /// The callback method to handle GenericEventMessage objects.
-        /// </summary>
+        /// 
         /// <param name="obj">A GenericEventMessage object instance to process.</param>
+        /// </summary>
         public virtual void HandleGenericEvent(GenericEventMessage obj)
         {
-            MmgHelper.wr("ScreenTestMmgScrollVert.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
+            MmgHelper.wr("ScreenTestMsgTextField.HandleGenericEvent: Id: " + obj.id + " GameState: " + obj.gameState);
         }
 
         /// <summary>
         /// The callback method to handle MmgEvent objects.
-        /// </summary>
+        /// 
         /// <param name="e">An MmgEvent object instance to process.</param>
+        /// </summary>
         public virtual void MmgHandleEvent(MmgEvent e)
         {
-            if (e.GetEventId() == MmgScrollVert.SCROLL_VERT_CLICK_EVENT_ID || e.GetEventId() == MmgScrollHor.SCROLL_HOR_CLICK_EVENT_ID || e.GetEventId() == MmgScrollHorVert.SCROLL_BOTH_CLICK_EVENT_ID)
+            MmgHelper.wr("ScreenTestMsgTextField.HandleMmgEvent: Msg: " + e.GetMessage() + " Id: " + e.GetEventId());
+            if (e.GetMessage() != null && e.GetMessage().Equals("error_max_length") == true)
             {
-                MmgVector2 v2 = (MmgVector2)e.GetExtra();
-                wgdEvent.SetText("Event: Id: " + e.GetEventId() + " Type: " + e.GetEventType() + " Pos: " + v2.ToString() + " Msg: " + e.GetMessage() + " " + DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-
+                txtFieldMaxLenError.SetText("Max Len Error Current Time MS: " + DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+                MmgHelper.CenterHor(txtFieldMaxLenError);
             }
-            else
-            {
-                wgdEvent.SetText("Event: Id: " + e.GetEventId() + " Type: " + e.GetEventType() + " Msg: " + e.GetMessage() + " " + DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-
-            }
-
-            MmgHelper.CenterHor(wgdEvent);
         }
     }
 }
