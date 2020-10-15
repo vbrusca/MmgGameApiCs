@@ -7,6 +7,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
     /// A centralized main class that can run the different executable classes in the library.
     ///
     /// @author Victor G.Brusca, Middlemind Games
+    /// 10/14/2020
     /// </summary>
     public class MmgCentralMain
     {
@@ -16,7 +17,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
          * 
          * @param args  String array of arguments, append the executable name before its arguments.
          */
-        public static void ain(string[] args)
+        public static void Main(string[] args)
         {
             if(args == null || args.Length == 0)
             {
@@ -34,13 +35,17 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
             else if (args[0] != null && args[0].ToLower().Equals("mmgtestspace"))
             {
-               // MmgTestScreens.AltMain(nArgs);
+                MmgTestScreens.AltMain(nArgs);
 
             }
             else if (args[0] != null && args[0].ToLower().Equals("mmgapigame"))
             {
                 MmgApiGame.AltMain(nArgs);
 
+            }
+            else
+            {
+                MmgTestScreens.AltMain(nArgs);
             }
         }
     }

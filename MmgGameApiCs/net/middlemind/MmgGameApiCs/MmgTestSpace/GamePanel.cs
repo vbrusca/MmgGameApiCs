@@ -598,7 +598,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
                 screenLoading.LoadResources();
                 screenLoading.UnPause();
                 screenLoading.SetIsVisible(true);
-                //screenLoading.StartDatLoad();
+                screenLoading.StartDatLoad();
                 currentScreen = screenLoading;
 
             }

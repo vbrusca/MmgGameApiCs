@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
@@ -156,16 +157,22 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             int sHeight = MmgHelper.ScaleValue(200);
 
             dBmpSetScrollPane = MmgHelper.CreateDrawableBmpSet(hund4, hund4, false, MmgColor.GetBlack());
-            dBmpSetScrollPane.graphics.setColor(Color.RED);
-            dBmpSetScrollPane.graphics.fillRect(0, 0, hund4 / 4, hund4 / 4);
-            dBmpSetScrollPane.graphics.setColor(Color.BLUE);
-            dBmpSetScrollPane.graphics.fillRect(hund4 / 4, hund4 / 4, hund4 / 4, hund4 / 4);
-            dBmpSetScrollPane.graphics.setColor(Color.GREEN);
-            dBmpSetScrollPane.graphics.fillRect(hund4 / 2, hund4 / 2, hund4 / 4, hund4 / 4);
+            //dBmpSetScrollPane.graphics.setColor(Color.RED);
+            //dBmpSetScrollPane.graphics.fillRect(0, 0, hund4 / 4, hund4 / 4);
+            MmgHelper.FillRectWithColor(0, 0, hund4 / 4, hund4 / 4, Color.Red, dBmpSetScrollPane.buffImg);
+
+            //dBmpSetScrollPane.graphics.setColor(Color.BLUE);
+            //dBmpSetScrollPane.graphics.fillRect(hund4 / 4, hund4 / 4, hund4 / 4, hund4 / 4);
+            MmgHelper.FillRectWithColor(hund4 / 4, hund4 / 4, hund4 / 4, hund4 / 4, Color.Blue, dBmpSetScrollPane.buffImg);
+
+            //dBmpSetScrollPane.graphics.setColor(Color.GREEN);
+            //dBmpSetScrollPane.graphics.fillRect(hund4 / 2, hund4 / 2, hund4 / 4, hund4 / 4);
+            MmgHelper.FillRectWithColor(hund4 / 2, hund4 / 2, hund4 / 4, hund4 / 4, Color.Green, dBmpSetScrollPane.buffImg);
 
             dBmpSetViewPort = MmgHelper.CreateDrawableBmpSet(hund2, hund2, false, MmgColor.GetBlack());
-            dBmpSetViewPort.graphics.setColor(Color.LIGHT_GRAY);
-            dBmpSetViewPort.graphics.fillRect(0, 0, hund2, hund2);
+            //dBmpSetViewPort.graphics.setColor(Color.LIGHT_GRAY);
+            //dBmpSetViewPort.graphics.fillRect(0, 0, hund2, hund2);
+            MmgHelper.FillRectWithColor(0, 0, hund2, hund2, Color.LightGray, dBmpSetScrollPane.buffImg);
 
             vPort = dBmpSetViewPort.img;
             sPane = dBmpSetScrollPane.img;

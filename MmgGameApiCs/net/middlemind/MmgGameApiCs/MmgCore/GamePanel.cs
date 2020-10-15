@@ -479,6 +479,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             prev = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
+            screenSplash = new ScreenSplash(GameStates.SPLASH, this);
+            screenLoading = new ScreenLoading(GameStates.LOADING, this);
+            screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
+
             Exiting += windowClosing;
             Activated += windowActivated;
         }
@@ -620,9 +624,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             MmgPen.ADV_RENDER_HINTS = true;
             PrepBuffers();
 
-            screenSplash = new ScreenSplash(GameStates.SPLASH, this);
-            screenLoading = new ScreenLoading(GameStates.LOADING, this);
-            screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
+            //screenSplash = new ScreenSplash(GameStates.SPLASH, this);
+            //screenLoading = new ScreenLoading(GameStates.LOADING, this);
+            //screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
 
             screenSplash.SetGenericEventHandler(this);
             screenLoading.SetGenericEventHandler(this);
@@ -1226,9 +1230,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 if (buttonsDown.Contains(key))
                 {
                     buttonsDown.Remove(key);
+                    return true;
                 }
-                return true;
             }
+
+            return false;
         }
 
         /// <summary>

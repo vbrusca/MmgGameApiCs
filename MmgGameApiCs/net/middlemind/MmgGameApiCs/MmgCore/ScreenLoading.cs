@@ -507,18 +507,22 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             if (isVisible)
             {
                 base.MmgUpdate(updateTick, currentTimeMs, msSinceLastFrame);
-                xTrdC = xTrdR.GetNextCommand();
-                if (xTrdC != null && xTrdC.name.Equals("GetBasicCachedSound"))
+
+                if (xTrdR != null)
                 {
-                    MmgHelper.wr("ByteArrayLength: " + ((byte[])xTrdC.payload[1]).Length);
-                    MmgHelper.wr("FileName: " + ((string)xTrdC.payload[0]));
-                    MmgHelper.GetBasicCachedSound((byte[])xTrdC.payload[1], (string)xTrdC.payload[0]);
-                }
-                else if(xTrdC != null && xTrdC.name.Equals("GetBasicCachedBmp") && xTrdC.payload != null && xTrdC.payload.Length >= 2)
-                {
-                    MmgHelper.wr("ByteArrayLength: " + ((byte[])xTrdC.payload[1]).Length);
-                    MmgHelper.wr("FileName: " + ((string)xTrdC.payload[0]));
-                    MmgHelper.GetBasicCachedBmp((byte[])xTrdC.payload[1], (string)xTrdC.payload[0]);
+                    xTrdC = xTrdR.GetNextCommand();
+                    if (xTrdC != null && xTrdC.name.Equals("GetBasicCachedSound"))
+                    {
+                        MmgHelper.wr("ByteArrayLength: " + ((byte[])xTrdC.payload[1]).Length);
+                        MmgHelper.wr("FileName: " + ((string)xTrdC.payload[0]));
+                        MmgHelper.GetBasicCachedSound((byte[])xTrdC.payload[1], (string)xTrdC.payload[0]);
+                    }
+                    else if (xTrdC != null && xTrdC.name.Equals("GetBasicCachedBmp") && xTrdC.payload != null && xTrdC.payload.Length >= 2)
+                    {
+                        MmgHelper.wr("ByteArrayLength: " + ((byte[])xTrdC.payload[1]).Length);
+                        MmgHelper.wr("FileName: " + ((string)xTrdC.payload[0]));
+                        MmgHelper.GetBasicCachedBmp((byte[])xTrdC.payload[1], (string)xTrdC.payload[0]);
+                    }
                 }
                 
                 if (GetLoadComplete() == true)
