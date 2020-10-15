@@ -1,3 +1,0 @@
-example_float=0.75
-example_int=2.0
-example_string->The string value stored.

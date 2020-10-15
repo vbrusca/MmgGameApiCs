@@ -205,9 +205,11 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             bmpSet = MmgHelper.CreateDrawableBmpSet(bmpCache.GetWidth() / 2, bmpCache.GetHeight() / 2, true);
             srcRect = new MmgRect(0, 0, bmpCache.GetHeight() / 2, bmpCache.GetWidth() / 2);
             dstRect = new MmgRect(0, 0, bmpCache.GetHeight() / 2, bmpCache.GetWidth() / 2);
+            bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(bmpSet.buffImg);
             bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             bmpSet.p.DrawBmp(bmpCache, srcRect, dstRect);
             bmpSet.p.GetGraphics().End();
+            bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
 
             bmpSet.img.SetY(GetY() + MmgHelper.ScaleValue(210));
             bmpSet.img.SetX(MmgHelper.ScaleValue(650));
