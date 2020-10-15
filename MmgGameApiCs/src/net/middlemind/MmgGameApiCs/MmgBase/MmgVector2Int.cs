@@ -246,6 +246,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="d"></param>
+        public override void SetVector(double[] d)
+        {
+            SetX((int)d[0]);
+            SetY((int)d[0]);
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <returns></returns>
+        public override double[] GetVector()
+        {
+            return new double[] { GetXDouble(), GetYDouble() };
+        }
+
+        /// <summary>
         /// Clones this object to a float based vector.
         /// </summary>
         /// <returns>A float based clone.</returns>

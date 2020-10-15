@@ -170,7 +170,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// Sets the GamePanel for this class to use as the game being displayed.
         /// </summary>
         /// <param name="gp">The GamePanel to display.</param>
-        public virtual void SetGamePanel(GamePanelOld gp)
+        public virtual void SetGamePanel(GamePanel gp)
         {
             pnlGame = gp;
         }
@@ -179,7 +179,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// Gets the current GamePanel this classing is using to display a game.
         /// </summary>
         /// <returns>The current GamePanel being displayed.</returns>
-        public virtual GamePanelOld GetGamePanel()
+        public virtual GamePanel GetGamePanel()
         {
             return pnlGame;
         }

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Folder Include="net\middlemind\MmgGameApiCs\MmgCore\" />
     <Folder Include="net\middlemind\MmgGameApiCs\MmgTestSpace\" />
+    <Folder Include="src\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="net\middlemind\MmgGameApiCs\MmgCore\MainFrame.cs" />
