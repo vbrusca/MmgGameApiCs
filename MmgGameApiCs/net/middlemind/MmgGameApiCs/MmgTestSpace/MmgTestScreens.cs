@@ -347,10 +347,11 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             //LOAD ENGINE CONFIG FILE
             try
             {
-                if (MmgApiGame.ENGINE_CONFIG_FILE != null && MmgApiGame.ENGINE_CONFIG_FILE.Equals("") == false)
+                MmgHelper.wr("Found engine config file: " + ENGINE_CONFIG_FILE);
+                if (ENGINE_CONFIG_FILE != null && ENGINE_CONFIG_FILE.Equals("") == false)
                 {
                     GameSettingsImporter dci = new GameSettingsImporter();
-                    bool r = dci.ImportGameSettings(MmgApiGame.ENGINE_CONFIG_FILE);
+                    bool r = dci.ImportGameSettings(ENGINE_CONFIG_FILE);
                     MmgHelper.wr("Engine config load result: " + r);
 
                     int len = dci.GetValues().Keys.Count;
@@ -424,7 +425,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 
             try
             {
-                pnlGame = new GamePanel(MmgApiGame.PANEL_WIDTH, MmgApiGame.PANEL_HEIGHT, (MmgApiGame.WIN_WIDTH - MmgApiGame.PANEL_WIDTH) / 2, (MmgApiGame.WIN_HEIGHT - MmgApiGame.PANEL_HEIGHT) / 2, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
+                pnlGame = new GamePanel(PANEL_WIDTH, PANEL_HEIGHT, (WIN_WIDTH - PANEL_WIDTH) / 2, (WIN_HEIGHT - PANEL_HEIGHT) / 2, GAME_WIDTH, GAME_HEIGHT);
                 pnlGame.Run();
             }
             catch (Exception e)

@@ -159,7 +159,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             g.Draw(img, new Rectangle(0, 0, w, h), new Rectangle(0, 0, w, h), Color.White, (float)MmgHelper.ConvertToRadians(angle), new Vector2(w/2, h/2), SpriteEffects.None, 0);
             g.End();
-            g.Dispose();
             g.GraphicsDevice.SetRenderTarget(null);
 
             MmgBmp r = new MmgBmp(bg);

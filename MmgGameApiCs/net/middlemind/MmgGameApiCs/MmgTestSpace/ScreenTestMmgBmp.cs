@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Graphics;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
@@ -204,7 +205,9 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             bmpSet = MmgHelper.CreateDrawableBmpSet(bmpCache.GetWidth() / 2, bmpCache.GetHeight() / 2, true);
             srcRect = new MmgRect(0, 0, bmpCache.GetHeight() / 2, bmpCache.GetWidth() / 2);
             dstRect = new MmgRect(0, 0, bmpCache.GetHeight() / 2, bmpCache.GetWidth() / 2);
+            bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             bmpSet.p.DrawBmp(bmpCache, srcRect, dstRect);
+            bmpSet.p.GetGraphics().End();
 
             bmpSet.img.SetY(GetY() + MmgHelper.ScaleValue(210));
             bmpSet.img.SetX(MmgHelper.ScaleValue(650));
