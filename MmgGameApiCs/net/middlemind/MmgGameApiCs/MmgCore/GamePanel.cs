@@ -2042,6 +2042,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 
                 if (MmgHelper.LOGGING == true)
                 {
+                    g.Draw(sqrBlack.GetImage(), new Rectangle(0, 0, winWidth, 60), Color.White);
                     g.DrawString(debugFont, GamePanel.FPS, new Vector2(15, 15 - mmgDebugFont.GetHeight() + 2), Color.White);
                     g.DrawString(debugFont, "Var1: " + GamePanel.VAR1, new Vector2(15, 35 - mmgDebugFont.GetHeight() + 2), Color.White);
                     g.DrawString(debugFont, "Var2: " + GamePanel.VAR2, new Vector2(15, 55 - mmgDebugFont.GetHeight() + 2), Color.White);
