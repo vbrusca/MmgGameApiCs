@@ -165,7 +165,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             MmgVector2 tmpPos = frame1.GetPosition().Clone();
             tmpPos.SetY(tmpPos.GetY() + MmgHelper.ScaleValue(15));
             sprite1 = new MmgSprite(frames, tmpPos);
-            sprite1.SetFrameTime(200l);
+            sprite1.SetFrameTime(200L);
             AddObj(sprite1);
 
             sprite2 = sprite1.CloneTyped();

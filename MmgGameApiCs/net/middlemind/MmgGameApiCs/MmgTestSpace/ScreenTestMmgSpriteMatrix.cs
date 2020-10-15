@@ -138,7 +138,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             tmpPos.SetY(tmpPos.GetY() + MmgHelper.ScaleValue(15));
             tmpPos.SetX(MmgScreenData.GetGameWidth() - 64 - 25);
             sprite = new MmgSprite(spriteMatrix.GetFrames(), tmpPos);
-            sprite.SetFrameTime(200l);
+            sprite.SetFrameTime(200L);
             AddObj(sprite);
 
             spriteLabel = MmgFontData.CreateDefaultBoldMmgFontSm();

@@ -3,7 +3,7 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
-namespace middlemind.MmgGameApiCs.MmgTestSpace
+namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 {
     /// <summary>
     /// A game screen class that : the MmgGameScreen base class.

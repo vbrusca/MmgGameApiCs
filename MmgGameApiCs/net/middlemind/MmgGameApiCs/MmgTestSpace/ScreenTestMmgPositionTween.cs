@@ -157,7 +157,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             MmgVector2 tmpPos = frame1.GetPosition().Clone();
             tmpPos.SetY(tmpPos.GetY() + MmgHelper.ScaleValue(15));
             sprite = new MmgSprite(frames, tmpPos);
-            sprite.SetFrameTime(200l);
+            sprite.SetFrameTime(200L);
             AddObj(sprite);
 
             posTweenLabel = MmgFontData.CreateDefaultBoldMmgFontLg();

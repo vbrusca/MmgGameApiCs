@@ -60,12 +60,12 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <summary>
         /// TODO: Add comment
         /// </summary>
-        private long time = 0l;
+        private long time = 0L;
 
         /// <summary>
         /// TODO: Add comment
         /// </summary>
-        private long timingAmt = 500l;
+        private long timingAmt = 500L;
 
         /// <summary>
         /// A bool flag indicating if there is work to do in the next MmgUpdate call.

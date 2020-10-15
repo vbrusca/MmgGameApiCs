@@ -172,7 +172,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             MmgVector2 tmpPos = frame1.GetPosition().Clone();
             tmpPos.SetY(tmpPos.GetY() - MmgHelper.ScaleValue(30));
             sprite1 = new MmgSprite(frames1, tmpPos);
-            sprite1.SetMsPerFrame(200l);
+            sprite1.SetMsPerFrame(200L);
             AddObj(sprite1);
 
             spriteLabel1 = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -184,7 +184,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             tmpPos = frame1.GetPosition().Clone();
             tmpPos.SetY(tmpPos.GetY() + MmgHelper.ScaleValue(90));
             sprite2 = new MmgSprite(frames2, new MmgRect(0, 0, frame1.GetHeight() / 2, frame1.GetWidth() / 2), new MmgRect(tmpPos.GetX(), tmpPos.GetY(), tmpPos.GetY() + frame1.GetHeight() / 2, tmpPos.GetX() + frame1.GetWidth() / 2), MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 0.0f);
-            sprite2.SetFrameTime(200l);
+            sprite2.SetFrameTime(200L);
             sprite2.SetPosition(tmpPos);
             sprite2.SetSimpleRendering(false);
             AddObj(sprite2);
