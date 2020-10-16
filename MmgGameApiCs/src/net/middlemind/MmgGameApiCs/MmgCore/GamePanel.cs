@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
+using net.middlemind.MmgGameApiCs.MmgUnitTests;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
@@ -443,6 +444,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// TODO: Add comments
         /// </summary>
         private MouseState statePrevM;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private bool runningTests = false;
 
         /// <summary>
         /// TODO: Add comments
@@ -1967,6 +1973,16 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        private void RunTests()
+        {
+            MmgApiTestSuite tests = new MmgApiTestSuite();
+            tests.runTestSuite();
+            runningTests = false;
+        }
+
+        /// <summary>
         /// The UpdateGame method is used to call the lower level MmgUpdate method of the MmgGameScreen class, currentScreen.
         /// Send the update call count, the current time, and the time difference between this frame and the last frame.
         /// </summary>
@@ -1983,22 +1999,32 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             prev = now;
             now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
-            if (GameSettings.GAMEPAD_1_ON && GameSettings.GAMEPAD_1_THREADED_POLLING == false)
+            if (GameSettings.RUN_UNIT_TESTS && runningTests == false )
             {
-                gamePadRunner.PollGamePad();
+                runningTests = true;
+                ThreadStart ts = new ThreadStart(RunTests);
+                Thread t = new Thread(ts);
+                t.Start();
             }
-
-            if (GameSettings.GPIO_GAMEPAD_ON && GameSettings.GPIO_GAMEPAD_THREADED_POLLING == false)
+            else
             {
-                gpioRunner.PollGpio();
-            }
+                if (GameSettings.GAMEPAD_1_ON && GameSettings.GAMEPAD_1_THREADED_POLLING == false)
+                {
+                    gamePadRunner.PollGamePad();
+                }
 
-            ProcessAllPlayer1Input();
+                if (GameSettings.GPIO_GAMEPAD_ON && GameSettings.GPIO_GAMEPAD_THREADED_POLLING == false)
+                {
+                    gpioRunner.PollGpio();
+                }
 
-            // update game logic here
-            if (currentScreen != null)
-            {
-                currentScreen.MmgUpdate(updateTick, now, (now - prev));
+                ProcessAllPlayer1Input();
+
+                // update game logic here
+                if (currentScreen != null)
+                {
+                    currentScreen.MmgUpdate(updateTick, now, (now - prev));
+                }
             }
         }
 
@@ -2033,21 +2059,30 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 g.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
-                //clear background
-                g.GraphicsDevice.Clear(DarkGray);
-                g.Draw(sqrWhite.GetImage(), new Rectangle(MmgScreenData.GetGameLeft() - 1, MmgScreenData.GetGameTop() - 1, MmgScreenData.GetGameWidth() + 2, MmgScreenData.GetGameHeight() + 2), new Rectangle(0, 0, sqrWhite.GetWidth(), sqrWhite.GetHeight()), Color.White);
-                g.Draw(sqrBlack.GetImage(), new Rectangle(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight()), new Rectangle(0, 0, sqrBlack.GetWidth(), sqrBlack.GetHeight()), Color.White);
-
-                currentScreen.MmgDraw(p);
-                
-                if (MmgHelper.LOGGING == true)
+                if (GameSettings.RUN_UNIT_TESTS)
                 {
+                    //clear background
+                    g.GraphicsDevice.Clear(DarkGray);
                     g.Draw(sqrBlack.GetImage(), new Rectangle(0, 0, winWidth, 60), Color.White);
-                    g.DrawString(debugFont, GamePanel.FPS, new Vector2(15, 15 - mmgDebugFont.GetHeight() + 2), Color.White);
-                    g.DrawString(debugFont, "Var1: " + GamePanel.VAR1, new Vector2(15, 35 - mmgDebugFont.GetHeight() + 2), Color.White);
-                    g.DrawString(debugFont, "Var2: " + GamePanel.VAR2, new Vector2(15, 55 - mmgDebugFont.GetHeight() + 2), Color.White);
+                    g.DrawString(debugFont, "Running Unit Tests...", new Vector2(15, 15 - mmgDebugFont.GetHeight() + 2), Color.White);
                 }
+                else
+                {
+                    //clear background
+                    g.GraphicsDevice.Clear(DarkGray);
+                    g.Draw(sqrWhite.GetImage(), new Rectangle(MmgScreenData.GetGameLeft() - 1, MmgScreenData.GetGameTop() - 1, MmgScreenData.GetGameWidth() + 2, MmgScreenData.GetGameHeight() + 2), new Rectangle(0, 0, sqrWhite.GetWidth(), sqrWhite.GetHeight()), Color.White);
+                    g.Draw(sqrBlack.GetImage(), new Rectangle(MmgScreenData.GetGameLeft(), MmgScreenData.GetGameTop(), MmgScreenData.GetGameWidth(), MmgScreenData.GetGameHeight()), new Rectangle(0, 0, sqrBlack.GetWidth(), sqrBlack.GetHeight()), Color.White);
 
+                    currentScreen.MmgDraw(p);
+
+                    if (MmgHelper.LOGGING == true)
+                    {
+                        g.Draw(sqrBlack.GetImage(), new Rectangle(0, 0, winWidth, 60), Color.White);
+                        g.DrawString(debugFont, GamePanel.FPS, new Vector2(15, 15 - mmgDebugFont.GetHeight() + 2), Color.White);
+                        g.DrawString(debugFont, "Var1: " + GamePanel.VAR1, new Vector2(15, 35 - mmgDebugFont.GetHeight() + 2), Color.White);
+                        g.DrawString(debugFont, "Var2: " + GamePanel.VAR2, new Vector2(15, 55 - mmgDebugFont.GetHeight() + 2), Color.White);
+                    }
+                }
                 g.End();
                 g.GraphicsDevice.SetRenderTarget(null);
             }

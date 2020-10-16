@@ -30,16 +30,13 @@
     <PackageReference Include="MonoGame.Framework.Content.Pipeline" Version="3.8.0.1641" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="net\middlemind\MmgGameApiCs\MmgCore\" />
-    <Folder Include="net\middlemind\MmgGameApiCs\MmgTestSpace\" />
     <Folder Include="src\" />
+    <Folder Include="src\net\middlemind\MmgGameApiCs\MmgUnitTests\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="net\middlemind\MmgGameApiCs\MmgCore\MainFrame.cs" />
-    <Compile Remove="net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" />
+    <Compile Remove="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="net\middlemind\MmgGameApiCs\MmgCore\MainFrame.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <None Include="net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <None Include="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
 </Project>
