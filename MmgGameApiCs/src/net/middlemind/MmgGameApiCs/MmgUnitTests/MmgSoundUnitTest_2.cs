@@ -61,7 +61,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, s1.GetSound().Equals(s1.GetSound()));
             Assert.AreEqual(false, s1.GetSound().Equals(s3.GetSound()));
 
-            String idStr = "MmgSound: " + s1.GetIdStr() + " Clip Length MS: " + (s1.GetSound().getMicrosecondLength() / 1000);
+            String idStr = "MmgSound: " + s1.GetIdStr() + " Clip Length MS: " + (s1.GetSound().Duration.TotalMilliseconds);
             Assert.AreEqual(true, idStr.Equals(s1.ApiToString()));
             Assert.AreEqual(false, idStr.Equals(s2.ApiToString()));
             Assert.AreEqual(false, idStr.Equals(s3.ApiToString()));

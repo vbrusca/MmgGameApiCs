@@ -310,7 +310,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             MmgHelper.wr("");
             try
             {
-                MmgPositionTweenUnitTest_2 t1 = new MmgPositionTweenTest_2();
+                MmgPositionTweenUnitTest_2 t1 = new MmgPositionTweenUnitTest_2();
                 t1.test1();
                 t1.test2();
                 MmgHelper.wr("MmgPositionTweenUnitTest_2: Passed!");

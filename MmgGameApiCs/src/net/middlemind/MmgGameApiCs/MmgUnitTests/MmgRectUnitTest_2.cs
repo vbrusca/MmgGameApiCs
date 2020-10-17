@@ -62,10 +62,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
             r3 = r1.GetRect();
-            Assert.AreEqual(0, r3.x);
-            Assert.AreEqual(0, r3.y);
-            Assert.AreEqual(1, r3.width);
-            Assert.AreEqual(1, r3.height);
+            Assert.AreEqual(0, r3.X);
+            Assert.AreEqual(0, r3.Y);
+            Assert.AreEqual(1, r3.Width);
+            Assert.AreEqual(1, r3.Height);
 
             r1.SetHeight(10);
             Assert.AreEqual(0, r1.GetTop());
@@ -248,10 +248,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
             r3 = r1.GetRect();
-            Assert.AreEqual(0, r3.x);
-            Assert.AreEqual(0, r3.y);
-            Assert.AreEqual(1, r3.width);
-            Assert.AreEqual(1, r3.height);
+            Assert.AreEqual(0, r3.X);
+            Assert.AreEqual(0, r3.Y);
+            Assert.AreEqual(1, r3.Width);
+            Assert.AreEqual(1, r3.Height);
 
             r1.SetHeight(10);
             Assert.AreEqual(0, r1.GetTop());
@@ -434,10 +434,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
             r3 = r1.GetRect();
-            Assert.AreEqual(0, r3.x);
-            Assert.AreEqual(0, r3.y);
-            Assert.AreEqual(1, r3.width);
-            Assert.AreEqual(1, r3.height);
+            Assert.AreEqual(0, r3.X);
+            Assert.AreEqual(0, r3.Y);
+            Assert.AreEqual(1, r3.Width);
+            Assert.AreEqual(1, r3.Height);
 
             r1.SetHeight(10);
             Assert.AreEqual(0, r1.GetTop());
@@ -620,10 +620,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, r1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
 
             r3 = r1.GetRect();
-            Assert.AreEqual(0, r3.x);
-            Assert.AreEqual(0, r3.y);
-            Assert.AreEqual(1, r3.width);
-            Assert.AreEqual(1, r3.height);
+            Assert.AreEqual(0, r3.X);
+            Assert.AreEqual(0, r3.Y);
+            Assert.AreEqual(1, r3.Width);
+            Assert.AreEqual(1, r3.Height);
 
             r1.SetHeight(10);
             Assert.AreEqual(0, r1.GetTop());

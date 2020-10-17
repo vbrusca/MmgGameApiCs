@@ -68,7 +68,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             //TEST 1
             Assert.AreEqual(true, r1.ApiEquals(r2));
-            Assert.assertNotSame(r1, r2);
+            Assert.AreNotSame(r1, r2);
         }
 
         [TestMethod]
@@ -182,7 +182,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(r1.GetWidth(), r2.GetWidth());
             Assert.AreEqual(r1.GetHeight(), r2.GetHeight());
             Assert.AreEqual(true, r1.ApiEquals(r2));
-            Assert.assertNotSame(r1, r2);
+            Assert.AreNotSame(r1, r2);
         }
 
         [TestMethod]

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 {
@@ -38,10 +39,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
         public void test1()
         {
             MmgTextBlock b1, b2, b3 = null;
-            ArrayList<MmgFont> a = null;
+            List<MmgFont> a = null;
             MmgFont f1 = null;
             MmgVector2 v = null;
-            Font bf1 = null;
+            SpriteFont bf1 = null;
 
             b1 = new MmgTextBlock();
             b3 = new MmgTextBlock();
@@ -51,9 +52,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, b1.GetLineHeight() == MmgHelper.ScaleValue(16));
             Assert.AreEqual(true, b1.GetHeight() == MmgHelper.ScaleValue(100));
             Assert.AreEqual(true, b1.GetWidth() == MmgHelper.ScaleValue(100));
-            Assert.AreEqual(0, b1.GetLines().size());
+            Assert.AreEqual(0, b1.GetLines().Count);
             Assert.AreEqual(false, b1.GetLines() == null);
-            Assert.AreEqual(0, b1.GetTxt().size());
+            Assert.AreEqual(0, b1.GetTxt().Count);
             Assert.AreEqual(false, b1.GetTxt() == null);
             Assert.AreEqual(true, b1.GetColor().ApiEquals(MmgColor.GetBlack()));
 
@@ -67,14 +68,14 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, b1.GetHeight() == 200);
             Assert.AreEqual(true, b1.GetLineHeight() == 20);
 
-            a = new ArrayList();
+            a = new List<MmgFont>();
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 1");
-            a.add(f1);
+            a.Add(f1);
             b1.SetLines(a);
 
             Assert.AreEqual(true, b1.GetLines().Equals(a));
-            Assert.AreEqual(true, b1.GetLines().size() == 1);
+            Assert.AreEqual(true, b1.GetLines().Count == 1);
 
             b1.SetPaddingX(16);
             b1.SetPaddingY(16);
@@ -101,22 +102,22 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             Assert.AreEqual(true, b1.GetSpriteFont().Equals(bf1));
 
-            a = new ArrayList();
+            a = new List<MmgFont>();
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 1");
-            a.add(f1);
+            a.Add(f1);
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 2");
-            a.add(f1);
+            a.Add(f1);
             b1.SetTxt(a);
 
-            a = new ArrayList();
+            a = new List<MmgFont>();
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 1");
-            a.add(f1);
+            a.Add(f1);
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 2");
-            a.add(f1);
+            a.Add(f1);
             b1.SetLines(a);
 
             f1 = MmgFontData.CreateDefaultMmgFontSm();
@@ -125,7 +126,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, b1.GetText(0).ApiEquals(f1));
             Assert.AreEqual(true, b1.GetText(0).Equals(f1));
             Assert.AreEqual(true, b1.GetLines().Equals(a));
-            Assert.AreEqual(true, b1.GetLines().size() == 2);
+            Assert.AreEqual(true, b1.GetLines().Count == 2);
 
             b1.SetWidth(200);
             b1.SetWordCount(20);
@@ -150,28 +151,28 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
         public void test2()
         {
             MmgTextBlock b1, b2, b3, b4 = null;
-            ArrayList<MmgFont> a = null;
+            List<MmgFont> a = null;
             MmgFont f1 = null;
             MmgVector2 v = null;
-            Font bf1 = null;
+            SpriteFont bf1 = null;
 
             b4 = new MmgTextBlock();
-            a = new ArrayList();
+            a = new List<MmgFont>();
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 1");
-            a.add(f1);
+            a.Add(f1);
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 2");
-            a.add(f1);
+            a.Add(f1);
             b4.SetTxt(a);
 
-            a = new ArrayList();
+            a = new List<MmgFont>();
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 1");
-            a.add(f1);
+            a.Add(f1);
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 2");
-            a.add(f1);
+            a.Add(f1);
             b4.SetLines(a);
 
             b1 = new MmgTextBlock(b4);
@@ -182,9 +183,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, b1.GetLineHeight() == MmgHelper.ScaleValue(16));
             Assert.AreEqual(true, b1.GetHeight() == MmgHelper.ScaleValue(100));
             Assert.AreEqual(true, b1.GetWidth() == MmgHelper.ScaleValue(100));
-            Assert.AreEqual(2, b1.GetLines().size());
+            Assert.AreEqual(2, b1.GetLines().Count);
             Assert.AreEqual(false, b1.GetLines() == null);
-            Assert.AreEqual(2, b1.GetTxt().size());
+            Assert.AreEqual(2, b1.GetTxt().Count);
             Assert.AreEqual(false, b1.GetTxt() == null);
             Assert.AreEqual(true, b1.GetColor().ApiEquals(MmgColor.GetBlack()));
 
@@ -198,14 +199,14 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, b1.GetHeight() == 200);
             Assert.AreEqual(true, b1.GetLineHeight() == 20);
 
-            a = new ArrayList();
+            a = new List<MmgFont>();
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 1");
-            a.add(f1);
+            a.Add(f1);
             b1.SetLines(a);
 
             Assert.AreEqual(true, b1.GetLines().Equals(a));
-            Assert.AreEqual(true, b1.GetLines().size() == 1);
+            Assert.AreEqual(true, b1.GetLines().Count == 1);
 
             b1.SetPaddingX(16);
             b1.SetPaddingY(16);
@@ -232,22 +233,22 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             Assert.AreEqual(true, b1.GetSpriteFont().Equals(bf1));
 
-            a = new ArrayList();
+            a = new List<MmgFont>();
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 1");
-            a.add(f1);
+            a.Add(f1);
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 2");
-            a.add(f1);
+            a.Add(f1);
             b1.SetTxt(a);
 
-            a = new ArrayList();
+            a = new List<MmgFont>();
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 1");
-            a.add(f1);
+            a.Add(f1);
             f1 = MmgFontData.CreateDefaultBoldMmgFontLg();
             f1.SetText("Line 2");
-            a.add(f1);
+            a.Add(f1);
             b1.SetLines(a);
 
             f1 = MmgFontData.CreateDefaultMmgFontSm();
@@ -256,7 +257,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, b1.GetText(0).ApiEquals(f1));
             Assert.AreEqual(true, b1.GetText(0).Equals(f1));
             Assert.AreEqual(true, b1.GetLines().Equals(a));
-            Assert.AreEqual(true, b1.GetLines().size() == 2);
+            Assert.AreEqual(true, b1.GetLines().Count == 2);
 
             b1.SetWidth(200);
             b1.SetWordCount(20);

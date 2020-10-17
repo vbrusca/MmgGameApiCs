@@ -63,7 +63,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             v2.SetY(yd);
 
             Assert.AreEqual(true, v1.ApiEquals(v2));
-            Assert.assertNotSame(v1, v2);
+            Assert.AreNotSame(v1, v2);
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             v1.SetVector(d);
             Assert.AreEqual(xd, v1.GetXDouble(), MmgApiTestSuite.DELTA_D);
             Assert.AreEqual(yd, v1.GetYDouble(), MmgApiTestSuite.DELTA_D);
-            org.junit.Assert.assertArrayEquals(d, v1.GetVector(), MmgApiTestSuite.DELTA_D);
+            Assert.AreEqual<double[]>(d, v1.GetVector());
 
             s = "MmgVector2: X: " + v1.GetXDouble() + " Y:" + v1.GetYDouble();
             Assert.AreEqual(s, v1.ApiToString());
@@ -145,21 +145,21 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(v1.GetXDouble(), v2.GetXDouble(), MmgApiTestSuite.DELTA_D);
             Assert.AreEqual(v1.GetYDouble(), v2.GetYDouble(), MmgApiTestSuite.DELTA_D);
             Assert.AreEqual(true, v1.ApiEquals(v2));
-            Assert.assertNotSame(v1, v2);
+            Assert.AreNotSame(v1, v2);
 
             //TEST 2
             v2 = v1.CloneDouble();
             Assert.AreEqual(v1.GetXDouble(), v2.GetXDouble(), MmgApiTestSuite.DELTA_D);
             Assert.AreEqual(v1.GetYDouble(), v2.GetYDouble(), MmgApiTestSuite.DELTA_D);
             Assert.AreEqual(true, v1.ApiEquals(v2));
-            Assert.assertNotSame(v1, v2);
+            Assert.AreNotSame(v1, v2);
 
             //TEST 3
             v2 = v1.CloneFloat();
             Assert.AreEqual(v1.GetXFloat(), v2.GetXFloat(), MmgApiTestSuite.DELTA_D);
             Assert.AreEqual(v1.GetYFloat(), v2.GetYFloat(), MmgApiTestSuite.DELTA_D);
             Assert.AreEqual(false, v1.ApiEquals(v2));
-            Assert.assertNotSame(v1, v2);
+            Assert.AreNotSame(v1, v2);
         }
 
         [TestMethod]
