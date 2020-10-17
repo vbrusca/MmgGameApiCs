@@ -505,7 +505,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgLabelValuePair to compare to.</param>
         /// <returns>A boolean value indicating if the two objects are equal.</returns>
-        public bool equals(MmgLabelValuePair obj)
+        public bool ApiEquals(MmgLabelValuePair obj)
         {
             if (obj == null)
             {
@@ -539,9 +539,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
-                && ((obj.GetLabel() == null && GetLabel() == null) || (obj.GetLabel() != null && GetLabel() != null && obj.GetLabel().equals(GetLabel())))
-                && ((obj.GetValue() == null && GetValue() == null) || (obj.GetValue() != null && GetValue() != null && obj.GetValue().equals(GetValue())))
+                base.ApiEquals((MmgObj)obj)
+                && ((obj.GetLabel() == null && GetLabel() == null) || (obj.GetLabel() != null && GetLabel() != null && obj.GetLabel().ApiEquals(GetLabel())))
+                && ((obj.GetValue() == null && GetValue() == null) || (obj.GetValue() != null && GetValue() != null && obj.GetValue().ApiEquals(GetValue())))
                 && GetPaddingX() == obj.GetPaddingX()
             )
             {

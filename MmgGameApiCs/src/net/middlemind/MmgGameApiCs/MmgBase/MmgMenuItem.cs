@@ -398,7 +398,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgMenuContainer object instance to test for equality.</param>
         /// <returns>Returns true if both MmgMenuContainer objects are the same.</returns>
-        public virtual bool equals(MmgMenuItem obj)
+        public virtual bool ApiEquals(MmgMenuItem obj)
         {
             if (obj == null)
             {
@@ -411,12 +411,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
+                base.ApiEquals((MmgObj)obj)
                 && obj.GetHeight() == GetHeight()
-                && ((obj.GetInactive() == null && GetInactive() == null) || (obj.GetInactive() != null && GetInactive() != null && obj.GetInactive().equals(GetInactive())))
-                && ((obj.GetNormal() == null && GetNormal() == null) || (obj.GetNormal() != null && GetNormal() != null && obj.GetNormal().equals(GetNormal())))
-                && ((obj.GetSelected() == null && GetSelected() == null) || (obj.GetSelected() != null && GetSelected() != null && obj.GetSelected().equals(GetSelected())))
-                && ((obj.GetSound() == null && GetSound() == null) || (obj.GetSound() != null && GetSound() != null && obj.GetSound().equals(GetSound())))
+                && ((obj.GetInactive() == null && GetInactive() == null) || (obj.GetInactive() != null && GetInactive() != null && obj.GetInactive().ApiEquals(GetInactive())))
+                && ((obj.GetNormal() == null && GetNormal() == null) || (obj.GetNormal() != null && GetNormal() != null && obj.GetNormal().ApiEquals(GetNormal())))
+                && ((obj.GetSelected() == null && GetSelected() == null) || (obj.GetSelected() != null && GetSelected() != null && obj.GetSelected().ApiEquals(GetSelected())))
+                && ((obj.GetSound() == null && GetSound() == null) || (obj.GetSound() != null && GetSound() != null && obj.GetSound().ApiEquals(GetSound())))
                 && obj.GetState() == GetState()
                 && obj.GetWidth() == GetWidth()
             )

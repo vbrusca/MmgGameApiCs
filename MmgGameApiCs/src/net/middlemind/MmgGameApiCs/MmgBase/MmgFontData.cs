@@ -177,7 +177,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// String representation of this font.
         /// </summary>
         /// <returns>Returns a string representation of the font data.</returns>
-        public static string toString()
+        public static string ApiToString()
         {
             string ret = "";
             ret += "Font Size: " + MmgFontData.GetFontSize() + System.Environment.NewLine;

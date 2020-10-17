@@ -52,7 +52,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             c1.SetPosition(MmgVector2Int.GetUnitVec());
 
-            Assert.AreEqual(true, c1.GetPosition().equals(MmgVector2Int.GetUnitVec()));
+            Assert.AreEqual(true, c1.GetPosition().ApiEquals(MmgVector2Int.GetUnitVec()));
 
             c1.Add(o1);
             c1.Add(o1);
@@ -81,7 +81,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(a1.Length, c1.GetCount());
             for (int i = 0; i < a1.Length; i++)
             {
-                Assert.AreEqual(true, ((MmgObj)a1[i]).equals(c1.GetAt(i)));
+                Assert.AreEqual(true, ((MmgObj)a1[i]).ApiEquals(c1.GetAt(i)));
             }
 
             //Restore has parent value after shared reference set it to false
@@ -90,16 +90,16 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             c3 = c1.CloneTyped();
 
-            Assert.AreEqual(true, c1.equals(c3));
-            Assert.AreEqual(false, c1.equals(c2));
+            Assert.AreEqual(true, c1.ApiEquals(c3));
+            Assert.AreEqual(false, c1.ApiEquals(c2));
 
             c1.SetIsDirty(true);
 
             Assert.AreEqual(c1.GetIsDirty(), true);
 
             MmgObj obj1 = (MmgObj)c1;
-            Assert.AreEqual(true, MmgVector2Int.GetUnitVec().equals((MmgVector2Int)obj1.GetPosition()));
-            Assert.AreEqual(true, obj1.equals(c1));
+            Assert.AreEqual(true, MmgVector2Int.GetUnitVec().ApiEquals((MmgVector2Int)obj1.GetPosition()));
+            Assert.AreEqual(true, obj1.ApiEquals(c1));
 
             List<MmgObj> container = c1.GetContainer();
             c1.Clear();
@@ -109,8 +109,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             MmgObj m1 = c1.Clone();
             MmgObj m2 = new MmgObj();
-            Assert.AreEqual(true, ((MmgObj)c1).equals(m1));
-            Assert.AreEqual(false, ((MmgObj)c1).equals(m2));
+            Assert.AreEqual(true, ((MmgObj)c1).ApiEquals(m1));
+            Assert.AreEqual(false, ((MmgObj)c1).ApiEquals(m2));
 
             c1.Add(o1);
             c1.Add(o2);
@@ -126,14 +126,14 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             c1.Add(o2);
             o3 = c1.GetChildAt(0);
 
-            Assert.AreEqual(true, o3.equals(o1));
+            Assert.AreEqual(true, o3.ApiEquals(o1));
             Assert.AreEqual(true, o3.Equals(o1));
 
             c1.SetPosition(10, 10);
             o3.SetPosition(10, 10);
 
-            Assert.AreEqual(true, c1.GetChildPosAbsolute(0).equals(new MmgVector2Int(10, 10)));
-            Assert.AreEqual(true, c1.GetChildPosRelative(0).equals(new MmgVector2Int(0, 0)));
+            Assert.AreEqual(true, c1.GetChildPosAbsolute(0).ApiEquals(new MmgVector2Int(10, 10)));
+            Assert.AreEqual(true, c1.GetChildPosRelative(0).ApiEquals(new MmgVector2Int(0, 0)));
         }
 
         [TestMethod]
@@ -154,7 +154,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             c1.SetPosition(MmgVector2Int.GetUnitVec());
 
-            Assert.AreEqual(true, c1.GetPosition().equals(MmgVector2Int.GetUnitVec()));
+            Assert.AreEqual(true, c1.GetPosition().ApiEquals(MmgVector2Int.GetUnitVec()));
 
             c1.Add(o1);
             c1.Add(o1);
@@ -183,7 +183,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(a1.Length, c1.GetCount());
             for (int i = 0; i < a1.Length; i++)
             {
-                Assert.AreEqual(true, ((MmgObj)a1[i]).equals(c1.GetAt(i)));
+                Assert.AreEqual(true, ((MmgObj)a1[i]).ApiEquals(c1.GetAt(i)));
             }
 
             //Restore has parent value after shared reference set it to false
@@ -192,16 +192,16 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             c3 = c1.CloneTyped();
 
-            Assert.AreEqual(true, c1.equals(c3));
-            Assert.AreEqual(false, c1.equals(c2));
+            Assert.AreEqual(true, c1.ApiEquals(c3));
+            Assert.AreEqual(false, c1.ApiEquals(c2));
 
             c1.SetIsDirty(true);
 
             Assert.AreEqual(c1.GetIsDirty(), true);
 
             MmgObj obj1 = (MmgObj)c1;
-            Assert.AreEqual(true, MmgVector2Int.GetUnitVec().equals((MmgVector2Int)obj1.GetPosition()));
-            Assert.AreEqual(true, obj1.equals(c1));
+            Assert.AreEqual(true, MmgVector2Int.GetUnitVec().ApiEquals((MmgVector2Int)obj1.GetPosition()));
+            Assert.AreEqual(true, obj1.ApiEquals(c1));
 
             List<MmgObj> container = c1.GetContainer();
             c1.Clear();
@@ -211,8 +211,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             MmgObj m1 = c1.Clone();
             MmgObj m2 = new MmgObj();
-            Assert.AreEqual(true, ((MmgObj)c1).equals(m1));
-            Assert.AreEqual(false, ((MmgObj)c1).equals(m2));
+            Assert.AreEqual(true, ((MmgObj)c1).ApiEquals(m1));
+            Assert.AreEqual(false, ((MmgObj)c1).ApiEquals(m2));
 
             c1.Add(o1);
             c1.Add(o2);
@@ -228,14 +228,14 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             c1.Add(o2);
             o3 = c1.GetChildAt(0);
 
-            Assert.AreEqual(true, o3.equals(o1));
+            Assert.AreEqual(true, o3.ApiEquals(o1));
             Assert.AreEqual(true, o3.Equals(o1));
 
             c1.SetPosition(10, 10);
             o3.SetPosition(10, 10);
 
-            Assert.AreEqual(true, c1.GetChildPosAbsolute(0).equals(new MmgVector2Int(10, 10)));
-            Assert.AreEqual(true, c1.GetChildPosRelative(0).equals(new MmgVector2Int(0, 0)));
+            Assert.AreEqual(true, c1.GetChildPosAbsolute(0).ApiEquals(new MmgVector2Int(10, 10)));
+            Assert.AreEqual(true, c1.GetChildPosRelative(0).ApiEquals(new MmgVector2Int(0, 0)));
         }
 
         [TestMethod]
@@ -258,7 +258,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             c1.SetPosition(MmgVector2Int.GetUnitVec());
 
-            Assert.AreEqual(true, c1.GetPosition().equals(MmgVector2Int.GetUnitVec()));
+            Assert.AreEqual(true, c1.GetPosition().ApiEquals(MmgVector2Int.GetUnitVec()));
 
             c1.Add(o1);
             c1.Add(o1);
@@ -287,7 +287,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(a1.Length, c1.GetCount());
             for (int i = 0; i < a1.Length; i++)
             {
-                Assert.AreEqual(true, ((MmgObj)a1[i]).equals(c1.GetAt(i)));
+                Assert.AreEqual(true, ((MmgObj)a1[i]).ApiEquals(c1.GetAt(i)));
             }
 
             //Restore has parent value after shared reference set it to false
@@ -296,15 +296,15 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             c3 = c1.CloneTyped();
 
-            Assert.AreEqual(true, c1.equals(c3));
-            Assert.AreEqual(false, c1.equals(c2));
+            Assert.AreEqual(true, c1.ApiEquals(c3));
+            Assert.AreEqual(false, c1.ApiEquals(c2));
 
             c1.SetIsDirty(true);
 
             Assert.AreEqual(c1.GetIsDirty(), true);
 
             MmgObj obj1 = (MmgObj)c1;
-            Assert.AreEqual(true, MmgVector2Int.GetUnitVec().equals((MmgVector2Int)obj1.GetPosition()));
+            Assert.AreEqual(true, MmgVector2Int.GetUnitVec().ApiEquals((MmgVector2Int)obj1.GetPosition()));
             Assert.AreEqual(true, obj1.Equals(c1));
 
             List<MmgObj> container = c1.GetContainer();
@@ -315,8 +315,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             MmgObj m1 = c1.Clone();
             MmgObj m2 = new MmgObj();
-            Assert.AreEqual(true, ((MmgObj)c1).equals(m1));
-            Assert.AreEqual(false, ((MmgObj)c1).equals(m2));
+            Assert.AreEqual(true, ((MmgObj)c1).ApiEquals(m1));
+            Assert.AreEqual(false, ((MmgObj)c1).ApiEquals(m2));
 
             c1.Add(o1);
             c1.Add(o2);
@@ -332,14 +332,14 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             c1.Add(o2);
             o3 = c1.GetChildAt(0);
 
-            Assert.AreEqual(true, o3.equals(o1));
+            Assert.AreEqual(true, o3.ApiEquals(o1));
             Assert.AreEqual(true, o3.Equals(o1));
 
             c1.SetPosition(10, 10);
             o3.SetPosition(10, 10);
 
-            Assert.AreEqual(true, c1.GetChildPosAbsolute(0).equals(new MmgVector2Int(10, 10)));
-            Assert.AreEqual(true, c1.GetChildPosRelative(0).equals(new MmgVector2Int(0, 0)));
+            Assert.AreEqual(true, c1.GetChildPosAbsolute(0).ApiEquals(new MmgVector2Int(10, 10)));
+            Assert.AreEqual(true, c1.GetChildPosRelative(0).ApiEquals(new MmgVector2Int(0, 0)));
         }
 
         [TestMethod]
@@ -362,7 +362,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             c1.SetPosition(MmgVector2Int.GetUnitVec());
 
-            Assert.AreEqual(true, c1.GetPosition().equals(MmgVector2Int.GetUnitVec()));
+            Assert.AreEqual(true, c1.GetPosition().ApiEquals(MmgVector2Int.GetUnitVec()));
 
             c1.Add(o1);
             c1.Add(o1);
@@ -391,7 +391,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(a1.Length, c1.GetCount());
             for (int i = 0; i < a1.Length; i++)
             {
-                Assert.AreEqual(true, ((MmgObj)a1[i]).equals(c1.GetAt(i)));
+                Assert.AreEqual(true, ((MmgObj)a1[i]).ApiEquals(c1.GetAt(i)));
             }
 
             //Restore has parent value after shared reference set it to false
@@ -400,16 +400,16 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             c3 = c1.CloneTyped();
 
-            Assert.AreEqual(true, c1.equals(c3));
-            Assert.AreEqual(false, c1.equals(c2));
+            Assert.AreEqual(true, c1.ApiEquals(c3));
+            Assert.AreEqual(false, c1.ApiEquals(c2));
 
             c1.SetIsDirty(true);
 
             Assert.AreEqual(c1.GetIsDirty(), true);
 
             MmgObj obj1 = (MmgObj)c1;
-            Assert.AreEqual(true, MmgVector2Int.GetUnitVec().equals((MmgVector2Int)obj1.GetPosition()));
-            Assert.AreEqual(true, obj1.equals(c1));
+            Assert.AreEqual(true, MmgVector2Int.GetUnitVec().ApiEquals((MmgVector2Int)obj1.GetPosition()));
+            Assert.AreEqual(true, obj1.ApiEquals(c1));
 
             List<MmgObj> container = c1.GetContainer();
             c1.Clear();
@@ -419,8 +419,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             MmgObj m1 = c1.Clone();
             MmgObj m2 = new MmgObj();
-            Assert.AreEqual(true, ((MmgObj)c1).equals(m1));
-            Assert.AreEqual(false, ((MmgObj)c1).equals(m2));
+            Assert.AreEqual(true, ((MmgObj)c1).ApiEquals(m1));
+            Assert.AreEqual(false, ((MmgObj)c1).ApiEquals(m2));
 
             c1.Add(o1);
             c1.Add(o2);
@@ -436,14 +436,14 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             c1.Add(o2);
             o3 = c1.GetChildAt(0);
 
-            Assert.AreEqual(true, o3.equals(o1));
+            Assert.AreEqual(true, o3.ApiEquals(o1));
             Assert.AreEqual(true, o3.Equals(o1));
 
             c1.SetPosition(10, 10);
             o3.SetPosition(10, 10);
 
-            Assert.AreEqual(true, c1.GetChildPosAbsolute(0).equals(new MmgVector2Int(10, 10)));
-            Assert.AreEqual(true, c1.GetChildPosRelative(0).equals(new MmgVector2Int(0, 0)));
+            Assert.AreEqual(true, c1.GetChildPosAbsolute(0).ApiEquals(new MmgVector2Int(10, 10)));
+            Assert.AreEqual(true, c1.GetChildPosRelative(0).ApiEquals(new MmgVector2Int(0, 0)));
         }
     }
 }

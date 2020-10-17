@@ -615,12 +615,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             screenData = new MmgScreenData(winWidth, winHeight, MmgApiGame.GAME_WIDTH, MmgApiGame.GAME_HEIGHT);
             MmgHelper.wr("");
             MmgHelper.wr("--- MmgScreenData ---");
-            MmgHelper.wr(MmgScreenData.toString());
+            MmgHelper.wr(MmgScreenData.ApiToString());
 
             fontData = new MmgFontData();
             MmgHelper.wr("");
             MmgHelper.wr("--- MmgFontData ---");
-            MmgHelper.wr(MmgFontData.toString());
+            MmgHelper.wr(MmgFontData.ApiToString());
             debugFont = MmgFontData.CreateDefaultFontSm();
             mmgDebugFont = new MmgFont(debugFont, "Test", 0, 0, MmgColor.GetWhite());
 
@@ -667,7 +667,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             test = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + "logo_large2.png");
 
-            SwitchGameState(GameStates.SPLASH);
+            MmgHelper.wr("RunUnitTests: " + GameSettings.RUN_UNIT_TESTS);
+            if (!GameSettings.RUN_UNIT_TESTS)
+            {
+                SwitchGameState(GameStates.SPLASH);
+            }
         }
 
         /// <summary>
@@ -677,7 +681,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="dir">The dir argument is a code that represents which dpad direction was processed.</param>
         public virtual void ProcessDpadPress(int dir)
         {
-            currentScreen.ProcessDpadPress(dir);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessDpadPress(dir);
+            }
         }
 
         /// <summary>
@@ -687,7 +694,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="dir">The dir argument is a code that represents which dpad direction was processed.</param>
         public virtual void ProcessDpadRelease(int dir)
         {
-            currentScreen.ProcessDpadRelease(dir);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessDpadRelease(dir);
+            }
         }
 
         /// <summary>
@@ -697,7 +707,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="dir">The dir argument is a code that represents which dpad direction was processed.</param>
         public virtual void ProcessDpadClick(int dir)
         {
-            currentScreen.ProcessDpadClick(dir);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessDpadClick(dir);
+            }
         }
 
         /// <summary>
@@ -706,7 +719,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessAPress(int src)
         {
-            currentScreen.ProcessAPress(src);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessAPress(src);
+            }
         }
 
         /// <summary>
@@ -715,7 +731,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessARelease(int src)
         {
-            currentScreen.ProcessARelease(src);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessARelease(src);
+            }
         }
 
         /// <summary>
@@ -724,7 +743,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessAClick(int src)
         {
-            currentScreen.ProcessAClick(src);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessAClick(src);
+            }
         }
 
         /// <summary>
@@ -733,7 +755,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessBPress(int src)
         {
-            currentScreen.ProcessBPress(src);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessBPress(src);
+            }
         }
 
         /// <summary>
@@ -742,7 +767,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessBRelease(int src)
         {
-            currentScreen.ProcessBRelease(src);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessBRelease(src);
+            }
         }
 
         /// <summary>
@@ -751,7 +779,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="src">TODO: Add comment</param>
         public virtual void ProcessBClick(int src)
         {
-            currentScreen.ProcessBClick(src);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessBClick(src);
+            }
         }
 
         /// <summary>
@@ -760,7 +791,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public virtual void ProcessDebugClick()
         {
-            currentScreen.ProcessDebugClick();
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessDebugClick();
+            }
         }
 
         /// <summary>
@@ -770,7 +804,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyPress(char c, int code)
         {
-            currentScreen.ProcessKeyPress(c, code);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessKeyPress(c, code);
+            }
         }
 
         /// <summary>
@@ -780,7 +817,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyRelease(char c, int code)
         {
-            currentScreen.ProcessKeyRelease(c, code);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessKeyRelease(c, code);
+            }
         }
 
         /// <summary>
@@ -790,7 +830,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyClick(char c, int code)
         {
-            currentScreen.ProcessKeyClick(c, code);
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessKeyClick(c, code);
+            }
         }
 
         /// <summary>
@@ -802,7 +845,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
         public virtual void ProcessMouseMove(int x, int y)
         {
-            currentScreen.ProcessMouseMove((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessMouseMove((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            }
         }
 
         /// <summary>
@@ -814,7 +860,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
         public virtual void ProcessMousePress(int x, int y)
         {
-            currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            }
         }
 
         /// <summary>
@@ -826,7 +875,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
         public virtual void ProcessMouseRelease(int x, int y)
         {
-            currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            }
         }
 
         /// <summary>
@@ -838,7 +890,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
         public virtual void ProcessMouseClick(int x, int y)
         {
-            currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            if (currentScreen != null)
+            {
+                currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+            }
         }
 
         /// <summary>
@@ -1980,6 +2035,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             MmgApiTestSuite tests = new MmgApiTestSuite();
             tests.runTestSuite();
             runningTests = false;
+            GameSettings.RUN_UNIT_TESTS = false;
+            SwitchGameState(GameStates.SPLASH);
         }
 
         /// <summary>
@@ -2002,9 +2059,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             if (GameSettings.RUN_UNIT_TESTS && runningTests == false )
             {
                 runningTests = true;
-                ThreadStart ts = new ThreadStart(RunTests);
-                Thread t = new Thread(ts);
-                t.Start();
+                RunTests();
+                //ThreadStart ts = new ThreadStart();
+                //Thread t = new Thread(ts);
+                //t.Start();
             }
             else
             {

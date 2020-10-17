@@ -283,7 +283,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     for (int i = 0; i < len; i++)
                     {
                         cfe = data[i];
-                        bw.WriteLine(cfe.toString());
+                        bw.WriteLine(cfe.ApiToString());
                     }
 
                     try
@@ -341,7 +341,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     for (int i = 0; i < len; i++)
                     {
                         cfe = data[nKeys[i]];
-                        bw.WriteLine(cfe.toString());
+                        bw.WriteLine(cfe.ApiToString());
                     }
 
                     try

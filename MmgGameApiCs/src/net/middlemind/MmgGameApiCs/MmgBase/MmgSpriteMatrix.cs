@@ -288,7 +288,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgSpriteSheet object to compare this object to.</param>
         /// <returns>Returns true if the two objects are equal and false otherwise.</returns>
-        public virtual bool equals(MmgSpriteMatrix obj)
+        public virtual bool ApiEquals(MmgSpriteMatrix obj)
         {
             if (obj == null)
             {
@@ -301,7 +301,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = true;
             if (
-                ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().equals(GetSrc())))
+                ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().ApiEquals(GetSrc())))
                 && GetWidth() == obj.GetWidth()
                 && GetHeight() == obj.GetHeight()
                 && GetRowCount() == obj.GetRowCount()
@@ -319,7 +319,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                         m1 = obj.GetFrame(i);
                         m2 = GetFrame(i);
                         if (
-                            !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.equals(m2)))
+                            !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.ApiEquals(m2)))
                         )
                         {
                             ret = false;

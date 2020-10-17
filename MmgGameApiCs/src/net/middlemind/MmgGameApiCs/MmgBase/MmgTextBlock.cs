@@ -766,7 +766,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgTextBlock object to compare this object to.</param>
         /// <returns>Returns true if the two objects are equal and false otherwise.</returns>
-        public virtual bool equals(MmgTextBlock obj)
+        public virtual bool ApiEquals(MmgTextBlock obj)
         {
             if (obj == null)
             {
@@ -837,8 +837,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
-                && ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().equals(GetColor())))
+                base.ApiEquals((MmgObj)obj)
+                && ((obj.GetColor() == null && GetColor() == null) || (obj.GetColor() != null && GetColor() != null && obj.GetColor().ApiEquals(GetColor())))
                 && obj.GetHeight() == GetHeight()
                 && obj.GetLineCount() == GetLineCount()
                 && obj.GetLineHeight() == GetLineHeight()
@@ -870,7 +870,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     {
                         for (int i = 0; i < len1; i++)
                         {
-                            if (!obj.GetLines()[i].equals(GetLines()[i]))
+                            if (!obj.GetLines()[i].ApiEquals(GetLines()[i]))
                             {
                                 ret = false;
                                 break;

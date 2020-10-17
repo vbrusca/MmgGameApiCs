@@ -360,7 +360,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgFont object to compare.</param>
         /// <returns>A boolean indicating if the object instance is equal to the argument object instance.</returns>
-        public virtual bool equals(MmgLoadingBar obj)
+        public virtual bool ApiEquals(MmgLoadingBar obj)
         {
             if (obj == null)
             {
@@ -395,11 +395,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
+                base.ApiEquals((MmgObj)obj)
                 && obj.GetFillHeight() == GetFillHeight()
                 && obj.GetFillWidth() == GetFillWidth()
-                && ((obj.GetLoadingBarBack() == null && GetLoadingBarBack() == null) || (obj.GetLoadingBarBack() != null && GetLoadingBarBack() != null && obj.GetLoadingBarBack().equals(GetLoadingBarBack())))
-                && ((obj.GetLoadingBarFront() == null && GetLoadingBarFront() == null) || (obj.GetLoadingBarFront() != null && GetLoadingBarFront() != null && obj.GetLoadingBarFront().equals(GetLoadingBarFront())))
+                && ((obj.GetLoadingBarBack() == null && GetLoadingBarBack() == null) || (obj.GetLoadingBarBack() != null && GetLoadingBarBack() != null && obj.GetLoadingBarBack().ApiEquals(GetLoadingBarBack())))
+                && ((obj.GetLoadingBarFront() == null && GetLoadingBarFront() == null) || (obj.GetLoadingBarFront() != null && GetLoadingBarFront() != null && obj.GetLoadingBarFront().ApiEquals(GetLoadingBarFront())))
                 && obj.GetPaddingX() == GetPaddingX()
                 && obj.GetPaddingY() == GetPaddingY()
             )

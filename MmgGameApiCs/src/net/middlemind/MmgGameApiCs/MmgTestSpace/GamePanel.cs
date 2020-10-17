@@ -892,7 +892,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         {
             if (obj != null)
             {
-                MmgHelper.wr("TestSpace.HandleGenericEvent " + obj.GetGameState());
+                //MmgHelper.wr("TestSpace.HandleGenericEvent " + obj.GetGameState());
                 if (obj.GetGameState() == GameStates.LOADING)
                 {
                     if (obj.GetId() == ScreenLoading.EVENT_LOAD_COMPLETE)

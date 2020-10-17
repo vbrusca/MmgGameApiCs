@@ -313,7 +313,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Returns a string representation of the vector.
         /// </summary>
         /// <returns>A string representation of the vector.</returns>
-        public override string toString()
+        public override string ApiToString()
         {
             return "MmgVector2Int: X: " + GetXDouble() + " Y:" + GetYDouble();
         }
@@ -323,7 +323,33 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An MmgVector2 object to compare for equality.</param>
         /// <returns>A boolean indicating if this object is equal to the comparison object.</returns>
-        public virtual bool equals(MmgVector2Int obj)
+        public override bool ApiEquals(MmgVector2 obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            else if (obj.Equals(this))
+            {
+                return true;
+            }
+
+            bool ret = false;
+            if (obj.GetXDouble() == GetXDouble()
+                && obj.GetYDouble() == GetYDouble()
+            )
+            {
+                ret = true;
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// A method that tests equality with another MmgVector2 object by comparing the coordinates.
+        /// </summary>
+        /// <param name="obj">An MmgVector2 object to compare for equality.</param>
+        /// <returns>A boolean indicating if this object is equal to the comparison object.</returns>
+        public virtual bool ApiEquals(MmgVector2Int obj)
         {
             if (obj == null)
             {

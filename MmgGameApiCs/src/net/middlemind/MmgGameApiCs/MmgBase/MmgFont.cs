@@ -302,7 +302,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgFont object to compare</param>
         /// <returns>A boolean indicating if the object instance is equal to the argument object instance.</returns>
-        public virtual bool equals(MmgFont obj)
+        public virtual bool ApiEquals(MmgFont obj)
         {
             if (obj == null)
             {
@@ -329,7 +329,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
+                base.ApiEquals((MmgObj)obj)
                 && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().Equals(GetFont())))
                 && ((obj.GetText() == null && GetText() == null) || (obj.GetText() != null && GetText() != null && obj.GetText().Equals(GetText())))
             )

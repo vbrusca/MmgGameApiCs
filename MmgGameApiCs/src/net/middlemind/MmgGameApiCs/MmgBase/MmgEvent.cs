@@ -252,7 +252,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// An API level ToString method that returns a string representation of this class.
         /// </summary>
         /// <returns>A string representation of this class.</returns>
-        public string toString()
+        public string ApiToString()
         {
             return "MmgEvent: Msg: " + message + " Id: " + id + " Type: " + type;
         }

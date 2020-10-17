@@ -702,7 +702,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgPositionTween object to compare to.</param>
         /// <returns>A bool indicating if the two objects are equal or not.</returns>
-        public virtual bool equals(MmgPositionTween obj)
+        public virtual bool ApiEquals(MmgPositionTween obj)
         {
             if (obj == null)
             {
@@ -781,21 +781,21 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
+                base.ApiEquals((MmgObj)obj)
                 && GetAtStart() == obj.GetAtStart()
                 && GetAtFinish() == obj.GetAtFinish()
                 && GetDirStartToFinish() == obj.GetDirStartToFinish()
-                && ((obj.GetFinishPosition() == null && GetFinishPosition() == null) || (obj.GetFinishPosition() != null && GetFinishPosition() != null && obj.GetFinishPosition().equals(GetFinishPosition())))
+                && ((obj.GetFinishPosition() == null && GetFinishPosition() == null) || (obj.GetFinishPosition() != null && GetFinishPosition() != null && obj.GetFinishPosition().ApiEquals(GetFinishPosition())))
                 && obj.GetHeight() == GetHeight()
                 && obj.GetMoving() == GetMoving()
                 && obj.GetMsStartMove() == GetMsStartMove()
                 && obj.GetMsTimeToMove() == GetMsTimeToMove()
-                && ((obj.GetPixelDistToMove() == null && GetPixelDistToMove() == null) || (obj.GetPixelDistToMove() != null && GetPixelDistToMove() != null && obj.GetPixelDistToMove().equals(GetPixelDistToMove())))
+                && ((obj.GetPixelDistToMove() == null && GetPixelDistToMove() == null) || (obj.GetPixelDistToMove() != null && GetPixelDistToMove() != null && obj.GetPixelDistToMove().ApiEquals(GetPixelDistToMove())))
                 && obj.GetPixelsPerMsToMoveX() == GetPixelsPerMsToMoveX()
                 && obj.GetPixelsPerMsToMoveY() == GetPixelsPerMsToMoveY()
-                && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().equals(GetPosition())))
-                && ((obj.GetStartPosition() == null && GetStartPosition() == null) || (obj.GetStartPosition() != null && GetStartPosition() != null && obj.GetStartPosition().equals(GetStartPosition())))
-                && ((obj.GetSubj() == null && GetSubj() == null) || (obj.GetSubj() != null && GetSubj() != null && obj.GetSubj().equals(GetSubj())))
+                && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().ApiEquals(GetPosition())))
+                && ((obj.GetStartPosition() == null && GetStartPosition() == null) || (obj.GetStartPosition() != null && GetStartPosition() != null && obj.GetStartPosition().ApiEquals(GetStartPosition())))
+                && ((obj.GetSubj() == null && GetSubj() == null) || (obj.GetSubj() != null && GetSubj() != null && obj.GetSubj().ApiEquals(GetSubj())))
                 && obj.GetWidth() == GetWidth()
             )
             {

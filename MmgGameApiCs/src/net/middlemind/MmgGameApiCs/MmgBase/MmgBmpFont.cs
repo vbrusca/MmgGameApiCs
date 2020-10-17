@@ -987,9 +987,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = true;
             if (
-                base.equals((MmgObj)obj)
-                && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().equals(GetSrc())))
-                && ((obj.GetDst() == null && GetDst() == null) || (obj.GetDst() != null && GetDst() != null && obj.GetDst().equals(GetDst())))
+                base.ApiEquals((MmgObj)obj)
+                && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().ApiEquals(GetSrc())))
+                && ((obj.GetDst() == null && GetDst() == null) || (obj.GetDst() != null && GetDst() != null && obj.GetDst().ApiEquals(GetDst())))
                 && ((obj.GetText() == null && GetText() == null) || (obj.GetText() != null && GetText() != null && obj.GetText().Equals(GetText())))
             )
             {
@@ -997,7 +997,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 int i = 0;
                 for (i = 0; i < len; i++)
                 {
-                    if (!obj.GetChar(i).equals(GetChar(i)))
+                    if (!obj.GetChar(i).ApiEquals(GetChar(i)))
                     {
                         ret = false;
                         break;

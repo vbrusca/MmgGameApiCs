@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using net.middlemind.MmgGameApiCs.MmgBase;
 
+//Converted
 namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 {
     /// <summary>

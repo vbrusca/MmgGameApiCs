@@ -210,7 +210,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgMenuContainer object instance to test for equality.</param>
         /// <returns>Returns true if both MmgMenuContainer objects are the same.</returns>
-        public bool equals(MmgMenuContainer obj)
+        public bool ApiEquals(MmgMenuContainer obj)
         {
             if (obj == null)
             {
@@ -222,7 +222,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             bool ret = true;
-            if (base.equals((MmgObj)obj))
+            if (base.ApiEquals((MmgObj)obj))
             {
                 if (obj.container == null && container == null)
                 {
@@ -242,7 +242,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                             m1 = obj.container[i];
                             m2 = container[i];
                             if (
-                                !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.equals(m2)))
+                                !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.ApiEquals(m2)))
                             )
                             {
                                 ret = false;

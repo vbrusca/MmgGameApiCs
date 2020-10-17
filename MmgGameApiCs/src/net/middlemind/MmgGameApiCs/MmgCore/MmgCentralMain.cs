@@ -1,5 +1,6 @@
 ﻿using System;
 using net.middlemind.MmgGameApiCs.MmgTestSpace;
+using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
@@ -11,12 +12,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
     /// </summary>
     public class MmgCentralMain
     {
-
-        /**
-         * Static main entry point.
-         * 
-         * @param args  String array of arguments, append the executable name before its arguments.
-         */
+        /// <summary>
+        /// Static main entry point.
+        /// </summary>
+        /// <param name="args">String array of arguments, append the executable name before its arguments.</param>
         public static void Main(string[] args)
         {
             if(args == null || args.Length == 0)
@@ -27,6 +26,13 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             string[] nArgs = new string[args.Length - 1];
             Array.Copy(args, 1, nArgs, 0, nArgs.Length);
+
+            String t = "";
+            for(int i = 0; i < nArgs.Length; i++)
+            {
+                t += (i + 1) + ": " + nArgs[i] + ",";
+            }
+            MmgHelper.wr("AdjustedArgs: " + t);
 
             if (args[0] != null && args[0].ToLower().Equals("controllerreadtest"))
             {

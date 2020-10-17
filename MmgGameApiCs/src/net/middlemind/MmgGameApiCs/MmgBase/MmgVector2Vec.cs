@@ -287,9 +287,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Returns a string representation of the vector.
         /// </summary>
         /// <returns>A string representation of the vector.</returns>
-        public override string toString()
+        public override string ApiToString()
         {
-            return "X: " + GetXDouble() + " Y: " + GetYDouble();
+            return "MmgVector2Vec: X: " + GetXDouble() + " Y: " + GetYDouble();
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An MmgVector2 object to compare for equality.</param>
         /// <returns>A boolean indicating if this object is equal to the comparison object.</returns>
-        public virtual bool equals(MmgVector2Vec obj)
+        public virtual bool ApiEquals(MmgVector2Vec obj)
         {
             if (obj == null)
             {

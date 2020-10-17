@@ -561,9 +561,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Gets a string representation of the current MmgColor object.
         /// </summary>
         /// <returns>A string representation of the MmgColor object.</returns>
-        public virtual string toString()
+        public virtual string ApiToString()
         {
-            return "R: " + GetColor().R + " G: " + GetColor().G + " B: " + GetColor().B + " A: " + GetColor().A;
+            return "MmgColor: R: " + GetColor().R + " G: " + GetColor().G + " B: " + GetColor().B + " A: " + GetColor().A;
         }
 
         /// <summary>
@@ -571,7 +571,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgColor object instance to test for equality.</param>
         /// <returns>Returns true if both MmgColor objects have the same color.</returns>
-        public virtual bool equals(MmgColor obj)
+        public virtual bool ApiEquals(MmgColor obj)
         {
             if (obj == null)
             {

@@ -1194,7 +1194,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An MmgGameScreen object instance to compare to.</param>
         /// <returns>Returns true if the objects are considered equal and false otherwise.</returns>
-        public virtual bool equals(MmgGameScreen obj)
+        public virtual bool ApiEquals(MmgGameScreen obj)
         {
             if (obj == null)
             {
@@ -1207,13 +1207,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
-                && ((obj.GetBackground() == null && GetBackground() == null) || (obj.GetBackground() != null && GetBackground() != null && obj.GetBackground().equals(GetBackground())))
-                && ((obj.GetFooter() == null && GetFooter() == null) || (obj.GetFooter() != null && GetFooter() != null && obj.GetFooter().equals(GetFooter())))
+                base.ApiEquals((MmgObj)obj)
+                && ((obj.GetBackground() == null && GetBackground() == null) || (obj.GetBackground() != null && GetBackground() != null && obj.GetBackground().ApiEquals(GetBackground())))
+                && ((obj.GetFooter() == null && GetFooter() == null) || (obj.GetFooter() != null && GetFooter() != null && obj.GetFooter().ApiEquals(GetFooter())))
                 && obj.GetHasParent() == GetHasParent()
-                && ((obj.GetHeader() == null && GetHeader() == null) || (obj.GetHeader() != null && GetHeader() != null && obj.GetHeader().equals(GetHeader())))
-                && ((obj.GetLeftCursor() == null && GetLeftCursor() == null) || (obj.GetLeftCursor() != null && GetLeftCursor() != null && obj.GetLeftCursor().equals(GetLeftCursor())))
-                && ((obj.GetMenu() == null && GetMenu() == null) || (obj.GetMenu() != null && GetMenu() != null && obj.GetMenu().equals(GetMenu())))
+                && ((obj.GetHeader() == null && GetHeader() == null) || (obj.GetHeader() != null && GetHeader() != null && obj.GetHeader().ApiEquals(GetHeader())))
+                && ((obj.GetLeftCursor() == null && GetLeftCursor() == null) || (obj.GetLeftCursor() != null && GetLeftCursor() != null && obj.GetLeftCursor().ApiEquals(GetLeftCursor())))
+                && ((obj.GetMenu() == null && GetMenu() == null) || (obj.GetMenu() != null && GetMenu() != null && obj.GetMenu().ApiEquals(GetMenu())))
                 && obj.GetMenuCursorLeftOffsetX() == GetMenuCursorLeftOffsetX()
                 && obj.GetMenuCursorLeftOffsetY() == GetMenuCursorLeftOffsetY()
                 && obj.GetMenuCursorRightOffsetX() == GetMenuCursorRightOffsetX()
@@ -1222,11 +1222,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 && obj.GetMenuOn() == GetMenuOn()
                 && obj.GetMenuStart() == GetMenuStart()
                 && obj.GetMenuStop() == GetMenuStop()
-                && ((obj.GetMessage() == null && GetMessage() == null) || (obj.GetMessage() != null && GetMessage() != null && obj.GetMessage().equals(GetMessage())))
-                && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().equals(GetMmgColor())))
+                && ((obj.GetMessage() == null && GetMessage() == null) || (obj.GetMessage() != null && GetMessage() != null && obj.GetMessage().ApiEquals(GetMessage())))
+                && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().ApiEquals(GetMmgColor())))
                 && ((obj.GetName() == null && GetName() == null) || (obj.GetName() != null && GetName() != null && obj.GetName().Equals(GetName())))
-                && ((obj.GetObjects() == null && GetObjects() == null) || (obj.GetObjects() != null && GetObjects() != null && obj.GetObjects().equals(GetObjects())))
-                && ((obj.GetRightCursor() == null && GetRightCursor() == null) || (obj.GetRightCursor() != null && GetRightCursor() != null && obj.GetRightCursor().equals(GetRightCursor())))
+                && ((obj.GetObjects() == null && GetObjects() == null) || (obj.GetObjects() != null && GetObjects() != null && obj.GetObjects().ApiEquals(GetObjects())))
+                && ((obj.GetRightCursor() == null && GetRightCursor() == null) || (obj.GetRightCursor() != null && GetRightCursor() != null && obj.GetRightCursor().ApiEquals(GetRightCursor())))
             )
             {
                 ret = true;

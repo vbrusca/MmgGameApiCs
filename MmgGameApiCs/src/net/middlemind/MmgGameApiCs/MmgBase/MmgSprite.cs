@@ -736,7 +736,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgSprite object to compare to.</param>
         /// <returns>A bool indicating if the two objects are equal or not.</returns>
-        public virtual bool equals(MmgSprite obj)
+        public virtual bool ApiEquals(MmgSprite obj)
         {
             if (obj == null)
             {
@@ -749,18 +749,18 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
+                base.ApiEquals((MmgObj)obj)
                 && obj.GetSimpleRendering() == GetSimpleRendering()
                 && obj.GetTimerOnly() == GetTimerOnly()
-                && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().equals(GetDstRect())))
+                && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().ApiEquals(GetDstRect())))
                 && obj.GetFrameStart() == GetFrameStart()
                 && obj.GetFrameStop() == GetFrameStop()
                 && obj.GetFrameTime() == GetFrameTime()
                 && obj.GetMsPerFrame() == GetMsPerFrame()
-                && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().equals(GetOrigin())))
+                && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().ApiEquals(GetOrigin())))
                 && obj.GetRotation() == GetRotation()
-                && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().equals(GetScaling())))
-                && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().equals(GetSrcRect())))
+                && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().ApiEquals(GetScaling())))
+                && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().ApiEquals(GetSrcRect())))
             )
             {
                 ret = true;
@@ -781,7 +781,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     {
                         for (int i = 0; i < len1; i++)
                         {
-                            if (!((obj.GetBmpArray()[i] == null && GetBmpArray()[i] == null) || (obj.GetBmpArray()[i] != null && GetBmpArray()[i] != null && obj.GetBmpArray()[i].equals(GetBmpArray()[i]))))
+                            if (!((obj.GetBmpArray()[i] == null && GetBmpArray()[i] == null) || (obj.GetBmpArray()[i] != null && GetBmpArray()[i] != null && obj.GetBmpArray()[i].ApiEquals(GetBmpArray()[i]))))
                             {
                                 ret = false;
                                 break;

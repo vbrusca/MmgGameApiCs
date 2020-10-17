@@ -186,7 +186,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// A string representation of the screen data.
         /// </summary>
         /// <returns>A string representing the screen data state.</returns>
-        public static string toString()
+        public static string ApiToString()
         {
             string ret = "";
             ret += "Screen Width: " + MmgScreenData.GetScreenWidth() + System.Environment.NewLine;

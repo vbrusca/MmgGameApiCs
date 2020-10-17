@@ -291,7 +291,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An Mmg9Slice object instance to compare to.</param>
         /// <returns>Returns true if the objects are considered equal and false otherwise.</returns>
-        public virtual bool equals(Mmg9Slice obj)
+        public virtual bool ApiEquals(Mmg9Slice obj)
         {
             if (obj == null)
             {
@@ -322,10 +322,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
+                base.ApiEquals((MmgObj)obj)
                 && GetOffset() == obj.GetOffset()
-                && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().equals(GetSrc())))
-                && ((obj.GetDest() == null && GetDest() == null) || (obj.GetDest() != null && GetDest() != null && obj.GetDest().equals(GetDest())))
+                && ((obj.GetSrc() == null && GetSrc() == null) || (obj.GetSrc() != null && GetSrc() != null && obj.GetSrc().ApiEquals(GetSrc())))
+                && ((obj.GetDest() == null && GetDest() == null) || (obj.GetDest() != null && GetDest() != null && obj.GetDest().ApiEquals(GetDest())))
             )
             {
                 ret = true;

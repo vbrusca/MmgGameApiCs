@@ -2001,7 +2001,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgScrollHorVert object to compare to.</param>
         /// <returns>A bool indicating if the two objects are equal or not.</returns>
-        public virtual bool equals(MmgScrollHorVert obj)
+        public virtual bool ApiEquals(MmgScrollHorVert obj)
         {
             if (obj == null)
             {
@@ -2014,22 +2014,22 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
+                base.ApiEquals((MmgObj)obj)
                 && obj.GetScrollBarHorVisible() == GetScrollBarHorVisible()
                 && obj.GetScrollBarVertVisible() == GetScrollBarVertVisible()
                 && obj.GetIntervalX() == GetIntervalX()
                 && obj.GetIntervalY() == GetIntervalY()
                 && obj.GetOffsetX() == GetOffsetX()
                 && obj.GetOffsetY() == GetOffsetY()
-                && ((obj.GetScrollBarCenterButtonColor() == null && GetScrollBarCenterButtonColor() == null) || (obj.GetScrollBarCenterButtonColor() != null && GetScrollBarCenterButtonColor() != null && obj.GetScrollBarCenterButtonColor().equals(GetScrollBarCenterButtonColor())))
-                && ((obj.GetScrollBarColor() == null && GetScrollBarColor() == null) || (obj.GetScrollBarColor() != null && GetScrollBarColor() != null && obj.GetScrollBarColor().equals(GetScrollBarColor())))
+                && ((obj.GetScrollBarCenterButtonColor() == null && GetScrollBarCenterButtonColor() == null) || (obj.GetScrollBarCenterButtonColor() != null && GetScrollBarCenterButtonColor() != null && obj.GetScrollBarCenterButtonColor().ApiEquals(GetScrollBarCenterButtonColor())))
+                && ((obj.GetScrollBarColor() == null && GetScrollBarColor() == null) || (obj.GetScrollBarColor() != null && GetScrollBarColor() != null && obj.GetScrollBarColor().ApiEquals(GetScrollBarColor())))
 
-                && ((obj.GetScrollBarHorCenterButton() == null && GetScrollBarHorCenterButton() == null) || (obj.GetScrollBarHorCenterButton() != null && GetScrollBarHorCenterButton() != null && obj.GetScrollBarHorCenterButton().equals(GetScrollBarHorCenterButton())))
-                && ((obj.GetScrollBarHorCenterButtonRect() == null && GetScrollBarHorCenterButtonRect() == null) || (obj.GetScrollBarHorCenterButtonRect() != null && GetScrollBarHorCenterButtonRect() != null && obj.GetScrollBarHorCenterButtonRect().equals(GetScrollBarHorCenterButtonRect())))
+                && ((obj.GetScrollBarHorCenterButton() == null && GetScrollBarHorCenterButton() == null) || (obj.GetScrollBarHorCenterButton() != null && GetScrollBarHorCenterButton() != null && obj.GetScrollBarHorCenterButton().ApiEquals(GetScrollBarHorCenterButton())))
+                && ((obj.GetScrollBarHorCenterButtonRect() == null && GetScrollBarHorCenterButtonRect() == null) || (obj.GetScrollBarHorCenterButtonRect() != null && GetScrollBarHorCenterButtonRect() != null && obj.GetScrollBarHorCenterButtonRect().ApiEquals(GetScrollBarHorCenterButtonRect())))
                 && obj.GetScrollBarHorCenterButtonWidth() == GetScrollBarHorCenterButtonWidth()
 
-                && ((obj.GetScrollBarVertCenterButton() == null && GetScrollBarVertCenterButton() == null) || (obj.GetScrollBarVertCenterButton() != null && GetScrollBarVertCenterButton() != null && obj.GetScrollBarVertCenterButton().equals(GetScrollBarVertCenterButton())))
-                && ((obj.GetScrollBarVertCenterButtonRect() == null && GetScrollBarVertCenterButtonRect() == null) || (obj.GetScrollBarVertCenterButtonRect() != null && GetScrollBarVertCenterButtonRect() != null && obj.GetScrollBarVertCenterButtonRect().equals(GetScrollBarVertCenterButtonRect())))
+                && ((obj.GetScrollBarVertCenterButton() == null && GetScrollBarVertCenterButton() == null) || (obj.GetScrollBarVertCenterButton() != null && GetScrollBarVertCenterButton() != null && obj.GetScrollBarVertCenterButton().ApiEquals(GetScrollBarVertCenterButton())))
+                && ((obj.GetScrollBarVertCenterButtonRect() == null && GetScrollBarVertCenterButtonRect() == null) || (obj.GetScrollBarVertCenterButtonRect() != null && GetScrollBarVertCenterButtonRect() != null && obj.GetScrollBarVertCenterButtonRect().ApiEquals(GetScrollBarVertCenterButtonRect())))
                 && obj.GetScrollBarVertCenterButtonHeight() == GetScrollBarVertCenterButtonHeight()
 
                 && obj.GetScrollBarHorHeight() == GetScrollBarHorHeight()
@@ -2037,22 +2037,22 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 && obj.GetScrollBarLeftRightButtonWidth() == GetScrollBarLeftRightButtonWidth()
                 && obj.GetScrollBarUpDownButtonHeight() == GetScrollBarUpDownButtonHeight()
 
-                && ((obj.GetScrollBarHorLeftButton() == null && GetScrollBarHorLeftButton() == null) || (obj.GetScrollBarHorLeftButton() != null && GetScrollBarHorLeftButton() != null && obj.GetScrollBarHorLeftButton().equals(GetScrollBarHorLeftButton())))
-                && ((obj.GetScrollBarHorLeftButtonRect() == null && GetScrollBarHorLeftButtonRect() == null) || (obj.GetScrollBarHorLeftButtonRect() != null && GetScrollBarHorLeftButtonRect() != null && obj.GetScrollBarHorLeftButtonRect().equals(GetScrollBarHorLeftButtonRect())))
+                && ((obj.GetScrollBarHorLeftButton() == null && GetScrollBarHorLeftButton() == null) || (obj.GetScrollBarHorLeftButton() != null && GetScrollBarHorLeftButton() != null && obj.GetScrollBarHorLeftButton().ApiEquals(GetScrollBarHorLeftButton())))
+                && ((obj.GetScrollBarHorLeftButtonRect() == null && GetScrollBarHorLeftButtonRect() == null) || (obj.GetScrollBarHorLeftButtonRect() != null && GetScrollBarHorLeftButtonRect() != null && obj.GetScrollBarHorLeftButtonRect().ApiEquals(GetScrollBarHorLeftButtonRect())))
 
-                && ((obj.GetScrollBarHorRightButton() == null && GetScrollBarHorRightButton() == null) || (obj.GetScrollBarHorRightButton() != null && GetScrollBarHorRightButton() != null && obj.GetScrollBarHorRightButton().equals(GetScrollBarHorRightButton())))
-                && ((obj.GetScrollBarHorRightButtonRect() == null && GetScrollBarHorRightButtonRect() == null) || (obj.GetScrollBarHorRightButtonRect() != null && GetScrollBarHorRightButtonRect() != null && obj.GetScrollBarHorRightButtonRect().equals(GetScrollBarHorRightButtonRect())))
+                && ((obj.GetScrollBarHorRightButton() == null && GetScrollBarHorRightButton() == null) || (obj.GetScrollBarHorRightButton() != null && GetScrollBarHorRightButton() != null && obj.GetScrollBarHorRightButton().ApiEquals(GetScrollBarHorRightButton())))
+                && ((obj.GetScrollBarHorRightButtonRect() == null && GetScrollBarHorRightButtonRect() == null) || (obj.GetScrollBarHorRightButtonRect() != null && GetScrollBarHorRightButtonRect() != null && obj.GetScrollBarHorRightButtonRect().ApiEquals(GetScrollBarHorRightButtonRect())))
 
-                && ((obj.GetScrollBarVertUpButton() == null && GetScrollBarVertUpButton() == null) || (obj.GetScrollBarVertUpButton() != null && GetScrollBarVertUpButton() != null && obj.GetScrollBarVertUpButton().equals(GetScrollBarVertUpButton())))
-                && ((obj.GetScrollBarVertUpButtonRect() == null && GetScrollBarVertUpButtonRect() == null) || (obj.GetScrollBarVertUpButtonRect() != null && GetScrollBarVertUpButtonRect() != null && obj.GetScrollBarVertUpButtonRect().equals(GetScrollBarVertUpButtonRect())))
+                && ((obj.GetScrollBarVertUpButton() == null && GetScrollBarVertUpButton() == null) || (obj.GetScrollBarVertUpButton() != null && GetScrollBarVertUpButton() != null && obj.GetScrollBarVertUpButton().ApiEquals(GetScrollBarVertUpButton())))
+                && ((obj.GetScrollBarVertUpButtonRect() == null && GetScrollBarVertUpButtonRect() == null) || (obj.GetScrollBarVertUpButtonRect() != null && GetScrollBarVertUpButtonRect() != null && obj.GetScrollBarVertUpButtonRect().ApiEquals(GetScrollBarVertUpButtonRect())))
 
-                && ((obj.GetScrollBarVertDownButton() == null && GetScrollBarVertDownButton() == null) || (obj.GetScrollBarVertDownButton() != null && GetScrollBarVertDownButton() != null && obj.GetScrollBarVertDownButton().equals(GetScrollBarVertDownButton())))
-                && ((obj.GetScrollBarVertDownButtonRect() == null && GetScrollBarVertDownButtonRect() == null) || (obj.GetScrollBarVertDownButtonRect() != null && GetScrollBarVertDownButtonRect() != null && obj.GetScrollBarVertDownButtonRect().equals(GetScrollBarVertDownButtonRect())))
+                && ((obj.GetScrollBarVertDownButton() == null && GetScrollBarVertDownButton() == null) || (obj.GetScrollBarVertDownButton() != null && GetScrollBarVertDownButton() != null && obj.GetScrollBarVertDownButton().ApiEquals(GetScrollBarVertDownButton())))
+                && ((obj.GetScrollBarVertDownButtonRect() == null && GetScrollBarVertDownButtonRect() == null) || (obj.GetScrollBarVertDownButtonRect() != null && GetScrollBarVertDownButtonRect() != null && obj.GetScrollBarVertDownButtonRect().ApiEquals(GetScrollBarVertDownButtonRect())))
 
-                && ((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().equals(GetScrollPane())))
-                && ((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().equals(GetScrollPaneRect())))
-                && ((obj.GetViewPort() == null && GetViewPort() == null) || (obj.GetViewPort() != null && GetViewPort() != null && obj.GetViewPort().equals(GetViewPort())))
-                && ((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().equals(GetViewPortRect())))
+                && ((obj.GetScrollPane() == null && GetScrollPane() == null) || (obj.GetScrollPane() != null && GetScrollPane() != null && obj.GetScrollPane().ApiEquals(GetScrollPane())))
+                && ((obj.GetScrollPaneRect() == null && GetScrollPaneRect() == null) || (obj.GetScrollPaneRect() != null && GetScrollPaneRect() != null && obj.GetScrollPaneRect().ApiEquals(GetScrollPaneRect())))
+                && ((obj.GetViewPort() == null && GetViewPort() == null) || (obj.GetViewPort() != null && GetViewPort() != null && obj.GetViewPort().ApiEquals(GetViewPort())))
+                && ((obj.GetViewPortRect() == null && GetViewPortRect() == null) || (obj.GetViewPortRect() != null && GetViewPortRect() != null && obj.GetViewPortRect().ApiEquals(GetViewPortRect())))
 
                 && obj.GetWidthDiff() == GetWidthDiff()
                 && obj.GetWidthDiffPrct() == GetWidthDiffPrct()

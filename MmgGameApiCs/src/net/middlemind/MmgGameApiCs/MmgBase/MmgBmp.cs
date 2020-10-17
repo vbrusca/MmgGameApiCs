@@ -736,7 +736,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An MmgBmp object to check equality with.</param>
         /// <returns>Returns true if the determination is made that the two objects are the same, false otherwise.</returns>
-        public virtual bool equals(MmgBmp obj)
+        public virtual bool ApiEquals(MmgBmp obj)
         {
             if (obj == null)
             {
@@ -755,17 +755,17 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
-                && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().equals(GetDstRect())))
+                base.ApiEquals((MmgObj)obj)
+                && ((obj.GetDstRect() == null && GetDstRect() == null) || (obj.GetDstRect() != null && GetDstRect() != null && obj.GetDstRect().ApiEquals(GetDstRect())))
                 && obj.GetHeight() == GetHeight()
                 && obj.GetHeightFloat() == GetHeightFloat()
                 && ((obj.GetImage() == null && GetImage() == null) || (obj.GetImage() != null && GetImage() != null && obj.GetImage().Equals(GetImage())))
-                && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().equals(GetOrigin())))
+                && ((obj.GetOrigin() == null && GetOrigin() == null) || (obj.GetOrigin() != null && GetOrigin() != null && obj.GetOrigin().ApiEquals(GetOrigin())))
                 && obj.GetRotation() == GetRotation()
                 && obj.GetScaledHeight() == GetScaledHeight()
                 && obj.GetScaledWidth() == GetScaledWidth()
-                && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().equals(GetScaling())))
-                && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().equals(GetSrcRect())))
+                && ((obj.GetScaling() == null && GetScaling() == null) || (obj.GetScaling() != null && GetScaling() != null && obj.GetScaling().ApiEquals(GetScaling())))
+                && ((obj.GetSrcRect() == null && GetSrcRect() == null) || (obj.GetSrcRect() != null && GetSrcRect() != null && obj.GetSrcRect().ApiEquals(GetSrcRect())))
                 && ((obj.GetTexture2D() == null && GetTexture2D() == null) || (obj.GetTexture2D() != null && GetTexture2D() != null && obj.GetTexture2D().Equals(GetTexture2D())))
                 && obj.GetUnscaledHeight() == GetUnscaledHeight()
                 && obj.GetUnscaledWidth() == GetUnscaledWidth()

@@ -313,7 +313,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Returns a string representation of this class.
         /// </summary>
         /// <returns>A string representation of this class.</returns>
-        public virtual string tostring()
+        public virtual string ApiToString()
         {
             string ret = "";
             ret += "Direction: " + direction + System.Environment.NewLine;
@@ -334,7 +334,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public virtual bool equals(MmgPulse obj)
+        public virtual bool ApiEquals(MmgPulse obj)
         {
             if (obj == null)
             {
@@ -347,8 +347,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                ((obj.GetAdjScaling() == null && GetAdjScaling() == null) || (obj.GetAdjScaling() != null && GetAdjScaling() != null && obj.GetAdjScaling().equals(GetAdjScaling())))
-                && ((obj.GetBaseLineScaling() == null && GetBaseLineScaling() == null) || (obj.GetBaseLineScaling() != null && GetBaseLineScaling() != null && obj.GetBaseLineScaling().equals(GetBaseLineScaling())))
+                ((obj.GetAdjScaling() == null && GetAdjScaling() == null) || (obj.GetAdjScaling() != null && GetAdjScaling() != null && obj.GetAdjScaling().ApiEquals(GetAdjScaling())))
+                && ((obj.GetBaseLineScaling() == null && GetBaseLineScaling() == null) || (obj.GetBaseLineScaling() != null && GetBaseLineScaling() != null && obj.GetBaseLineScaling().ApiEquals(GetBaseLineScaling())))
                 && obj.GetChange() == GetChange()
                 && obj.GetChangePerMs() == GetChangePerMs()
                 && obj.GetDirection() == GetDirection()

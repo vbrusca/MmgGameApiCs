@@ -52,7 +52,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             c1 = new MmgColor(Color.Orange);
 
             //TEST 1
-            Assert.AreEqual(true, v1.equals(m1.GetPosition()));
+            Assert.AreEqual(true, v1.ApiEquals(m1.GetPosition()));
             Assert.AreEqual(w, m1.GetWidth());
             Assert.AreEqual(h, m1.GetHeight());
         }

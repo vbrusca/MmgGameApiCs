@@ -43,19 +43,19 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             //TEST 1
             cr = Color.White;
-            Assert.AreEqual(true, MmgColor.GetWhite().equals(new MmgColor(cr)));
+            Assert.AreEqual(true, MmgColor.GetWhite().ApiEquals(new MmgColor(cr)));
 
             //TEST 2
             cr = Color.Black;
-            Assert.AreEqual(true, MmgColor.GetBlack().equals(new MmgColor(cr)));
+            Assert.AreEqual(true, MmgColor.GetBlack().ApiEquals(new MmgColor(cr)));
 
             //TEST 3
             c1 = new MmgColor(Color.White);
-            Assert.AreEqual(true, MmgColor.GetWhite().equals(new MmgColor(c1)));
+            Assert.AreEqual(true, MmgColor.GetWhite().ApiEquals(new MmgColor(c1)));
 
             //TEST 4
             c1 = new MmgColor(Color.Black);
-            Assert.AreEqual(true, MmgColor.GetBlack().equals(new MmgColor(c1)));
+            Assert.AreEqual(true, MmgColor.GetBlack().ApiEquals(new MmgColor(c1)));
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             cr = Color.Green;
             c1 = new MmgColor(cr);
             c2 = new MmgColor(c1);
-            Assert.AreEqual(true, c1.equals(c2));
+            Assert.AreEqual(true, c1.ApiEquals(c2));
         }
 
         [TestMethod]
@@ -108,7 +108,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreNotEqual(c1, c2);
             Assert.AreNotEqual(c1, c2);
             Assert.AreEqual(c1.GetColor(), c2.GetColor());
-            Assert.IsTrue(c1.equals(c2));
+            Assert.IsTrue(c1.ApiEquals(c2));
         }
 
         [TestMethod]

@@ -46,9 +46,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(c1.GetColor(), Color.White);
 
             c2 = c1.Clone();
-            Assert.AreEqual(true, c1.equals(c2));
-            Assert.AreEqual(true, c1.equals(c1));
-            Assert.AreEqual(false, c1.equals(c3));
+            Assert.AreEqual(true, c1.ApiEquals(c2));
+            Assert.AreEqual(true, c1.ApiEquals(c1));
+            Assert.AreEqual(false, c1.ApiEquals(c3));
 
             c1.SetColor(Color.Red);
             Assert.AreEqual(c1.GetColor(), Color.Red);
@@ -66,9 +66,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(c1.GetColor(), Color.White);
 
             c2 = c1.Clone();
-            Assert.AreEqual(true, c1.equals(c2));
-            Assert.AreEqual(true, c1.equals(c1));
-            Assert.AreEqual(false, c1.equals(c3));
+            Assert.AreEqual(true, c1.ApiEquals(c2));
+            Assert.AreEqual(true, c1.ApiEquals(c1));
+            Assert.AreEqual(false, c1.ApiEquals(c3));
 
             c1.SetColor(Color.Red);
             Assert.AreEqual(c1.GetColor(), Color.Red);
@@ -86,9 +86,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(c1.GetColor(), Color.Blue);
 
             c2 = c1.Clone();
-            Assert.AreEqual(true, c1.equals(c2));
-            Assert.AreEqual(true, c1.equals(c1));
-            Assert.AreEqual(false, c1.equals(c3));
+            Assert.AreEqual(true, c1.ApiEquals(c2));
+            Assert.AreEqual(true, c1.ApiEquals(c1));
+            Assert.AreEqual(false, c1.ApiEquals(c3));
 
             c1.SetColor(Color.Red);
             Assert.AreEqual(c1.GetColor(), Color.Red);

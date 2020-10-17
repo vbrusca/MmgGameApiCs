@@ -471,7 +471,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgContainer object instance to test for equality.</param>
         /// <returns>Returns true if both MmgContainer objects are the same.</returns>
-        public virtual bool equals(MmgContainer obj)
+        public virtual bool ApiEquals(MmgContainer obj)
         {
             if (obj == null)
             {
@@ -501,7 +501,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                         m1 = obj.container[i];
                         m2 = container[i];
                         if (
-                            !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.equals(m2)))
+                            !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.ApiEquals(m2)))
                         )
                         {
                             ret = false;

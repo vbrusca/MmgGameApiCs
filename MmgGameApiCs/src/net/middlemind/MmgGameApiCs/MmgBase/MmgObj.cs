@@ -506,9 +506,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// A string representation of this class.
         /// </summary>
         /// <returns>A string representation of this class.</returns>
-        public virtual string toString()
+        public virtual string ApiToString()
         {
-            return "Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString() + " HasParent: " + GetHasParent() + " Width: " + w + " Height: " + h;
+            return "MmgObj: Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString() + " HasParent: " + GetHasParent() + " Width: " + w + " Height: " + h;
         }
 
         /// <summary>
@@ -517,7 +517,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">A MmgObj to compare this class to.</param>
         /// <returns>A boolean indicating if this class instance is equal to the comparison class instance.</returns>
-        public virtual bool equals(MmgObj obj)
+        public virtual bool ApiEquals(MmgObj obj)
         {
             if (obj == null)
             {
@@ -563,11 +563,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 obj.GetHasParent() == GetHasParent()
                 && obj.GetHeight() == GetHeight()
                 && obj.GetWidth() == GetWidth()
-                && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().equals(GetMmgColor())))
+                && ((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().ApiEquals(GetMmgColor())))
                 && ((obj.GetId() == null && GetId() == null) || (obj.GetId() != null && GetId() != null && obj.GetId().Equals(GetId())))
                 && ((obj.GetName() == null && GetName() == null) || (obj.GetName() != null && GetName() != null && obj.GetName().Equals(GetName())))
-                && ((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().equals(GetParent())))
-                && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().equals(GetPosition())))
+                && ((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().ApiEquals(GetParent())))
+                && ((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().ApiEquals(GetPosition())))
             )
             {
                 ret = true;

@@ -263,7 +263,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">An MmgLoadingScreen object instance to compare to.</param>
         /// <returns>Returns true if the objects are considered equal and false otherwise.</returns>
-        public virtual bool equals(MmgLoadingScreen obj)
+        public virtual bool ApiEquals(MmgLoadingScreen obj)
         {
             if (obj == null)
             {
@@ -290,9 +290,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgGameScreen)obj)
+                base.ApiEquals((MmgGameScreen)obj)
                 && obj.GetLoadingBarOffsetBottom() == GetLoadingBarOffsetBottom()
-                && ((obj.GetLoadingBar() == null && GetLoadingBar() == null) || (obj.GetLoadingBar() != null && GetLoadingBar() != null && obj.GetLoadingBar().equals(GetLoadingBar())))
+                && ((obj.GetLoadingBar() == null && GetLoadingBar() == null) || (obj.GetLoadingBar() != null && GetLoadingBar() != null && obj.GetLoadingBar().ApiEquals(GetLoadingBar())))
             )
             {
                 ret = true;

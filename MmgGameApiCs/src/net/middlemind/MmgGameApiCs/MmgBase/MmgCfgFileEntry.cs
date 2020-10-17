@@ -76,7 +76,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// A standard method that prints the contents of this MmgCfgFileEntry.
         /// </summary>
         /// <returns>A string representation of this class.</returns>
-        public virtual string toString()
+        public virtual string ApiToString()
         {
             string ret = "";
 
@@ -113,7 +113,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgCfgFileEntry object instance to test for equality.</param>
         /// <returns>Returns true if both MmgCfgFileEntry objects are the same.</returns>
-        public virtual bool equals(MmgCfgFileEntry obj)
+        public virtual bool ApiEquals(MmgCfgFileEntry obj)
         {
             if (obj == null)
             {

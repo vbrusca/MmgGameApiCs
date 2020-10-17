@@ -569,7 +569,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgTextField object to compare to.</param>
         /// <returns>A boolean indicating if the two objects are equal or not.</returns>
-        public virtual bool equals(MmgTextField obj)
+        public virtual bool ApiEquals(MmgTextField obj)
         {
             if (obj == null)
             {
@@ -620,11 +620,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             bool ret = false;
             if (
-                base.equals((MmgObj)obj)
-                && ((obj.GetBground() == null && GetBground() == null) || (obj.GetBground() != null && GetBground() != null && obj.GetBground().equals(GetBground())))
-                && ((obj.GetBgroundSrc() == null && GetBgroundSrc() == null) || (obj.GetBgroundSrc() != null && GetBgroundSrc() != null && obj.GetBgroundSrc().equals(GetBgroundSrc())))
+                base.ApiEquals((MmgObj)obj)
+                && ((obj.GetBground() == null && GetBground() == null) || (obj.GetBground() != null && GetBground() != null && obj.GetBground().ApiEquals(GetBground())))
+                && ((obj.GetBgroundSrc() == null && GetBgroundSrc() == null) || (obj.GetBgroundSrc() != null && GetBgroundSrc() != null && obj.GetBgroundSrc().ApiEquals(GetBgroundSrc())))
                 && obj.GetDisplayChars() == GetDisplayChars()
-                && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().equals(GetFont())))
+                && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().ApiEquals(GetFont())))
                 && obj.GetFontHeight() == GetFontHeight()
                 && obj.GetMaxLength() == GetMaxLength()
                 && obj.GetMaxLengthOn() == GetMaxLengthOn()

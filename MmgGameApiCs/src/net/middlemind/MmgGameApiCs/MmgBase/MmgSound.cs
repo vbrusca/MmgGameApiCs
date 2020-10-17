@@ -280,7 +280,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Converts the MmgSound object into a string representation.
         /// </summary>
         /// <returns>The string representation of this class.</returns>
-        public virtual string toString()
+        public virtual string ApiToString()
         {
             return "MmgSound: " + idStr + " Clip Length MS: " + (sound.Duration.TotalMilliseconds);
         }
@@ -290,7 +290,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgSound object to compare.</param>
         /// <returns>A boolean indicating if the object instance is equal to the argument object instance.</returns>
-        public virtual bool equals(MmgSound obj)
+        public virtual bool ApiEquals(MmgSound obj)
         {
             if (obj == null)
             {

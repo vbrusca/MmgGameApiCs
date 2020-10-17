@@ -342,6 +342,12 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
                     GAME_WIDTH = 478;
                     GAME_HEIGHT = 318;
                 }
+
+                res = ArrayHasEntryLike("RUN_UNIT_TESTS=", args);
+                if (res != null)
+                {
+                    GameSettings.RUN_UNIT_TESTS = true;
+                }
             }
 
             //LOAD ENGINE CONFIG FILE

@@ -400,9 +400,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// A string representation of this object.
         /// </summary>
         /// <returns>A string representation of this object.</returns>
-        public virtual string toString()
+        public virtual string ApiToString()
         {
-            return "L: " + rect.Left + " R: " + rect.Right + " T: " + rect.Top + " B: " + rect.Bottom + ", W: " + GetWidth() + " H: " + GetHeight();
+            return "MmgRect: L: " + rect.Left + " R: " + rect.Right + " T: " + rect.Top + " B: " + rect.Bottom + ", W: " + GetWidth() + " H: " + GetHeight();
         }
 
         /// <summary>
@@ -410,7 +410,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">A MmgRect to compare with this class instance.</param>
         /// <returns>A boolean indicating if the two class instances are equal.</returns>
-        public virtual bool equals(MmgRect obj)
+        public virtual bool ApiEquals(MmgRect obj)
         {
             if (obj == null)
             {
