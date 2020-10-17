@@ -305,6 +305,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 if (res != null)
                 {
                     FPS = int.Parse(res.Split("=")[1]);
+                    GamePanel.TARGET_FPS = FPS;
                 }
 
                 res = ArrayHasEntryLike("OPENGL=false", args);

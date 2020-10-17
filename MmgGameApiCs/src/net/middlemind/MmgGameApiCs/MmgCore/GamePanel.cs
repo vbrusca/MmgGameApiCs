@@ -490,6 +490,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// TODO: Add comments
         /// </summary>
+        public static long TARGET_FPS = 16L;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
         /// <param name="WinWidth"></param>
         /// <param name="WinHeight"></param>
         /// <param name="X"></param>
@@ -528,6 +533,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             Exiting += windowClosing;
             Activated += windowActivated;
+
+            IsFixedTimeStep = true;
+            TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0d / (double)TARGET_FPS);          
         }
 
         //NOTES: Added to the Monogame port to mimic the Java window closing implementation.
@@ -2098,6 +2106,19 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
+        /// Sets the display text of the frame rate label.
+        /// </summary>
+        /// <param name="fr">A long representing the current drawing frame rate, or the frame rate if no time lock is applied.</param>
+        /// <param name="rfr">A long representing the locked frame rate.</param>
+        public void SetFrameRate(long fr, long rfr)
+        {
+            if (canvas != null)
+            {
+                FPS = "Drawing FPS: " + fr + " Actual FPS: " + rfr;
+            }
+        }
+
+        /// <summary>
         /// The UpdateGame method is used to call the lower level MmgUpdate method of the MmgGameScreen class, currentScreen.
         /// Send the update call count, the current time, and the time difference between this frame and the last frame.
         /// </summary>
@@ -2226,8 +2247,13 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             frameStop = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             frameTime = (frameStop - frameStart) + 1;
+            aFps = (1000 / frameTime);
+       
+            //frameStop = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            //frameTime = (frameStop - frameStart) + 1;
+            frameTime = (long)TargetElapsedTime.TotalMilliseconds + 1;
             rFps = (1000 / frameTime);
-            //mf.SetFrameRate(aFps, rFps);
+            SetFrameRate(aFps, rFps);
         }
     }
 }
