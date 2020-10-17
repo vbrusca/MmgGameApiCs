@@ -451,6 +451,43 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         private bool runningTests = false;
 
         /// <summary>
+        /// Target frames per second.
+        /// </summary>
+        public readonly long tFps;
+
+        /// <summary>
+        /// Target frame time.
+        /// </summary>
+        public readonly long tFrameTime;
+
+        /// <summary>
+        /// Actual frames per second. 
+        /// The actual frames the game might run at if it wasn't controlled.
+        /// </summary>
+        public long aFps;
+
+        /// <summary>
+        /// Real frames per second. 
+        /// The controlled frames per second.
+        /// </summary>
+        public long rFps;
+
+        /// <summary>
+        /// Last frame stop time.
+        /// </summary>
+        public long frameStart;
+
+        /// <summary>
+        /// Last frame start time.
+        /// </summary>
+        public long frameStop;
+
+        /// <summary>
+        /// Frame time.
+        /// </summary>
+        public long frameTime;
+
+        /// <summary>
         /// TODO: Add comments
         /// </summary>
         /// <param name="WinWidth"></param>
@@ -1966,7 +2003,14 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 if (k != Keys.Space && k != Keys.Enter)
                 {
-                    ProcessKeyPress(c, (int)c);
+                    if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
+                    {
+                        ProcessKeyPress(c, MmgHelper.NormalizeKeyCode((int)c, -1, "c_sharp"));
+                    }
+                    else
+                    {
+                        ProcessKeyPress(c, (int)c);
+                    }
                 }
                 //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' Keys: '" + k.ToString() + " has been pressed.");
             }
@@ -1977,10 +2021,24 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 if (HasKeyBeenClicked(k, stateK))
                 {
-                    ProcessKeyRelease(c, (int)c);
+                    if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
+                    {
+                        ProcessKeyRelease(c, MmgHelper.NormalizeKeyCode((int)c, -1, "c_sharp"));
+                    }
+                    else
+                    {
+                        ProcessKeyRelease(c, (int)c);
+                    }
                     //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been released.");
 
-                    ProcessKeyClick(c, (int)c);
+                    if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
+                    {
+                        ProcessKeyClick(c, MmgHelper.NormalizeKeyCode((int)c, -1, "c_sharp"));
+                    }
+                    else
+                    {
+                        ProcessKeyClick(c, (int)c);
+                    }
                     //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been clicked.");
                 }
             }
@@ -2045,6 +2103,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public virtual void UpdateGame()
         {
+            frameStart = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
             updateTick++;
 
             if (PAUSE == true || EXIT == true)
@@ -2163,6 +2223,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             bg.End();
 
             UpdateScreen();
+
+            frameStop = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            frameTime = (frameStop - frameStart) + 1;
+            rFps = (1000 / frameTime);
+            //mf.SetFrameRate(aFps, rFps);
         }
     }
 }

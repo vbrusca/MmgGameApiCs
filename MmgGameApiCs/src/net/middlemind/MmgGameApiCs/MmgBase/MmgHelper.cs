@@ -22,6 +22,47 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// TODO: Add comments
         /// </summary>
+        /// <param name="x"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public static int NormalizeFontPositionX(int x, MmgFont f)
+        {
+            return x;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="y"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public static int NormalizeFontPositionY(int y, MmgFont f)
+        {
+            return y;
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="keyCode"></param>
+        /// <param name="extKeyCode"></param>
+        /// <param name="platform"></param>
+        /// <returns></returns>
+        public static int NormalizeKeyCode(int keyCode, int extKeyCode, String platform)
+        {
+            if (extKeyCode != -1)
+            {
+                return extKeyCode;
+            }
+            else
+            {
+                return keyCode;
+            }
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
         /// <param name="angle"></param>
         /// <returns></returns>
         public static double ConvertToRadians(double angle)

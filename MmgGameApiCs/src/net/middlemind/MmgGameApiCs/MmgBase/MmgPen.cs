@@ -16,6 +16,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// TODO: Add comments
         /// </summary>
+        public static bool FONT_NORMALIZE_POSITION = false;
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
         public static int FONT_VERT_POS_ADJ = 6;
 
         /// <summary>
@@ -130,7 +135,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public virtual void DrawText(MmgFont f)
         {
             //pen.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-            pen.DrawString(f.GetFont(), f.GetText(), new Vector2(f.GetX(), f.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+            if (FONT_NORMALIZE_POSITION)
+            {
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(f.GetX(), f), MmgHelper.NormalizeFontPositionY(f.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ, f)), f.GetMmgColor().GetColor());
+            }
+            else
+            {
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(f.GetX(), f.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+            }
             //pen.End();
         }
 
@@ -144,7 +156,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             //pen.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             y -= f.GetHeight() + FONT_VERT_POS_ADJ;
-            pen.DrawString(f.GetFont(), f.GetText(), new Vector2(x, y), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+            if (FONT_NORMALIZE_POSITION)
+            {
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(x, f), MmgHelper.NormalizeFontPositionY(y, f)), f.GetMmgColor().GetColor());
+            }
+            else
+            {
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(x, y), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+            }
             //pen.End();
         }
 
@@ -156,7 +175,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public virtual void DrawText(MmgFont f, MmgVector2 pos)
         {
             //pen.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-            pen.DrawString(f.GetFont(), f.GetText(), new Vector2(pos.GetX(), pos.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+            if (FONT_NORMALIZE_POSITION)
+            {
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(pos.GetX(), f), MmgHelper.NormalizeFontPositionY(pos.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ, f)), f.GetMmgColor().GetColor());
+            }
+            else
+            {
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(pos.GetX(), pos.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+            }
             //pen.End();
         }
 

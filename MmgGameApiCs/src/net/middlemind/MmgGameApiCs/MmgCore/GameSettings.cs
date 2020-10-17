@@ -13,6 +13,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class GameSettings
     {
+        public static bool INPUT_NORMALIZE_KEY_CODE = false;
         public static bool RUN_UNIT_TESTS = false;
         public static string TARGET_GAME_SETTINGS_XML_VERSION = "1.0";
 
