@@ -40,7 +40,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             MmgPen p1 = null;
             RenderTarget2D img = null;
             MmgBmp b1 = null;
-            Graphics2D g = null;
+            SpriteBatch g = null;
 
             b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_1.png");
             p1 = new MmgPen();
@@ -54,19 +54,23 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             p1.SetColor(Color.Red);
 
-            Assert.AreEqual(true, p1.GetColor().equals(Color.Red));
-            Assert.AreEqual(true, p1.GetColor().equals(Color.Red));
+            Assert.AreEqual(true, p1.GetColor().Equals(Color.Red));
+            Assert.AreEqual(true, p1.GetColor().Equals(Color.Red));
 
-            img = new BuffeRedImage(64, 64, BuffeRedImage.TYPE_INT_ARGB);
-            g = img.createGraphics();
-            g.drawImage(b1.GetImage(), 0, 0, null);
-            g.dispose();
+            img = new RenderTarget2D(MmgScreenData.GRAPHICS_CONFIG, 64, 64);
+            g = new SpriteBatch(MmgScreenData.GRAPHICS_CONFIG);
+            g.GraphicsDevice.SetRenderTarget(img);
+            g.GraphicsDevice.Clear(Color.Transparent);
+            g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            g.Draw(b1.GetImage(), Vector2.Zero, Color.White);
+            g.End();
+            g.GraphicsDevice.SetRenderTarget(null);
 
             p1.SetGraphics(g);
             p1.SetGraphicsColor(Color.Blue);
-            Assert.AreEqual(true, p1.GetGraphics().equals(g));
-            Assert.AreEqual(true, p1.GetSpriteBatch().equals(g));
-            Assert.AreEqual(true, p1.GetGraphicsColor().equals(Color.Blue));
+            Assert.AreEqual(true, p1.GetGraphics().Equals(g));
+            Assert.AreEqual(true, p1.GetSpriteBatch().Equals(g));
+            Assert.AreEqual(true, p1.GetGraphicsColor().Equals(Color.Blue));
         }
 
         [TestMethod]
@@ -75,13 +79,25 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             MmgPen p1 = null;
             RenderTarget2D img = null;
             MmgBmp b1 = null;
-            Graphics2D g = null;
+            SpriteBatch g = null;
 
             b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_1.png");
+
+            img = new RenderTarget2D(MmgScreenData.GRAPHICS_CONFIG, 64, 64);
+            g = new SpriteBatch(MmgScreenData.GRAPHICS_CONFIG);
+            g.GraphicsDevice.SetRenderTarget(img);
+            g.GraphicsDevice.Clear(Color.Transparent);
+            g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            g.Draw(b1.GetImage(), Vector2.Zero, Color.White);
+            g.End();
+            g.GraphicsDevice.SetRenderTarget(null);
+
+            /*
             img = new BuffeRedImage(64, 64, BuffeRedImage.TYPE_INT_ARGB);
             g = img.createGraphics();
             g.drawImage(b1.GetImage(), 0, 0, null);
             g.dispose();
+            */
 
             p1 = new MmgPen(g);
             p1.SetCacheOn(true);
@@ -94,18 +110,29 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             p1.SetColor(Color.Red);
 
-            Assert.AreEqual(true, p1.GetColor().equals(Color.Red));
+            Assert.AreEqual(true, p1.GetColor().Equals(Color.Red));
 
+            img = new RenderTarget2D(MmgScreenData.GRAPHICS_CONFIG, 64, 64);
+            g = new SpriteBatch(MmgScreenData.GRAPHICS_CONFIG);
+            g.GraphicsDevice.SetRenderTarget(img);
+            g.GraphicsDevice.Clear(Color.Transparent);
+            g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            g.Draw(b1.GetImage(), Vector2.Zero, Color.White);
+            g.End();
+            g.GraphicsDevice.SetRenderTarget(null);
+
+            /*
             img = new BuffeRedImage(64, 64, BuffeRedImage.TYPE_INT_ARGB);
             g = img.createGraphics();
             g.drawImage(b1.GetImage(), 0, 0, null);
             g.dispose();
+            */
 
             p1.SetGraphics(g);
             p1.SetGraphicsColor(Color.Blue);
-            Assert.AreEqual(true, p1.GetGraphics().equals(g));
-            Assert.AreEqual(true, p1.GetSpriteBatch().equals(g));
-            Assert.AreEqual(true, p1.GetGraphicsColor().equals(Color.Blue));
+            Assert.AreEqual(true, p1.GetGraphics().Equals(g));
+            Assert.AreEqual(true, p1.GetSpriteBatch().Equals(g));
+            Assert.AreEqual(true, p1.GetGraphicsColor().Equals(Color.Blue));
         }
 
         [TestMethod]
@@ -114,15 +141,27 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             MmgPen p1 = null;
             RenderTarget2D img = null;
             MmgBmp b1 = null;
-            Graphics2D g = null;
+            SpriteBatch g = null;
 
             b1 = MmgHelper.GetBasicBmp(MmgUnitTestSettings.APP_IMAGE_RESOURCE_ROOT_DIR + "soldier_frame_1.png");
+
+            img = new RenderTarget2D(MmgScreenData.GRAPHICS_CONFIG, 64, 64);
+            g = new SpriteBatch(MmgScreenData.GRAPHICS_CONFIG);
+            g.GraphicsDevice.SetRenderTarget(img);
+            g.GraphicsDevice.Clear(Color.Transparent);
+            g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            g.Draw(b1.GetImage(), Vector2.Zero, Color.White);
+            g.End();
+            g.GraphicsDevice.SetRenderTarget(null);
+
+            /*
             img = new BuffeRedImage(64, 64, BuffeRedImage.TYPE_INT_ARGB);
             g = img.createGraphics();
             g.drawImage(b1.GetImage(), 0, 0, null);
             g.dispose();
+            */
 
-            p1 = new MmgPen(g, Color.BLACK);
+            p1 = new MmgPen(g, Color.Black);
             p1.SetCacheOn(true);
 
             Assert.AreEqual(true, p1.GetCacheOn() == true);
@@ -133,19 +172,30 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             p1.SetColor(Color.Red);
 
-            Assert.AreEqual(true, p1.GetColor().equals(Color.Red));
-            Assert.AreEqual(true, p1.GetColor().equals(Color.Red));
+            Assert.AreEqual(true, p1.GetColor().Equals(Color.Red));
+            Assert.AreEqual(true, p1.GetColor().Equals(Color.Red));
 
+            img = new RenderTarget2D(MmgScreenData.GRAPHICS_CONFIG, 64, 64);
+            g = new SpriteBatch(MmgScreenData.GRAPHICS_CONFIG);
+            g.GraphicsDevice.SetRenderTarget(img);
+            g.GraphicsDevice.Clear(Color.Transparent);
+            g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            g.Draw(b1.GetImage(), Vector2.Zero, Color.White);
+            g.End();
+            g.GraphicsDevice.SetRenderTarget(null);
+
+            /*
             img = new BuffeRedImage(64, 64, BuffeRedImage.TYPE_INT_ARGB);
             g = img.createGraphics();
             g.drawImage(b1.GetImage(), 0, 0, null);
             g.dispose();
+            */
 
             p1.SetGraphics(g);
             p1.SetGraphicsColor(Color.Blue);
-            Assert.AreEqual(true, p1.GetGraphics().equals(g));
-            Assert.AreEqual(true, p1.GetSpriteBatch().equals(g));
-            Assert.AreEqual(true, p1.GetGraphicsColor().equals(Color.Blue));
+            Assert.AreEqual(true, p1.GetGraphics().Equals(g));
+            Assert.AreEqual(true, p1.GetSpriteBatch().Equals(g));
+            Assert.AreEqual(true, p1.GetGraphicsColor().Equals(Color.Blue));
         }
     }
 }
