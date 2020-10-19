@@ -876,7 +876,29 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public virtual bool ProcessMousePress(MmgVector2 v)
         {
-            return ProcessMousePress(v.GetX(), v.GetY());
+            return ProcessMousePress(v.GetX(), v.GetY(), 0);
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="btnIndex"></param>
+        /// <returns></returns>
+        public virtual bool ProcessMousePress(MmgVector2 v, int btnIndex)
+        {
+            return ProcessMousePress(v.GetX(), v.GetY(), btnIndex);
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public virtual bool ProcessMousePress(int x, int y)
+        {
+            return ProcessMousePress(x, y, 0);
         }
 
         /// <summary>
@@ -885,7 +907,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="x">The X coordinate of the mouse.</param>
         /// <param name="y">The Y coordinate of the mouse.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
-        public virtual bool ProcessMousePress(int x, int y)
+        public virtual bool ProcessMousePress(int x, int y, int btnIndex)
         {
             return true;
         }
@@ -897,7 +919,18 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public virtual bool ProcessMouseRelease(MmgVector2 v)
         {
-            return ProcessMousePress(v.GetX(), v.GetY());
+            return ProcessMousePress(v.GetX(), v.GetY(), 0);
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="btnIndex"></param>
+        /// <returns></returns>
+        public virtual bool ProcessMouseRelease(MmgVector2 v, int btnIndex)
+        {
+            return ProcessMousePress(v.GetX(), v.GetY(), btnIndex);
         }
 
         /// <summary>
@@ -907,6 +940,17 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="y">The Y coordinate of the event.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public virtual bool ProcessMouseRelease(int x, int y)
+        {
+            return ProcessMouseRelease(x, y, 0);
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public virtual bool ProcessMouseRelease(int x, int y, int btnIndex)
         {
             return true;
         }
@@ -919,7 +963,29 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
         public virtual bool ProcessMouseClick(MmgVector2 v)
         {
-            return ProcessMouseClick(v.GetX(), v.GetY());
+            return ProcessMouseClick(v.GetX(), v.GetY(), 0);
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="btnIndex"></param>
+        /// <returns></returns>
+        public virtual bool ProcessMouseClick(MmgVector2 v, int btnIndex)
+        {
+            return ProcessMouseClick(v.GetX(), v.GetY(), btnIndex);
+        }
+
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public virtual bool ProcessMouseClick(int x, int y)
+        {
+            return ProcessMouseClick(x, y, 0);
         }
 
         /// <summary>
@@ -928,8 +994,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="x">The X axis coordinate of the screen click.</param>
         /// <param name="y">The Y axis coordinate of the screen click.</param>
+        /// <param name="btnIndex">TODO: Add comments</param>
         /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
-        public virtual bool ProcessMouseClick(int x, int y)
+        public virtual bool ProcessMouseClick(int x, int y, int btnIndex)
         {
             if (menuOn == true && menu != null)
             {

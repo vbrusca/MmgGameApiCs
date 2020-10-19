@@ -903,11 +903,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="x">The x argument is the X position of the mouse as received from the mouse listener.</param>
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
-        public virtual void ProcessMousePress(int x, int y)
+        public virtual void ProcessMousePress(int x, int y, int btnIndex)
         {
             if (currentScreen != null)
             {
-                currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+                currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
             }
         }
 
@@ -918,11 +918,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="x">The x argument is the X position of the mouse as received from the mouse listener.</param>
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
-        public virtual void ProcessMouseRelease(int x, int y)
+        public virtual void ProcessMouseRelease(int x, int y, int btnIndex)
         {
             if (currentScreen != null)
             {
-                currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+                currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
             }
         }
 
@@ -933,11 +933,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="x">The x argument is the X position of the mouse as received from the mouse listener.</param>
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
-        public virtual void ProcessMouseClick(int x, int y)
+        public virtual void ProcessMouseClick(int x, int y, int btnIndex)
         {
             if (currentScreen != null)
             {
-                currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+                currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
             }
         }
 
@@ -2177,25 +2177,25 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             if(stateM.LeftButton == ButtonState.Pressed)
             {
-                ProcessMousePress(stateM.X, stateM.Y);
+                ProcessMousePress(stateM.X, stateM.Y, 0);
             }
 
             if(HasButtonBeenClicked(stateM.LeftButton, stateM, "LeftButton"))
             {
-                ProcessMouseRelease(stateM.X, stateM.Y);
-                ProcessMouseClick(stateM.X, stateM.Y);
+                ProcessMouseRelease(stateM.X, stateM.Y, 0);
+                ProcessMouseClick(stateM.X, stateM.Y, 0);
             }
 
             if (HasButtonBeenClicked(stateM.MiddleButton, stateM, "MiddleButton"))
             {
-                ProcessMouseRelease(stateM.X, stateM.Y);
-                ProcessMouseClick(stateM.X, stateM.Y);
+                ProcessMouseRelease(stateM.X, stateM.Y, 1);
+                ProcessMouseClick(stateM.X, stateM.Y, 1);
             }
 
             if (HasButtonBeenClicked(stateM.RightButton, stateM, "RightButton"))
             {
-                ProcessMouseRelease(stateM.X, stateM.Y);
-                ProcessMouseClick(stateM.X, stateM.Y);
+                ProcessMouseRelease(stateM.X, stateM.Y, 2);
+                ProcessMouseClick(stateM.X, stateM.Y, 2);
             }
 
             //MmgHelper.wr("Mouse: LastX: '" + lastX + "' LastY: '" + lastY + "'");
