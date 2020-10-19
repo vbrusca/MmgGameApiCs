@@ -1348,520 +1348,631 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="k"></param>
         /// <returns></returns>
-        private char ConvertKeyToChar(Keys k)
+        private KeyMap ConvertKeyToChar(Keys k)
         {
-            if(k == Keys.A)
+            if (k == Keys.Escape)
             {
-                if(keyShiftDown || keyCapsLockOn)
+                return new KeyMap((char)((byte)27), 27, 27);
+            }
+            else if(k == Keys.F1)
+            {
+                return new KeyMap((char)((byte)112), 112, 112);
+            }
+            else if (k == Keys.F2)
+            {
+                return new KeyMap((char)((byte)113), 113, 113);
+            }
+            else if (k == Keys.F3)
+            {
+                return new KeyMap((char)((byte)114), 114, 114);
+            }
+            else if (k == Keys.F4)
+            {
+                return new KeyMap((char)((byte)115), 115, 115);
+            }
+            else if (k == Keys.F5)
+            {
+                return new KeyMap((char)((byte)116), 116, 116);
+            }
+            else if (k == Keys.F6)
+            {
+                return new KeyMap((char)((byte)117), 117, 117);
+            }
+            else if (k == Keys.F7)
+            {
+                return new KeyMap((char)((byte)118), 118, 118);
+            }
+            else if (k == Keys.F8)
+            {
+                return new KeyMap((char)((byte)119), 119, 119);
+            }
+            else if (k == Keys.F9)
+            {
+                return new KeyMap((char)((byte)120), 120, 120);
+            }
+            else if (k == Keys.F10)
+            {
+                return new KeyMap((char)((byte)121), 121, 121);
+            }
+            else if (k == Keys.F11)
+            {
+                return new KeyMap((char)((byte)122), 122, 122);
+            }
+            else if (k == Keys.F12)
+            {
+                return new KeyMap((char)((byte)123), 123, 123);
+            }
+            else if (k == Keys.OemTilde)
+            {
+                if (!keyShiftDown)
                 {
-                    return 'A';
+                    return new KeyMap('`', 192, 192);
                 }
                 else
                 {
-                    return 'a';
+                    return new KeyMap('~', 192, 16777342);
+                }
+            }
+            else if (k == Keys.NumPad1)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('1', 49, 49);
+                }
+                else
+                {
+                    return new KeyMap('!', 49, 517);
+                }
+            }
+            else if (k == Keys.NumPad2)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('2', 50, 50);
+                }
+                else
+                {
+                    return new KeyMap('@', 50, 512);
+                }
+            }
+            else if (k == Keys.NumPad3)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('3', 51, 51);
+                }
+                else
+                {
+                    return new KeyMap('#', 51, 520);
+                }
+            }
+            else if (k == Keys.NumPad4)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('4', 52, 52);
+                }
+                else
+                {
+                    return new KeyMap('$', 52, 515);
+                }
+            }
+            else if (k == Keys.NumPad5)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('5', 53, 53);
+                }
+                else
+                {
+                    return new KeyMap('%', 53, 0);
+                }
+            }
+            else if (k == Keys.NumPad6)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('6', 54, 54);
+                }
+                else
+                {
+                    return new KeyMap('^', 54, 514);
+                }
+            }
+            else if (k == Keys.NumPad7)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('7', 55, 55);
+                }
+                else
+                {
+                    return new KeyMap('&', 55, 150);
+                }
+            }
+            else if (k == Keys.NumPad8)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('8', 56, 56);
+                }
+                else
+                {
+                    return new KeyMap('*', 56, 151);
+                }
+            }
+            else if (k == Keys.NumPad9)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('9', 57, 57);
+                }
+                else
+                {
+                    return new KeyMap('(', 57, 519);
+                }
+            }
+            else if (k == Keys.NumPad0)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('0', 48, 48);
+                }
+                else
+                {
+                    return new KeyMap(')', 48, 522);
+                }
+            }
+            else if (k == Keys.OemMinus)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('-', 45, 45);
+                }
+                else
+                {
+                    return new KeyMap('_', 45, 523);
                 }
             }
             else if (k == Keys.Add)
             {
-                return '+';
-            }
-            else if(k == Keys.Apps)
-            {
-                return (char)((byte)93);
-            }
-            else if(k == Keys.B)
-            {
-                if (keyShiftDown || keyCapsLockOn)
+                if (!keyShiftDown)
                 {
-                    return 'B';
+                    return new KeyMap('+', 61, 521);
                 }
                 else
                 {
-                    return 'b';
+                    return new KeyMap('=', 61, 61);
                 }
             }
-            else if(k == Keys.Back)
+            else if (k == Keys.Delete)
             {
-                return (char)((byte)8);
+                return new KeyMap((char)((byte)8), 8, 8);
             }
-            else if(k == Keys.C)
+            else if (k == Keys.Tab)
             {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'C';
-                }
-                else
-                {
-                    return 'c';
-                }
+                return new KeyMap((char)((byte)9), 9, 9);
             }
-            else if(k == Keys.CapsLock)
+            else if (k == Keys.Q)
             {
-                return (char)((byte)20);
-            }
-            else if(k == Keys.D)
-            {
-                if (keyShiftDown || keyCapsLockOn)
+                if (!keyShiftDown)
                 {
-                    return 'D';
+                    return new KeyMap('q', 81, 81);
                 }
                 else
                 {
-                    return 'd';
+                    return new KeyMap('Q', 81, 81);
                 }
             }
-            else if(k == Keys.Decimal)
+            else if (k == Keys.W)
             {
-                return '.';
-            }
-            else if(k == Keys.Delete)
-            {
-                return (char)((byte)46);
-            }
-            else if(k == Keys.Divide)
-            {
-                return '/';
-            }
-            else if(k == Keys.Down)
-            {
-                return (char)((byte)40);
-            }
-            else if(k == Keys.E)
-            {
-                if (keyShiftDown || keyCapsLockOn)
+                if (!keyShiftDown)
                 {
-                    return 'E';
+                    return new KeyMap('w', 87, 87);
                 }
                 else
                 {
-                    return 'e';
+                    return new KeyMap('Q', 87, 87);
                 }
             }
-            else if(k == Keys.End)
+            else if (k == Keys.E)
             {
-                return (char)((byte)35);
-            }
-            else if(k == Keys.Enter)
-            {
-                return '\n';
-            }
-            else if(k == Keys.Escape)
-            {
-                return (char)((byte)27);
-            }
-            else if(k == Keys.F)
-            {
-                if (keyShiftDown || keyCapsLockOn)
+                if (!keyShiftDown)
                 {
-                    return 'F';
+                    return new KeyMap('e', 69, 69);
                 }
                 else
                 {
-                    return 'f';
+                    return new KeyMap('E', 69, 69);
                 }
             }
-            else if(k == Keys.F1)
+            else if (k == Keys.R)
             {
-                return (char)((byte)112);
-            }
-            else if(k == Keys.F2)
-            {
-                return (char)((byte)113);
-            }
-            else if (k == Keys.F3)
-            {
-                return (char)((byte)114);
-            }
-            else if (k == Keys.F4)
-            {
-                return (char)((byte)115);
-            }
-            else if (k == Keys.F5)
-            {
-                return (char)((byte)116);
-            }
-            else if (k == Keys.F6)
-            {
-                return (char)((byte)117);
-            }
-            else if (k == Keys.F7)
-            {
-                return (char)((byte)118);
-            }
-            else if (k == Keys.F8)
-            {
-                return (char)((byte)119);
-            }
-            else if (k == Keys.F9)
-            {
-                return (char)((byte)120);
-            }
-            else if (k == Keys.F10)
-            {
-                return (char)((byte)121);
-            }
-            else if (k == Keys.F11)
-            {
-                return (char)((byte)122);
-            }
-            else if (k == Keys.F12)
-            {
-                return (char)((byte)123);
-            }
-            else if(k == Keys.G)
-            {
-                if (keyShiftDown || keyCapsLockOn)
+                if (!keyShiftDown)
                 {
-                    return 'G';
+                    return new KeyMap('r', 82, 82);
                 }
                 else
                 {
-                    return 'g';
+                    return new KeyMap('R', 82, 82);
                 }
             }
-            else if(k == Keys.H)
+            else if (k == Keys.T)
             {
-                if (keyShiftDown || keyCapsLockOn)
+                if (!keyShiftDown)
                 {
-                    return 'H';
-                }
-                else
-                {
-                    return 'h';
-                }
-            }
-            else if(k == Keys.Home)
-            {
-                return (char)((byte)36);
-            }
-            else if(k == Keys.I)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'I';
+                    return new KeyMap('t', 84, 84);
                 }
                 else
                 {
-                    return 'i';
-                }
-            }
-            else if (k == Keys.Insert)
-            {
-                return (char)((byte)45);
-            }
-            else if(k == Keys.J)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'J';
-                }
-                else
-                {
-                    return 'j';
-                }
-            }
-            else if(k == Keys.K)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'K';
-                }
-                else
-                {
-                    return 'k';
-                }
-            }
-            else if(k == Keys.L)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'L';
-                }
-                else
-                {
-                    return 'l';
-                }
-            }
-            else if(k == Keys.Left)
-            {
-                return (char)((byte)37);
-            }
-            else if(k == Keys.LeftAlt)
-            {
-                return (char)((byte)164);
-            }
-            else if(k == Keys.LeftControl)
-            {
-                return (char)((byte)162);
-            }
-            else if(k == Keys.LeftWindows)
-            {
-                return (char)((byte)91);
-            }
-            else if(k == Keys.M)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'M';
-                }
-                else
-                {
-                    return 'm';
-                }
-            }
-            else if(k == Keys.Multiply)
-            {
-                return '*';
-            }
-            else if(k == Keys.N)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'N';
-                }
-                else
-                {
-                    return 'n';
-                }
-            }
-            else if(k == Keys.NumLock)
-            {
-                return (char)((byte)144);
-            }
-            else if(k == Keys.NumPad0)
-            {
-                return '0';
-            }
-            else if (k == Keys.NumPad1)
-            {
-                return '1';
-            }
-            else if (k == Keys.NumPad2)
-            {
-                return '2';
-            }
-            else if (k == Keys.NumPad3)
-            {
-                return '3';
-            }
-            else if (k == Keys.NumPad4)
-            {
-                return '4';
-            }
-            else if (k == Keys.NumPad5)
-            {
-                return '5';
-            }
-            else if (k == Keys.NumPad6)
-            {
-                return '6';
-            }
-            else if (k == Keys.NumPad7)
-            {
-                return '7';
-            }
-            else if (k == Keys.NumPad8)
-            {
-                return '8';
-            }
-            else if (k == Keys.NumPad9)
-            {
-                return '9';
-            }
-            else if(k == Keys.O)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'O';
-                }
-                else
-                {
-                    return 'o';
-                }
-            }
-            else if(k == Keys.P)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'P';
-                }
-                else
-                {
-                    return 'p';
-                }
-            }
-            else if(k == Keys.PageDown)
-            {
-                return (char)((byte)34);
-            }
-            else if(k == Keys.PageUp)
-            {
-                return (char)((byte)33);
-            }
-            else if(k == Keys.Pause)
-            {
-                return (char)((byte)19);
-            }
-            else if(k == Keys.PrintScreen)
-            {
-                return (char)((byte)44);
-            }
-            else if(k == Keys.Q)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'Q';
-                }
-                else
-                {
-                    return 'q';
-                }
-            }
-            else if(k == Keys.R)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'R';
-                }
-                else
-                {
-                    return 'r';
-                }
-            }
-            else if(k == Keys.Right)
-            {
-                return (char)((byte)39);
-            }
-            else if(k == Keys.RightAlt)
-            {
-                return (char)((byte)165);
-            }
-            else if(k == Keys.RightControl)
-            {
-                return (char)((byte)163);
-            }
-            else if(k == Keys.RightWindows)
-            {
-                return (char)((byte)92);
-            }
-            else if(k == Keys.S)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'S';
-                }
-                else
-                {
-                    return 's';
-                }
-            }
-            else if(k == Keys.Scroll)
-            {
-                return (char)((byte)145);
-            }
-            else if(k == Keys.Space)
-            {
-                return ' ';
-            }
-            else if(k == Keys.Subtract)
-            {
-                return '-';
-            }
-            else if(k == Keys.T)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'T';
-                }
-                else
-                {
-                    return 't';
-                }
-            }
-            else if(k == Keys.Tab)
-            {
-                return (char)((byte)9);
-            }
-            else if(k == Keys.U)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'U';
-                }
-                else
-                {
-                    return 'u';
-                }
-            }
-            else if(k == Keys.Up)
-            {
-                return (char)((byte)38);
-            }
-            else if(k == Keys.V)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'V';
-                }
-                else
-                {
-                    return 'v';
-                }
-            }
-            else if(k == Keys.W)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'W';
-                }
-                else
-                {
-                    return 'w';
-                }
-            }
-            else if (k == Keys.X)
-            {
-                if (keyShiftDown || keyCapsLockOn)
-                {
-                    return 'X';
-                }
-                else
-                {
-                    return 'x';
+                    return new KeyMap('T', 84, 84);
                 }
             }
             else if (k == Keys.Y)
             {
-                if (keyShiftDown || keyCapsLockOn)
+                if (!keyShiftDown)
                 {
-                    return 'Y';
+                    return new KeyMap('y', 89, 89);
                 }
                 else
                 {
-                    return 'y';
+                    return new KeyMap('Y', 89, 89);
                 }
+            }
+            else if (k == Keys.U)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('u', 85, 85);
+                }
+                else
+                {
+                    return new KeyMap('U', 85, 85);
+                }
+            }
+            else if (k == Keys.I)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('i', 73, 73);
+                }
+                else
+                {
+                    return new KeyMap('I', 73, 73);
+                }
+            }
+            else if (k == Keys.O)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('o', 79, 79);
+                }
+                else
+                {
+                    return new KeyMap('O', 79, 79);
+                }
+            }
+            else if (k == Keys.P)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('p', 80, 80);
+                }
+                else
+                {
+                    return new KeyMap('P', 80, 80);
+                }
+            }
+            else if (k == Keys.OemOpenBrackets)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('[', 91, 91);
+                }
+                else
+                {
+                    return new KeyMap('{', 91, 161);
+                }
+            }
+            else if (k == Keys.OemCloseBrackets)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap(']', 93, 93);
+                }
+                else
+                {
+                    return new KeyMap('}', 93, 162);
+                }
+            }
+            else if (k == Keys.OemBackslash)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('\\', 92, 92);
+                }
+                else
+                {
+                    return new KeyMap('|', 92, 16777340);
+                }
+            }
+            else if (k == Keys.CapsLock)
+            {
+                return new KeyMap((char)((byte)20), 20, 20);
+            }
+            else if (k == Keys.A)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('a', 65, 65);
+                }
+                else
+                {
+                    return new KeyMap('A', 65, 65);
+                }
+            }
+            else if (k == Keys.S)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('s', 83, 83);
+                }
+                else
+                {
+                    return new KeyMap('S', 83, 83);
+                }
+            }
+            else if (k == Keys.D)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('d', 68, 68);
+                }
+                else
+                {
+                    return new KeyMap('D', 68, 68);
+                }
+            }
+            else if (k == Keys.F)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('f', 70, 70);
+                }
+                else
+                {
+                    return new KeyMap('F', 70, 70);
+                }
+            }
+            else if (k == Keys.G)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('g', 71, 71);
+                }
+                else
+                {
+                    return new KeyMap('G', 71, 71);
+                }
+            }
+            else if (k == Keys.H)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('h', 72, 72);
+                }
+                else
+                {
+                    return new KeyMap('H', 72, 72);
+                }
+            }
+            else if (k == Keys.J)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('j', 74, 74);
+                }
+                else
+                {
+                    return new KeyMap('J', 74, 74);
+                }
+            }
+            else if (k == Keys.K)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('k', 75, 75);
+                }
+                else
+                {
+                    return new KeyMap('K', 75, 75);
+                }
+            }
+            else if (k == Keys.L)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('l', 76, 76);
+                }
+                else
+                {
+                    return new KeyMap('L', 76, 76);
+                }
+            }
+            else if (k == Keys.OemSemicolon)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap(';', 59, 59);
+                }
+                else
+                {
+                    return new KeyMap(':', 59, 513);
+                }
+            }
+            else if (k == Keys.OemQuotes)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('\'', 222, 222);
+                }
+                else
+                {
+                    return new KeyMap('"', 222, 152);
+                }
+            }
+            else if(k == Keys.Enter)
+            {
+                return new KeyMap('\n', 10, 10);
+            }
+            else if (k == Keys.LeftShift || k == Keys.RightShift)
+            {
+                return new KeyMap((char)((byte)16), 16, 16);
             }
             else if (k == Keys.Z)
             {
-                if (keyShiftDown || keyCapsLockOn)
+                if (!keyShiftDown)
                 {
-                    return 'Z';
+                    return new KeyMap('z', 90, 90);
                 }
                 else
                 {
-                    return 'z';
+                    return new KeyMap('Z', 90, 90);
                 }
             }
-            else if (k == Keys.Insert)
+            else if (k == Keys.X)
             {
-                return (char)((byte)45);
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('x', 88, 88);
+                }
+                else
+                {
+                    return new KeyMap('X', 88, 88);
+                }
             }
-            else if (k == Keys.Delete)
+            else if (k == Keys.C)
             {
-                return (char)((byte)46);
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('c', 67, 67);
+                }
+                else
+                {
+                    return new KeyMap('C', 67, 67);
+                }
+            }
+            else if (k == Keys.V)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('v', 86, 86);
+                }
+                else
+                {
+                    return new KeyMap('V', 86, 86);
+                }
+            }
+            else if (k == Keys.B)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('b', 66, 66);
+                }
+                else
+                {
+                    return new KeyMap('B', 66, 66);
+                }
+            }
+            else if (k == Keys.N)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('n', 78, 78);
+                }
+                else
+                {
+                    return new KeyMap('N', 78, 78);
+                }
+            }
+            else if (k == Keys.M)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('m', 77, 77);
+                }
+                else
+                {
+                    return new KeyMap('M', 77, 77);
+                }
+            }
+            else if(k == Keys.OemComma)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap(',', 44, 44);
+                }
+                else
+                {
+                    return new KeyMap('<', 44, 153);
+                }
+            }
+            else if (k == Keys.OemPeriod)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('.', 46, 46);
+                }
+                else
+                {
+                    return new KeyMap('>', 46, 160);
+                }
+            }
+            else if (k == Keys.OemQuestion)
+            {
+                if (!keyShiftDown)
+                {
+                    return new KeyMap('/', 47, 47);
+                }
+                else
+                {
+                    return new KeyMap('?', 47, 0);
+                }
+            }
+            else if(k == Keys.LeftControl || k == Keys.RightControl)
+            {
+                return new KeyMap((char)((byte)17), 17, 17);
+            }
+            else if (k == Keys.LeftAlt || k == Keys.RightAlt)
+            {
+                return new KeyMap((char)((byte)18), 18, 18);
+            }
+            else if(k == Keys.LeftWindows || k == Keys.RightWindows)
+            {
+                return new KeyMap((char)((byte)157), 157, 157);
+            }
+            else if(k == Keys.Space)
+            {
+                return new KeyMap(' ', 32, 32);
+            }
+            else if(k == Keys.Up)
+            {
+                return new KeyMap((char)((byte)38), 38, 38);
+            }
+            else if (k == Keys.Down)
+            {
+                return new KeyMap((char)((byte)40), 40, 40);
+            }
+            else if (k == Keys.Left)
+            {
+                return new KeyMap((char)((byte)37), 37, 37);
+            }
+            else if (k == Keys.Right)
+            {
+                return new KeyMap((char)((byte)39), 39, 39);
             }
 
-            return '_';
+            return null;
         }
 
         /// <summary>
@@ -2004,20 +2115,27 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 ProcessBClick(GameSettings.SRC_KEYBOARD);
             }
 
-            char c;
+            KeyMap c;
             foreach (Keys k in stateK.GetPressedKeys())
             {
                 c = ConvertKeyToChar(k);
 
+                if (c == null)
+                {
+                    MmgHelper.wrErr("Error: Could not find KeyMap for key, " + k + ".");
+                    continue;
+                }
+
+                //MmgHelper.wr("Key: " + c.c + " Code: " + c.code + " ExtCode: " + c.extCode);
                 if (k != Keys.Space && k != Keys.Enter)
                 {
                     if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
                     {
-                        ProcessKeyPress(c, MmgHelper.NormalizeKeyCode((int)c, -1, "c_sharp"));
+                        ProcessKeyPress(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
                     }
                     else
                     {
-                        ProcessKeyPress(c, (int)c);
+                        ProcessKeyPress(c.c, c.extCode);
                     }
                 }
                 //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' Keys: '" + k.ToString() + " has been pressed.");
@@ -2027,25 +2145,31 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             {
                 c = ConvertKeyToChar(k);
 
+                if(c == null)
+                {
+                    MmgHelper.wrErr("Error: Could not find KeyMap for key, " + k + ".");
+                    continue;
+                }
+
                 if (HasKeyBeenClicked(k, stateK))
                 {
                     if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
                     {
-                        ProcessKeyRelease(c, MmgHelper.NormalizeKeyCode((int)c, -1, "c_sharp"));
+                        ProcessKeyRelease(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
                     }
                     else
                     {
-                        ProcessKeyRelease(c, (int)c);
+                        ProcessKeyRelease(c.c, c.extCode);
                     }
                     //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been released.");
 
                     if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
                     {
-                        ProcessKeyClick(c, MmgHelper.NormalizeKeyCode((int)c, -1, "c_sharp"));
+                        ProcessKeyClick(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
                     }
                     else
                     {
-                        ProcessKeyClick(c, (int)c);
+                        ProcessKeyClick(c.c, c.extCode);
                     }
                     //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been clicked.");
                 }
@@ -2141,9 +2265,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             {
                 runningTests = true;
                 RunTests();
-                //ThreadStart ts = new ThreadStart();
-                //Thread t = new Thread(ts);
-                //t.Start();
             }
             else
             {

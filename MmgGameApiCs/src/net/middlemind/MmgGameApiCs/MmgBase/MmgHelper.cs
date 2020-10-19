@@ -48,7 +48,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="extKeyCode"></param>
         /// <param name="platform"></param>
         /// <returns></returns>
-        public static int NormalizeKeyCode(int keyCode, int extKeyCode, String platform)
+        public static int NormalizeKeyCode(char c, int keyCode, int extKeyCode, string platform)
         {
             if (extKeyCode != -1)
             {
