@@ -525,7 +525,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     }
                 }
                 
-                if (GetLoadComplete() == true)
+                if (GetLoadComplete() == true && xTrdR.IsEmpty())
                 {
                     if (handler != null)
                     {

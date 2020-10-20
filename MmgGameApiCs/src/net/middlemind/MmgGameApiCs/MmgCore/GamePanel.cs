@@ -408,7 +408,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// TODO: Add comments
         /// </summary>
-        private List<Keys> keysDown;
+        private List<int> keysDown;
 
         /// <summary>
         /// TODO: Add comments
@@ -503,7 +503,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="GameHeight"></param>
         public GamePanel(int WinWidth, int WinHeight, int X, int Y, int GameWidth, int GameHeight) : base()
         {
-            keysDown = new List<Keys>();
+            keysDown = new List<int>();
             buttonsDown = new List<string>();
             gdm = new GraphicsDeviceManager(this);
 
@@ -849,6 +849,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyPress(char c, int code)
         {
+            MmgHelper.wr("Key Press");
             if (currentScreen != null)
             {
                 currentScreen.ProcessKeyPress(c, code);
@@ -862,6 +863,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyRelease(char c, int code)
         {
+            MmgHelper.wr("Key Release");
             if (currentScreen != null)
             {
                 currentScreen.ProcessKeyRelease(c, code);
@@ -875,6 +877,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">TODO: Add comment</param>
         public virtual void ProcessKeyClick(char c, int code)
         {
+            MmgHelper.wr("Key Click");
             if (currentScreen != null)
             {
                 currentScreen.ProcessKeyClick(c, code);
@@ -905,6 +908,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
         public virtual void ProcessMousePress(int x, int y, int btnIndex)
         {
+            MmgHelper.wr("Mouse Press");
             if (currentScreen != null)
             {
                 currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
@@ -920,6 +924,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
         public virtual void ProcessMouseRelease(int x, int y, int btnIndex)
         {
+            MmgHelper.wr("Mouse Release");
             if (currentScreen != null)
             {
                 currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
@@ -935,6 +940,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
         public virtual void ProcessMouseClick(int x, int y, int btnIndex)
         {
+            MmgHelper.wr("Mouse Click");
             if (currentScreen != null)
             {
                 currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
@@ -1294,18 +1300,20 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             if (state.IsKeyDown(key))
             {
                 //key down
-                if (!keysDown.Contains(key))
+                if (!keysDown.Contains((int)key))
                 {
-                    keysDown.Add(key);
+                    MmgHelper.wr("HasKeyBeenPressed: True Key: " + key.ToString() + " KeyDown: " + state.IsKeyDown(key));
+                    keysDown.Add((int)key);
                 }
                 return false;
             }
             else
             {
                 //key up
-                if (keysDown.Contains(key))
+                if (keysDown.Contains((int)key))
                 {
-                    keysDown.Remove(key);
+                    keysDown.Remove((int)key);
+                    MmgHelper.wr("HasKeyBeenReleased: True Key: " + key.ToString());
                     return true;
                 }
             }
@@ -2000,9 +2008,27 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             //handle key typed
             statePrevK = stateK;
             stateK = Keyboard.GetState();
-            if (HasKeyBeenClicked(Keys.Space, stateK) || HasKeyBeenClicked(Keys.Enter, stateK))
+
+            /*
+            --Java Event Order--
+            Key Pressed
+            Key Click
+            Key Released
+
+            Mouse Pressed
+            Mouse Released
+            Mouse Click
+            */
+
+            if (HasKeyBeenClicked(Keys.Space, stateK))
             {
                 ProcessAClick(GameSettings.SRC_KEYBOARD);
+                ProcessKeyClick(' ', 32);
+            }
+            else if (HasKeyBeenClicked(Keys.Enter, stateK))
+            {
+                ProcessAClick(GameSettings.SRC_KEYBOARD);
+                ProcessKeyClick(' ', 10);
             }
             else if (HasKeyBeenClicked(Keys.Add, stateK))
             {
@@ -2082,12 +2108,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
 
             //handle key released
-            //MmgHelper.wr("handle key released");
             if (HasKeyBeenClicked(Keys.Down, stateK))
             {
                 ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
                 ProcessDpadClick(GameSettings.DOWN_KEYBOARD);
-                //MmgHelper.wr("dpad down release click");
             }
             else if (HasKeyBeenClicked(Keys.Up, stateK))
             {
@@ -2119,6 +2143,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             foreach (Keys k in stateK.GetPressedKeys())
             {
                 c = ConvertKeyToChar(k);
+                HasKeyBeenClicked(k, stateK);
 
                 if (c == null)
                 {
@@ -2141,7 +2166,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' Keys: '" + k.ToString() + " has been pressed.");
             }
 
-            foreach(Keys k in keysDown)
+            foreach(Keys k in keysDown.ToArray())
             {
                 c = ConvertKeyToChar(k);
 
@@ -2155,16 +2180,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 {
                     if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
                     {
-                        ProcessKeyRelease(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
-                    }
-                    else
-                    {
-                        ProcessKeyRelease(c.c, c.extCode);
-                    }
-                    //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been released.");
-
-                    if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
-                    {
                         ProcessKeyClick(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
                     }
                     else
@@ -2172,6 +2187,16 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                         ProcessKeyClick(c.c, c.extCode);
                     }
                     //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been clicked.");
+
+                    if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
+                    {
+                        ProcessKeyRelease(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
+                    }
+                    else
+                    {
+                        ProcessKeyRelease(c.c, c.extCode);
+                    }
+                    //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been released.");
                 }
             }
 

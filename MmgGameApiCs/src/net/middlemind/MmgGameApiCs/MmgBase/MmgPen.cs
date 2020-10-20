@@ -13,13 +13,15 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class MmgPen
     {
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comments
+        /// A boolean flag that indicates if the font position should be run through a normalization method.
         /// </summary>
         public static bool FONT_NORMALIZE_POSITION = false;
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comments
+        /// An integer value representing the default font vertical adjustment value.
         /// </summary>
         public static int FONT_VERT_POS_ADJ = 6;
 
@@ -28,6 +30,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         private SpriteBatch pen;
 
+        /// <summary>
+        /// TODO: Add comments
+        /// </summary>
         public static Color EMPTY_COLOR = new Color(255, 0, 255);
 
         /// <summary>

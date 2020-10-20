@@ -118,32 +118,32 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         public ScreenTestMmgCfgFileEntryWrite screenTestMmgCfgFileEntryWrite;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A reference to a game screen used for testing the MmgObj class.
         /// </summary>
         public ScreenTestMmgObj screenTestMmgObj;
 
         /// <summary>
-        ///  TODO: Add comments
+        /// A reference to a game screen used for testing the MmgSpriteSheet class.
         /// </summary>
         public ScreenTestMmgSpriteSheet screenTestMmgSpriteSheet;
 
         /// <summary>
-        ///  TODO: Add comments
+        /// A reference to a game screen used for testing the MmgBmpFont class.
         /// </summary>
         public ScreenTestMmgBmpFont screenTestMmgBmpFont;
 
         /// <summary>
-        ///  TODO: Add comments
+        /// A reference to a game screen used for testing the MmgLoadingBar class.
         /// </summary>
         public ScreenTestMmgLoadingBar screenTestMmgLoadingBar;
 
         /// <summary>
-        ///  TODO: Add comments
+        /// A reference to a game screen used for testing the MmgSizeTween class.
         /// </summary>
         public ScreenTestMmgSizeTween screenTestMmgSizeTween;
 
         /// <summary>
-        ///  TODO: Add comments
+        /// A reference to a game screen used for testing the MmgSpriteMatrix class.
         /// </summary>
         public ScreenTestMmgSpriteMatrix screenTestMmgSpriteMatrix;
 

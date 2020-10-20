@@ -20,34 +20,35 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     public class MmgHelper
     {
         /// <summary>
-        /// TODO: Add comments
+        /// A helper method used to adjust font X coordinate on-the-fly to help normalize the behavior of the Monogame version of this API.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="f"></param>
-        /// <returns></returns>
+        /// <param name="x">The X coordinate to take into consideration for font position adjustment.</param>
+        /// <param name="f">The actual font to take into consideration for font position adjustment.</param>
+        /// <returns>An adjusted X position.</returns>
         public static int NormalizeFontPositionX(int x, MmgFont f)
         {
             return x;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A helper method used to adjust font Y coordinate on-the-fly to help normalize the behavior of the Monogame version of this API.
         /// </summary>
-        /// <param name="y"></param>
-        /// <param name="f"></param>
-        /// <returns></returns>
+        /// <param name="y">The Y coordinate to take into consideration for font position adjustment.</param>
+        /// <param name="f">The actual font to take into consideration for font position adjustment.</param>
+        /// <returns>An adjusted Y position.</returns>
         public static int NormalizeFontPositionY(int y, MmgFont f)
         {
             return y;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A helper method used to adjust Keyboard key codes to help normalize the behavior of the Monogame version of this API.
         /// </summary>
-        /// <param name="keyCode"></param>
-        /// <param name="extKeyCode"></param>
-        /// <param name="platform"></param>
-        /// <returns></returns>
+        /// <param name="c">The character representation of the keyboard key.</param>
+        /// <param name="keyCode">The key code of the keyboard key.</param>
+        /// <param name="extKeyCode">The extended code of the keyboard key taking into account the modifier keys.</param>
+        /// <param name="platform">A string representation of the platform, 'c_sharp' or 'java'.</param>
+        /// <returns>A keycode based on the provided arguments.</returns>
         public static int NormalizeKeyCode(char c, int keyCode, int extKeyCode, string platform)
         {
             if (extKeyCode != -1)
@@ -61,20 +62,20 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Converts the specified angle to radians.
         /// </summary>
-        /// <param name="angle"></param>
-        /// <returns></returns>
+        /// <param name="angle">The angle in degrees to convert to radians.</param>
+        /// <returns>The radian representation of the provided angle in degrees.</returns>
         public static double ConvertToRadians(double angle)
         {
             return (Math.PI / 180) * angle;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Converts the specified angle to radians.
         /// </summary>
-        /// <param name="angle"></param>
-        /// <returns></returns>
+        /// <param name="angle">The angle in degrees to convert to radians.</param>
+        /// <returns>The radian representation of the provided angle in degrees.</returns>
         public static float ConvertToRadians(float angle)
         {
             return (float)((Math.PI / 180) * (double)angle);
@@ -106,7 +107,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="key">The class configuration key entry to check for.</param>
         /// <param name="defaultValue">The default value for this class configuration key.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
-        /// <returns></returns>
+        /// <returns>The integer value store in the specified class config key.</returns>
         public static int ContainsKeyInt(string key, int defaultValue, Dictionary<string, MmgCfgFileEntry> classConfig)
         {
             int ret = defaultValue;
@@ -123,7 +124,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="key">The class configuration key entry to check for.</param>
         /// <param name="defaultValue">The default value for this class configuration key.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
-        /// <returns></returns>
+        /// <returns>The float value store in the specified class config key.</returns>
         public static float ContainsKeyFloat(string key, float defaultValue, Dictionary<string, MmgCfgFileEntry> classConfig)
         {
             float ret = defaultValue;
@@ -140,7 +141,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="key">The class configuration key entry to check for.</param>
         /// <param name="defaultValue">The default value for this class configuration key.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
-        /// <returns></returns>
+        /// <returns>The double value store in the specified class config key.</returns>
         public static double ContainsKeyDouble(string key, double defaultValue, Dictionary<string, MmgCfgFileEntry> classConfig)
         {
             double ret = defaultValue;
@@ -157,7 +158,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="key">The class configuration key entry to check for.</param>
         /// <param name="defaultValue">The default value for this class configuration key.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
-        /// <returns></returns>
+        /// <returns>The string value store in the specified class config key.</returns>
         public static string ContainsKeyString(string key, string defaultValue, Dictionary<string, MmgCfgFileEntry> classConfig)
         {
             string ret = defaultValue;
@@ -175,7 +176,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="tB">The MmgBmp to process.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
         /// <param name="pos">The default position to use for the MmgBmp object.</param>
-        /// <returns></returns>
+        /// <returns>TODO: Add comments</returns>
         public static MmgBmp ContainsKeyMmgBmpScaleAndPosition(string keyRoot, MmgBmp tB, Dictionary<string, MmgCfgFileEntry> classConfig, MmgVector2 pos)
         {
             string key = "";
@@ -252,7 +253,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="tB">The MmgObj to process.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
         /// <param name="pos">The default position to use for the MmgObj object.</param>
-        /// <returns></returns>
+        /// <returns>TODO: Add comments</returns>
         public static MmgObj ContainsKeyMmgObjPosition(string keyRoot, MmgObj tB, Dictionary<string, MmgCfgFileEntry> classConfig, MmgVector2 pos)
         {
             string key = "";
@@ -938,14 +939,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Fills the specified rectangle region of the buffImg argument with the specified color.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="w"></param>
-        /// <param name="h"></param>
-        /// <param name="c"></param>
-        /// <param name="dBmp"></param>
+        /// <param name="x">The X coordinate of the rectangle.</param>
+        /// <param name="y">The Y coordinate of the rectangle.</param>
+        /// <param name="w">The width of the rectangle.</param>
+        /// <param name="h">The height of the rectangle.</param>
+        /// <param name="c">The color to fill the rectangle with.</param>
+        /// <param name="dBmp">The image to draw the rectangle on.</param>
         public static void FillRectWithColor(int x, int y, int w, int h, Color c, Texture2D buffImg)
         {
             int len = w * h;
@@ -1064,7 +1065,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// TODO: Add comments
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="data"></param>
         /// <param name="imgId"></param>
         /// <returns></returns>
         public static MmgBmp GetBasicCachedBmp(byte[] data, string imgId)

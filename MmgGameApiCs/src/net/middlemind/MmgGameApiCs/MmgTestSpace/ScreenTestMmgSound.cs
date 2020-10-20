@@ -306,7 +306,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         public override bool ProcessKeyClick(char c, int code)
         {
-            MmgHelper.wr("ScreenTestMmgSound.ProcessKeyClick");
+            MmgHelper.wr("ScreenTestMmgSound.ProcessKeyClick: Char: " + c + " Code: " + code);
             if (c == '\n')
             {
                 sound1.Play();

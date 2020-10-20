@@ -39,23 +39,28 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         private static int targetPixelHeightScaled = 22;
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
+        //The Java API can resize fonts to mimic that behavior we have font sizes up to 50 loaded into the Monogame resource file.
         /// <summary>
-        /// TODO: Add comment
+        /// The maximum font size supported.
         /// </summary>
         public static int MAX_FONT_SIZE = 50;
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comment
+        /// The root of the Monogame resource key used to load normal fonts.
         /// </summary>
         public static string FONT_KEY_NORMAL = MmgFontData.DEFAULT_FONT_FAMILY + "FontNorm";
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comments
+        /// The root of the Monogame resource key used to load bold fonts.
         /// </summary>
         public static string FONT_KEY_BOLD = MmgFontData.DEFAULT_FONT_FAMILY + "FontBold";
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comments
+        /// The root of the Monogame resource key used to load italic fonts.
         /// </summary>
         public static string FONT_KEY_ITALIC = MmgFontData.DEFAULT_FONT_FAMILY + "FontItalic";
 
@@ -67,12 +72,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The bold font to use.
         /// </summary>
-        private static SpriteFont fontBold;// = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + fontSize);        //new Font(DEFAULT_FONT_FAMILY, Font.BOLD, MmgFontData.fontSize);
+        private static SpriteFont fontBold;
 
         /// <summary>
         /// The italic font to use.
         /// </summary>
-        private static SpriteFont fontItalic;// = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + fontSize);    //new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, MmgFontData.fontSize);
+        private static SpriteFont fontItalic;
 
         /// <summary>
         /// An MmgFont class that wraps the normal font.
@@ -161,9 +166,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 fontSize = maxFntSize;
             }
 
-            //fontNorm = new Font(DEFAULT_FONT_FAMILY, Font.PLAIN, MmgFontData.fontSize);
-            //fontBold = new Font(DEFAULT_FONT_FAMILY, Font.BOLD, MmgFontData.fontSize);
-            //fontItalic = new Font(DEFAULT_FONT_FAMILY, Font.ITALIC, MmgFontData.fontSize);
             fontNorm = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_NORMAL + fontSize);
             fontBold = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + fontSize);
             fontItalic = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + fontSize);

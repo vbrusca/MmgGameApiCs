@@ -4,6 +4,7 @@ using System.IO;
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
     /// <summary>
+    /// Deprecated class the was used as a BMP based font on the original XNA implementation of this API.
     /// @author Victor G. Brusca
     /// Middlemind Games 01/13/2012
     /// </summary>
@@ -11,37 +12,37 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     public class MmgBmpFontXna : MmgObj
     {
         /// <summary>
-        /// TODO: Add comments
+        /// The X position of the image font characters.
         /// </summary>
         private int[] font_xpos;
 
         /// <summary>
-        /// TODO: Add comments
+        /// The width of the image font characters.
         /// </summary>
         private int[] font_width;
 
         /// <summary>
-        /// TODO: Add comments
+        /// The height of the image font characters. 
         /// </summary>
         private int font_height;
 
         /// <summary>
-        /// TODO: Add comments
+        /// The font image used to parse and create the individual font characters.
         /// </summary>
         private MmgBmp fontimg;
 
         /// <summary>
-        /// TODO: Add comments
+        /// The text to render using the image font.
         /// </summary>
         private string text;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A binary array that holds information about the image font characters.
         /// </summary>
         private byte[] carddata;
 
         /// <summary>
-        /// TODO: Add comments
+        /// An array of characters
         /// </summary>
         private char[] c;
 
@@ -91,7 +92,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private MmgRect tmpSrcRect;
 
         /// <summary>
-        /// TODO: Add comments
+        /// Generic constructor for this class.
         /// </summary>
         public MmgBmpFontXna() : base()
         {
@@ -105,9 +106,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Constructor that takes an MmgObj as an argument.
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">An MmgObj class used as an argument.</param>
         public MmgBmpFontXna(MmgObj obj) : base(obj)
         {
             font_xpos = null;
@@ -120,9 +121,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Specialized constructor that takes an MmgBmpFontXna class as an argument.
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">An instance of the MmgBmpFontXna class used as an argument to set the values of this class instance.</param>
         public MmgBmpFontXna(MmgBmpFontXna obj)
         {
             SetFontXpos(obj.GetFontXpos());
@@ -166,7 +167,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Constructor that takes a font image, binary description data, and text to render.
         /// </summary>
         /// <param name="img"></param>
         /// <param name="cd"></param>
@@ -186,7 +187,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Returns an array of characters represented by the image file and binary descriptor.
         /// </summary>
         /// <returns></returns>
         public virtual char[] GetCharArray()
@@ -195,7 +196,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets an array of characters used by this class to render text using an image font.
         /// </summary>
         /// <param name="chr"></param>
         public virtual void SetCharArray(char[] chr)
@@ -204,25 +205,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the image font binary description data.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A byte array representing the binary description data.</returns>
         public virtual byte[] GetCardData()
         {
             return carddata;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the image font binary description data.
         /// </summary>
-        /// <param name="b"></param>
+        /// <param name="b">A byte array representing the binary description data.</param>
         public virtual void SetCardData(byte[] b)
         {
             carddata = b;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Returns the text that this class represents using the specified image font.
         /// </summary>
         /// <returns></returns>
         public virtual string GetText()
@@ -231,7 +232,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Set the text that this class represents using the specified image font.
         /// </summary>
         /// <param name="s"></param>
         public virtual void SetText(string s)
@@ -240,102 +241,102 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the image representation of the font.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An image with a series of character printed with a pink dividing line next to each characters.</returns>
         public virtual MmgBmp GetFontImg()
         {
             return fontimg;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the image representation of the font.
         /// </summary>
-        /// <param name="i"></param>
+        /// <param name="i">An image with a series of character printed with a pink dividing line next to each characters.</param>
         public virtual void SetFontImg(MmgBmp i)
         {
             fontimg = i;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the height of the image font.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The height of the image font.</returns>
         public virtual int GetFontHeight()
         {
             return font_height;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the height of the image font.
         /// </summary>
-        /// <param name="h"></param>
+        /// <param name="h">The height of the image font.</param>
         public virtual void SetFontHeight(int h)
         {
             font_height = h;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the font width of the characters specified by the image font.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An array of integer widths used to mark the width of each character in the image font.</returns>
         public virtual int[] GetFontWidth()
         {
             return font_width;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the font width of the characters specified by the image font.
         /// </summary>
-        /// <param name="h"></param>
+        /// <param name="h">An array of integer widths used to mark the width of each character in the image font.</param>
         public virtual void SetFontWidth(int[] h)
         {
             font_width = h;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the image font's X position of each character in the image font.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An array of integer offsets used to mark the X position of each character in the image font.</returns>
         public virtual int[] GetFontXpos()
         {
             return font_xpos;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the image font's X position of each character in the image font.
         /// </summary>
-        /// <param name="h"></param>
+        /// <param name="h">An array of integer offsets used to mark the X position of each character in the image font.</param>
         public virtual void SetFontXpos(int[] h)
         {
             font_xpos = h;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Clones the current class by calling the specialized contructor with this object instance as an argument.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new MmgBmpFontXna instance that is based on the current instance.</returns>
         public override MmgObj Clone()
         {
             return (MmgObj)new MmgBmpFontXna(this);
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Converts the specified byte array to a short integer.
         /// </summary>
-        /// <param name="abyte0"></param>
-        /// <returns></returns>
+        /// <param name="abyte0">The byte array to convert to a short integer.</param>
+        /// <returns>A short integer representation of the specified byte array.</returns>
         private short ToShort(byte[] abyte0)
         {
             return ToShort(abyte0, false);
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Converts the specified byte array to a short integer.
         /// </summary>
-        /// <param name="abyte0"></param>
-        /// <param name="flag"></param>
-        /// <returns></returns>
+        /// <param name="abyte0">The byte array to convert to a short integer.</param>
+        /// <param name="flag">A boolean flag to determine if the byte array should be reversed.</param>
+        /// <returns>A short integer representation of the specified byte array.</returns>
         private short ToShort(byte[] abyte0, bool flag)
         {
             short word0 = 0;
@@ -343,6 +344,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 abyte0 = reverse_order(abyte0, 2);
             }
+
             for (byte byte0 = 0; byte0 <= 1; byte0++)
             {
                 short word1;
@@ -356,6 +358,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     word1 = abyte0[byte0];
                 }
+
                 word0 |= word1;
                 if (byte0 < 1)
                 {
@@ -367,10 +370,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Reverse the order of the bytes in the specified array.
         /// </summary>
-        /// <param name="abyte0"></param>
-        /// <param name="i"></param>
+        /// <param name="abyte0">An array of bytes to reverse.</param>
+        /// <param name="i">The length of the bytes to reverse.</param>
         /// <returns></returns>
         private byte[] reverse_order(byte[] abyte0, int i)
         {
@@ -383,10 +386,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Loads the image font specified by the MmgBmp image file and the binary specification data.
         /// </summary>
-        /// <param name="img"></param>
-        /// <param name="cd"></param>
+        /// <param name="img">An MmgBmp that contains the image font, a series of character images in a file.</param>
+        /// <param name="cd">A binary descriptor that includes information on how to parse the font image.</param>
         public virtual void LoadFont(MmgBmp img, byte[] cd)
         {
             try
@@ -442,9 +445,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Creates an image representation of the specified text using the loaded image font.
         /// </summary>
-        /// <param name="pen"></param>
+        /// <param name="pen">An MmgPen instance used to draw the rendered image font on a new image representation of the specified text.</param>
         public virtual void CreateTextImg(MmgPen pen)
         {
             if (text == null || text.Equals(""))
@@ -481,14 +484,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     tx += font_width[tmp];
                 }
             }
-
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Returns the calculated width of the text using the image font representation.
         /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
+        /// <param name="str">The string used to calculate the text width of this image font.</param>
+        /// <returns>The width of the specified string using this image font.</returns>
         private int GetTextWidth(string str)
         {
             n = 0;
@@ -510,9 +512,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// The base drawing method for the bitmap object.
         /// </summary>
-        /// <param name="p"></param>
+        /// <param name="p">The MmgPen used to draw this bitmap.</param>
         public override void MmgDraw(MmgPen p)
         {
             if (isVisible == true)

@@ -37,5 +37,21 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             return ret;
         }
+
+        /// <summary>
+        /// TODO: Add comment
+        /// </summary>
+        /// <returns></returns>
+        public bool IsEmpty()
+        {
+            if(commandList == null || commandList.commands == null || commandList.commands.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

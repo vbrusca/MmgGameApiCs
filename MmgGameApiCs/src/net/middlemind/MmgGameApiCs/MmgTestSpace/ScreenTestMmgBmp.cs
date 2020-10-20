@@ -172,6 +172,8 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             title.SetY(title.GetY() + MmgHelper.ScaleValue(30));
             AddObj(title);
 
+            MmgHelper.ListCacheEntries();
+
             bmpCache = MmgHelper.GetBasicCachedBmp("soldier_frame_1.png");
             bmpCache.SetY(GetY() + MmgHelper.ScaleValue(90));
             bmpCache.SetX(MmgHelper.ScaleValue(220));

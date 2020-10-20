@@ -28,8 +28,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         private int fontSize = -1;
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comments
+        /// An emumeration that is used to describe the style of a particular font.
         /// </summary>
         public enum FontType
         {
@@ -39,8 +40,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             NONE = -1
         };
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comments
+        /// The style of the font.
         /// </summary>
         private FontType fontType = FontType.NONE;
 
@@ -204,19 +206,21 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comment
+        /// Gets the font style of this font.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The font style of this font.</returns>
         public virtual FontType GetFontType()
         {
             return fontType;
         }
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// TODO: Add comment
+        /// Sets the font style of this font.
         /// </summary>
-        /// <param name="ft"></param>
+        /// <param name="ft">THe font style of this font.</param>
         public virtual void SetFontType(FontType ft)
         {
             fontType = ft;

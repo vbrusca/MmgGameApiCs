@@ -73,14 +73,15 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public MmgBmpDrawMode DRAW_MODE = MmgBmpDrawMode.DRAW_BMP_BASIC;
 
-        //NOTES: These fields are required for Monogame port to support drawing routine arguments.
+        //NOTE: These fields are required for Monogame port to support drawing routine arguments.
         /// <summary>
-        /// TODO: Add comment
+        /// A SpriteEffects argument that can alter the way images are rendered.
         /// </summary>
         private SpriteEffects fx;
 
+        //NOTES: These fields are required for Monogame port to support drawing routine arguments.
         /// <summary>
-        /// TODO: Add comment
+        /// The layer depth on which to render the image.
         /// </summary>
         private float layerDepth;
 
