@@ -31,7 +31,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private SpriteBatch pen;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A value to use as an empty color since we cannot assign null to Color fields.
         /// </summary>
         public static Color EMPTY_COLOR = new Color(255, 0, 255);
 
@@ -65,8 +65,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public static Color TRANSPARENT = new Color(0f, 0f, 0f, 1f);
 
+        //NOTE: The Monogame version of the API uses a SpriteBatch to process 2D drawing requests.
+        //The SpriteBatch has access to a GraphicsDevice which can select the render target.
+        //In this way you can mimic the use of a Graphics2D object and a BufferedImage that the Java API uses.
         /// <summary>
-        /// TODO: Add comment
+        /// An image surface, Texture2D surface that can be the target of a SpriteBatch's drawing operations.
         /// </summary>
         private RenderTarget2D renderTarget;
 
@@ -88,6 +91,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             cacheOn = false;
         }
 
+        //NOTE: This constructor may not function the same as the Java API because the render target is central to the SpriteBatch.
         /// <summary>
         /// Constructor that sets the local graphics reference from the Texture2D argument.
         /// </summary>
@@ -316,11 +320,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (MmgPen.ADV_RENDER_HINTS == true)
             {
+                //ADV_RENDER_HINTS does nothing in this port of the API.
                 //MmgHelper.wr("ADV_RENDER_HINTS does nothing in this port.");
             }
             else
             {
-                //MmgHelper.wr("ADV_RENDER_HINTS is set to false.");
+                MmgHelper.wr("ADV_RENDER_HINTS is set to false.");
             }
         }
 
@@ -368,11 +373,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// A method to check if the specified Color is considered to be the empty color.
         /// </summary>
-        /// <param name="c"></param>
-        /// <returns></returns>
-        private bool IsEmptyColor(Color c)
+        /// <param name="c">The Color with which to check equivalence to the empty color.</param>
+        /// <returns>A boolean indicating if the provided Color is empty or not.</returns>
+        public bool IsEmptyColor(Color c)
         {
             if(c.R == 255 && c.G == 0 && c.B == 255)
             {

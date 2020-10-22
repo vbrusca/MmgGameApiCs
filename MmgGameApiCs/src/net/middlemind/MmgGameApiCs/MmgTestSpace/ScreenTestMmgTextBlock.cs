@@ -1,6 +1,7 @@
 ﻿using System;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
+using static net.middlemind.MmgGameApiCs.MmgBase.MmgFont;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
 namespace net.middlemind.MmgGameApiCs.MmgTestSpace
@@ -125,7 +126,17 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             txtBlock.SetPaddingX(MmgHelper.ScaleValue(txtBlock.GetPaddingX()));
             txtBlock.SetPaddingY(MmgHelper.ScaleValue(txtBlock.GetPaddingY()));
             txtBlock.PrepLinesInBox(txtBlock.GetLinesInBox());
-            txtBlock.PrepTextSplit(txt, MmgFontData.GetFontNorm(), MmgFontData.GetFontSize(), MmgHelper.ScaleValue(375));
+
+            if(MmgFontData.GetFontNorm() == null)
+            {
+                MmgHelper.wr("ScreenTestMmgTextBlock: LoadResources: MmgFontData.GetFontNorm is NULL");
+            }
+            else
+            {
+                MmgHelper.wr("ScreenTestMmgTextBlock: LoadResources: MmgFontData.GetFontSize: " + MmgFontData.GetFontSize());
+            }
+
+            txtBlock.PrepTextSplit(txt, MmgFontData.GetFontNorm(), MmgFontData.GetFontSize(), MmgHelper.ScaleValue(375), FontType.NORMAL);
             txtBlock.SetColor(MmgColor.GetWhite());
 
             MmgHelper.CenterHorAndVert(txtBlock);

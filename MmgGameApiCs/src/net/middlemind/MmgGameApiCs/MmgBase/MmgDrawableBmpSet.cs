@@ -13,12 +13,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     public class MmgDrawableBmpSet
     {
         /// <summary>
-        /// A lower level Java BufferedImage used for custom image creation and drawing.
+        /// A lower level Monogame texture used for custom image creation and drawing.
         /// </summary>
         public RenderTarget2D buffImg;
 
         /// <summary>
-        /// A lower level Java 2D graphics object that handles drawing basic shapes, objects to a BufferedImage.
+        /// A lower level Monogame graphics object that handles drawing basic shapes, objects to a BufferedImage.
         /// </summary>
         public SpriteBatch graphics;
 

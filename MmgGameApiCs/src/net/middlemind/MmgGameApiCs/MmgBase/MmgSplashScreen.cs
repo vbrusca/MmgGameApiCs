@@ -21,8 +21,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public class MmgSplashScreenTimer
         {
+            //NOTE: Monogame specific change required for Monogame cross thread task passing.
             /// <summary>
-            /// TODO: Add comment
+            /// Cross thread processing class, allows for storage of task objects for processing on the main thread.
             /// </summary>
             public CrossThreadWrite xTrdW;
 
@@ -64,13 +65,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     Thread.Sleep((int)displayTime);
 
-                    //if (update != null)
-                    //{
-                        //MmgHelper.wr("MmgSplashScreen: run: Calling MmgHandleUpdate");
-                        //update.MmgHandleUpdate(null);
-                        //callUpdateHandler = true;
-                    //}
-
                     if(xTrdW != null)
                     {
                         xTrdW.AddCommand("MmgHandleUpdate", null);
@@ -99,17 +93,17 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static int DEFAULT_DISPLAY_TIME_MS = 3000;
 
         /// <summary>
-        /// TODO: Add comments
+        /// Reads the task objects written by the cross thread write class.
         /// </summary>
         private CrossThreadRead xTrdR;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A splash screen timer to determine when to change screens.
         /// </summary>
         private MmgSplashScreenTimer s;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A task object passed around by the cross thread classes.
         /// </summary>
         private CrossThreadCommand xTrdC;
 

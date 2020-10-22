@@ -107,7 +107,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static bool SHOW_CONTROL_BGROUND_STORY_BOUNDING_BOX = false;
 
         /// <summary>
-        /// TODO: Add comment
+        /// A private variable used in the drawing routine.
         /// </summary>
         private Color c;
 
@@ -633,7 +633,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                             tmp = (MmgFont)lines[i];
                             if (tmp != null)
                             {
-                                txt.Insert(j, (MmgFont)tmp.Clone());
+                                txt[j] = (MmgFont)tmp.Clone();
                             }
                             else
                             {
@@ -663,7 +663,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="typeFace">The Font to use to render the text.</param>
         /// <param name="fontSize">The size of the font used to parse the text.</param>
         /// <param name="width">The width to use as the maximum width for one line.</param>
-        public virtual void PrepTextSplit(string text, SpriteFont typeFace, int fontSize, int width)
+        public virtual void PrepTextSplit(string text, SpriteFont typeFace, int fontSize, int width, FontType fontType)
         {
             text = text.Replace(" " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
             text = text.Replace("  " + MmgTextBlock.NEW_LINE, MmgTextBlock.NEW_LINE);
@@ -680,7 +680,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             while (tokenPos < tokens.Length)
             {
                 desc = null;
-                desc = new MmgFont(typeFace);
+                desc = new MmgFont(typeFace, fontType);
                 desc.SetFontSize(fontSize);
                 desc.SetText("");
                 str = "";

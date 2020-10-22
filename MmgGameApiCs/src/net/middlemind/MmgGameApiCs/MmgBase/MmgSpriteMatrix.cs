@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
@@ -32,12 +33,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private int height;
 
         /// <summary>
-        /// TODO: Add comment
+        /// The number of rows in the sprite matrix.
         /// </summary>
         private int rowCount;
 
         /// <summary>
-        /// TODO: Add comment
+        /// The number of columns in the sprite matrix.
         /// </summary>
         private int colCount;
 
@@ -124,7 +125,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             for (int i = 0; i < frameCount; i++)
             {
                 bmpSet = MmgHelper.CreateDrawableBmpSet(width, height, true);
+
+                bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)src.GetImage());
+                bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 bmpSet.p.DrawBmp(src, new MmgRect(posX, posY, posY + height, posX + width), new MmgRect(0, 0, height, width));
+                bmpSet.p.GetGraphics().End();
+                bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
+
                 frames[i] = bmpSet.img;
 
                 if (posX + width >= src.GetWidth())
@@ -147,36 +154,36 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Gets the row count of the sprite matrix.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The row count of the sprite matrix.</returns>
         public virtual int GetRowCount()
         {
             return rowCount;
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Sets the row count of the sprite matrix.
         /// </summary>
-        /// <param name="i"></param>
+        /// <param name="i">The row count of the sprite matrix.</param>
         public virtual void SetRowCount(int i)
         {
             rowCount = i;
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Gets the col count of the sprite matrix.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The col count of the sprite matrix.</returns>
         public virtual int GetColCount()
         {
             return colCount;
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Sets the col count of the sprite matrix.
         /// </summary>
-        /// <param name="i"></param>
+        /// <param name="i">The col count of the sprite matrix.</param>
         public virtual void SetColCount(int i)
         {
             colCount = i;

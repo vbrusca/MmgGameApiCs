@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
@@ -1200,7 +1201,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 updSrcRect = new MmgRect(offsetXScrollBarCenterButton, 0, viewPortRect.GetHeight(), offsetXScrollBarCenterButton + viewPortRect.GetWidth());
                 updDstRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
+
+                p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)scrollPane.GetImage());
+                p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 p.DrawBmp(scrollPane, updSrcRect, updDstRect);
+                p.GetGraphics().End();
+                p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
 
                 isDirty = false;
                 return true;

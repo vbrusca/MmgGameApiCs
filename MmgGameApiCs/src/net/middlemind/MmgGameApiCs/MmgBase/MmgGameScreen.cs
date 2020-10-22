@@ -880,22 +880,22 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Expects a relative X, Y vector that takes into account the game's offset and the current panel's offset and a mouse button index, 0 - 2, left mouse button - right mouse button.
         /// </summary>
-        /// <param name="v"></param>
-        /// <param name="btnIndex"></param>
-        /// <returns></returns>
+        /// <param name="v">he coordinates of the mouse event.</param>
+        /// <param name="btnIndex">The index of the mouse button.</param>
+        /// <returns>A bool indicating if the event was handled or not.</returns>
         public virtual bool ProcessMousePress(MmgVector2 v, int btnIndex)
         {
             return ProcessMousePress(v.GetX(), v.GetY(), btnIndex);
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
+        /// <param name="x">The X coordinate of the mouse.</param>
+        /// <param name="y">The Y coordinate of the mouse.</param>
+        /// <returns>A boolean indicating if the event was handled or not.</returns>
         public virtual bool ProcessMousePress(int x, int y)
         {
             return ProcessMousePress(x, y, 0);
@@ -906,6 +906,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="x">The X coordinate of the mouse.</param>
         /// <param name="y">The Y coordinate of the mouse.</param>
+        /// <param name="btnIndex">The index of the mouse button.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
         public virtual bool ProcessMousePress(int x, int y, int btnIndex)
         {
@@ -923,11 +924,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Expects a relative X, Y vector that takes into account the game's offset and the current panel's offset.
         /// </summary>
-        /// <param name="v"></param>
-        /// <param name="btnIndex"></param>
-        /// <returns></returns>
+        /// <param name="v">The coordinates of the mouse event.</param>
+        /// <param name="btnIndex">The index of the mouse button.</param>
+        /// <returns>A bool indicating if the event was handled or not.</returns>
         public virtual bool ProcessMouseRelease(MmgVector2 v, int btnIndex)
         {
             return ProcessMousePress(v.GetX(), v.GetY(), btnIndex);
@@ -945,11 +946,12 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Expects a relative X, Y values that takes into account the game's offset and the current panel's offset.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
+        /// <param name="x">The X coordinate of the event.</param>
+        /// <param name="y">The Y coordinate of the event.</param>
+        /// <param name="btnIndex">The index of the mouse button.</param>
+        /// <returns>A bool indicating if the event was handled or not.</returns>
         public virtual bool ProcessMouseRelease(int x, int y, int btnIndex)
         {
             return true;
@@ -967,22 +969,24 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Process a screen click. 
+        /// Expects coordinate that don't take into account the offset of the game and panel.
         /// </summary>
-        /// <param name="v"></param>
-        /// <param name="btnIndex"></param>
-        /// <returns></returns>
+        /// <param name="v">The coordinates of the click.</param>
+        /// <param name="btnIndex">The index of the mouse button.</param>
+        /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
         public virtual bool ProcessMouseClick(MmgVector2 v, int btnIndex)
         {
             return ProcessMouseClick(v.GetX(), v.GetY(), btnIndex);
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Process a screen click. 
+        /// Expects coordinate that don't take into account the offset of the game and panel.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
+        /// <param name="x">The X axis coordinate of the screen click.</param>
+        /// <param name="y">The Y axis coordinate of the screen click.</param>
+        /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
         public virtual bool ProcessMouseClick(int x, int y)
         {
             return ProcessMouseClick(x, y, 0);
@@ -994,7 +998,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="x">The X axis coordinate of the screen click.</param>
         /// <param name="y">The Y axis coordinate of the screen click.</param>
-        /// <param name="btnIndex">TODO: Add comments</param>
+        /// <param name="btnIndex">The index of the mouse button.</param>
         /// <returns>Boolean indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
         public virtual bool ProcessMouseClick(int x, int y, int btnIndex)
         {

@@ -171,18 +171,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void DrawDest()
         {
-            /*
-            bool alpha = true;            
-            BufferedImage bg = GRAPHICS_CONFIG.createCompatibleImage(GetWidth(), GetHeight(), alpha ? Transparency.TRANSLUCENT : Transparency.OPAQUE);
-            Graphics2D g = (Graphics2D)bg.getGraphics();
-            if (MmgPen.ADV_RENDER_HINTS == true)
-            {
-                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-                g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            }
-            */
-
             MmgBmp b = GetSrc();
             Texture2D img = b.GetImage();
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;

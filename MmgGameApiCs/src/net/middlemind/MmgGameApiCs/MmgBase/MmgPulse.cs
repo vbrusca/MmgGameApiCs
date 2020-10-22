@@ -330,10 +330,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A method used to check the equality of this MmgPulse when compared to another MmgPulse.
+        /// Compares object fields to determine equality.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The MmgPulse object to compare too.</param>
+        /// <returns>A boolean indicating equality.</returns>
         public virtual bool ApiEquals(MmgPulse obj)
         {
             if (obj == null)

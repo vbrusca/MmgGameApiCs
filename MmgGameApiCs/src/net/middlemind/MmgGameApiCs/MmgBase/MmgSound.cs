@@ -54,7 +54,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
         //NOTES: Required for Monogame sound support.
         /// <summary>
-        /// TODO: Add comment
+        /// Sound effect class for audio support.
         /// </summary>
         private SoundEffectInstance soundInst;
 

@@ -37,7 +37,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private MmgObj subj;
 
         /// <summary>
-        /// TODO: Add comment
+        /// A copy of the subj MmgObj in its original state to prevent resizing a resized image.
         /// </summary>
         private MmgObj subjOrig;
 
@@ -102,17 +102,17 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         private MmgVector2 tmpV;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An event handler for the reach finish event.
         /// </summary>
         private MmgEventHandler onReachFinish;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An event handler for the reach start event.
         /// </summary>
         private MmgEventHandler onReachStart;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An event handler to resize the MmgObj subject to the specified size.
         /// </summary>
         private MmgScaleHandler onSubjScale;
 
@@ -264,36 +264,36 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Sets the resizing handler.
         /// </summary>
-        /// <param name="o"></param>
+        /// <param name="o">The resizing handler.</param>
         public virtual void SetOnSubjScale(MmgScaleHandler o)
         {
             onSubjScale = o;
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Gets the resizing handler.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The resizing handler.</returns>
         public virtual MmgScaleHandler GetOnSubjScale()
         {
             return onSubjScale;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the original subject.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The original subject.</returns>
         public virtual MmgObj GetSubjOrig()
         {
             return subjOrig;
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Sets the original subject.
         /// </summary>
-        /// <param name="o"></param>
+        /// <param name="o">The original subject.</param>
         public virtual void SetSubjOrig(MmgObj o)
         {
             subjOrig = o;

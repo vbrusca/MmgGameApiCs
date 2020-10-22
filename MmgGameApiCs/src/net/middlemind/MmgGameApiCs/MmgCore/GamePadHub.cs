@@ -63,7 +63,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public bool gamePadEnabled = false;
 
-        //NOTES: Not supported in a Monogame implementation, input checking is explicit.
+        //NOTE: Not supported in a Monogame implementation, input checking is explicit.
         /// <summary>
         /// A JInput controller to read gamepad data from.
         /// </summary>

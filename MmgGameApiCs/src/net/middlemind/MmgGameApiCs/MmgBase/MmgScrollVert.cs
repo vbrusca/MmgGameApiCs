@@ -191,7 +191,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// An MmgRect used in the MmgUpdate method.
         /// </summary>
-        private MmgRect updDestRect;
+        private MmgRect updDstRect;
 
         /// <summary>
         /// A Color object used in the bounding box drawing of the MmgDraw method.
@@ -1174,8 +1174,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 }
 
                 updSrcRect = new MmgRect(0, offsetYScrollCenterButton, offsetYScrollCenterButton + viewPortRect.GetHeight(), viewPortRect.GetWidth());
-                updDestRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
-                p.DrawBmp(scrollPane, updSrcRect, updDestRect);
+                updDstRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
+
+                p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)scrollPane.GetImage());
+                p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+                p.DrawBmp(scrollPane, updSrcRect, updDstRect);
+                p.GetGraphics().End();
+                p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
 
                 isDirty = false;
                 return true;

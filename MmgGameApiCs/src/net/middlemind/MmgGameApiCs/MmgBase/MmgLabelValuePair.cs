@@ -44,8 +44,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public MmgLabelValuePair() : base()
         {
             skipReset = true;
-            SetLabel(new MmgFont(MmgFontData.GetFontBold()));
-            SetValue(new MmgFont(MmgFontData.GetFontNorm()));
+            SetLabel(new MmgFont(MmgFontData.GetFontBold(), FontType.BOLD));
+            SetValue(new MmgFont(MmgFontData.GetFontNorm(), FontType.NORMAL));
             SetPaddingX(DEFAULT_PADDING_X);
             SetWidth(0);
             SetHeight(0);
@@ -58,11 +58,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="fontLbl">The Font to use for the label.</param>
         /// <param name="fontVal">The Font to use for the value.</param>
-        public MmgLabelValuePair(SpriteFont fontLbl, SpriteFont fontVal) : base()
+        public MmgLabelValuePair(SpriteFont fontLbl, SpriteFont fontVal, FontType fontLblType, FontType fontValType) : base()
         {
             skipReset = true;
-            SetLabel(new MmgFont(fontLbl));
-            SetValue(new MmgFont(fontVal));
+            SetLabel(new MmgFont(fontLbl, fontLblType));
+            SetValue(new MmgFont(fontVal, fontValType));
             SetPaddingX(DEFAULT_PADDING_X);
             SetWidth(0);
             SetHeight(0);
@@ -173,11 +173,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="txtVal">The text to set the value to.</param>
         /// <param name="pos">The font to use for the value.</param>
         /// <param name="cl">The color to use to draw the text.</param>
-        public MmgLabelValuePair(SpriteFont fontLbl, String txtLbl, SpriteFont fontVal, String txtVal, MmgVector2 pos, MmgColor cl) : base()
+        public MmgLabelValuePair(SpriteFont fontLbl, String txtLbl, SpriteFont fontVal, String txtVal, MmgVector2 pos, MmgColor cl, FontType fontLblType, FontType fontValType) : base()
         {
             skipReset = true;
-            SetLabel(new MmgFont(fontLbl));
-            SetValue(new MmgFont(fontVal));
+            SetLabel(new MmgFont(fontLbl, fontLblType));
+            SetValue(new MmgFont(fontVal, fontValType));
             SetLabelText(txtLbl);
             SetValueText(txtVal);
             SetPosition(pos);
@@ -198,11 +198,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="x">Position, on the X axis.</param>
         /// <param name="y">Position, on the Y axis.</param>
         /// <param name="cl">The color to use to draw the text.</param>
-        public MmgLabelValuePair(SpriteFont fontLbl, String txtLbl, SpriteFont fontVal, String txtVal, int x, int y, MmgColor cl) : base()
+        public MmgLabelValuePair(SpriteFont fontLbl, String txtLbl, SpriteFont fontVal, String txtVal, int x, int y, MmgColor cl, FontType fontLblType, FontType fontValType) : base()
         {
             skipReset = true;
-            SetLabel(new MmgFont(fontLbl));
-            SetValue(new MmgFont(fontVal));
+            SetLabel(new MmgFont(fontLbl, fontLblType));
+            SetValue(new MmgFont(fontVal, fontValType));
             SetLabelText(txtLbl);
             SetValueText(txtVal);
             SetPosition(new MmgVector2(x, y));

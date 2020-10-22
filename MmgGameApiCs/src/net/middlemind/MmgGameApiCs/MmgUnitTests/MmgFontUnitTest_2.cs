@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using static net.middlemind.MmgGameApiCs.MmgBase.MmgFont;
 
 //Converted
 namespace net.middlemind.MmgGameApiCs.MmgUnitTests
@@ -143,7 +144,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             SpriteFont bf1 = null;
             MmgFont f1, f2, f3 = null;
 
-            f1 = new MmgFont(MmgFontData.CreateDefaultBoldFontLg());
+            f1 = new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), FontType.BOLD);
             f3 = new MmgFont(new MmgObj(20, 20));
 
             Assert.AreEqual(true, f1.GetText().Equals(""));
@@ -194,7 +195,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             SpriteFont bf1 = null;
             MmgFont f1, f2, f3 = null;
 
-            f1 = new MmgFont(new MmgFont(MmgFontData.CreateDefaultBoldFontLg()));
+            f1 = new MmgFont(new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), FontType.BOLD));
             f3 = new MmgFont(new MmgObj(20, 20));
 
             Assert.AreEqual(true, f1.GetText().Equals(""));
@@ -245,7 +246,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             SpriteFont bf1 = null;
             MmgFont f1, f2, f3 = null;
 
-            f1 = new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), "Test String", MmgVector2.GetUnitVec(), MmgColor.GetDarkRed());
+            f1 = new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), "Test String", MmgVector2.GetUnitVec(), MmgColor.GetDarkRed(), FontType.BOLD);
             f3 = new MmgFont(new MmgObj(20, 20));
 
             Assert.AreEqual(true, f1.GetText().Equals("Test String"));
@@ -297,7 +298,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             SpriteFont bf1 = null;
             MmgFont f1, f2, f3 = null;
 
-            f1 = new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), "Test String", 1, 1, MmgColor.GetDarkRed());
+            f1 = new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), "Test String", 1, 1, MmgColor.GetDarkRed(), FontType.BOLD);
             f3 = new MmgFont(new MmgObj(20, 20));
 
             Assert.AreEqual(true, f1.GetText().Equals("Test String"));

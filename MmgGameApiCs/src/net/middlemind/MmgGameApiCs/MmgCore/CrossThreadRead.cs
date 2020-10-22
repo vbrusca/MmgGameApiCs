@@ -3,17 +3,17 @@
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
     /// <summary>
-    /// TODO: Add comment
+    /// A cross thread read object that pulls cross thread commands from a data structure one at a time for processing.
     /// </summary>
     public class CrossThreadRead
     {
         /// <summary>
-        /// TODO: Add comment
+        /// The data structure used to store unprocessed task objects.
         /// </summary>
         public CrossThreadWrite commandList;
 
         /// <summary>
-        /// TODO: Add comment
+        /// A constructor that sets the data source a cross thread write object.
         /// </summary>
         /// <param name="ctw"></param>
         public CrossThreadRead(CrossThreadWrite ctw)
@@ -22,9 +22,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Returns the next task object from the store of unprocessed task objects.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The next task object from the store of unprocessed task objects.</returns>
         public CrossThreadCommand GetNextCommand()
         {
             CrossThreadCommand ret = null;
@@ -39,9 +39,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Returns true if the list of task objects to process if empty.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A boolean indicating if the list of task objects is empty.</returns>
         public bool IsEmpty()
         {
             if(commandList == null || commandList.commands == null || commandList.commands.Count == 0)

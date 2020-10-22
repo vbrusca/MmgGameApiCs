@@ -15,13 +15,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
     public class MmgScreenData
     {
         /// <summary>
-        /// TODO: Add comments
+        /// Environment graphics configuration data to use when creating new bitmaps to draw on.
         /// </summary>
         public static GraphicsDevice GRAPHICS_CONFIG;
 
-        //NOTES: Monogame specific change required for XNA content loading of fonts.
+        //NOTE: Monogame specific change required for Monogame content loading of fonts.
         /// <summary>
-        /// TODO: Add comments
+        /// A Monogame based content manager used to load resources from the Monogame resource file.
         /// </summary>
         public static ContentManager CONTENT_MANAGER;
 

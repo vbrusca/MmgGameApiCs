@@ -250,36 +250,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Construct this instance from a lower level image object and some rendering hints.
         /// </summary>
         /// <param name="t">The lower level Image object to create this instance from.</param>
-        /// <param name="Src">The source drawing rectangle.</param>
-        /// <param name="Dst">The destination drawing rectangle.</param>
-        /// <param name="Origin">The origin this image should be rotated from.</param>
-        /// <param name="Scaling">The scaling values to use when drawing this image.</param>
-        /// <param name="Rotation">The rotation values to use when drawing this image.</param>
-        /// <param name="Fx"></param>
-        public MmgBmp(Texture2D t, MmgRect Src, MmgRect Dst, MmgVector2 Origin, MmgVector2 Scaling, float Rotation, SpriteEffects Fx) : base()
-        {
-            SetRotation(Rotation);
-            SetOrigin(Origin);
-            SetScaling(Scaling);
-            SetSrcRect(Src);
-            SetDstRect(Dst);
-            SetTexture2D(t);
-
-            SetPosition(MmgVector2.GetOriginVec());
-            SetWidth(b.Width);
-            SetHeight(b.Height);
-            SetIsVisible(true);
-            SetMmgColor(null);
-            SetBmpId();
-
-            SetSpriteFx(Fx);
-            SetLayerDepth(0);
-        }
-
-        /// <summary>
-        /// Construct this instance from a lower level image object and some rendering hints.
-        /// </summary>
-        /// <param name="t">The lower level Image object to create this instance from.</param>
         /// <param name="Position">The position this object should be drawn at.</param>
         /// <param name="Origin">The origin this image should be rotated from.</param>
         /// <param name="Scaling">The scaling values to use when drawing this image.</param>
@@ -302,36 +272,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetBmpId();
 
             SetSpriteFx(SpriteEffects.None);
-            SetLayerDepth(0);
-        }
-
-        /// <summary>
-        /// Construct this instance from a lower level image object and some rendering hints.
-        /// </summary>
-        /// <param name="t">The lower level Image object to create this instance from.</param>
-        /// <param name="Position">The position this object should be drawn at.</param>
-        /// <param name="Origin">The origin this image should be rotated from.</param>
-        /// <param name="Scaling">The scaling values to use when drawing this image.</param>
-        /// <param name="Rotation">The rotation values to use when drawing this image.</param>
-        /// <param name="Fx"></param>
-        public MmgBmp(Texture2D t, MmgVector2 Position, MmgVector2 Origin, MmgVector2 Scaling, float Rotation, SpriteEffects Fx)
-        {
-            SetRotation(Rotation);
-            SetOrigin(Origin);
-            SetScaling(Scaling);
-            MmgRect r = new MmgRect(Position, t.Width, t.Height);
-            SetSrcRect(r);
-            SetDstRect(null);
-            SetTexture2D(t);
-
-            SetPosition(Position);
-            SetWidth(b.Width);
-            SetHeight(b.Height);
-            SetIsVisible(true);
-            SetMmgColor(null);
-            SetBmpId();
-
-            SetSpriteFx(Fx);
             SetLayerDepth(0);
         }
 
@@ -583,38 +523,41 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             scaling = v;
         }
 
-        //NOTES: Get and set methods for class fields used by the Monogame drawing routines.
+        //NOTE: Get and set methods for class fields used by the Monogame drawing routines.
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the current SpriteEffects for this image.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The current SpriteEffects for this image.</returns>
         public virtual SpriteEffects GetSpriteFx()
         {
             return fx;
         }
 
+        //NOTE: Get and set methods for class fields used by the Monogame drawing routines.
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the current SpriteEffects for this image.
         /// </summary>
-        /// <param name="Fx"></param>
+        /// <param name="Fx">The current SpriteEffects for this image.</param>
         public virtual void SetSpriteFx(SpriteEffects Fx)
         {
             fx = Fx;
         }
 
+        //NOTE: Get and set methods for class fields used by the Monogame drawing routines.
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the layer depth set for drawing this image.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The layer depth set for drawing this image.</returns>
         public virtual float GetLayerDepth()
         {
             return layerDepth;
         }
 
+        //NOTE: Get and set methods for class fields used by the Monogame drawing routines.
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the layer depth set for drawing this image.
         /// </summary>
-        /// <param name="f"></param>
+        /// <param name="f">The layer depth set for drawing this image.</param>
         public virtual void SetLayerDepth(float f)
         {
             layerDepth = f;
@@ -712,7 +655,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="p">The MmgPen used to draw this bitmap.</param>
         public override void MmgDraw(MmgPen p)
         {
-            //MmgHelper.wr("MmgBmp: MmgDraw: " + DRAW_MODE);
             if (isVisible == true)
             {
                 if (DRAW_MODE == MmgBmpDrawMode.DRAW_BMP_FULL)

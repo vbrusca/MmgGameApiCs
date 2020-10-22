@@ -23,14 +23,15 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         private string text;
 
+        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
         /// The integer value of the current font size.
         /// </summary>
-        private int fontSize = -1;
+        private int fontSize = -1; // MmgFontData.GetFontSize();
 
         //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
-        /// An emumeration that is used to describe the style of a particular font.
+        /// An enumeration that is used to describe the style of a particular font.
         /// </summary>
         public enum FontType
         {
@@ -74,10 +75,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Constructor that sets the lower level font class.
         /// </summary>
         /// <param name="tf">Font to use for text drawing.</param>
-        public MmgFont(SpriteFont tf) : base()
+        public MmgFont(SpriteFont tf, FontType fontType) : base()
         {
             text = "";
             font = tf;
+            SetFontType(fontType);
             SetWidth(0);
             SetHeight(0);
         }
@@ -89,6 +91,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public MmgFont(MmgFont obj) : base()
         {
             SetFont(obj.GetFont());
+            SetFontType(obj.GetFontType());
+            SetFontSize(obj.GetFontSize());
             SetText(obj.GetText());
 
             if (obj.GetPosition() == null)
@@ -122,9 +126,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="txt">Text to draw.</param>
         /// <param name="pos">Position to draw the text.</param>
         /// <param name="cl">Color to use to draw the text.</param>
-        public MmgFont(SpriteFont sf, String txt, MmgVector2 pos, MmgColor cl) : base()
+        public MmgFont(SpriteFont sf, String txt, MmgVector2 pos, MmgColor cl, FontType fontType) : base()
         {
             SetFont(sf);
+            SetFontType(fontType);
             SetText(txt);
             SetPosition(pos);
             SetIsVisible(true);
@@ -139,9 +144,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="x">Position, on the X axis.</param>
         /// <param name="y">Position, on the Y axis.</param>
         /// <param name="cl">Color to use to draw the text.</param>
-        public MmgFont(SpriteFont sf, String txt, int x, int y, MmgColor cl)
+        public MmgFont(SpriteFont sf, String txt, int x, int y, MmgColor cl, FontType fontType)
         {
             SetFont(sf);
+            SetFontType(fontType);
             SetText(txt);
             SetPosition(new MmgVector2(x, y));
             SetIsVisible(true);
@@ -206,7 +212,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
         }
 
-        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
         /// Gets the font style of this font.
         /// </summary>
@@ -216,7 +221,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return fontType;
         }
 
-        //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
         /// Sets the font style of this font.
         /// </summary>
@@ -230,7 +234,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the size of the font.
         /// </summary>
         /// <param name="sz">The size of the font.</param>
-        /// <param name="ft">The type of the font.</param>
         public virtual void SetFontSize(int sz)
         {
             if (sz > 0 && sz <= MmgFontData.MAX_FONT_SIZE)
@@ -252,6 +255,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     {
                         //italic
                         font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_ITALIC + fontSize);
+                    }
+                    else if (fontType == FontType.NONE)
+                    {
+                        //normal
+                        font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_NORMAL + fontSize);
+                    }
+                    else
+                    {
+                        //normal
+                        font = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(MmgFontData.FONT_KEY_NORMAL + fontSize);
                     }
                 }
             }

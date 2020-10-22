@@ -48,7 +48,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="keyCode">The key code of the keyboard key.</param>
         /// <param name="extKeyCode">The extended code of the keyboard key taking into account the modifier keys.</param>
         /// <param name="platform">A string representation of the platform, 'c_sharp' or 'java'.</param>
-        /// <returns>A keycode based on the provided arguments.</returns>
+        /// <returns>A key code based on the provided arguments.</returns>
         public static int NormalizeKeyCode(char c, int keyCode, int extKeyCode, string platform)
         {
             if (extKeyCode != -1)
@@ -176,7 +176,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="tB">The MmgBmp to process.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
         /// <param name="pos">The default position to use for the MmgBmp object.</param>
-        /// <returns>TODO: Add comments</returns>
+        /// <returns>A reference to a modified MmgBmp based on the tB argument.</returns>
         public static MmgBmp ContainsKeyMmgBmpScaleAndPosition(string keyRoot, MmgBmp tB, Dictionary<string, MmgCfgFileEntry> classConfig, MmgVector2 pos)
         {
             string key = "";
@@ -253,7 +253,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="tB">The MmgObj to process.</param>
         /// <param name="classConfig">The set of class configuration entries to search.</param>
         /// <param name="pos">The default position to use for the MmgObj object.</param>
-        /// <returns>TODO: Add comments</returns>
+        /// <returns>A reference to a modified MmgObj based on the tB argument.</returns>
         public static MmgObj ContainsKeyMmgObjPosition(string keyRoot, MmgObj tB, Dictionary<string, MmgCfgFileEntry> classConfig, MmgVector2 pos)
         {
             string key = "";
@@ -539,6 +539,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static MmgDrawableBmpSet CreateDrawableBmpSet(int width, int height, bool alpha, MmgColor color)
         {
             MmgDrawableBmpSet dBmpSet = MmgHelper.CreateDrawableBmpSet(width, height, alpha);
+
+            /*
             Color[] pixels = new Color[dBmpSet.buffImg.Width * dBmpSet.buffImg.Height];
             dBmpSet.buffImg.GetData<Color>(pixels);
             int len = pixels.Length;
@@ -547,6 +549,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 pixels[i] = color.GetColor();
             }
             dBmpSet.buffImg.SetData<Color>(pixels);
+            */
+
+            dBmpSet.graphics.GraphicsDevice.SetRenderTarget(dBmpSet.buffImg);
+            dBmpSet.graphics.GraphicsDevice.Clear(color.GetColor());
+            dBmpSet.graphics.GraphicsDevice.SetRenderTarget(null);
             return dBmpSet;
         }
 
@@ -956,7 +963,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 pixels[i] = c;
             }
-            buffImg.SetData<Color>(pixels);
+            buffImg.SetData<Color>(0, new Rectangle(x, y, w, h), pixels, 0, (w * h));
         }
 
         /// <summary>
@@ -988,11 +995,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// A static method used to create an MmgSound object from a sound resource file.
+        /// Loads a cached sound with the provided sound resource ID, the sndId argument or loads a new resource using the provided binary data.
         /// </summary>
-        /// <param name="path">The path of the sound resource loaded.</param>
-        /// <param name="sndId">The id to use when storing the sound resource in the sound resource cache.</param>
-        /// <returns>An MmgSound object created from the specified resource file or loaded from the sound resource cache.</returns>
+        /// <param name="data">A byte array representation of the sound.</param>
+        /// <param name="sndId">The ID to use when the sound resource is cached.</param>
+        /// <returns>An MmgSound object instance based on the sound resource.</returns>
         public static MmgSound GetBasicCachedSound(byte[] data, string sndId)
         {
             MmgSound lval = null;
@@ -1063,11 +1070,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Loads a cached sound with the provided sound resource ID, the sndId argument or loads a new resource using the provided binary data.
         /// </summary>
-        /// <param name="data"></param>
-        /// <param name="imgId"></param>
-        /// <returns></returns>
+        /// <param name="data">A byte array representation of the sound.</param>
+        /// <param name="sndId">The ID to use when the sound resource is cached.</param>
+        /// <returns>An MmgSound object instance based on the sound resource.</returns>
         public static MmgBmp GetBasicCachedBmp(byte[] data, string imgId)
         {
             MmgBmp lval = null;
@@ -1237,10 +1244,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A static method for converting binary image data into an MmgSound object.
         /// </summary>
-        /// <param name="src"></param>
-        /// <returns></returns>
+        /// <param name="d">The array of bytes representing the sound data.</param>
+        /// <returns>An MmgSound object that is created from the binary sound data.</returns>
         public static MmgSound GetBinarySound(byte[] d)
         {
             SoundEffect inS = null;

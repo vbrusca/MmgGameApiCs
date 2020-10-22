@@ -3,25 +3,25 @@
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
     /// <summary>
-    /// TODO: Add comment
+    /// A task object meant to be passed across threads using a CrossThreadRead and CrossThreadWrite object.
     /// </summary>
     public class CrossThreadCommand
     {
         /// <summary>
-        /// TODO: Add comment
+        /// The name of the command used to run this task object. 
         /// </summary>
         public string name;
 
         /// <summary>
-        /// TODO: Add comment
+        /// The data used to process this task object.
         /// </summary>
         public object[] payload;
 
         /// <summary>
-        /// TODO: Add comment
+        /// Base constructor.
         /// </summary>
-        /// <param name="Name"></param>
-        /// <param name="Payload"></param>
+        /// <param name="Name">The name of the command to be used to run this task object.</param>
+        /// <param name="Payload">The data used to process this task object.</param>
         public CrossThreadCommand(string Name, object[] Payload)
         {
             name = Name;

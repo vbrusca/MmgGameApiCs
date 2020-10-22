@@ -220,7 +220,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     pos = start;
                     w = (i - start);
                     bmpSet = MmgHelper.CreateDrawableBmpSet(w, height, true);
+
+                    bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)src.GetImage());
+                    bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                     bmpSet.p.DrawBmp(src, new MmgRect(start, 0, height, start + w), new MmgRect(0, 0, height, w));
+                    bmpSet.p.GetGraphics().End();
+                    bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
+
                     chars[found] = bmpSet.img;
                     widths[found] = w;
 
@@ -707,7 +713,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     c = s.ToCharArray()[i];
                     idx = GetIndexOf(c);
                     img = chars[idx];
+
+                    bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)src.GetImage());
+                    bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                     bmpSet.p.DrawBmp(img, new MmgRect(0, 0, img.GetHeight(), img.GetWidth()), new MmgRect(posX, 0, img.GetHeight(), posX + img.GetWidth()));
+                    bmpSet.p.GetGraphics().End();
+                    bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
+
                     posX += widths[idx];
                 }
 
@@ -974,7 +986,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="obj">The MmgBmpFont object to compare to.</param>
         /// <returns>A boolean indicating if the two objects are equal or not.</returns>
-        public virtual bool Equals(MmgBmpFont obj)
+        public virtual bool ApiEquals(MmgBmpFont obj)
         {
             if (obj == null)
             {
