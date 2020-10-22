@@ -516,7 +516,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 MmgFont tmp = txt[i];
                 tmp.GetPosition().SetX(vec.GetX() + paddingX);
                 tmp.GetPosition().SetY(vec.GetY() + (lineHeight / 2) + paddingY + (lineHeight * i));
-                txt.Insert(i, tmp);
+                txt[i] = tmp;
             }
         }
 
@@ -755,6 +755,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     dTmp = txt[dI];
                     if (dTmp != null && dTmp.GetIsVisible() == true)
                     {
+                        MmgHelper.wr("MmgTextBlock: MmgDraw: Text: " + dTmp.GetText() + ", " + dTmp.GetPosition().ApiToString());
                         p.DrawText(dTmp);
                     }
                 }

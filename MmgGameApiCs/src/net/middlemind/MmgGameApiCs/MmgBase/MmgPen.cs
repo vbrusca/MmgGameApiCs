@@ -143,16 +143,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="f">The MmgFont object to draw.</param>
         public virtual void DrawText(MmgFont f)
         {
-            //pen.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             if (FONT_NORMALIZE_POSITION)
             {
                 pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(f.GetX(), f), MmgHelper.NormalizeFontPositionY(f.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ, f)), f.GetMmgColor().GetColor());
             }
             else
             {
-                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(f.GetX(), f.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(f.GetX(), f.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor());
             }
-            //pen.End();
         }
 
         /// <summary>
@@ -163,7 +161,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="y">The y position to draw the object.</param>
         public virtual void DrawText(MmgFont f, int x, int y)
         {
-            //pen.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             y -= f.GetHeight() + FONT_VERT_POS_ADJ;
             if (FONT_NORMALIZE_POSITION)
             {
@@ -171,9 +168,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
             else
             {
-                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(x, y), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(x, y), f.GetMmgColor().GetColor());
             }
-            //pen.End();
         }
 
         /// <summary>
@@ -727,39 +723,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="h">The height of the rectangle.</param>
         public virtual void DrawRect(int x, int y, int w, int h)
         {
-            GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
-            int nw = 5;
-            int nh = 5;
-            RenderTarget2D img = new RenderTarget2D(gd, 5, 5);
-            Color[] pixels = new Color[nw * nh];
-            for(int i = 0; i < nh; i++)
-            {
-                for(int j = 0; j < nw; j++)
-                {
-                    if(i == 0)
-                    {
-                        //top line
-                        pixels[(i * nw) + j] = color;
-                    } else if(i == nh - 1)
-                    {
-                        //bottom line
-                        pixels[(i * nw) + j] = color;
-                    } else if(j == 0)
-                    {
-                        //left line
-                        pixels[(i * nw) + j] = color;
-                    } else if(j == nw - 1)
-                    {
-                        //right line
-                        pixels[(i * nw) + j] = color;
-                    } else
-                    {
-                        //middle
-                        pixels[(i * nw) + j] = Color.Transparent;
-                    }
-                }
-            }
-            pen.Draw(img, new Rectangle(0, 0, nw, nh), new Rectangle(x, y, w, h), Color.White);
+            int nw = 1;
+            int nh = 1;
+            RenderTarget2D img = new RenderTarget2D(MmgScreenData.GRAPHICS_CONFIG, nw, nh);
+            Color[] pixels = new Color[] { color };
+            img.GetData<Color>(pixels);
+            pixels[0] = color;
+            img.SetData<Color>(pixels);
+
+            //draw top line
+            pen.Draw(img, new Rectangle(x, y, w, 1), new Rectangle(0, 0, nw, nh), Color.White);
+
+            //draw bottom line
+            pen.Draw(img, new Rectangle(x, y + h, w, 1), new Rectangle(0, 0, nw, nh), Color.White);
+
+            //draw left line
+            pen.Draw(img, new Rectangle(x, y, 1, h), new Rectangle(0, 0, nw, nh), Color.White);
+
+            //draw right line
+            pen.Draw(img, new Rectangle(x + w, y, 1, h), new Rectangle(0, 0, nw, nh), Color.White);
         }
 
         /// <summary>
