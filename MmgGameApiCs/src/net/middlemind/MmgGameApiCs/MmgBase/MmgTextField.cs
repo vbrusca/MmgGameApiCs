@@ -84,7 +84,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A static class field that control how the background MmgBmp is sliced using the 9 slice technique.
         /// </summary>
-        public static int TEXT_FIELD_9_SLICE_OFFSET = MmgHelper.ScaleValue(16);
+        public static int TEXT_FIELD_9_SLICE_OFFSET = MmgHelper.ScaleValue(8);
 
         /// <summary>
         /// A static field that determines what character is used for the cursor.
@@ -435,7 +435,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             base.SetPosition(x, y);
             bground.SetPosition(x, y);
-            font.SetPosition(new MmgVector2(x + padding, y + GetHeight() - padding));
+            if (MmgPen.FONT_NORMALIZE_POSITION)
+            {
+                font.SetPosition(new MmgVector2(MmgHelper.NormalizeFontPositionX(x + padding, font), MmgHelper.NormalizeFontPositionY(y + GetHeight() - padding, font)));
+            }
+            else
+            {
+                font.SetPosition(new MmgVector2(x + padding, y + GetHeight() - padding - MmgPen.FONT_VERT_POS_ADJ));
+            }
         }
 
         /// <summary>

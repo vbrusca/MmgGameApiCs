@@ -138,6 +138,22 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             bmpFontLabel2.SetY(bmpFont.GetY() - MmgHelper.ScaleValue(20));
             AddObj(bmpFontLabel2);
 
+            MmgBmp t = bmpFont.GetChar(0);
+            t.SetPosition(0, 200);
+            AddObj(t);
+
+            t = bmpFont.GetChar(10);
+            t.SetPosition(20, 200);
+            AddObj(t);
+
+            t = bmpFont.GetChar(20);
+            t.SetPosition(40, 200);
+            AddObj(t);
+
+            t = bmpFont.GetChar(30);
+            t.SetPosition(60, 200);
+            AddObj(t);
+
             ready = true;
             pause = false;
         }

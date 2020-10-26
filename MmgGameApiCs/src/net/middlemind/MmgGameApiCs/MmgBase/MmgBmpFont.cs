@@ -41,7 +41,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A boolean flag that turns on more logging when set to true.
         /// </summary>
-        private bool verbose;
+        private bool verbose = true;
 
         /// <summary>
         /// A static value for the expected length, in characters, of the loaded font.
@@ -219,10 +219,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     pos = start;
                     w = (i - start);
-                    bmpSet = MmgHelper.CreateDrawableBmpSet(w, height, true);
 
-                    bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)src.GetImage());
-                    bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+                    bmpSet = MmgHelper.CreateDrawableBmpSet(w, height, true);
+                    bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(bmpSet.buffImg);
+                    bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
                     bmpSet.p.DrawBmp(src, new MmgRect(start, 0, height, start + w), new MmgRect(0, 0, height, w));
                     bmpSet.p.GetGraphics().End();
                     bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
@@ -691,6 +691,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (s != null)
             {
+                if(s.Length == 0)
+                {
+                    s = " ";
+                }
+
                 int len = s.Length;
                 char c;
                 int idx = 0;
@@ -702,27 +707,45 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     c = s.ToCharArray()[i];
                     idx = GetIndexOf(c);
                     w = GetWidthAt(idx);
+                    if(w == -1)
+                    {
+                        MmgHelper.wr("MmgBmpFont: Could not find index of character: " + c + " With Code: " + (int)((byte)c));
+                    }
                     totalWidth += w;
+                }
+
+                if(totalWidth <= 0)
+                {
+                    MmgHelper.wr("MmgBmpFont: Error: totalWidth value is incorrect: " + totalWidth);
+                    s = " ";
+                    c = s.ToCharArray()[i];
+                    idx = GetIndexOf(c);
+                    w = GetWidthAt(idx);
+                    totalWidth = w;
                 }
 
                 int posX = 0;
                 MmgDrawableBmpSet bmpSet = MmgHelper.CreateDrawableBmpSet(totalWidth, src.GetHeight(), true);
+                MmgHelper.wr("MmgBmpFont: New MmgBmpFont destination image Width: " + totalWidth + " Height: " + src.GetHeight());
+
+                bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(bmpSet.buffImg);
+                bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+
                 MmgBmp img = null;
                 for (i = 0; i < len; i++)
                 {
                     c = s.ToCharArray()[i];
                     idx = GetIndexOf(c);
                     img = chars[idx];
-
-                    bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)src.GetImage());
-                    bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+                    MmgHelper.wr("MmgBmpFont: PosX: " + posX + " LetterWidth: " + img.GetWidth() + " Height: " + img.GetHeight() + " Index: " + idx + " WidthsVal: " + widths[idx]);
                     bmpSet.p.DrawBmp(img, new MmgRect(0, 0, img.GetHeight(), img.GetWidth()), new MmgRect(posX, 0, img.GetHeight(), posX + img.GetWidth()));
-                    bmpSet.p.GetGraphics().End();
-                    bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
-
                     posX += widths[idx];
                 }
 
+                bmpSet.p.GetGraphics().End();
+                bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(null);
+
+                bmpSet.img = new MmgBmp(bmpSet.buffImg);
                 dst = bmpSet.img;
                 text = s;
             }

@@ -135,7 +135,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             bgroundLabel.SetY(bgroundLabel.GetY() - bgroundLabel.GetHeight());
             AddObj(bgroundLabel);
 
-            menuBground = new Mmg9Slice(MmgHelper.ScaleValue(16), bground, width, height);
+            menuBground = new Mmg9Slice(MmgHelper.ScaleValue(8), bground, width, height);
             menuBground.SetPosition(MmgVector2.GetOriginVec());
             menuBground.SetWidth(width);
             menuBground.SetHeight(height);

@@ -496,6 +496,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public static long TARGET_FPS = 16L;
 
+        private bool RUN_DRAWING_TEST = true;
+
         /// <summary>
         /// TODO: Add comments
         /// </summary>
@@ -2416,7 +2418,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 g.GraphicsDevice.SetRenderTarget(background);
                 p.SetGraphics(g);
                 p.SetAdvRenderHints();
-
                 g.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
 
                 if (GameSettings.RUN_UNIT_TESTS)

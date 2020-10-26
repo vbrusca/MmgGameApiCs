@@ -171,55 +171,45 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void DrawDest()
         {
+            int fs = offset;
             MmgBmp b = GetSrc();
             Texture2D img = b.GetImage();
             GraphicsDevice gd = MmgScreenData.GRAPHICS_CONFIG;
+            
             SpriteBatch g = new SpriteBatch(gd);
             RenderTarget2D bg = new RenderTarget2D(gd, GetWidth(), GetHeight());
             g.GraphicsDevice.SetRenderTarget(bg);
             g.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
-            int fs = offset;
-
             //TOP
             //draw top left
-            //g.drawImage(img, 0, 0, fs, fs, 0, 0, fs, fs, null);
-            //img, destination rect, source rect
             g.Draw(img, new Rectangle(0, 0, fs, fs), new Rectangle(0, 0, fs, fs), Color.White);
 
             //draw scaled top center
-            //g.drawImage(img, fs, 0, GetWidth() - fs, fs, fs, 0, b.GetWidth() - fs, fs, null);
-            g.Draw(img, new Rectangle(fs, 0, GetWidth() - fs, fs), new Rectangle(fs, 0, b.GetWidth() - fs, fs), Color.White);
+            g.Draw(img, new Rectangle(fs, 0, GetWidth() - fs - fs, fs), new Rectangle(fs, 0, b.GetWidth() - fs - fs, fs), Color.White);
 
             //draw top right
-            //g.drawImage(img, GetWidth() - fs, 0, GetWidth(), fs, b.GetWidth() - fs, 0, b.GetWidth(), fs, null);
-            g.Draw(img, new Rectangle(GetWidth() - fs, 0, GetWidth(), fs), new Rectangle(b.GetWidth() - fs, 0, b.GetWidth(), fs), Color.White);
+            g.Draw(img, new Rectangle(GetWidth() - fs, 0, fs, fs), new Rectangle(b.GetWidth() - fs, 0, fs, fs), Color.White);
 
             //MIDDLE
             //draw middle left
-            //g.drawImage(img, 0, fs, fs, GetHeight() - fs, 0, fs, fs, b.GetHeight() - fs, null);
-            g.Draw(img, new Rectangle(0, fs, fs, GetHeight() - fs), new Rectangle(0, fs, fs, b.GetHeight() - fs), Color.White);
+            g.Draw(img, new Rectangle(0, fs, fs, GetHeight() - fs - fs), new Rectangle(0, fs, fs, b.GetHeight() - fs - fs), Color.White);
 
             //draw middle center
-            //g.drawImage(img, fs, fs, GetWidth() - fs, GetHeight() - fs, fs, fs, b.GetWidth() - fs, b.GetHeight() - fs, null);
-            g.Draw(img, new Rectangle(fs, fs, GetWidth() - fs, GetHeight() - fs), new Rectangle(fs, fs, b.GetWidth() - fs, b.GetHeight() - fs), Color.White);
+            g.Draw(img, new Rectangle(fs, fs, GetWidth() - fs - fs, GetHeight() - fs - fs), new Rectangle(fs, fs, b.GetWidth() - fs - fs, b.GetHeight() - fs - fs), Color.White);
 
             //draw middle right
-            //g.drawImage(img, GetWidth() - fs, fs, GetWidth(), GetHeight() - fs, b.GetWidth() - fs, fs, b.GetWidth(), b.GetHeight() - fs, null);
-            g.Draw(img, new Rectangle(GetWidth() - fs, fs, GetWidth(), GetHeight() - fs), new Rectangle(b.GetWidth() - fs, fs, b.GetWidth(), b.GetHeight() - fs), Color.White);
+            g.Draw(img, new Rectangle(GetWidth() - fs, fs, fs, GetHeight() - fs - fs), new Rectangle(b.GetWidth() - fs, fs, fs, b.GetHeight() - fs - fs), Color.White);
 
             //BOTTOM
             //draw bottom left
-            //g.drawImage(img, 0, GetHeight() - fs, fs, GetHeight(), 0, b.GetHeight() - fs, fs, b.GetHeight(), null);
-            g.Draw(img, new Rectangle(0, GetHeight() - fs, fs, GetHeight()), new Rectangle(0, b.GetHeight() - fs, fs, b.GetHeight()), Color.White);
+            g.Draw(img, new Rectangle(0, GetHeight() - fs, fs, fs), new Rectangle(0, b.GetHeight() - fs, fs, fs), Color.White);
 
             //draw scaled bottom center
-            //g.drawImage(img, fs, GetHeight() - fs, GetWidth() - fs, GetHeight(), fs, b.GetHeight() - fs, b.GetWidth() - fs, b.GetHeight(), null);
-            g.Draw(img, new Rectangle(fs, GetHeight() - fs, GetWidth() - fs, GetHeight()), new Rectangle(fs, b.GetHeight() - fs, b.GetWidth() - fs, b.GetHeight()), Color.White);
+            g.Draw(img, new Rectangle(fs, GetHeight() - fs, GetWidth() - fs - fs, fs), new Rectangle(fs, b.GetHeight() - fs, b.GetWidth() - fs - fs, fs), Color.White);
 
             //draw bottom right
-            //g.drawImage(img, GetWidth() - fs, GetHeight() - fs, GetWidth(), GetHeight(), b.GetWidth() - fs, b.GetHeight() - fs, b.GetWidth(), b.GetHeight(), null);
-            g.Draw(img, new Rectangle(GetWidth() - fs, GetHeight() - fs, GetWidth(), GetHeight()), new Rectangle(b.GetWidth() - fs, b.GetHeight() - fs, b.GetWidth(), b.GetHeight()), Color.White);
+            g.Draw(img, new Rectangle(GetWidth() - fs, GetHeight() - fs, fs, fs), new Rectangle(b.GetWidth() - fs, b.GetHeight() - fs, fs, fs), Color.White);
 
             g.End();
             g.GraphicsDevice.SetRenderTarget(null);

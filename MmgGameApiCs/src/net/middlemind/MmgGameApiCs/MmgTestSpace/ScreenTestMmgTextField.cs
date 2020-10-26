@@ -123,7 +123,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             SetWidth(MmgScreenData.GetGameWidth());
             SetPosition(MmgScreenData.GetPosition());
 
-            int width = MmgHelper.ScaleValue(200);
+            int width = MmgHelper.ScaleValue(256);
             int height = MmgHelper.ScaleValue(50);
 
             title = MmgFontData.CreateDefaultBoldMmgFontLg();
@@ -134,7 +134,9 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 
             bground = MmgHelper.GetBasicCachedBmp("popup_window_base.png");
 
-            txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), width, height, 12, 15);
+            //Monogame implementation adjustment
+            int adj = MmgHelper.ScaleValue(4);
+            txtField = new MmgTextField(bground, MmgFontData.CreateDefaultMmgFontLg(), width, height, MmgHelper.ScaleValue(12) + adj, 15);
             MmgHelper.CenterHorAndVert(txtField);
             txtField.SetMaxLengthOn(true);
             txtField.SetEventHandler(this);
