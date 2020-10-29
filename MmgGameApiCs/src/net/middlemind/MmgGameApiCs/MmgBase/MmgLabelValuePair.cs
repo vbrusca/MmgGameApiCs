@@ -130,6 +130,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             SetPaddingX(obj.GetPaddingX());
             SetFontSize(obj.GetFontSize());
+
+            if (obj.GetLabel() == null)
+            {
+                SetLabel(obj.GetLabel());
+            }
+            else
+            {
+                SetLabel(obj.GetLabel().CloneTyped());
+            }
+
+            if (obj.GetValue() == null)
+            {
+                SetValue(obj.GetValue());
+            }
+            else
+            {
+                SetValue(obj.GetValue().CloneTyped());
+            }
+
             SetWidth(obj.GetWidth());
             SetHeight(obj.GetHeight());
 
@@ -162,6 +181,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 GetLabel().SetMmgColor(obj.GetLabel().GetMmgColor().Clone());
             }
+
+            skipReset = false;
         }
 
         /// <summary>
@@ -173,6 +194,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="txtVal">The text to set the value to.</param>
         /// <param name="pos">The font to use for the value.</param>
         /// <param name="cl">The color to use to draw the text.</param>
+        /// TODO: Add comments
+        /// TODO: Add comments
         public MmgLabelValuePair(SpriteFont fontLbl, String txtLbl, SpriteFont fontVal, String txtVal, MmgVector2 pos, MmgColor cl, FontType fontLblType, FontType fontValType) : base()
         {
             skipReset = true;
@@ -198,6 +221,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="x">Position, on the X axis.</param>
         /// <param name="y">Position, on the Y axis.</param>
         /// <param name="cl">The color to use to draw the text.</param>
+        /// TODO: Add comments
+        /// TODO: Add comments
         public MmgLabelValuePair(SpriteFont fontLbl, String txtLbl, SpriteFont fontVal, String txtVal, int x, int y, MmgColor cl, FontType fontLblType, FontType fontValType) : base()
         {
             skipReset = true;
@@ -518,17 +543,17 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             /*
             MmgHelper.wr("MmgLabelValuePair: MmgObj");
-            if(!(base.equals((MmgObj)obj))) {
+            if(!(base.ApiEquals((MmgObj)obj))) {
                 MmgHelper.wr("MmgLabelValuePair: MmgObj is not equals!");
             }
 
             MmgHelper.wr("MmgLabelValuePair: Label");        
-            if(!(((obj.GetLabel() == null && GetLabel() == null) || (obj.GetLabel() != null && GetLabel() != null && obj.GetLabel().equals(GetLabel()))))) {
+            if(!(((obj.GetLabel() == null && GetLabel() == null) || (obj.GetLabel() != null && GetLabel() != null && obj.GetLabel().ApiEquals(GetLabel()))))) {
                 MmgHelper.wr("MmgLabelValuePair: Label is not equals!");
             }
 
             MmgHelper.wr("MmgLabelValuePair: Value");        
-            if(!(((obj.GetValue() == null && GetValue() == null) || (obj.GetValue() != null && GetValue() != null && obj.GetValue().equals(GetValue()))))) {
+            if(!(((obj.GetValue() == null && GetValue() == null) || (obj.GetValue() != null && GetValue() != null && obj.GetValue().ApiEquals(GetValue()))))) {
                 MmgHelper.wr("MmgLabelValuePair: Value is not equals!");            
             }
 

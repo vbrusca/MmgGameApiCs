@@ -123,7 +123,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_TYPE == 0);
             Assert.AreEqual(true, MmgTextField.TEXT_FIELD_CURSOR_BLINK_RATE_MS == 350l);
             Assert.AreEqual(true, MmgTextField.TEXT_FIELD_CURSOR.Equals("_"));
-            Assert.AreEqual(true, MmgTextField.TEXT_FIELD_9_SLICE_OFFSET == MmgHelper.ScaleValue(16));
+            Assert.AreEqual(true, MmgTextField.TEXT_FIELD_9_SLICE_OFFSET == MmgHelper.ScaleValue(8));
         }
 
         [TestMethod]
@@ -214,7 +214,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, MmgTextField.TEXT_FIELD_MAX_LENGTH_ERROR_TYPE == 0);
             Assert.AreEqual(true, MmgTextField.TEXT_FIELD_CURSOR_BLINK_RATE_MS == 350l);
             Assert.AreEqual(true, MmgTextField.TEXT_FIELD_CURSOR.Equals("_"));
-            Assert.AreEqual(true, MmgTextField.TEXT_FIELD_9_SLICE_OFFSET == MmgHelper.ScaleValue(16));
+            Assert.AreEqual(true, MmgTextField.TEXT_FIELD_9_SLICE_OFFSET == MmgHelper.ScaleValue(8));
         }
     }
 }

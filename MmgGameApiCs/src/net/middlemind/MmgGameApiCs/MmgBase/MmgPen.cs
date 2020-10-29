@@ -17,7 +17,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// A boolean flag that indicates if the font position should be run through a normalization method.
         /// </summary>
-        public static bool FONT_NORMALIZE_POSITION = false;
+        public static bool FONT_NORMALIZE_POSITION = true;
 
         //NOTE: Added to the Monogame version to help make font handling similar to the Java version.
         /// <summary>
@@ -145,7 +145,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (FONT_NORMALIZE_POSITION)
             {
-                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(f.GetX(), f), MmgHelper.NormalizeFontPositionY(f.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ, f)), f.GetMmgColor().GetColor());
+                pen.DrawString(f.GetFont(), f.GetFontSize() + ":" + f.GetFontType() + ":" + f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(f.GetX(), f), MmgHelper.NormalizeFontPositionY(f.GetY(), f)), f.GetMmgColor().GetColor());
             }
             else
             {
@@ -161,13 +161,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="y">The y position to draw the object.</param>
         public virtual void DrawText(MmgFont f, int x, int y)
         {
-            y -= f.GetHeight() + FONT_VERT_POS_ADJ;
+            
             if (FONT_NORMALIZE_POSITION)
             {
-                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(x, f), MmgHelper.NormalizeFontPositionY(y, f)), f.GetMmgColor().GetColor());
+                pen.DrawString(f.GetFont(), f.GetFontSize() + ":" + f.GetFontType() + ":" + f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(x, f), MmgHelper.NormalizeFontPositionY(y, f)), f.GetMmgColor().GetColor());
             }
             else
             {
+                y -= f.GetHeight() + FONT_VERT_POS_ADJ;
                 pen.DrawString(f.GetFont(), f.GetText(), new Vector2(x, y), f.GetMmgColor().GetColor());
             }
         }
@@ -182,11 +183,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             //pen.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             if (FONT_NORMALIZE_POSITION)
             {
-                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(pos.GetX(), f), MmgHelper.NormalizeFontPositionY(pos.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ, f)), f.GetMmgColor().GetColor());
+                pen.DrawString(f.GetFont(), f.GetFontSize() + ":" + f.GetFontType() + ":" + f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(pos.GetX(), f), MmgHelper.NormalizeFontPositionY(pos.GetY(), f)), f.GetMmgColor().GetColor());
             }
             else
             {
-                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(pos.GetX(), pos.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor()); //, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(pos.GetX(), pos.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor());
             }
             //pen.End();
         }

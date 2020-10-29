@@ -251,8 +251,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             Assert.AreEqual(true, f1.GetText().Equals("Test String"));
             Assert.AreEqual(true, f1.GetFont().Equals(MmgFontData.CreateDefaultBoldFontLg()));
-            Assert.AreEqual(true, f1.GetWidth() == 114);
-            Assert.AreEqual(true, f1.GetHeight() == 24);
+            Assert.AreEqual(true, f1.GetWidth() == 107);
+            Assert.AreEqual(true, f1.GetHeight() == 28);
             Assert.AreEqual(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
 
             bf1 = MmgFontData.CreateDefaultBoldFontLg();
@@ -303,8 +303,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             Assert.AreEqual(true, f1.GetText().Equals("Test String"));
             Assert.AreEqual(true, f1.GetFont().Equals(MmgFontData.CreateDefaultBoldFontLg()));
-            Assert.AreEqual(true, f1.GetWidth() == 114);
-            Assert.AreEqual(true, f1.GetHeight() == 24);
+            Assert.AreEqual(true, f1.GetWidth() == 107);
+            Assert.AreEqual(true, f1.GetHeight() == 28);
             Assert.AreEqual(true, f1.GetPosition().ApiEquals(MmgVector2.GetUnitVec()));
 
             bf1 = MmgFontData.CreateDefaultBoldFontLg();

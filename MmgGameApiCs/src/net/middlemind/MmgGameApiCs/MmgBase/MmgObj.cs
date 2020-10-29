@@ -67,7 +67,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public MmgObj()
         {
-            pos = new MmgVector2(0, 0);
+            pos = MmgVector2.GetOriginVec();
             w = 0;
             h = 0;
             isVisible = true;
@@ -220,8 +220,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 SetPosition(obj.GetPosition());
             }
 
-            SetWidth(GetWidth());
-            SetHeight(GetHeight());
+            SetWidth(obj.GetWidth());
+            SetHeight(obj.GetHeight());
             SetIsVisible(obj.GetIsVisible());
 
             if (obj.GetMmgColor() != null)
@@ -508,7 +508,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A string representation of this class.</returns>
         public virtual string ApiToString()
         {
-            return "MmgObj: Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ToString() + " HasParent: " + GetHasParent() + " Width: " + w + " Height: " + h;
+            return "MmgObj: Name: " + GetName() + " Id: " + GetId() + " - " + GetPosition().ApiToString() + " HasParent: " + GetHasParent() + " Width: " + w + " Height: " + h;
         }
 
         /// <summary>
@@ -519,6 +519,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A boolean indicating if this class instance is equal to the comparison class instance.</returns>
         public virtual bool ApiEquals(MmgObj obj)
         {
+            //MmgHelper.wr("MmgObj: ApiEquals:");
             if (obj == null)
             {
                 return false;
@@ -541,7 +542,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 MmgHelper.wr("MmgObj: Width NOT equal"); 
             }        
 
-            if(!(((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().equals(GetMmgColor()))))) { 
+            if(!(((obj.GetMmgColor() == null && GetMmgColor() == null) || (obj.GetMmgColor() != null && GetMmgColor() != null && obj.GetMmgColor().ApiEquals(GetMmgColor()))))) { 
                 MmgHelper.wr("MmgObj: MmgColor NOT equal"); 
             }
 
@@ -549,12 +550,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 MmgHelper.wr("MmgObj: Name NOT equal"); 
             }
 
-            if(!(((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().equals(GetParent()))))) { 
+            MmgHelper.wr("MmgObj: Parent check...");
+            if (!(((obj.GetParent() == null && GetParent() == null) || (obj.GetParent() != null && GetParent() != null && obj.GetParent().ApiEquals(GetParent()))))) { 
                 MmgHelper.wr("MmgObj: Parent NOT equal"); 
             }
 
-            if(!(((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().equals(GetPosition()))))) { 
-                MmgHelper.wr("MmgObj: Position NOT equal"); 
+            MmgHelper.wr("MmgObj: Position check...");
+            if (!(((obj.GetPosition() == null && GetPosition() == null) || (obj.GetPosition() != null && GetPosition() != null && obj.GetPosition().ApiEquals(GetPosition()))))) { 
+                MmgHelper.wr("MmgObj: Position NOT equal Obj: " + obj.ApiToString() + " this: " + ApiToString()); 
             }
             */
 

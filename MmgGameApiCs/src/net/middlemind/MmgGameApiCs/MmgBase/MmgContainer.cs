@@ -211,7 +211,15 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (obj != null)
             {
-                container.Insert(idx, obj);
+                if (idx >= 0 && idx < container.Count)
+                {
+                    container[idx] = obj;
+                }
+                else
+                {
+                    container.Add(obj);
+                }
+
                 if (container.Contains(obj) == true)
                 {
                     StampChild(obj);
@@ -500,6 +508,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     {
                         m1 = obj.container[i];
                         m2 = container[i];
+
                         if (
                             !((m1 == null && m2 == null) || (m1 != null && m2 != null && m1.ApiEquals(m2)))
                         )

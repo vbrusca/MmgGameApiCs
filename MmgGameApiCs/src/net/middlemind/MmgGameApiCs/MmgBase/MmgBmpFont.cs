@@ -716,7 +716,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 if(totalWidth <= 0)
                 {
-                    MmgHelper.wr("MmgBmpFont: Error: totalWidth value is incorrect: " + totalWidth);
+                    //MmgHelper.wr("MmgBmpFont: Error: totalWidth value is incorrect: " + totalWidth);
                     s = " ";
                     c = s.ToCharArray()[i];
                     idx = GetIndexOf(c);
@@ -726,7 +726,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 int posX = 0;
                 MmgDrawableBmpSet bmpSet = MmgHelper.CreateDrawableBmpSet(totalWidth, src.GetHeight(), true);
-                MmgHelper.wr("MmgBmpFont: New MmgBmpFont destination image Width: " + totalWidth + " Height: " + src.GetHeight());
+                //MmgHelper.wr("MmgBmpFont: New MmgBmpFont destination image Width: " + totalWidth + " Height: " + src.GetHeight());
 
                 bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(bmpSet.buffImg);
                 bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
@@ -737,7 +737,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     c = s.ToCharArray()[i];
                     idx = GetIndexOf(c);
                     img = chars[idx];
-                    MmgHelper.wr("MmgBmpFont: PosX: " + posX + " LetterWidth: " + img.GetWidth() + " Height: " + img.GetHeight() + " Index: " + idx + " WidthsVal: " + widths[idx]);
+                    //MmgHelper.wr("MmgBmpFont: PosX: " + posX + " LetterWidth: " + img.GetWidth() + " Height: " + img.GetHeight() + " Index: " + idx + " WidthsVal: " + widths[idx]);
                     bmpSet.p.DrawBmp(img, new MmgRect(0, 0, img.GetHeight(), img.GetWidth()), new MmgRect(posX, 0, img.GetHeight(), posX + img.GetWidth()));
                     posX += widths[idx];
                 }

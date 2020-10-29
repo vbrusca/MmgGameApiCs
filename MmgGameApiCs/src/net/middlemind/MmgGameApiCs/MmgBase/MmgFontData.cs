@@ -82,17 +82,17 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// An MmgFont class that wraps the normal font.
         /// </summary>
-        private static MmgFont mmgFontNorm = new MmgFont(MmgFontData.fontNorm, FontType.NORMAL);
+        private static MmgFont mmgFontNorm = new MmgFont(MmgFontData.fontNorm, MmgFontData.fontSize, FontType.NORMAL);
 
         /// <summary>
         /// An MmgFont class that wraps the bold font.
         /// </summary>
-        private static MmgFont mmgFontBold = new MmgFont(MmgFontData.fontBold, FontType.BOLD);
+        private static MmgFont mmgFontBold = new MmgFont(MmgFontData.fontBold, MmgFontData.fontSize, FontType.BOLD);
 
         /// <summary>
         /// An MmgFont class that wraps the italic font.
         /// </summary>
-        private static MmgFont mmgFontItalic = new MmgFont(MmgFontData.fontItalic, FontType.ITALIC);
+        private static MmgFont mmgFontItalic = new MmgFont(MmgFontData.fontItalic, MmgFontData.fontSize, FontType.ITALIC);
 
         /// <summary>
         /// Constructor for this class.
@@ -170,9 +170,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             fontBold = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_BOLD + fontSize);
             fontItalic = MmgScreenData.CONTENT_MANAGER.Load<SpriteFont>(FONT_KEY_ITALIC + fontSize);
 
-            mmgFontNorm = new MmgFont(MmgFontData.fontNorm, FontType.NORMAL);
-            mmgFontBold = new MmgFont(MmgFontData.fontBold, FontType.BOLD);
-            mmgFontItalic = new MmgFont(MmgFontData.fontItalic, FontType.ITALIC);
+            mmgFontNorm = new MmgFont(MmgFontData.fontNorm, fontSize, FontType.NORMAL);
+            mmgFontBold = new MmgFont(MmgFontData.fontBold, fontSize, FontType.BOLD);
+            mmgFontItalic = new MmgFont(MmgFontData.fontItalic, fontSize, FontType.ITALIC);
         }
 
         /// <summary>
@@ -295,7 +295,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance that is of the default font family, plain font type, and specified size.</returns>
         public static MmgFont CreateDefaultMmgFont(int sz)
         {
-            return new MmgFont(MmgFontData.CreateDefaultFont(sz), DEFAULT_FONT_TYPE);
+            return new MmgFont(MmgFontData.CreateDefaultFont(sz), sz, DEFAULT_FONT_TYPE);
         }
 
         /// <summary>
@@ -305,7 +305,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance that is of the default font family, normal font, and specified size.</returns>
         public static MmgFont CreateDefaultNormalMmgFont(int sz)
         {
-            return new MmgFont(MmgFontData.CreateDefaultNormalFont(sz), FontType.NORMAL);
+            return new MmgFont(MmgFontData.CreateDefaultNormalFont(sz), sz, FontType.NORMAL);
         }
 
         /// <summary>
@@ -315,7 +315,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance that is of the default font family, bold font, and specified size.</returns>
         public static MmgFont CreateDefaultBoldMmgFont(int sz)
         {
-            return new MmgFont(MmgFontData.CreateDefaultBoldFont(sz), FontType.BOLD);
+            return new MmgFont(MmgFontData.CreateDefaultBoldFont(sz), sz, FontType.BOLD);
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance that is of the default font family, italic font, and specified size.</returns>
         public static MmgFont CreateDefaultItalicMmgFont(int sz)
         {
-            return new MmgFont(MmgFontData.CreateDefaultItalicFont(sz), FontType.ITALIC);
+            return new MmgFont(MmgFontData.CreateDefaultItalicFont(sz), sz, FontType.ITALIC);
         }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance based on a Font from CreateDefaultFontSm.</returns>
         public static MmgFont CreateDefaultMmgFontSm()
         {
-            return new MmgFont(MmgFontData.CreateDefaultFontSm(), DEFAULT_FONT_TYPE);
+            return new MmgFont(MmgFontData.CreateDefaultFontSm(), (fontSize - 2), DEFAULT_FONT_TYPE);
         }
 
         /// <summary>
@@ -443,7 +443,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance based on a Font from CreateDefaultNormalFontSm.</returns>
         public static MmgFont CreateDefaultNormalMmgFontSm()
         {
-            return new MmgFont(MmgFontData.CreateDefaultNormalFontSm(), FontType.NORMAL);
+            return new MmgFont(MmgFontData.CreateDefaultNormalFontSm(), (fontSize - 2), FontType.NORMAL);
         }
 
         /// <summary>
@@ -452,7 +452,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance based on a Font from CreateDefaultBoldFontSm.</returns>
         public static MmgFont CreateDefaultBoldMmgFontSm()
         {
-            return new MmgFont(MmgFontData.CreateDefaultBoldFontSm(), FontType.BOLD);
+            return new MmgFont(MmgFontData.CreateDefaultBoldFontSm(), (fontSize - 2), FontType.BOLD);
         }
 
         /// <summary>
@@ -461,7 +461,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance based on a Font from CreateDefaultItalicFontSm.</returns>
         public static MmgFont CreateDefaultItalicMmgFontSm()
         {
-            return new MmgFont(MmgFontData.CreateDefaultItalicFontSm(), FontType.ITALIC);
+            return new MmgFont(MmgFontData.CreateDefaultItalicFontSm(), (fontSize - 2), FontType.ITALIC);
         }
 
         /// <summary>
@@ -520,7 +520,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance based on the default font family, default font type, large font size.</returns>
         public static MmgFont CreateDefaultMmgFontLg()
         {
-            return new MmgFont(MmgFontData.CreateDefaultFontLg(), DEFAULT_FONT_TYPE);
+            return new MmgFont(MmgFontData.CreateDefaultFontLg(), (fontSize + 2), DEFAULT_FONT_TYPE);
         }
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance based on the default font family, normal font type, large font size.</returns>
         public static MmgFont CreateDefaultNormalMmgFontLg()
         {
-            return new MmgFont(MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL);
+            return new MmgFont(MmgFontData.CreateDefaultNormalFontLg(), (fontSize + 2), FontType.NORMAL);
         }
 
         /// <summary>
@@ -538,7 +538,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance based on the default font family, bold font type, large font size.</returns>
         public static MmgFont CreateDefaultBoldMmgFontLg()
         {
-            return new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), FontType.BOLD);
+            return new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), (fontSize + 2), FontType.BOLD);
         }
 
         /// <summary>
@@ -547,7 +547,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new MmgFont instance based on the default font family, italic font type, large font size.</returns>
         public static MmgFont CreateDefaultItalicMmgFontLg()
         {
-            return new MmgFont(MmgFontData.CreateDefaultItalicFontLg(), FontType.ITALIC);
+            return new MmgFont(MmgFontData.CreateDefaultItalicFontLg(), (fontSize + 2), FontType.ITALIC);
         }
 
         /// <summary>

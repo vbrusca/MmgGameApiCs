@@ -107,7 +107,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A clone of this class.</returns>
         public virtual MmgVector2 Clone()
         {
-            return new MmgVector2(vec[0], vec[1]);
+            if (this is MmgVector2Int)
+            {
+                return ((MmgVector2Int)this).Clone();
+            }
+            else
+            {
+                return new MmgVector2(vec[0], vec[1]);
+            }
         }
 
         /// <summary>
@@ -287,7 +294,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A string representation of the vector.</returns>
         public virtual string ApiToString()
         {
-            return "MmgVector2: X: " + GetXDouble() + " Y:" + GetYDouble();
+            if (this is MmgVector2Int)
+            {
+                return ((MmgVector2Int)this).ApiToString();
+            }
+            else
+            {
+                return "MmgVector2: X: " + GetXDouble() + " Y:" + GetYDouble();
+            }
         }
 
         /// <summary>
@@ -297,6 +311,18 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A boolean indicating if this object is equal to the comparison object.</returns>
         public virtual bool ApiEquals(MmgVector2 obj)
         {
+            if (this is MmgVector2Int)
+            {
+                if (obj is MmgVector2Int)
+                {
+                    return ((MmgVector2Int)this).ApiEquals((MmgVector2Int)obj);
+                }
+                else
+                {
+                    return ((MmgVector2Int)this).ApiEquals(obj);
+                }
+            }
+
             if (obj == null)
             {
                 return false;
@@ -307,6 +333,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             bool ret = false;
+
+            //MmgHelper.wr("MmgVector2: ApiEquals: Obj: " + obj.GetXDouble() + ", " + obj.GetYDouble());
+            //MmgHelper.wr("MmgVector2: ApiEquals: this: " + GetXDouble() + ", " + GetYDouble());
             if (obj.GetXDouble() == GetXDouble()
                 && obj.GetYDouble() == GetYDouble()
             )

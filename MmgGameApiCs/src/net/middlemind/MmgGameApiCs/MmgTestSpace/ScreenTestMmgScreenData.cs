@@ -211,14 +211,14 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             i++;
 
             scaleXLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-            scaleXLabel.SetText("ScaleX: " + MmgScreenData.GetScaleX());
+            scaleXLabel.SetText("ScaleX: " + String.Format("{0:0.0}", MmgScreenData.GetScaleX()));
             scaleXLabel.SetX(xLeft);
             scaleXLabel.SetY(yStrt + (yDiff * i));
             AddObj(scaleXLabel);
             i++;
 
             scaleYLabel = MmgFontData.CreateDefaultBoldMmgFontLg();
-            scaleYLabel.SetText("ScaleY: " + MmgScreenData.GetScaleY());
+            scaleYLabel.SetText("ScaleY: " + String.Format("{0:0.0}", MmgScreenData.GetScaleY()));
             scaleYLabel.SetX(xLeft);
             scaleYLabel.SetY(yStrt + (yDiff * i));
             AddObj(scaleYLabel);

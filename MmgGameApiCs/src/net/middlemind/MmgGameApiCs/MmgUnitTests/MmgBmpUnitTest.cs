@@ -1,8 +1,8 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xna.Framework.Graphics;
 using net.middlemind.MmgGameApiCs.MmgBase;
-using net.middlemind.MmgGameApiCs.MmgCore;
 
 //Converted
 namespace net.middlemind.MmgGameApiCs.MmgUnitTests
@@ -11,9 +11,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
     /// @author Victor G. Brusca, Middlemind Games
     /// </summary>
     [TestClass]
-    public class Mmg9SliceUnitTest
+    public class MmgBmpUnitTest
     {
-        public Mmg9SliceUnitTest()
+        public MmgBmpUnitTest()
         {
         }
 
@@ -35,145 +35,135 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
         {
         }
 
+        [TestMethod]
         public void testStaticMembers()
         {
+            //do nothing
         }
 
+        [TestMethod]
         public void testEquals()
         {
-            /*
             //VARS
             MmgBmp b1;
             MmgBmp b2;
             MmgBmp b3;
             MmgObj o1;
             MmgObj o2;
-            Image i = null;
-            String src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
+            Texture2D i = null;
+            string src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
 
             //TEST 1
             b1 = new MmgBmp();
             b2 = new MmgBmp();
-            apiEqualityTests(b1, b2);
+            bmpEqualsTests(b1, b2);
 
             //TEST 2
             o1 = new MmgObj(10, 10, 50, 50, true, MmgColor.GetBlack());
             o2 = new MmgObj(10, 10, 50, 50, true, MmgColor.GetBlack());
             b1 = new MmgBmp(o1);
             b2 = new MmgBmp(o2);
-            apiEqualityTests(b1, b2);
+            bmpEqualsTests(b1, b2);
 
             //TEST 3
             b3 = new MmgBmp();
             b1 = new MmgBmp(b3);
             b2 = new MmgBmp(b3);
-            apiEqualityTests(b1, b2);
+            bmpEqualsTests(b1, b2);
 
             //TEST 4
-            try {
-                i = ImageIO.read(new File(src));
-            }catch(Exception e) {
+            try
+            {
+                i = Texture2D.FromFile(MmgScreenData.GRAPHICS_CONFIG, src);
+            }
+            catch (Exception e)
+            {
                 MmgApiUtils.wrErr(e);
             }
 
             b1 = new MmgBmp(i);
             b2 = new MmgBmp(i);
-            apiEqualityTests(b1, b2);
+            bmpEqualsTests(b1, b2);
 
             //TEST 5
             b1 = new MmgBmp(i, null, null, MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 45.0f);
             b2 = new MmgBmp(i, null, null, MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 45.0f);
-            apiEqualityTests(b1, b2);
+            bmpEqualsTests(b1, b2);
 
             //TEST 6
             b1 = new MmgBmp(i, MmgVector2.GetOriginVec(), MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 45.0f);
             b2 = new MmgBmp(i, MmgVector2.GetOriginVec(), MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 45.0f);
-            apiEqualityTests(b1, b2);
-            */
+            bmpEqualsTests(b1, b2);
         }
 
-        private void testEqualityMmg(Mmg9Slice o1, Mmg9Slice o2)
+        private void bmpEqualsTests(MmgBmp b1, MmgBmp b2)
         {
             //VARS
-            /*
             MmgVector2 o;
             MmgRect s;
             MmgRect d;
-            Image i = null;
-            String src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
+            Texture2D i = null;
+            string src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
             float r;
 
             //TEST 1
-            Assert.AreEqual(true, b1.Equals(b2));
+            Assert.AreEqual(true, b1.ApiEquals(b2));
 
             //TEST 2
             o = new MmgVector2(20, 20);
             b1.SetOrigin(o);
-            Assert.AreEqual(false, b1.Equals(b2));
+            Assert.AreEqual(false, b1.ApiEquals(b2));
             b2.SetOrigin(o);
-            Assert.AreEqual(true, b1.Equals(b2));
+            Assert.AreEqual(true, b1.ApiEquals(b2));
 
             //TEST 3
             o = new MmgVector2(0.15, 0.15);
             b1.SetScaling(o);
-            Assert.AreEqual(false, b1.Equals(b2));
+            Assert.AreEqual(false, b1.ApiEquals(b2));
             b2.SetScaling(o);
-            Assert.AreEqual(true, b1.Equals(b2));
+            Assert.AreEqual(true, b1.ApiEquals(b2));
 
             //TEST 4
             s = new MmgRect(0, 0, 20, 20);
             b1.SetSrcRect(s);
-            Assert.AreEqual(false, b1.Equals(b2));
+            Assert.AreEqual(false, b1.ApiEquals(b2));
             b2.SetSrcRect(s);
-            Assert.AreEqual(true, b1.Equals(b2));
+            Assert.AreEqual(true, b1.ApiEquals(b2));
 
             //TEST 5
             d = new MmgRect(0, 0, 30, 30);
             b1.SetDstRect(d);
-            Assert.AreEqual(false, b1.Equals(b2));
+            Assert.AreEqual(false, b1.ApiEquals(b2));
             b2.SetDstRect(d);
-            Assert.AreEqual(true, b1.Equals(b2));
+            Assert.AreEqual(true, b1.ApiEquals(b2));
 
             //TEST 6        
-            try {
-                i = ImageIO.read(new File(src));
-            }catch(Exception e) {
+            try
+            {
+                i = Texture2D.FromFile(MmgScreenData.GRAPHICS_CONFIG, src);
+            }
+            catch (Exception e)
+            {
                 MmgApiUtils.wrErr(e);
             }
 
             b1.SetImage(i);
-            Assert.AreEqual(false, b1.Equals(b2));
+            Assert.AreEqual(false, b1.ApiEquals(b2));
             b2.SetImage(i);
-            Assert.AreEqual(true, b1.Equals(b2));
+            Assert.AreEqual(true, b1.ApiEquals(b2));
 
             //TEST 7
             r = 90;
             b1.SetRotation(r);
-            Assert.AreEqual(false, b1.Equals(b2));
+            Assert.AreEqual(false, b1.ApiEquals(b2));
             b2.SetRotation(r);
-            Assert.AreEqual(true, b1.Equals(b2));
+            Assert.AreEqual(true, b1.ApiEquals(b2));
 
             //TEST 8 
             b1.DRAW_MODE = MmgBmp.MmgBmpDrawMode.DRAW_BMP_BASIC_CACHE;
-            Assert.AreEqual(false, b1.Equals(b2));
+            Assert.AreEqual(false, b1.ApiEquals(b2));
             b2.DRAW_MODE = MmgBmp.MmgBmpDrawMode.DRAW_BMP_BASIC_CACHE;
-            Assert.AreEqual(true, b1.Equals(b2));
-            */
-        }
-
-        private void testEqualityJava(Mmg9Slice o1, Mmg9Slice o2)
-        {
-
-        }
-
-        private void testGetAndSet(Mmg9Slice o1, Mmg9Slice o2)
-        {
-
-        }
-
-        private void testClone(Mmg9Slice o1, Mmg9Slice o2)
-        {
-
+            Assert.AreEqual(true, b1.ApiEquals(b2));
         }
 
         [TestMethod]
@@ -181,10 +171,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
         {
             //VARS
             MmgBmp b1;
-            String s;
+            string s;
             MmgRect d;
             Texture2D i = null;
-            String src = "/Users/victor/Documents/files/visualstudio_workspace/MmgGameApiCs/MmgGameApiCs/cfg/drawable/auto_load/a_btn.png";
+            string src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
             MmgVector2 v;
             float f;
 
@@ -197,11 +187,11 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             //TEST 2
             d = new MmgRect(0, 0, 50, 50);
             b1.SetDstRect(d);
-            Assert.AreEqual(true, d.Equals(b1.GetDstRect()));
+            Assert.AreEqual(true, d.ApiEquals(b1.GetDstRect()));
 
             d = new MmgRect(0, 0, 100, 100);
             b1.SetSrcRect(d);
-            Assert.AreEqual(true, d.Equals(b1.GetSrcRect()));
+            Assert.AreEqual(true, d.ApiEquals(b1.GetSrcRect()));
 
             //TEST 3        
             try
@@ -271,7 +261,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             MmgBmp b1;
             MmgBmp b2;
             Texture2D i = null;
-            String src = "/Users/victor/Documents/files/visualstudio_workspace/MmgGameApiCs/MmgGameApiCs/cfg/drawable/auto_load/a_btn.png";
+            string src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
 
             b1 = new MmgBmp();
             //TEST 3        
@@ -382,7 +372,6 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             obj.SetWidth(20);
             obj.SetHeight(20);
             b1 = new MmgBmp(obj);
-
             Assert.IsTrue(b1.GetOrigin().ApiEquals(new MmgVector2(0, 0)));
             Assert.IsTrue(b1.GetScaling().ApiEquals(MmgVector2.GetUnitVec()));
             Assert.IsTrue(b1.GetScaling().ApiEquals(new MmgVector2(1, 1)));
@@ -391,7 +380,6 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.IsNull(b1.GetImage());
             Assert.IsNull(b1.GetTexture2D());
             Assert.IsTrue(b1.GetRotation() == 0f);
-            MmgHelper.wr("=========GetHeight: " + b1.GetHeight() + " H: " + ((MmgObj)b1).GetHeight());
             Assert.IsTrue(b1.GetHeight() == 20);
             Assert.IsTrue(b1.GetHeightFloat() == 20.0f);
             Assert.IsTrue(b1.GetWidth() == 20);
@@ -426,10 +414,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.IsFalse(b1.GetPosition().ApiEquals(b2.GetPosition()));
 
             Texture2D i = null;
-            String src = "/Users/victor/Documents/files/visualstudio_workspace/MmgGameApiCs/MmgGameApiCs/cfg/drawable/auto_load/a_btn.png";
+            string src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
 
-            b1 = new MmgBmp();
-            //TEST 3        
             try
             {
                 i = Texture2D.FromFile(MmgScreenData.GRAPHICS_CONFIG, src);
@@ -494,7 +480,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             //VARS
             MmgBmp b1;
             Texture2D i = null;
-            String src = "/Users/victor/Documents/files/visualstudio_workspace/MmgGameApiCs/MmgGameApiCs/cfg/drawable/auto_load/a_btn.png";
+            string src = "/Users/victor/Documents/files/netbeans_workspace/MmgGameApiJava/cfg/drawable/auto_load/a_btn.png";
 
             b1 = new MmgBmp();
             //TEST 3        

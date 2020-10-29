@@ -43,11 +43,15 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             l1 = new MmgLabelValuePair();
             l3 = new MmgLabelValuePair();
 
+            //MmgHelper.wr("l1.GetValue: W: " + l1.GetWidth() + " H: " + l1.GetHeight() + " L1: " + l1.ApiToString());
+
             Assert.AreEqual(true, l1.GetLabel().ApiEquals(new MmgFont(MmgFontData.GetFontBold(), FontType.BOLD)));
-            Assert.AreEqual(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.GetFontNorm(), FontType.NORMAL)));
+            MmgFont f1 = new MmgFont(MmgFontData.GetFontNorm(), FontType.NORMAL);
+            f1.SetPosition(8, 0);
+            Assert.AreEqual(true, l1.GetValue().ApiEquals(f1));
             Assert.AreEqual(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
             Assert.AreEqual(true, l1.GetHeight() == 0);
-            Assert.AreEqual(true, l1.GetWidth() == 0);
+            Assert.AreEqual(true, l1.GetWidth() == 8);
 
             l1.SetFontSize(15);
             Assert.AreEqual(true, l1.GetFontSize() == 15);
@@ -107,11 +111,16 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             l1 = new MmgLabelValuePair(MmgFontData.CreateDefaultBoldFontLg(), MmgFontData.CreateDefaultNormalFontLg(), FontType.BOLD, FontType.NORMAL);
             l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL, FontType.NORMAL);
 
+            //MmgHelper.wr("l1.GetValue: W: " + l1.GetWidth() + " H: " + l1.GetHeight() + " L1: " + l1.ApiToString());
+
             Assert.AreEqual(true, l1.GetLabel().ApiEquals(new MmgFont(MmgFontData.CreateDefaultBoldFontLg(), FontType.BOLD)));
-            Assert.AreEqual(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL)));
+            MmgFont f1 = new MmgFont(MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL);
+            f1.SetPosition(8, 0);
+            Assert.AreEqual(true, l1.GetValue().ApiEquals(f1));
+            //Assert.AreEqual(true, l1.GetValue().ApiEquals(new MmgFont(MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL)));
             Assert.AreEqual(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
             Assert.AreEqual(true, l1.GetHeight() == 0);
-            Assert.AreEqual(true, l1.GetWidth() == 0);
+            Assert.AreEqual(true, l1.GetWidth() == 8);
 
             l1.SetFontSize(15);
             Assert.AreEqual(true, l1.GetFontSize() == 15);
@@ -171,11 +180,16 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             l1 = new MmgLabelValuePair(MmgFontData.CreateDefaultBoldMmgFontLg(), MmgFontData.CreateDefaultNormalMmgFontLg());
             l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL, FontType.NORMAL);
 
+            //MmgHelper.wr("l1.GetValue: W: " + l1.GetWidth() + " H: " + l1.GetHeight() + " L1: " + l1.ApiToString());
+
             Assert.AreEqual(true, l1.GetLabel().ApiEquals(MmgFontData.CreateDefaultBoldMmgFontLg()));
-            Assert.AreEqual(true, l1.GetValue().ApiEquals(MmgFontData.CreateDefaultNormalMmgFontLg()));
+            MmgFont f1 = MmgFontData.CreateDefaultNormalMmgFontLg();
+            f1.SetPosition(8, 0);
+            Assert.AreEqual(true, l1.GetValue().ApiEquals(f1));
+            //Assert.AreEqual(true, l1.GetValue().ApiEquals(MmgFontData.CreateDefaultNormalMmgFontLg()));
             Assert.AreEqual(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
             Assert.AreEqual(true, l1.GetHeight() == 0);
-            Assert.AreEqual(true, l1.GetWidth() == 0);
+            Assert.AreEqual(true, l1.GetWidth() == 8);
 
             l1.SetFontSize(15);
             Assert.AreEqual(true, l1.GetFontSize() == 15);
@@ -235,11 +249,16 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             l1 = new MmgLabelValuePair(new MmgLabelValuePair(MmgFontData.CreateDefaultBoldMmgFontLg(), MmgFontData.CreateDefaultNormalMmgFontLg()));
             l3 = new MmgLabelValuePair(MmgFontData.CreateDefaultNormalFontLg(), MmgFontData.CreateDefaultNormalFontLg(), FontType.NORMAL, FontType.NORMAL);
 
+            //MmgHelper.wr("l1.GetValue: W: " + l1.GetWidth() + " H: " + l1.GetHeight() + " L1: " + l1.ApiToString());
+
             Assert.AreEqual(true, l1.GetLabel().ApiEquals(MmgFontData.CreateDefaultBoldMmgFontLg()));
-            Assert.AreEqual(true, l1.GetValue().ApiEquals(MmgFontData.CreateDefaultNormalMmgFontLg()));
+            MmgFont f1 = MmgFontData.CreateDefaultNormalMmgFontLg();
+            f1.SetPosition(8, 0);
+            Assert.AreEqual(true, l1.GetValue().ApiEquals(f1));
+            //Assert.AreEqual(true, l1.GetValue().ApiEquals(MmgFontData.CreateDefaultNormalMmgFontLg()));
             Assert.AreEqual(true, l1.GetPaddingX() == MmgLabelValuePair.DEFAULT_PADDING_X);
             Assert.AreEqual(true, l1.GetHeight() == 0);
-            Assert.AreEqual(true, l1.GetWidth() == 0);
+            Assert.AreEqual(true, l1.GetWidth() == 8);
 
             l1.SetFontSize(15);
             Assert.AreEqual(true, l1.GetFontSize() == 15);

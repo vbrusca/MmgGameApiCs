@@ -38,7 +38,82 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>An adjusted Y position.</returns>
         public static int NormalizeFontPositionY(int y, MmgFont f)
         {
-            return y;
+            if (f.GetFontType() == MmgFont.FontType.BOLD)
+            {
+                if (f.GetFontSize() >= 38)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ) + (MmgPen.FONT_VERT_POS_ADJ / 3));
+                }
+                else if (f.GetFontSize() >= 28)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ));
+                }
+                else if (f.GetFontSize() >= 18)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ / 2));
+                }
+                else
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ / 3));
+                }
+            }
+            else if (f.GetFontType() == MmgFont.FontType.ITALIC)
+            {
+                if (f.GetFontSize() >= 38)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ) + (MmgPen.FONT_VERT_POS_ADJ / 3));
+                }
+                else if (f.GetFontSize() >= 28)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ));
+                }
+                else if (f.GetFontSize() >= 18)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ / 2));
+                }
+                else
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ / 3));
+                }
+            }
+            else if (f.GetFontType() == MmgFont.FontType.NORMAL)
+            {
+                if (f.GetFontSize() >= 38)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ) + (MmgPen.FONT_VERT_POS_ADJ / 3));
+                }
+                else if (f.GetFontSize() >= 28)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ));
+                }
+                else if (f.GetFontSize() >= 18)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ / 2));
+                }
+                else
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + (MmgPen.FONT_VERT_POS_ADJ / 3));
+                }
+            }
+            else
+            {
+                if (f.GetFontSize() >= 38)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + MmgPen.FONT_VERT_POS_ADJ + MmgPen.FONT_VERT_POS_ADJ / 3);
+                }
+                else if (f.GetFontSize() >= 28)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + MmgPen.FONT_VERT_POS_ADJ);
+                }
+                else if (f.GetFontSize() >= 18)
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + MmgPen.FONT_VERT_POS_ADJ / 2);
+                }
+                else
+                {
+                    return (y - f.GetHeight() + MmgPen.FONT_VERT_POS_ADJ + MmgPen.FONT_VERT_POS_ADJ / 3);
+                }
+            }
         }
 
         /// <summary>

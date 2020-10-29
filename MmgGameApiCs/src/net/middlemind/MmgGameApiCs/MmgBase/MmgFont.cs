@@ -75,11 +75,28 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Constructor that sets the lower level font class.
         /// </summary>
         /// <param name="tf">Font to use for text drawing.</param>
+        /// <param name="fontType"></param>
         public MmgFont(SpriteFont tf, FontType fontType) : base()
         {
             text = "";
             font = tf;
             SetFontType(fontType);
+            SetWidth(0);
+            SetHeight(0);
+        }
+
+        /// <summary>
+        /// Constructor that sets the lower level font class.
+        /// </summary>
+        /// <param name="tf">Font to use for text drawing.</param>
+        /// <param name="fontSize"></param>
+        /// <param name="fontType"></param>
+        public MmgFont(SpriteFont tf, int fontSize, FontType fontType) : base()
+        {
+            text = "";
+            font = tf;
+            SetFontType(fontType);
+            SetFontSize(fontSize);
             SetWidth(0);
             SetHeight(0);
         }
@@ -93,6 +110,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             SetFont(obj.GetFont());
             SetFontType(obj.GetFontType());
             SetFontSize(obj.GetFontSize());
+            SetFont(obj.GetFont());
             SetText(obj.GetText());
 
             if (obj.GetPosition() == null)
@@ -126,10 +144,32 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="txt">Text to draw.</param>
         /// <param name="pos">Position to draw the text.</param>
         /// <param name="cl">Color to use to draw the text.</param>
+        /// <param name="fontSize">TODO: Add comment</param>
+        /// <param name="fontType">TODO: Add comment</param>
         public MmgFont(SpriteFont sf, String txt, MmgVector2 pos, MmgColor cl, FontType fontType) : base()
         {
             SetFont(sf);
             SetFontType(fontType);
+            SetText(txt);
+            SetPosition(pos);
+            SetIsVisible(true);
+            SetMmgColor(cl);
+        }
+
+        /// <summary>
+        /// Constructor that sets the font, text, position, and color.
+        /// </summary>
+        /// <param name="sf">Low level font class.</param>
+        /// <param name="txt">Text to draw.</param>
+        /// <param name="pos">Position to draw the text.</param>
+        /// <param name="cl">Color to use to draw the text.</param>
+        /// <param name="fontSize">TODO: Add comment</param>
+        /// <param name="fontType">TODO: Add comment</param>
+        public MmgFont(SpriteFont sf, String txt, MmgVector2 pos, MmgColor cl, int fontSize, FontType fontType) : base()
+        {
+            SetFont(sf);
+            SetFontType(fontType);
+            SetFontSize(fontSize);
             SetText(txt);
             SetPosition(pos);
             SetIsVisible(true);
@@ -144,10 +184,33 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="x">Position, on the X axis.</param>
         /// <param name="y">Position, on the Y axis.</param>
         /// <param name="cl">Color to use to draw the text.</param>
+        /// <param name="fontSize">TODO: Add comment</param>
+        /// <param name="fontType">TODO: Add comment</param>
         public MmgFont(SpriteFont sf, String txt, int x, int y, MmgColor cl, FontType fontType)
         {
             SetFont(sf);
             SetFontType(fontType);
+            SetText(txt);
+            SetPosition(new MmgVector2(x, y));
+            SetIsVisible(true);
+            SetMmgColor(cl);
+        }
+
+        /// <summary>
+        /// Constructor that sets the font, text, position in X, Y, and color.
+        /// </summary>
+        /// <param name="sf">Low level font class.</param>
+        /// <param name="txt">Text to draw.</param>
+        /// <param name="x">Position, on the X axis.</param>
+        /// <param name="y">Position, on the Y axis.</param>
+        /// <param name="cl">Color to use to draw the text.</param>
+        /// <param name="fontSize">TODO: Add comment</param>
+        /// <param name="fontType">TODO: Add comment</param>
+        public MmgFont(SpriteFont sf, String txt, int x, int y, MmgColor cl, int fontSize, FontType fontType)
+        {
+            SetFont(sf);
+            SetFontType(fontType);
+            SetFontSize(fontSize);
             SetText(txt);
             SetPosition(new MmgVector2(x, y));
             SetIsVisible(true);
@@ -331,11 +394,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
 
             /*
-            if(!(base.equals((MmgObj)obj))) {
+            if(!(base.ApiEquals((MmgObj)obj))) {
                MmgHelper.wr("MmgFont: MmgObj is not equals!"); 
             }
 
-            if(!(((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().Equals(GetFont()))))) {
+            if(obj.GetFont() == GetFont())
+            {
+                MmgHelper.wr("MmgFont: Font TEST is equals!");
+            }
+
+            if (!(((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().Equals(GetFont()))))) {
                MmgHelper.wr("MmgFont: Font is not equals!");
             }
 
@@ -347,7 +415,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             bool ret = false;
             if (
                 base.ApiEquals((MmgObj)obj)
-                && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont().Equals(GetFont())))
+                && ((obj.GetFont() == null && GetFont() == null) || (obj.GetFont() != null && GetFont() != null && obj.GetFont() == GetFont()))
                 && ((obj.GetText() == null && GetText() == null) || (obj.GetText() != null && GetText() != null && obj.GetText().Equals(GetText())))
             )
             {

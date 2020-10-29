@@ -150,7 +150,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 tmpL = obj.GetLines();
                 lines = new List<MmgFont>(STARTING_LINE_COUNT);
-                for (int i = 0; i < obj.GetTxt().Count; i++)
+                for (int i = 0; i < obj.GetLines().Count; i++)
                 {
                     tmpF = tmpL[i];
                     lines.Add(tmpF.CloneTyped());
