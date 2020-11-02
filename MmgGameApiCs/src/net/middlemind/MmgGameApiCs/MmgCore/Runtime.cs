@@ -3,8 +3,7 @@ using System.Diagnostics;
 
 namespace net.middlemind.MmgGameApiCs.MmgBase
 {
-    //XNA: Monogame: Class created to mimic the Java Runtime class used to run shell commands
-    //to determine the state of gpio pins.
+    //Note: Class created to mimic the Java Runtime class used to run shell commands to determine the state of gpio pins.
     /// <summary>
     /// TODO: Add comment
     /// </summary>

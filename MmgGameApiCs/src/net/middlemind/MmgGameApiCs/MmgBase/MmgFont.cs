@@ -75,7 +75,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Constructor that sets the lower level font class.
         /// </summary>
         /// <param name="tf">Font to use for text drawing.</param>
-        /// <param name="fontType"></param>
+        /// <param name="fontType">The font type of the given font argument.</param>
         public MmgFont(SpriteFont tf, FontType fontType) : base()
         {
             text = "";
@@ -86,11 +86,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// Constructor that sets the lower level font class.
+        /// Constructor that sets the lower level font class and descriptive class fields.
         /// </summary>
         /// <param name="tf">Font to use for text drawing.</param>
-        /// <param name="fontSize"></param>
-        /// <param name="fontType"></param>
+        /// <param name="fontSize">The size of the given font argument.</param>
+        /// <param name="fontType">The font type of the given font argument.</param>
         public MmgFont(SpriteFont tf, int fontSize, FontType fontType) : base()
         {
             text = "";

@@ -1038,7 +1038,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 pixels[i] = c;
             }
-            buffImg.SetData<Color>(0, new Rectangle(x, y, w, h), pixels, 0, (w * h));
+            buffImg.SetData<Color>(0, new Rectangle(x, y, w, h), pixels, 0, len);
         }
 
         /// <summary>

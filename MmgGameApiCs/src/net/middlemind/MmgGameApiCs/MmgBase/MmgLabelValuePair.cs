@@ -58,6 +58,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         /// <param name="fontLbl">The Font to use for the label.</param>
         /// <param name="fontVal">The Font to use for the value.</param>
+        /// <param name="fontLblType">The font type of the label font argument.</param>
+        /// <param name="fontValType">The font type of the value font argument.</param>
         public MmgLabelValuePair(SpriteFont fontLbl, SpriteFont fontVal, FontType fontLblType, FontType fontValType) : base()
         {
             skipReset = true;
@@ -194,9 +196,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="txtVal">The text to set the value to.</param>
         /// <param name="pos">The font to use for the value.</param>
         /// <param name="cl">The color to use to draw the text.</param>
-        /// TODO: Add comments
-        /// TODO: Add comments
-        public MmgLabelValuePair(SpriteFont fontLbl, String txtLbl, SpriteFont fontVal, String txtVal, MmgVector2 pos, MmgColor cl, FontType fontLblType, FontType fontValType) : base()
+        /// <param name="fontLblType">The font type of the label font argument.</param>
+        /// <param name="fontValType">The font type of the value font argument.</param>
+        public MmgLabelValuePair(SpriteFont fontLbl, string txtLbl, SpriteFont fontVal, string txtVal, MmgVector2 pos, MmgColor cl, FontType fontLblType, FontType fontValType) : base()
         {
             skipReset = true;
             SetLabel(new MmgFont(fontLbl, fontLblType));
@@ -221,9 +223,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="x">Position, on the X axis.</param>
         /// <param name="y">Position, on the Y axis.</param>
         /// <param name="cl">The color to use to draw the text.</param>
-        /// TODO: Add comments
-        /// TODO: Add comments
-        public MmgLabelValuePair(SpriteFont fontLbl, String txtLbl, SpriteFont fontVal, String txtVal, int x, int y, MmgColor cl, FontType fontLblType, FontType fontValType) : base()
+        /// <param name="fontLblType">The font type of the label font argument.</param>
+        /// <param name="fontValType">The font type of the value font argument.</param>
+        public MmgLabelValuePair(SpriteFont fontLbl, string txtLbl, SpriteFont fontVal, string txtVal, int x, int y, MmgColor cl, FontType fontLblType, FontType fontValType) : base()
         {
             skipReset = true;
             SetLabel(new MmgFont(fontLbl, fontLblType));

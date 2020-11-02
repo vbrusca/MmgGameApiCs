@@ -1176,7 +1176,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 updSrcRect = new MmgRect(0, offsetYScrollCenterButton, offsetYScrollCenterButton + viewPortRect.GetHeight(), viewPortRect.GetWidth());
                 updDstRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
 
-                p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)scrollPane.GetImage());
+                p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)viewPort.GetImage());
                 p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 p.DrawBmp(scrollPane, updSrcRect, updDstRect);
                 p.GetGraphics().End();

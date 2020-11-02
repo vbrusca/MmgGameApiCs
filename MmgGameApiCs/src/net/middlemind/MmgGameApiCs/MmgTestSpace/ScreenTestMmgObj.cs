@@ -33,32 +33,32 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         protected readonly GamePanel owner;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgObj instance used by this game screen.
         /// </summary>
         private MmgObj obj1;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgFont object instance used as a label by this game screen.
         /// </summary>
         private MmgFont font1;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgObj instance used by this game screen.
         /// </summary>
         private MmgObj obj2;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgFont object instance used as a label by this game screen.
         /// </summary>
         private MmgFont font2;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgObj instance used by this game screen.
         /// </summary>
         private MmgObj obj3;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgFont object instance used as a label by this game screen.
         /// </summary>
         private MmgFont font3;
 
@@ -344,6 +344,9 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             obj1 = null;
             obj2 = null;
             obj3 = null;
+            font1 = null;
+            font2 = null;
+            font3 = null;
             title = null;
             color = null;
 

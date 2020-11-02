@@ -473,21 +473,26 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// An event handler used to handle scaling events.
         /// </summary>
-        /// <param name="v"></param>
-        /// <param name="orig"></param>
+        /// <param name="v">The scaling parameters for the X and Y axis.</param>
+        /// <param name="orig">An MmgObj object instance that is the original, unscaled object.</param>
         public virtual void MmgHandleScale(MmgVector2 v, MmgObj orig)
         {
-            if (orig is MmgBmp) {
+            if (orig is MmgBmp)
+            {
                 sizeTween.SetSubj(MmgBmpScaler.ScaleMmgBmp((MmgBmp)orig, v, true));
-            } else if (orig is MmgSprite) {
+            }
+            else if (orig is MmgSprite)
+            {
                 MmgSprite s = ((MmgSprite)orig);
                 MmgBmp b = s.GetCurrentFrame().CloneTyped();
                 b = MmgBmpScaler.ScaleMmgBmp(b, v, true);
                 s = ((MmgSprite)sizeTween.GetSubj());
                 s.SetCurrentFrame(b);
-            } else if (orig is MmgObj) {
+            }
+            else if (orig is MmgObj)
+            {
                 orig.SetWidth(v.GetX());
                 orig.SetWidth(v.GetY());
             }

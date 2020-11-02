@@ -145,7 +145,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (FONT_NORMALIZE_POSITION)
             {
-                pen.DrawString(f.GetFont(), f.GetFontSize() + ":" + f.GetFontType() + ":" + f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(f.GetX(), f), MmgHelper.NormalizeFontPositionY(f.GetY(), f)), f.GetMmgColor().GetColor());
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(f.GetX(), f), MmgHelper.NormalizeFontPositionY(f.GetY(), f)), f.GetMmgColor().GetColor());
             }
             else
             {
@@ -164,7 +164,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             
             if (FONT_NORMALIZE_POSITION)
             {
-                pen.DrawString(f.GetFont(), f.GetFontSize() + ":" + f.GetFontType() + ":" + f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(x, f), MmgHelper.NormalizeFontPositionY(y, f)), f.GetMmgColor().GetColor());
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(x, f), MmgHelper.NormalizeFontPositionY(y, f)), f.GetMmgColor().GetColor());
             }
             else
             {
@@ -183,7 +183,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             //pen.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             if (FONT_NORMALIZE_POSITION)
             {
-                pen.DrawString(f.GetFont(), f.GetFontSize() + ":" + f.GetFontType() + ":" + f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(pos.GetX(), f), MmgHelper.NormalizeFontPositionY(pos.GetY(), f)), f.GetMmgColor().GetColor());
+                pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(pos.GetX(), f), MmgHelper.NormalizeFontPositionY(pos.GetY(), f)), f.GetMmgColor().GetColor());
             }
             else
             {

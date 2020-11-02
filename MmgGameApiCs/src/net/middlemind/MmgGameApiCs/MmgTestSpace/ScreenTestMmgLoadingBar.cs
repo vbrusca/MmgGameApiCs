@@ -43,27 +43,27 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         private MmgFont title;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgLoadingBar instance used by this screen.
         /// </summary>
         private MmgLoadingBar loadingBar;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgBmp object instance used as the background of the loading bar.
         /// </summary>
         private MmgBmp loadingBarBack;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgBmp object instance used as the front of the loading bar.
         /// </summary>
         private MmgBmp loadingBarFront;
 
         /// <summary>
-        /// TODO: Add comment
+        /// A local variable used to animate the loading bar fill.
         /// </summary>
         private long time = 0L;
 
         /// <summary>
-        /// TODO: Add comment
+        /// A local variable used to animated the loading bar fill.
         /// </summary>
         private long timingAmt = 500L;
 

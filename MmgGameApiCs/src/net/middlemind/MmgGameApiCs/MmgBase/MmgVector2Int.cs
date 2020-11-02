@@ -239,16 +239,16 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// Sets the vector values.
         /// </summary>
         /// <param name="v">The vector values.</param>
-        public virtual void SetVectorIt(int[] v)
+        public virtual void SetVectorInt(int[] v)
         {
             SetX(v[0]);
             SetY(v[1]);
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the vector values from a double array.
         /// </summary>
-        /// <param name="d"></param>
+        /// <param name="d">An array of vector coordinates.</param>
         public override void SetVector(double[] d)
         {
             SetX((int)d[0]);
@@ -256,9 +256,9 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Gets the vector values as a double array.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An array of vector coordinates.</returns>
         public override double[] GetVector()
         {
             return new double[] { GetXDouble(), GetYDouble() };

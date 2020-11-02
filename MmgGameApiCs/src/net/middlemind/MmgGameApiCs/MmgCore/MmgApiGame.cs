@@ -6,7 +6,11 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
     /// <summary>
-    /// TODO: Add comment
+    /// C# Monogame game that runs the MmgApi. 
+    /// STATIC MAIN ENTRY POINT EXAMPLE
+    /// Created by Middlemind Games 08/01/2015
+    ///
+    /// @author Victor G.Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public static class MmgApiGame
@@ -57,7 +61,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public static string[] ARGS = null;
 
         /// <summary>
-        /// TODO: Add comment
+        /// The GamePanel used to render the game.
         /// </summary>
         public static GamePanel pnlGame = null;
 

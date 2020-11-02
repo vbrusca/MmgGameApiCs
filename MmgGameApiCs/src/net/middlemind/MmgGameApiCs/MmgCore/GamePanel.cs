@@ -400,57 +400,52 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         private Color DarkGray = new Color(64, 64, 64);
 
         /// <summary>
-        /// TODO: Add comments
+        /// A helper variable used to hold a debug font.
         /// </summary>
         private MmgFont mmgDebugFont = null;
 
         /// <summary>
-        /// TODO: Add comments
-        /// </summary>
-        private MmgBmp test = null;
-
-        /// <summary>
-        /// TODO: Add comments
+        /// A list of keyboard keys that are in the down position.
         /// </summary>
         private List<int> keysDown;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A list of mouse buttons that are in the down position.
         /// </summary>
         private List<string> buttonsDown;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A copy of the keyboard state.
         /// </summary>
         private KeyboardState stateK;
 
         /// <summary>
-        /// TODO: Add comments
+        /// The previous copy of the keyboard state.
         /// </summary>
         private KeyboardState statePrevK;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A boolean indicating a shift key is in the down position.
         /// </summary>
         private bool keyShiftDown = false;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A boolean indicating the caps lock key is in the down position.
         /// </summary>
         private bool keyCapsLockOn = false;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A copy of the mouse state.
         /// </summary>
         private MouseState stateM;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A copy of the previous mouse state.
         /// </summary>
         private MouseState statePrevM;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A boolean indicating that unit tests are running.
         /// </summary>
         private bool runningTests = false;
 
@@ -492,14 +487,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public long frameTime;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A long value indicating what the target FPS is for the game.
         /// </summary>
         public static long TARGET_FPS = 16L;
 
-        private bool RUN_DRAWING_TEST = true;
-
         /// <summary>
-        /// TODO: Add comments
+        /// Constructor, sets the MainFrame, window dimensions, and position of the main drawing surface.
         /// </summary>
         /// <param name="WinWidth"></param>
         /// <param name="WinHeight"></param>
@@ -544,12 +537,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0d / (double)TARGET_FPS);          
         }
 
-        //NOTES: Added to the Monogame port to mimic the Java window closing implementation.
+        //NOTE: Added to the Monogame port to mimic the Java window closing implementation.
         /// <summary>
-        /// TODO: Add comment
+        /// An event handler that fires when the window has been activated.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void windowActivated(object sender, EventArgs e)
         {
             canvas = Window;
@@ -557,14 +550,23 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             setResizable(false);
             setVisible(true);
             setName(GameSettings.NAME);
+
+            if (GameSettings.DEVELOPMENT_MODE_ON == false)
+            {
+                setTitle(GameSettings.TITLE);
+            }
+            else
+            {
+                setTitle(GameSettings.TITLE + " - " + GameSettings.DEVELOPER_COMPANY + " (" + GameSettings.VERSION + ")");
+            }
         }
 
-        //NOTES: Added to the Monogame port to mimic the Java window closing implementation.
+        //NOTE: Added to the Monogame port to mimic the Java window closing implementation.
         /// <summary>
-        /// TODO: Add comment
+        /// An event handler that fires when the window is starting to close.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Event arguments.</param>
         private void windowClosing(object sender, EventArgs e)
         {
             try
@@ -585,10 +587,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the dimensions of the current game screen.
         /// </summary>
-        /// <param name="w"></param>
-        /// <param name="h"></param>
+        /// <param name="w">The width of the game screen.</param>
+        /// <param name="h">The height of the game screen.</param>
         public void setSize(int w, int h)
         {
             gdm.PreferredBackBufferWidth = w;
@@ -597,43 +599,43 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets a boolean flag indicating if the screen can be resized or not.
         /// </summary>
-        /// <param name="b"></param>
+        /// <param name="b">A boolean indicating if the screen can be resized or not.</param>
         public void setResizable(bool b)
         {
             canvas.AllowUserResizing = b;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the name of this game screen.
         /// </summary>
-        /// <param name="n"></param>
+        /// <param name="n">The name of the game screen.</param>
         public void setName(string n)
         {
             name = n;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets a boolean indicating that this game screen is visible.
         /// </summary>
-        /// <param name="b"></param>
+        /// <param name="b">A boolean flag indicating the screen is visible.</param>
         public void setVisible(bool b)
         {
             visible = b;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// Sets the title of the game screen.
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="s">The title of the game screen.</param>
         public void setTitle(string s)
         {
             canvas.Title = s;
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A Monogame startup method where initialization can take place.
         /// </summary>
         protected override void Initialize()
         {
@@ -641,7 +643,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A method used to load the content used by this class.
         /// </summary>
         protected override void LoadContent()
         {
@@ -681,10 +683,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             MmgPen.ADV_RENDER_HINTS = true;
             PrepBuffers();
 
-            //screenSplash = new ScreenSplash(GameStates.SPLASH, this);
-            //screenLoading = new ScreenLoading(GameStates.LOADING, this);
-            //screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
-
             screenSplash.SetGenericEventHandler(this);
             screenLoading.SetGenericEventHandler(this);
             screenLoading.SetSlowDown(500);
@@ -716,9 +714,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 }
             }
 
-            test = MmgHelper.GetBasicBmp(GameSettings.IMAGE_LOAD_DIR + "logo_large2.png");
-
-            MmgHelper.wr("RunUnitTests: " + GameSettings.RUN_UNIT_TESTS);
+            MmgHelper.wr("GamePanel: RunUnitTests: " + GameSettings.RUN_UNIT_TESTS);
             if (!GameSettings.RUN_UNIT_TESTS)
             {
                 SwitchGameState(GameStates.SPLASH);
@@ -767,7 +763,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessAPress method is used to pass A button press events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src">TODO: Add comment</param>
+        /// <param name="src">The source of the A event.</param>
         public virtual void ProcessAPress(int src)
         {
             if (currentScreen != null)
@@ -779,7 +775,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessARelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src">TODO: Add comment</param>
+        /// <param name="src">The source of the A event.</param>
         public virtual void ProcessARelease(int src)
         {
             if (currentScreen != null)
@@ -791,7 +787,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessAClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src">TODO: Add comment</param>
+        /// <param name="src">The source of the A event.</param>
         public virtual void ProcessAClick(int src)
         {
             if (currentScreen != null)
@@ -803,7 +799,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessBPress method is used to pass B button press events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src">TODO: Add comment</param>
+        /// <param name="src">The source of the B event.</param>
         public virtual void ProcessBPress(int src)
         {
             if (currentScreen != null)
@@ -815,7 +811,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessBRelease method is used to pass A button release events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src">TODO: Add comment</param>
+        /// <param name="src">The source of the B event.</param>
         public virtual void ProcessBRelease(int src)
         {
             if (currentScreen != null)
@@ -827,7 +823,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// The ProcessBClick method is used to pass A button click events from the GamePanel class down to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
-        /// <param name="src">TODO: Add comment</param>
+        /// <param name="src">The source of the B event.</param>
         public virtual void ProcessBClick(int src)
         {
             if (currentScreen != null)
@@ -852,7 +848,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// The ProcessKeyPress method is used to send key press events to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
         /// <param name="c">The c argument is the character of the keyboard press event.</param>
-        /// <param name="code">TODO: Add comment</param>
+        /// <param name="code">A key code of the key event.</param>
         public virtual void ProcessKeyPress(char c, int code)
         {
             MmgHelper.wr("Key Press");
@@ -866,7 +862,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// The ProcessKeyRelease method is used to send key release events to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
         /// <param name="c">The c argument is the character of the keyboard release event.</param>
-        /// <param name="code">TODO: Add comment</param>
+        /// <param name="code">A key code of the key event.</param>
         public virtual void ProcessKeyRelease(char c, int code)
         {
             MmgHelper.wr("Key Release");
@@ -880,7 +876,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// The ProcessKeyClick method is used to send key click events to the MmgGameScreen class implementation, currentScreen.
         /// </summary>
         /// <param name="c">The c argument is the character of the keyboard click event.</param>
-        /// <param name="code">TODO: Add comment</param>
+        /// <param name="code">A key code of the key event.</param>
         public virtual void ProcessKeyClick(char c, int code)
         {
             MmgHelper.wr("Key Click");
@@ -912,6 +908,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="x">The x argument is the X position of the mouse as received from the mouse listener.</param>
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
+        /// <param name="btnIndex">The button index of the mouse button event.</param>
         public virtual void ProcessMousePress(int x, int y, int btnIndex)
         {
             MmgHelper.wr("Mouse Press");
@@ -928,6 +925,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="x">The x argument is the X position of the mouse as received from the mouse listener.</param>
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
+        /// <param name="btnIndex">The button index of the mouse button event.</param>
         public virtual void ProcessMouseRelease(int x, int y, int btnIndex)
         {
             MmgHelper.wr("Mouse Release");
@@ -944,6 +942,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="x">The x argument is the X position of the mouse as received from the mouse listener.</param>
         /// <param name="y">The y argument is the Y position of the mouse as received from the mouse listener.</param>
+        /// <param name="btnIndex">The button index of the mouse button event.</param>
         public virtual void ProcessMouseClick(int x, int y, int btnIndex)
         {
             MmgHelper.wr("Mouse Click");
@@ -1273,7 +1272,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <returns></returns>
         public virtual bool UpdateScreen()
         {
-            //NOTES: Monogame port doesn't need this function but it is included for compatability with the Java version.
+            //NOTE: Monogame port doesn't need this function but it is included for compatability with the Java version.
             return true;
         }
 

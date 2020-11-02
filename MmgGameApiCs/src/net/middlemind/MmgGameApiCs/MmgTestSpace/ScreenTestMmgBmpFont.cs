@@ -32,12 +32,12 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         protected readonly GamePanel owner;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgFont instance used as a label on this screen.
         /// </summary>
         private MmgFont bmpFontLabel1;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An MmgFont instance used as a label on this screen.
         /// </summary>
         private MmgFont bmpFontLabel2;
 
@@ -52,7 +52,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         private bool isDirty = false;
 
         /// <summary>
-        /// TODO: Add comment
+        /// The MmgBmp source of the MmgBmpFont.
         /// </summary>
         private MmgBmp bmpFontSrc;
 
@@ -62,7 +62,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         private bool lret = false;
 
         /// <summary>
-        /// TODO: Add comment
+        /// An instance of an MmgBmpFont class.
         /// </summary>
         private MmgBmpFont bmpFont = null;
 
@@ -137,22 +137,6 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             MmgHelper.CenterHorAndVert(bmpFontLabel2);
             bmpFontLabel2.SetY(bmpFont.GetY() - MmgHelper.ScaleValue(20));
             AddObj(bmpFontLabel2);
-
-            MmgBmp t = bmpFont.GetChar(0);
-            t.SetPosition(0, 200);
-            AddObj(t);
-
-            t = bmpFont.GetChar(10);
-            t.SetPosition(20, 200);
-            AddObj(t);
-
-            t = bmpFont.GetChar(20);
-            t.SetPosition(40, 200);
-            AddObj(t);
-
-            t = bmpFont.GetChar(30);
-            t.SetPosition(60, 200);
-            AddObj(t);
 
             ready = true;
             pause = false;

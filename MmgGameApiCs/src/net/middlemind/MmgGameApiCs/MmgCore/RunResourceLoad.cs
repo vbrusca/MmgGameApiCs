@@ -68,12 +68,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public bool exitLoad;
 
         /// <summary>
-        /// TODO: Add comment
+        /// A cross thread writing class, used to store cross thread commands.
         /// </summary>
         public CrossThreadWrite xTrdW;
 
         /// <summary>
-        /// TODO: Add comment
+        /// A temporary variable used to hold the contents of a file loaded in a thread and passed, using a cross thread write class, for prep as a game image.
         /// </summary>
         private byte[] fileData;
 
@@ -101,10 +101,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// A method used to read the contents of a file.
         /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
+        /// <param name="file">The file to read the contents of.</param>
+        /// <returns>A byte array representation of the file.</returns>
         private byte[] ReadFileData(string file)
         {
             byte[] ret = null;
