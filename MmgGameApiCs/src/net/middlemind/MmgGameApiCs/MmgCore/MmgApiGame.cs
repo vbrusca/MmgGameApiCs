@@ -94,6 +94,74 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
+        /// Run OS specific code on startup before the native libraries are loaded and the game engine config XML file. 
+        /// </summary>
+        public static void RunOsSpecificCode()
+        {
+            try
+            {
+                int p = (int)Environment.OSVersion.Platform;
+                string OS = "win";
+
+                if (p == 4 || p == 128 || RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
+                {
+                    OS = "linux";
+                }
+                else if (p == 6 || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    OS = "mac";
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    OS = "win";
+                }
+
+                MmgHelper.wr("Found platform: " + OS);
+
+                if (isWindows(OS))
+                {
+                    MmgHelper.wr("This is Windows");
+
+                }
+                else if (isMac(OS))
+                {
+                    MmgHelper.wr("This is Mac");
+                    GameSettings.LOAD_NATIVE_LIBRARIES = true;
+                    GameSettings.GAMEPAD_1_ON = true;
+                    GameSettings.GAMEPAD_1_THREADED_POLLING = false;
+                    GameSettings.GAMEPAD_2_ON = false;
+                    GameSettings.GPIO_GAMEPAD_ON = false;
+
+                }
+                else if (isUnix(OS))
+                {
+                    MmgHelper.wr("This is Unix or Linux");
+                    GameSettings.LOAD_NATIVE_LIBRARIES = false;
+                    GameSettings.GAMEPAD_1_ON = false;
+                    GameSettings.GAMEPAD_2_ON = false;
+                    GameSettings.GPIO_GAMEPAD_ON = true;
+                    GameSettings.GPIO_GAMEPAD_THREADED_POLLING = true;
+
+                }
+                else if (isSolaris(OS))
+                {
+                    MmgHelper.wr("This is Solaris");
+
+                }
+                else
+                {
+                    MmgHelper.wr("Your OS is not supported!!");
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                MmgHelper.wrErr(e);
+            }
+        }
+
+        /// <summary>
         /// A static method that loads native libraries that allow access to gamepads and controllers.
         /// </summary>
         public static void LoadNativeLibraries()
@@ -263,12 +331,17 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// 
+        /// Static main method.
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">Command line arguments.</param>
         [STAThread]
         public static void AltMain(string[] args)
         {
+            if (GameSettings.RUN_OS_SPECIFIC_CODE)
+            {
+                RunOsSpecificCode();
+            }
+
             if (GameSettings.LOAD_NATIVE_LIBRARIES)
             {
                 LoadNativeLibraries();
