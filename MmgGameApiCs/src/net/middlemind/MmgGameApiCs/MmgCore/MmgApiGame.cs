@@ -425,55 +425,58 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     bool r = dci.ImportGameSettings(ENGINE_CONFIG_FILE);
                     MmgHelper.wr("Engine config load result: " + r);
 
-                    int len = dci.GetValues().Keys.Count;
-                    string[] keys = new string[len];
-                    dci.GetValues().Keys.CopyTo(keys, 0);
-                    string key;
-                    DatConstantsEntry ent = null;
-                    FieldInfo f = null;
-
-                    for (int i = 0; i < len; i++)
+                    if (r == true)
                     {
-                        try
-                        {
-                            key = keys[i];
-                            ent = dci.GetValues()[key];
+                        int len = dci.GetValues().Keys.Count;
+                        string[] keys = new string[len];
+                        dci.GetValues().Keys.CopyTo(keys, 0);
+                        string key;
+                        DatConstantsEntry ent = null;
+                        FieldInfo f = null;
 
-                            Type myType = typeof(GameSettings);
-                            FieldInfo[] myFields = myType.GetFields();
-
-                            if (ent.from != null && ent.from.Equals("GameSettings") == true)
-                            {
-                                f = getField(ent.key, myFields);
-                                if (f != null)
-                                {
-                                    MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
-                                    SetField(ent, f);
-                                }
-                            }
-                            else if (ent.from != null && ent.from.Equals("Helper") == true)
-                            {
-                                f = getField(ent.key, myFields);
-                                if (f != null)
-                                {
-                                    MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
-                                    SetField(ent, f);
-                                }
-                            }
-                            else if (ent.from != null && ent.from.Equals("StaticMain") == true)
-                            {
-                                f = getField(ent.key, myFields);
-                                if (f != null)
-                                {
-                                    MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
-                                    SetField(ent, f);
-                                }
-                            }
-                        }
-                        catch (Exception e)
+                        for (int i = 0; i < len; i++)
                         {
-                            MmgHelper.wr("Ignoring field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
-                            MmgHelper.wrErr(e);
+                            try
+                            {
+                                key = keys[i];
+                                ent = dci.GetValues()[key];
+
+                                Type myType = typeof(GameSettings);
+                                FieldInfo[] myFields = myType.GetFields();
+
+                                if (ent.from != null && ent.from.Equals("GameSettings") == true)
+                                {
+                                    f = getField(ent.key, myFields);
+                                    if (f != null)
+                                    {
+                                        MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                        SetField(ent, f);
+                                    }
+                                }
+                                else if (ent.from != null && ent.from.Equals("Helper") == true)
+                                {
+                                    f = getField(ent.key, myFields);
+                                    if (f != null)
+                                    {
+                                        MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                        SetField(ent, f);
+                                    }
+                                }
+                                else if (ent.from != null && ent.from.Equals("StaticMain") == true)
+                                {
+                                    f = getField(ent.key, myFields);
+                                    if (f != null)
+                                    {
+                                        MmgHelper.wr("Importing " + ent.from + " field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type + " from: " + ent.from);
+                                        SetField(ent, f);
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                MmgHelper.wr("Ignoring field: " + ent.key + " with value: " + ent.val + " with type: " + ent.type);
+                                MmgHelper.wrErr(e);
+                            }
                         }
                     }
                 }
