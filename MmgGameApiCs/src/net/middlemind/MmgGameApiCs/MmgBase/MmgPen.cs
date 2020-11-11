@@ -160,8 +160,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="x">The x position to draw the object.</param>
         /// <param name="y">The y position to draw the object.</param>
         public virtual void DrawText(MmgFont f, int x, int y)
-        {
-            
+        {            
             if (FONT_NORMALIZE_POSITION)
             {
                 pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(x, f), MmgHelper.NormalizeFontPositionY(y, f)), f.GetMmgColor().GetColor());
@@ -180,7 +179,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="pos">The position to draw the object.</param>
         public virtual void DrawText(MmgFont f, MmgVector2 pos)
         {
-            //pen.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             if (FONT_NORMALIZE_POSITION)
             {
                 pen.DrawString(f.GetFont(), f.GetText(), new Vector2(MmgHelper.NormalizeFontPositionX(pos.GetX(), f), MmgHelper.NormalizeFontPositionY(pos.GetY(), f)), f.GetMmgColor().GetColor());
@@ -189,7 +187,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             {
                 pen.DrawString(f.GetFont(), f.GetText(), new Vector2(pos.GetX(), pos.GetY() - f.GetHeight() + FONT_VERT_POS_ADJ), f.GetMmgColor().GetColor());
             }
-            //pen.End();
         }
 
         /// <summary>
@@ -393,7 +390,14 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (IsEmptyColor(color) == false)
             {
-                pen.Draw(b.GetTexture2D(), new Vector2(position.GetX(), position.GetY()), color);
+                if (position is MmgVector2Vec)
+                {
+                    pen.Draw(b.GetTexture2D(), ((MmgVector2Vec)position).GetVector2(), color);
+                }
+                else
+                {
+                    pen.Draw(b.GetTexture2D(), new Vector2(position.GetX(), position.GetY()), color);
+                }
             }
             else if (b.GetMmgColor() != null)
             {
@@ -435,7 +439,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="rotation">The rotation to apply to the object.</param>
         public virtual void DrawBmp(MmgBmp b, MmgVector2 position, float rotation)
         {
-            DrawBmp(b, position, new MmgVector2(-1.0, -1.0), rotation);
+            DrawBmp(b, position, new MmgVector2(b.GetWidth() / 2, b.GetHeight() / 2), rotation);
         }
 
         /// <summary>
@@ -471,15 +475,36 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             if (IsEmptyColor(color) == false)
             {
-                pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), color);
+                if (position is MmgVector2Vec)
+                {
+                    pen.Draw(tmpImg, ((MmgVector2Vec)position).GetVector2(), color);
+                }
+                else
+                {
+                    pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), color);
+                }
             }
             else if (b.GetMmgColor() != null)
             {
-                pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
+                if (position is MmgVector2Vec)
+                {
+                    pen.Draw(tmpImg, ((MmgVector2Vec)position).GetVector2(), b.GetMmgColor().GetColor());
+                }
+                else
+                {
+                    pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
+                }
             }
             else
             {
-                pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), Color.White);
+                if (position is MmgVector2Vec)
+                {
+                    pen.Draw(tmpImg, ((MmgVector2Vec)position).GetVector2(), Color.White);
+                }
+                else
+                {
+                    pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), Color.White);
+                }
             }
         }
 
@@ -615,15 +640,36 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 {
                     if (IsEmptyColor(color) == false)
                     {
-                        pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), color);
+                        if (position is MmgVector2Vec)
+                        {
+                            pen.Draw(tmpImg, ((MmgVector2Vec)position).GetVector2(), color);
+                        }
+                        else
+                        {
+                            pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), color);
+                        }
                     }
                     else if (b.GetMmgColor() != null)
                     {
-                        pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
+                        if (position is MmgVector2Vec)
+                        {
+                            pen.Draw(tmpImg, ((MmgVector2Vec)position).GetVector2(), b.GetMmgColor().GetColor());
+                        }
+                        else
+                        {
+                            pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), b.GetMmgColor().GetColor());
+                        }
                     }
                     else
                     {
-                        pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), Color.White);
+                        if (position is MmgVector2Vec)
+                        {
+                            pen.Draw(tmpImg, ((MmgVector2Vec)position).GetVector2(), Color.White);
+                        }
+                        else
+                        {
+                            pen.Draw(tmpImg, new Vector2(position.GetX(), position.GetY()), Color.White);
+                        }
                     }
                 }
                 else

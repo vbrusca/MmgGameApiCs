@@ -219,6 +219,26 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             return (float)vec.Y;
         }
 
+        //NOTE: Monogame specific implementation to prevent having to instantiate a new Vector2.
+        /// <summary>
+        /// Gets the position vector, Monogame Vector2 object.
+        /// </summary>
+        /// <returns>The position as a Vector2 object.</returns>
+        public virtual Vector2 GetVector2()
+        {
+            return vec;
+        }
+
+        //NOTE: Monogame specific implementation to prevent having to instantiate a new Vector2.
+        /// <summary>
+        /// Sets the position vector, Monogame Vector2 object.
+        /// </summary>
+        /// <param name="Vec">The position as a Vector2 object.</param>
+        public virtual void SetVector2(Vector2 Vec)
+        {
+            vec = Vec;
+        }
+
         /// <summary>
         /// Gets the vector values.
         /// </summary>
