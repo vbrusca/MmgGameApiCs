@@ -37,8 +37,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" />
+    <Compile Remove="src\net\middlemind\MmgGameApiCs\MmgBase\MmgBmpFontXna.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <None Include="src\net\middlemind\MmgGameApiCs\MmgBase\MmgBmpFontXna.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
 </Project>

@@ -1279,7 +1279,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         ///
         /// @return      A bool indicating if the method call was successful.Returns true in the case of a sync exception.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A boolean indicating if the operation was a success. Always returns true in the Monogame port of the game engine.</returns>
         public virtual bool UpdateScreen()
         {
             //NOTE: Monogame port doesn't need this function but it is included for compatability with the Java version.
@@ -1287,9 +1287,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// The Monogame rendering routine update handler.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">The current game time of the Update method call.</param>
         protected override void Update(GameTime gameTime)
         {
             if(EXIT == true)
@@ -1306,10 +1306,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A method to determine if the specified key has been clicked.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="key">The key to check for the click event.</param>
+        /// <returns>A boolean indicating if the specified key has been clicked.</returns>
         private bool HasKeyBeenClicked(Keys key, KeyboardState state)
         {
             if (state.IsKeyDown(key))
@@ -1337,11 +1337,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A method to determine if the specified mouse button has been clicked.
         /// </summary>
-        /// <param name="bState"></param>
-        /// <param name="mState"></param>
-        /// <returns></returns>
+        /// <param name="bState">The previous state of the mouse buttons.</param>
+        /// <param name="mState">The current state of the mouse buttons.</param>
+        /// <returns>A boolean indicating if the mouse button has been clicked.</returns>
         private bool HasButtonBeenClicked(ButtonState bState, MouseState mState, string key)
         {
             if (bState == ButtonState.Pressed)
@@ -1367,10 +1367,10 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A method to convert Monogame key codes to characters.
         /// </summary>
-        /// <param name="k"></param>
-        /// <returns></returns>
+        /// <param name="k">The Monogame key code.</param>
+        /// <returns>A new KeyMap instance with the character, key code, and extended key code set.</returns>
         private KeyMap ConvertKeyToChar(Keys k)
         {
             if (k == Keys.Escape)
@@ -1998,8 +1998,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             return null;
         }
 
+        //NOTE: Monogame specific implementation to mimic the Java versions input events.
         /// <summary>
-        /// TODO: Add comment
+        /// Processes all player one input and redirects it to the current game screen.
         /// </summary>
         private void ProcessAllPlayer1Input()
         {
@@ -2244,9 +2245,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// The Monogame rendering routine draw call.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">The current game time the Draw method was called.</param>
         protected override void Draw(GameTime gameTime)
         {
             if(EXIT == true)
@@ -2260,7 +2261,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         }
 
         /// <summary>
-        /// TODO: Add comments
+        /// A support method used to boot strap unit testing to the game's startup process.
+        /// Because the unit tests need the Monogame screen context that only exists after the game is initialized
+        /// we have to run the tests after the resource loading process.
         /// </summary>
         private void RunTests()
         {

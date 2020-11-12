@@ -261,11 +261,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
         //NOTES: Added to the Monogame port to mimic the Java reflection implementation.
         /// <summary>
-        /// TODO: Add comments.
+        /// Searches through the list of provided fields for a field with the name specified by the key argument.
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="fields"></param>
-        /// <returns></returns>
+        /// <param name="key">The name of the field to search for.</param>
+        /// <param name="fields">The list of available fields to search.</param>
+        /// <returns>The field info if found otherwise null.</returns>
         public static FieldInfo getField(string key, FieldInfo[] fields)
         {
             if (fields != null && fields.Length > 0)
@@ -440,9 +440,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                             {
                                 key = keys[i];
                                 ent = dci.GetValues()[key];
-
-                                Type myType = typeof(GameSettings);
-                                FieldInfo[] myFields = myType.GetFields();
 
                                 if (ent.from != null && ent.from.Equals("GameSettings") == true)
                                 {

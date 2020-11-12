@@ -55,13 +55,14 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public Dictionary<string, MmgCfgFileEntry> classConfig;
 
+        //NOTE: Cross thread read, write, and command classes are used to overcome cross thread limitations in the Monogame framework.
         /// <summary>
-        /// TODO: Add comment
+        /// A cross thread reader used to pull cross thread commands from a list and execute them.
         /// </summary>
         public CrossThreadRead xTrdR;
 
         /// <summary>
-        /// TODO: Add comments
+        /// A cross thread command variable used by the class when processing cross thread commands.
         /// </summary>
         private CrossThreadCommand xTrdC;
 

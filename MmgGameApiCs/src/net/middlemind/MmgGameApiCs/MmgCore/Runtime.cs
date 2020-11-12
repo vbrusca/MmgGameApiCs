@@ -5,13 +5,13 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 {
     //Note: Class created to mimic the Java Runtime class used to run shell commands to determine the state of gpio pins.
     /// <summary>
-    /// TODO: Add comment
+    /// A shell execution class used to run shell commands to determine the state of gpio pins.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
     public class Runtime
     {
         /// <summary>
-        /// TODO: Add comment
+        /// Static creation method returns a new instance of this class.
         /// </summary>
         /// <returns></returns>
         public static Runtime getRuntime()
@@ -20,7 +20,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
-        /// TODO: Add comment
+        /// Executes the specified command in a new process and returns the exit code of the process.
         /// </summary>
         /// <param name="cmd"></param>
         public int exec(string cmd)

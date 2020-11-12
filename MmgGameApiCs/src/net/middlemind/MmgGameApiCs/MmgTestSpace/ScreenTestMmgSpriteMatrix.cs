@@ -52,12 +52,12 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         private bool isDirty = false;
 
         /// <summary>
-        /// TODO: Add comments
+        /// The sprite matrix's source image.
         /// </summary>
         private MmgBmp spriteMatrixSrc;
 
         /// <summary>
-        /// TODO: Add comments
+        /// The sprite matrix class instance.
         /// </summary>
         private MmgSpriteMatrix spriteMatrix;
 

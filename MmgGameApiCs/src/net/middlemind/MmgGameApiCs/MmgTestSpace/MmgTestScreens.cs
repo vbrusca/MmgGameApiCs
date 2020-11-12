@@ -267,11 +267,11 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 
         //NOTES: Added to the Monogame port to mimic the Java reflection implementation.
         /// <summary>
-        /// TODO: Add comments.
+        /// Searches through the list of provided fields for a field with the name specified by the key argument.
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="fields"></param>
-        /// <returns></returns>
+        /// <param name="key">The name of the field to search for.</param>
+        /// <param name="fields">The list of available fields to search.</param>
+        /// <returns>The field info if found otherwise null.</returns>
         public static FieldInfo getField(string key, FieldInfo[] fields)
         {
             if (fields != null && fields.Length > 0)
@@ -337,9 +337,9 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         }
 
         /// <summary>
-        /// 
+        /// Static main method.
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">Command line arguments.</param>
         [STAThread]
         public static void AltMain(string[] args)
         {
@@ -453,11 +453,11 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
                                 key = keys[i];
                                 ent = dci.GetValues()[key];
 
-                                Type myType = typeof(GameSettings);
-                                FieldInfo[] myFields = myType.GetFields();
-
                                 if (ent.from != null && ent.from.Equals("GameSettings") == true)
                                 {
+                                    Type myType = typeof(GameSettings);
+                                    FieldInfo[] myFields = myType.GetFields();
+
                                     f = getField(ent.key, myFields);
                                     if (f != null)
                                     {
@@ -465,8 +465,11 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
                                         SetField(ent, f);
                                     }
                                 }
-                                else if (ent.from != null && ent.from.Equals("Helper") == true)
+                                else if (ent.from != null && ent.from.Equals("MmgHelper") == true)
                                 {
+                                    Type myType = typeof(MmgHelper);
+                                    FieldInfo[] myFields = myType.GetFields();
+
                                     f = getField(ent.key, myFields);
                                     if (f != null)
                                     {
@@ -476,6 +479,9 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
                                 }
                                 else if (ent.from != null && ent.from.Equals("StaticMain") == true)
                                 {
+                                    Type myType = typeof(MmgTestScreens);
+                                    FieldInfo[] myFields = myType.GetFields();
+
                                     f = getField(ent.key, myFields);
                                     if (f != null)
                                     {
