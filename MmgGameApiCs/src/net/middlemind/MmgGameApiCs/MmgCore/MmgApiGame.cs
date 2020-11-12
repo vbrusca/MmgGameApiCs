@@ -446,6 +446,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                                 if (ent.from != null && ent.from.Equals("GameSettings") == true)
                                 {
+                                    Type myType = typeof(GameSettings);
+                                    FieldInfo[] myFields = myType.GetFields();
+
                                     f = getField(ent.key, myFields);
                                     if (f != null)
                                     {
@@ -453,8 +456,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                                         SetField(ent, f);
                                     }
                                 }
-                                else if (ent.from != null && ent.from.Equals("Helper") == true)
+                                else if (ent.from != null && ent.from.Equals("MmgHelper") == true)
                                 {
+                                    Type myType = typeof(MmgHelper);
+                                    FieldInfo[] myFields = myType.GetFields();
+
                                     f = getField(ent.key, myFields);
                                     if (f != null)
                                     {
@@ -464,6 +470,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                                 }
                                 else if (ent.from != null && ent.from.Equals("StaticMain") == true)
                                 {
+                                    Type myType = typeof(MmgApiGame);
+                                    FieldInfo[] myFields = myType.GetFields();
+
                                     f = getField(ent.key, myFields);
                                     if (f != null)
                                     {

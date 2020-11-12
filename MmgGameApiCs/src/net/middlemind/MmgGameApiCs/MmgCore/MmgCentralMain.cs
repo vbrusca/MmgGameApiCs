@@ -27,7 +27,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             string[] nArgs = new string[args.Length - 1];
             Array.Copy(args, 1, nArgs, 0, nArgs.Length);
 
-            String t = "";
+            string t = "";
             for(int i = 0; i < nArgs.Length; i++)
             {
                 t += (i + 1) + ": " + nArgs[i] + ",";
@@ -52,6 +52,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             else
             {
                 MmgTestScreens.AltMain(nArgs);
+
             }
         }
     }
