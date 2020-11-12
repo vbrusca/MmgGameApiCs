@@ -730,6 +730,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessDpadPress: " + dir);
                 currentScreen.ProcessDpadPress(dir);
             }
         }
@@ -743,6 +744,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessDpadRelease: " + dir);
                 currentScreen.ProcessDpadRelease(dir);
             }
         }
@@ -756,6 +758,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessDpadClick: " + dir);
                 currentScreen.ProcessDpadClick(dir);
             }
         }
@@ -768,6 +771,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessAPress: " + src);
                 currentScreen.ProcessAPress(src);
             }
         }
@@ -780,6 +784,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessARelease: " + src);
                 currentScreen.ProcessARelease(src);
             }
         }
@@ -792,6 +797,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessAClick: " + src);
                 currentScreen.ProcessAClick(src);
             }
         }
@@ -804,6 +810,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessBPress: " + src);
                 currentScreen.ProcessBPress(src);
             }
         }
@@ -816,6 +823,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessBRelease: " + src);
                 currentScreen.ProcessBRelease(src);
             }
         }
@@ -828,6 +836,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessBClick: " + src);
                 currentScreen.ProcessBClick(src);
             }
         }
@@ -840,6 +849,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessDebugClick");
                 currentScreen.ProcessDebugClick();
             }
         }
@@ -851,9 +861,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">A key code of the key event.</param>
         public virtual void ProcessKeyPress(char c, int code)
         {
-            MmgHelper.wr("Key Press");
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessKeyPress");
                 currentScreen.ProcessKeyPress(c, code);
             }
         }
@@ -865,9 +875,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">A key code of the key event.</param>
         public virtual void ProcessKeyRelease(char c, int code)
         {
-            MmgHelper.wr("Key Release");
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessKeyRelease");
                 currentScreen.ProcessKeyRelease(c, code);
             }
         }
@@ -879,9 +889,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="code">A key code of the key event.</param>
         public virtual void ProcessKeyClick(char c, int code)
         {
-            MmgHelper.wr("Key Click");
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessKeyClick");
                 currentScreen.ProcessKeyClick(c, code);
             }
         }
@@ -911,9 +921,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="btnIndex">The button index of the mouse button event.</param>
         public virtual void ProcessMousePress(int x, int y, int btnIndex)
         {
-            MmgHelper.wr("Mouse Press");
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessMousePress");
                 currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
             }
         }
@@ -928,9 +938,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="btnIndex">The button index of the mouse button event.</param>
         public virtual void ProcessMouseRelease(int x, int y, int btnIndex)
         {
-            MmgHelper.wr("Mouse Release");
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessMouseRelease");
                 currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
             }
         }
@@ -945,9 +955,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <param name="btnIndex">The button index of the mouse button event.</param>
         public virtual void ProcessMouseClick(int x, int y, int btnIndex)
         {
-            MmgHelper.wr("Mouse Click");
             if (currentScreen != null)
             {
+                MmgHelper.wr("ProcessMouseClick");
                 currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
             }
         }
@@ -2014,17 +2024,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             statePrevK = stateK;
             stateK = Keyboard.GetState();
 
-            /*
-            --Java Event Order--
-            Key Pressed
-            Key Click
-            Key Released
-
-            Mouse Pressed
-            Mouse Released
-            Mouse Click
-            */
-
             if(HasKeyBeenClicked(Keys.CapsLock, stateK))
             {
                 keyCapsLockOn = !keyCapsLockOn;
@@ -2045,63 +2044,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 lastKeyPressEvent = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             }
 
-            if(stateK.IsKeyDown(Keys.Down))
-            {
-                ProcessDpadPress(GameSettings.DOWN_KEYBOARD);
-            }
-            else if (stateK.IsKeyDown(Keys.Up))
-            {
-                ProcessDpadPress(GameSettings.UP_KEYBOARD);
-            }
-            else if(stateK.IsKeyDown(Keys.Left))
-            {
-                ProcessDpadPress(GameSettings.LEFT_KEYBOARD);
-            }
-            else if(stateK.IsKeyDown(Keys.Right))
-            {
-                ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
-            }
-            else if(stateK.IsKeyDown(Keys.A))
-            {
-                ProcessAPress(GameSettings.SRC_KEYBOARD);
-            }
-            else if (stateK.IsKeyDown(Keys.B))
-            {
-                ProcessBPress(GameSettings.SRC_KEYBOARD);
-            }
-
-            //handle key released
-            if (HasKeyBeenClicked(Keys.Down, stateK))
-            {
-                ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
-                ProcessDpadClick(GameSettings.DOWN_KEYBOARD);
-            }
-            else if (HasKeyBeenClicked(Keys.Up, stateK))
-            {
-                ProcessDpadRelease(GameSettings.UP_KEYBOARD);
-                ProcessDpadClick(GameSettings.UP_KEYBOARD);
-            }
-            else if (HasKeyBeenClicked(Keys.Left, stateK))
-            {
-                ProcessDpadRelease(GameSettings.LEFT_KEYBOARD);
-                ProcessDpadClick(GameSettings.LEFT_KEYBOARD);
-            }
-            else if (HasKeyBeenClicked(Keys.Right, stateK))
-            {
-                ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
-                ProcessDpadClick(GameSettings.RIGHT_KEYBOARD);
-            }
-            else if (HasKeyBeenClicked(Keys.A, stateK))
-            {
-                ProcessARelease(GameSettings.SRC_KEYBOARD);
-                ProcessAClick(GameSettings.SRC_KEYBOARD);
-            }
-            else if (HasKeyBeenClicked(Keys.B, stateK))
-            {
-                ProcessBRelease(GameSettings.SRC_KEYBOARD);
-                ProcessBClick(GameSettings.SRC_KEYBOARD);
-            }
-
             KeyMap c;
             foreach (Keys k in stateK.GetPressedKeys())
             {
@@ -2114,19 +2056,35 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     continue;
                 }
 
-                //MmgHelper.wr("Key: " + c.c + " Code: " + c.code + " ExtCode: " + c.extCode);
                 if (k != Keys.Space && k != Keys.Enter)
                 {
+                    if (k == Keys.Up)
+                    {
+                        ProcessDpadPress(GameSettings.UP_KEYBOARD);
+                    }
+                    else if (k == Keys.Down)
+                    {
+                        ProcessDpadPress(GameSettings.DOWN_KEYBOARD);
+                    }
+                    else if (k == Keys.Left)
+                    {
+                        ProcessDpadPress(GameSettings.LEFT_KEYBOARD);
+                    }
+                    else if (k == Keys.Right)
+                    {
+                        ProcessDpadPress(GameSettings.RIGHT_KEYBOARD);
+                    }
+                    else if (k == Keys.A)
+                    {
+                        ProcessAPress(GameSettings.SRC_KEYBOARD);
+                    }
+                    else if (k == Keys.B)
+                    {
+                        ProcessBPress(GameSettings.SRC_KEYBOARD);
+                    }
+
                     if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
                     {
-                        if(k == Keys.A)
-                        {
-                            ProcessAPress(GameSettings.SRC_KEYBOARD);
-                        }
-                        else if(k == Keys.B)
-                        {
-                            ProcessBPress(GameSettings.SRC_KEYBOARD);
-                        }
                         ProcessKeyPress(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
                     }
                     else
@@ -2134,63 +2092,17 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                         ProcessKeyPress(c.c, c.extCode);
                     }
                 }
-                else if(k == Keys.Space)
+                else if (k == Keys.Space)
                 {
                     ProcessAPress(GameSettings.SRC_KEYBOARD);
                     ProcessKeyPress(' ', 32);
                 }
-                else if(k == Keys.Enter)
+                else if (k == Keys.Enter)
                 {
                     ProcessAPress(GameSettings.SRC_KEYBOARD);
                     ProcessKeyPress(' ', 10);
                 }
-
-                //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' Keys: '" + k.ToString() + " has been pressed.");
             }
-
-            /*
-            if (HasKeyBeenClicked(Keys.Space, stateK))
-            {
-                ProcessAClick(GameSettings.SRC_KEYBOARD);
-                ProcessKeyClick(' ', 32);
-            }
-            else if (HasKeyBeenClicked(Keys.Enter, stateK))
-            {
-                ProcessAClick(GameSettings.SRC_KEYBOARD);
-                ProcessKeyClick(' ', 10);
-            }
-            else if (HasKeyBeenClicked(Keys.Add, stateK))
-            {
-                //increase speed
-            }
-            else if (HasKeyBeenClicked(Keys.Subtract, stateK))
-            {
-                //decrease speed
-            }
-            else if (HasKeyBeenClicked(Keys.P, stateK))
-            {
-                if (gameState == GameStates.MAIN_GAME)
-                {
-                    //pause game
-                }
-            }
-            else if (HasKeyBeenClicked(Keys.F, stateK))
-            {
-                //clear game flags
-            }
-            else if (HasKeyBeenClicked(Keys.A, stateK))
-            {
-                ProcessAClick(GameSettings.SRC_KEYBOARD);
-            }
-            else if (HasKeyBeenClicked(Keys.B, stateK))
-            {
-                ProcessBClick(GameSettings.SRC_KEYBOARD);
-            }
-            else if (HasKeyBeenClicked(Keys.D, stateK))
-            {
-                ProcessDebugClick();
-            }
-             */
 
             foreach (Keys k in keysDown.ToArray())
             {
@@ -2204,102 +2116,131 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 if (HasKeyBeenClicked(k, stateK))
                 {
-                    /*
-                        ScreenTestMmgBasicInput.ProcessAPress
-                        ScreenTestMmgBasicInput.ProcessAClick
-                        ScreenTestMmgBasicInput.ProcessARelease
-
-                        Key Pressed
-                        Key Click
-                        Key Released
-                    */
-                    if (k != Keys.Space && k != Keys.Enter)
+                    //Click Section
+                    if (k == Keys.Up)
                     {
-                        if(k == Keys.A)
-                        {
-                            ProcessAClick(GameSettings.SRC_KEYBOARD);
-                        }
-                        else if(k == Keys.B)
-                        {
-                            ProcessBClick(GameSettings.SRC_KEYBOARD);
-                        }
-                        else if(k == Keys.D)
-                        {
-                            ProcessDebugClick();
-                        }
-
-                        if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
-                        {
-                            ProcessKeyClick(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
-                        }
-                        else
-                        {
-                            ProcessKeyClick(c.c, c.extCode);
-                        }
-                        //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been clicked.");
-
-                        if (k == Keys.A)
-                        {
-                            ProcessARelease(GameSettings.SRC_KEYBOARD);
-                        }
-                        else if (k == Keys.B)
-                        {
-                            ProcessBRelease(GameSettings.SRC_KEYBOARD);
-                        }
-
-                        if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
-                        {
-                            ProcessKeyRelease(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
-                        }
-                        else
-                        {
-                            ProcessKeyRelease(c.c, c.extCode);
-                        }
-                        //MmgHelper.wr("Key: '" + c + "' Code: '" + (int)c + "' has been released.");
+                        ProcessDpadClick(GameSettings.UP_KEYBOARD);
                     }
-                    else if(k == Keys.Space)
+                    else if (k == Keys.Down)
+                    {
+                        ProcessDpadClick(GameSettings.DOWN_KEYBOARD);
+                    }
+                    else if (k == Keys.Left)
+                    {
+                        ProcessDpadClick(GameSettings.LEFT_KEYBOARD);
+                    }
+                    else if (k == Keys.Right)
+                    {
+                        ProcessDpadClick(GameSettings.RIGHT_KEYBOARD);
+                    }
+                    else if (k == Keys.A)
                     {
                         ProcessAClick(GameSettings.SRC_KEYBOARD);
                     }
-                    else if(k == Keys.Enter)
+                    else if (k == Keys.B)
+                    {
+                        ProcessBClick(GameSettings.SRC_KEYBOARD);
+                    }
+                    else if (k == Keys.D)
+                    {
+                        ProcessDebugClick();
+                    }
+                    else if (k == Keys.Space)
+                    {
+                        ProcessAClick(GameSettings.SRC_KEYBOARD);
+                    }
+                    else if (k == Keys.Enter)
+                    {
+                        ProcessAClick(GameSettings.SRC_KEYBOARD);
+                    }
+
+                    if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
+                    {
+                        ProcessKeyClick(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
+                    }
+                    else
+                    {
+                        ProcessKeyClick(c.c, c.extCode);
+                    }
+
+                    if (k == Keys.Up)
+                    {
+                        ProcessDpadRelease(GameSettings.UP_KEYBOARD);
+                    }
+                    else if (k == Keys.Down)
+                    {
+                        ProcessDpadRelease(GameSettings.DOWN_KEYBOARD);
+                    }
+                    else if (k == Keys.Left)
+                    {
+                        ProcessDpadRelease(GameSettings.LEFT_KEYBOARD);
+                    }
+                    else if (k == Keys.Right)
+                    {
+                        ProcessDpadRelease(GameSettings.RIGHT_KEYBOARD);
+                    }
+                    else if (k == Keys.A)
                     {
                         ProcessARelease(GameSettings.SRC_KEYBOARD);
+                    }
+                    else if (k == Keys.B)
+                    {
+                        ProcessBRelease(GameSettings.SRC_KEYBOARD);
+                    }
+                    else if (k == Keys.D)
+                    {
+
+                    }
+                    else if (k == Keys.Space)
+                    {
+                        ProcessARelease(GameSettings.SRC_KEYBOARD);
+                    }
+                    else if (k == Keys.Enter)
+                    {
+                        ProcessARelease(GameSettings.SRC_KEYBOARD);
+                    }
+
+                    if (GameSettings.INPUT_NORMALIZE_KEY_CODE)
+                    {
+                        ProcessKeyRelease(c.c, MmgHelper.NormalizeKeyCode(c.c, c.code, c.extCode, "c_sharp"));
+                    }
+                    else
+                    {
+                        ProcessKeyRelease(c.c, c.extCode);
                     }
                 }
             }
 
             if(stateM.LeftButton == ButtonState.Pressed)
             {
-                ProcessMousePress(stateM.X, stateM.Y, 0);
+                ProcessMousePress(stateM.X, stateM.Y, 1);
             }
             else if (stateM.MiddleButton == ButtonState.Pressed)
             {
-                ProcessMousePress(stateM.X, stateM.Y, 0);
+                ProcessMousePress(stateM.X, stateM.Y, 2);
             }
             else if (stateM.RightButton == ButtonState.Pressed)
             {
-                ProcessMousePress(stateM.X, stateM.Y, 0);
+                ProcessMousePress(stateM.X, stateM.Y, 3);
             }
 
             if (HasButtonBeenClicked(stateM.LeftButton, stateM, "LeftButton"))
             {
-                ProcessMouseRelease(stateM.X, stateM.Y, 0);
-                ProcessMouseClick(stateM.X, stateM.Y, 0);
+                ProcessMouseClick(stateM.X, stateM.Y, 1);
+                ProcessMouseRelease(stateM.X, stateM.Y, 1);
             }
 
             if (HasButtonBeenClicked(stateM.MiddleButton, stateM, "MiddleButton"))
             {
-                ProcessMouseRelease(stateM.X, stateM.Y, 1);
-                ProcessMouseClick(stateM.X, stateM.Y, 1);
+                ProcessMouseClick(stateM.X, stateM.Y, 2);
+                ProcessMouseRelease(stateM.X, stateM.Y, 2);
             }
 
             if (HasButtonBeenClicked(stateM.RightButton, stateM, "RightButton"))
             {
-                ProcessMouseRelease(stateM.X, stateM.Y, 2);
-                ProcessMouseClick(stateM.X, stateM.Y, 2);
+                ProcessMouseClick(stateM.X, stateM.Y, 3);
+                ProcessMouseRelease(stateM.X, stateM.Y, 3);
             }
-
-            //MmgHelper.wr("Mouse: LastX: '" + lastX + "' LastY: '" + lastY + "'");
         }
 
         /// <summary>
