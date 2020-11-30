@@ -33,7 +33,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// An enumeration that controls the render mode allowing you to either control the rendering via the isDirty flag or to render every game frame. 
         /// </summary>
-        private enum RenderMode
+        public enum RenderMode
         {
             RENDER_ALWAYS,
             RENDER_ONLY_WHEN_DIRTY
@@ -148,6 +148,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                 SetMmgColor(obj.GetMmgColor());
             }
             SetIsDirty(true);
+            SetMode(obj.GetMode());
+        }
+
+        /// <summary>
+        /// Gets the current render mode.
+        /// </summary>
+        /// <returns>The render mode.</returns>
+        public virtual RenderMode GetMode()
+        {
+            return mode;
+        }
+
+        /// <summary>
+        /// Sets the current render mode.
+        /// </summary>
+        /// <param name="m">The render mode.</param>
+        public virtual void SetMode(RenderMode m)
+        {
+            mode = m;
         }
 
         /// <summary>
