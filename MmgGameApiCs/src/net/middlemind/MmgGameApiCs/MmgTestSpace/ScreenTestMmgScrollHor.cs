@@ -223,7 +223,11 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         public override bool ProcessMouseRelease(MmgVector2 v)
         {
             MmgHelper.wr("ScreenTestMmgScrollHor.ProcessScreenRelease");
-            return ProcessMousePress(v.GetX(), v.GetY());
+            if (scrollHor != null)
+            {
+                return scrollHor.ProcessScreenClick(v.GetX(), v.GetY());
+            }
+            return false;
         }
 
         /// <summary>
@@ -235,7 +239,11 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         public override bool ProcessMouseRelease(int x, int y)
         {
             MmgHelper.wr("ScreenTestMmgScrollHor.ProcessScreenRelease");
-            return true;
+            if (scrollHor != null)
+            {
+                return scrollHor.ProcessScreenClick(x, y);
+            }
+            return false;
         }
 
         /// <summary>
@@ -313,7 +321,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         /// <param name="v">The coordinates of the click.</param>
         /// <returns>bool indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
-        public override bool ProcessMouseClick(MmgVector2 v)
+        public override bool ProcessMouseClick(MmgVector2 v, int btnIndex)
         {
             MmgHelper.wr("ScreenTestMmgScrollHor.ProcessScreenClick");
             return ProcessMouseClick(v.GetX(), v.GetY());
@@ -326,7 +334,7 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <param name="x">The X axis coordinate of the screen click.</param>
         /// <param name="y">The Y axis coordinate of the screen click.</param>
         /// <returns>bool indicating if a menu item was the target of the click, menu item event is fired automatically by this class.</returns>
-        public override bool ProcessMouseClick(int x, int y)
+        public override bool ProcessMouseClick(int x, int y, int btnIndex)
         {
             MmgHelper.wr("ScreenTestMmgScrollHor.ProcessScreenClick");
             scrollHor.ProcessScreenClick(x, y);

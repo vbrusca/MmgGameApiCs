@@ -220,10 +220,14 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// </summary>
         /// <param name="v">The coordinates of the mouse event.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
-        public override bool ProcessMouseRelease(MmgVector2 v)
+        public override bool ProcessMouseRelease(MmgVector2 v, int btnIndex)
         {
             MmgHelper.wr("ScreenTestMmgScrollHorVert.ProcessScreenRelease");
-            return ProcessMousePress(v.GetX(), v.GetY());
+            if (scrollBoth != null)
+            {
+                return scrollBoth.ProcessScreenClick(v.GetX(), v.GetY());
+            }
+            return false;
         }
 
         /// <summary>
@@ -232,10 +236,14 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <param name="x">The X coordinate of the event.</param>
         /// <param name="y">The Y coordinate of the event.</param>
         /// <returns>A bool indicating if the event was handled or not.</returns>
-        public override bool ProcessMouseRelease(int x, int y)
+        public override bool ProcessMouseRelease(int x, int y, int btnIndex)
         {
             MmgHelper.wr("ScreenTestMmgScrollHorVert.ProcessScreenRelease");
-            return true;
+            if (scrollBoth != null)
+            {
+                return scrollBoth.ProcessScreenClick(x, y);
+            }
+            return false;
         }
 
         /// <summary>

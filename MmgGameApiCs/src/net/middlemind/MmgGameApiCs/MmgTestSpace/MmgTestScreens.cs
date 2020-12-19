@@ -19,17 +19,17 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
         /// <summary>
         /// The target window width.
         /// </summary>
-        public static int WIN_WIDTH = 860;
+        public static int WIN_WIDTH = 862;
 
         /// <summary>
         /// The target window height. 
         /// </summary>
-        public static int WIN_HEIGHT = 602;
+        public static int WIN_HEIGHT = 604;
 
         /// <summary>
         /// The game panel width. 
         /// </summary>
-        public static int PANEL_WIDTH = 856;
+        public static int PANEL_WIDTH = 858;
 
         /// <summary>
         /// The game panel height.

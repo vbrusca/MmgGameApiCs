@@ -131,7 +131,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The current offset of the vertical scroll bar's slider.
         /// </summary>
-        private int offsetYScrollCenterButton;
+        private int offsetYScrollBarCenterButton;
 
         /// <summary>
         /// The current offset of the vertical scroll pane.
@@ -218,6 +218,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             scrollBarCenterButtonColor = ScrollBarCenterButtonColor;
             scrollBarCenterButtonHeight = ScrollBarCenterButtonHeight;
             scrollBarUpDownButtonHeight = MmgHelper.ScaleValue(15);
+            intervalY = IntervalY;
             PrepDimensions();
             SetIntervalY(IntervalY);
         }
@@ -240,6 +241,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             scrollBarWidth = MmgHelper.ScaleValue(10);
             scrollBarCenterButtonHeight = MmgHelper.ScaleValue(30);
             scrollBarUpDownButtonHeight = MmgHelper.ScaleValue(15);
+            intervalY = IntervalY;
             PrepDimensions();
             SetIntervalY(IntervalY);
         }
@@ -474,10 +476,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// </summary>
         public virtual void PrepScrollPane()
         {
+            int h = viewPortHeight;
+            int H = scrollPaneHeight;
+            //B = b1 + b2 + b3
+            int buttonHeight = (scrollBarUpDownButtonHeight + scrollBarUpDownButtonHeight + scrollBarCenterButtonHeight);
+            //S = h - B
+            int scrollNotchTravel = h - buttonHeight;
+            //T = H - h;
+            int scrollPaneTravel = H - h;
+            //TP = h / T
+            double prctHeightDiff = (double)scrollNotchTravel / (double)scrollPaneTravel;
+            //IPS = I / S
+            double intervalPrctViewPort = (double)intervalY / (double)scrollNotchTravel;
+            //IPT = I / T
+            double intervalPrctScrollPane = (double)intervalY / (double)scrollPaneTravel;
+
             if (scrollPaneHeight - viewPortHeight > 0)
             {
-                heightDiff = scrollPaneHeight - viewPortHeight;
-                heightDiffPrct = heightDiff / viewPortHeight;
+                heightDiff = H - scrollNotchTravel;
+                heightDiffPrct = intervalPrctViewPort;
                 scrollBarVisible = true;
             }
             else
@@ -490,6 +507,21 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             p = new MmgPen(viewPort.GetImage());
             p.SetAdvRenderHints();
         }
+
+        /// <summary>
+        /// Returns the target event handler of the clickScreen MmgEvent class field.
+        /// </summary>
+        /// <returns>The MmgEventHandler to use to handle events.</returns>
+        public MmgEventHandler GetEventHandler()
+        {
+            if (clickScreen != null)
+            {
+                return clickScreen.GetTargetEventHandler();
+            }
+
+            return null;
+        }
+
 
         /// <summary>
         /// Sets event handlers for all this object's event.
@@ -586,7 +618,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             base.SetX(inY);
             viewPortRect.SetPosition(new MmgVector2(viewPortRect.GetLeft(), inY));
             scrollPaneRect.SetPosition(new MmgVector2(scrollPaneRect.GetLeft(), inY));
-            scrollBarCenterButtonRect.SetPosition(new MmgVector2(scrollBarCenterButtonRect.GetLeft(), inY + scrollBarUpDownButtonHeight + offsetYScrollCenterButton));
+            scrollBarCenterButtonRect.SetPosition(new MmgVector2(scrollBarCenterButtonRect.GetLeft(), inY + scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton));
             scrollBarUpButtonRect.SetPosition(new MmgVector2(scrollBarUpButtonRect.GetLeft(), inY));
             scrollBarDownButtonRect.SetPosition(new MmgVector2(scrollBarDownButtonRect.GetLeft(), inY + viewPortRect.GetHeight() - scrollBarUpDownButtonHeight));
 
@@ -617,7 +649,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             base.SetPosition(inPos);
             viewPortRect.SetPosition(inPos);
             scrollPaneRect.SetPosition(inPos);
-            scrollBarCenterButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + scrollBarUpDownButtonHeight + offsetYScrollCenterButton));
+            scrollBarCenterButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton));
             scrollBarUpButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY()));
             scrollBarDownButtonRect.SetPosition(new MmgVector2(inPos.GetX() + viewPort.GetWidth(), inPos.GetY() + viewPortRect.GetHeight() - scrollBarUpDownButtonHeight));
 
@@ -636,17 +668,58 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A bool indicating if the dpad input was handled.</returns>
         public virtual bool ProcessDpadRelease(int dir)
         {
+            int h = viewPortHeight;
+            int H = scrollPaneHeight;
+            //B = b1 + b2 + b3
+            int buttonHeight = (scrollBarUpDownButtonHeight + scrollBarUpDownButtonHeight + scrollBarCenterButtonHeight);
+            //S = h - B
+            int scrollNotchTravel = h - buttonHeight;
+            //T = H - h;
+            int scrollPaneTravel = H - h;
+            //TP = h / T
+            double prctHeightDiff = (double)scrollNotchTravel / (double)scrollPaneTravel;
+            //IPS = I / S
+            double intervalPrctViewPort = (double)intervalY / (double)scrollNotchTravel;
+            //IPS = I / T
+            double intervalPrctScrollPane = (double)intervalY / (double)scrollPaneTravel;
+            double currentPrct = (double)offsetYScrollBarCenterButton / (double)scrollNotchTravel;
+
+            MmgHelper.wr("====================MmgScrollVert: h: " + h);
+            MmgHelper.wr("====================MmgScrollVert: H: " + H);
+            MmgHelper.wr("====================MmgScrollVert: B: " + buttonHeight);
+            MmgHelper.wr("====================MmgScrollVert: S: " + scrollNotchTravel);
+            MmgHelper.wr("====================MmgScrollVert: T: " + scrollPaneTravel);
+            MmgHelper.wr("====================MmgScrollVert: TP: " + prctHeightDiff);
+            MmgHelper.wr("====================MmgScrollVert: IPS: " + intervalPrctViewPort);
+            MmgHelper.wr("====================MmgScrollVert: IPT: " + intervalPrctScrollPane);
+            MmgHelper.wr("====================MmgScrollVert: IPS2: " + heightDiffPrct);
+            MmgHelper.wr("====================MmgScrollVert: C%: " + currentPrct);
+            MmgHelper.wr("====================MmgScrollVert: IntY: " + intervalY);
+
             if (scrollBarVisible && dir == MmgDir.DIR_BACK)
             {
-                //MmgHelper.wr("ProcessDpadRelease.sliderTopButtonRect click");
-                if (offsetYScrollCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight)
+                if (offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight)
                 {
-                    offsetYScrollCenterButton -= intervalY;
-                    offsetYScrollPane -= (int)(heightDiff * intervalPrctY);
+                    if (currentPrct - heightDiffPrct < 0.0)
+                    {
+                        currentPrct = 0.0;
+                    }
+                    else
+                    {
+                        currentPrct -= heightDiffPrct;
+                    }
+
+                    if (currentPrct >= -0.001 && currentPrct <= 0.001)
+                    {
+                        currentPrct = 0.0;
+                    }
+
+                    offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+                    offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
                 }
                 else
                 {
-                    offsetYScrollCenterButton = 0;
+                    offsetYScrollBarCenterButton = 0;
                     offsetYScrollPane = 0;
                 }
 
@@ -661,15 +734,28 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
             else if (scrollBarVisible && dir == MmgDir.DIR_FRONT)
             {
-                //MmgHelper.wr("ProcessDpadRelease.sliderBottomButtonRect click");
-                if (scrollBarUpDownButtonHeight + offsetYScrollCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight)
+                if (scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight)
                 {
-                    offsetYScrollCenterButton += intervalY;
-                    offsetYScrollPane += (int)(heightDiff * intervalPrctY);
+                    if (currentPrct + heightDiffPrct > 1.0)
+                    {
+                        currentPrct = 1.0;
+                    }
+                    else
+                    {
+                        currentPrct += heightDiffPrct;
+                    }
+
+                    if (currentPrct >= 0.998 && currentPrct <= 1.001)
+                    {
+                        currentPrct = 1.0;
+                    }
+
+                    offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+                    offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
                 }
                 else
                 {
-                    offsetYScrollCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight);
+                    offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight);
                     offsetYScrollPane = heightDiff;
                 }
 
@@ -696,9 +782,36 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             bool ret = false;
 
+            int h = viewPortHeight;
+            int H = scrollPaneHeight;
+            //B = b1 + b2 + b3
+            int buttonHeight = (scrollBarUpDownButtonHeight + scrollBarUpDownButtonHeight + scrollBarCenterButtonHeight);
+            //S = h - B
+            int scrollNotchTravel = h - buttonHeight;
+            //T = H - h;
+            int scrollPaneTravel = H - h;
+            //TP = h / T
+            double prctHeightDiff = (double)scrollNotchTravel / (double)scrollPaneTravel;
+            //IPS = I / S
+            double intervalPrctViewPort = (double)intervalY / (double)scrollNotchTravel;
+            //IPS = I / T
+            double intervalPrctScrollPane = (double)intervalY / (double)scrollPaneTravel;
+            double currentPrct = (double)offsetYScrollBarCenterButton / (double)scrollNotchTravel;
+
+            MmgHelper.wr("====================MmgScrollVert: h: " + h);
+            MmgHelper.wr("====================MmgScrollVert: H: " + H);
+            MmgHelper.wr("====================MmgScrollVert: B: " + buttonHeight);
+            MmgHelper.wr("====================MmgScrollVert: S: " + scrollNotchTravel);
+            MmgHelper.wr("====================MmgScrollVert: T: " + scrollPaneTravel);
+            MmgHelper.wr("====================MmgScrollVert: TP: " + prctHeightDiff);
+            MmgHelper.wr("====================MmgScrollVert: IPS: " + intervalPrctViewPort);
+            MmgHelper.wr("====================MmgScrollVert: IPT: " + intervalPrctScrollPane);
+            MmgHelper.wr("====================MmgScrollVert: IPS2: " + heightDiffPrct);
+            MmgHelper.wr("====================MmgScrollVert: C%: " + currentPrct);
+            MmgHelper.wr("====================MmgScrollVert: IntY: " + intervalY);
+
             if (MmgHelper.RectCollision(x, y, viewPortRect))
             {
-                //MmgHelper.wr("viewPort Vert click: X: " + x + " Y: " + y + " GetX: " + GetX() + " GetY: " + GetY());
                 if (clickScreen != null)
                 {
                     clickScreen.SetExtra(new MmgVector2(x, y));
@@ -709,15 +822,28 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
             else if (scrollBarVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarUpButtonRect))
             {
-                //MmgHelper.wr("ProcessScreenClick.sliderTopButtonRect click");
-                if (offsetYScrollCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight)
+                if (offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight)
                 {
-                    offsetYScrollCenterButton -= intervalY;
-                    offsetYScrollPane -= (int)(heightDiff * intervalPrctY);
+                    if (currentPrct - heightDiffPrct < 0.0)
+                    {
+                        currentPrct = 0.0;
+                    }
+                    else
+                    {
+                        currentPrct -= heightDiffPrct;
+                    }
+
+                    if (currentPrct >= -0.001 && currentPrct <= 0.001)
+                    {
+                        currentPrct = 0.0;
+                    }
+
+                    offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+                    offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
                 }
                 else
                 {
-                    offsetYScrollCenterButton = 0;
+                    offsetYScrollBarCenterButton = 0;
                     offsetYScrollPane = 0;
                 }
 
@@ -732,15 +858,28 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
             else if (scrollBarVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarDownButtonRect))
             {
-                //MmgHelper.wr("ProcessScreenClick.sliderBottomButtonRect click");
-                if (scrollBarUpDownButtonHeight + offsetYScrollCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight)
+                if (scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight)
                 {
-                    offsetYScrollCenterButton += intervalY;
-                    offsetYScrollPane += (int)(heightDiff * intervalPrctY);
+                    if (currentPrct + heightDiffPrct > 1.0)
+                    {
+                        currentPrct = 1.0;
+                    }
+                    else
+                    {
+                        currentPrct += heightDiffPrct;
+                    }
+
+                    if (currentPrct >= 0.998 && currentPrct <= 1.001)
+                    {
+                        currentPrct = 1.0;
+                    }
+
+                    offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+                    offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
                 }
                 else
                 {
-                    offsetYScrollCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight);
+                    offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight);
                     offsetYScrollPane = heightDiff;
                 }
 
@@ -1109,7 +1248,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             if (IntervalY != 0)
             {
                 intervalY = IntervalY;
-                intervalPrctY = (double)intervalY / (viewPort.GetHeight() - (scrollBarUpDownButtonHeight * 2) - scrollBarCenterButtonHeight);
+                intervalPrctY = (double)intervalY / (double)heightDiff;
             }
             else
             {
@@ -1142,7 +1281,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>The Y offset.</returns>
         public virtual int GetOffsetY()
         {
-            return offsetYScrollCenterButton;
+            return offsetYScrollBarCenterButton;
         }
 
         /// <summary>
@@ -1151,7 +1290,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="OffsetY"></param>
         public virtual void SetOffsetY(int OffsetY)
         {
-            offsetYScrollCenterButton = OffsetY;
+            offsetYScrollBarCenterButton = OffsetY;
         }
 
         /// <summary>
@@ -1165,7 +1304,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         {
             if (isVisible == true && isDirty == true)
             {
-                scrollBarCenterButtonRect.SetPosition(new MmgVector2(scrollBarCenterButtonRect.GetLeft(), GetY() + scrollBarUpDownButtonHeight + offsetYScrollCenterButton));
+                scrollBarCenterButtonRect.SetPosition(new MmgVector2(scrollBarCenterButtonRect.GetLeft(), GetY() + scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton));
                 scrollPaneRect.SetPosition(new MmgVector2(scrollPaneRect.GetLeft(), GetY() - offsetYScrollPane));
 
                 if (scrollBarCenterButton != null)
@@ -1173,7 +1312,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     scrollBarCenterButton.SetPosition(scrollBarCenterButtonRect.GetPosition());
                 }
 
-                updSrcRect = new MmgRect(0, offsetYScrollCenterButton, offsetYScrollCenterButton + viewPortRect.GetHeight(), viewPortRect.GetWidth());
+                updSrcRect = new MmgRect(0, offsetYScrollBarCenterButton, offsetYScrollBarCenterButton + viewPortRect.GetHeight(), viewPortRect.GetWidth());
                 updDstRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
 
                 p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)viewPort.GetImage());

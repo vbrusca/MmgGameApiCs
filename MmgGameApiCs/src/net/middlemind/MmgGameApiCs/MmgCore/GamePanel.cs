@@ -924,7 +924,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             if (currentScreen != null)
             {
                 MmgHelper.wr("ProcessMousePress");
-                currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+                currentScreen.ProcessMousePress((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
             }
         }
 
@@ -941,7 +941,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             if (currentScreen != null)
             {
                 MmgHelper.wr("ProcessMouseRelease");
-                currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+                currentScreen.ProcessMouseRelease((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
             }
         }
 
@@ -958,7 +958,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             if (currentScreen != null)
             {
                 MmgHelper.wr("ProcessMouseClick");
-                currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY));
+                currentScreen.ProcessMouseClick((x - mouseOffsetX - myX), (y - mouseOffsetY - myY), btnIndex);
             }
         }
 
