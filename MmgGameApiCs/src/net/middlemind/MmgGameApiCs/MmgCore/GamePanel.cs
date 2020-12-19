@@ -578,7 +578,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 //RunFrameRate.RUNNING = false;
                 Dispose();
                 Environment.Exit(0);
-                //Environment.FailFast("0");
+                Environment.FailFast("0");
             }
             catch (Exception ex)
             {
