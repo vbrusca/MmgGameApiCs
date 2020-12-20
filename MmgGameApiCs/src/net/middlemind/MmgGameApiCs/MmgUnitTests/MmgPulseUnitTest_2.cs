@@ -36,11 +36,13 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
         }
 
         [TestMethod]
+        #pragma warning disable CS0219 // Variable is assigned but its value is never used
         public void test1()
         {
             int i1, i2, i3, i4 = 0;
             long l1, l2, l3, l4 = 0;
             double d1, d2, d3, d4 = 0.0d;
+
             MmgVector2 v1, v2, v3 = null;
             MmgPulse p1, p2, p3 = null;
 
@@ -117,6 +119,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
         }
 
         [TestMethod]
+        #pragma warning disable CS0219 // Variable is assigned but its value is never used
         public void test2()
         {
             int i1, i2, i3, i4 = 0;

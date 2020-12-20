@@ -35,6 +35,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
         }
 
         [TestMethod]
+        #pragma warning disable CS0219 // Variable is assigned but its value is never used
         public void test1()
         {
             MmgObj o1, o2, o3 = null;
@@ -103,12 +104,12 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             p1.SetHeight(250);
             p1.SetChanging(true);
-            p1.SetMsStartChange(333l);
+            p1.SetMsStartChange(333L);
             p1.SetMsTimeToChange(5.0f);
 
             Assert.AreEqual(true, p1.GetHeight() == 250);
             Assert.AreEqual(true, p1.GetChanging() == true);
-            Assert.AreEqual(true, p1.GetMsStartChange() == 333l);
+            Assert.AreEqual(true, p1.GetMsStartChange() == 333L);
             Assert.AreEqual(true, p1.GetMsTimeToChange() == 5.0f);
 
             v = new MmgVector2(175, 175);
@@ -162,6 +163,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
         }
 
         [TestMethod]
+        #pragma warning disable CS0219 // Variable is assigned but its value is never used
         public void test2()
         {
             MmgObj o1, o2, o3 = null;
@@ -230,12 +232,12 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             p1.SetHeight(250);
             p1.SetChanging(true);
-            p1.SetMsStartChange(333l);
+            p1.SetMsStartChange(333L);
             p1.SetMsTimeToChange(5.0f);
 
             Assert.AreEqual(true, p1.GetHeight() == 250);
             Assert.AreEqual(true, p1.GetChanging() == true);
-            Assert.AreEqual(true, p1.GetMsStartChange() == 333l);
+            Assert.AreEqual(true, p1.GetMsStartChange() == 333L);
             Assert.AreEqual(true, p1.GetMsTimeToChange() == 5.0f);
 
             v = new MmgVector2(175, 175);

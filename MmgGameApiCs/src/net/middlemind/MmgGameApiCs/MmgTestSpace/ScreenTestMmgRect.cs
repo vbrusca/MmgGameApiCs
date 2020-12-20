@@ -6,15 +6,12 @@ using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
 namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 {
-    /*
-     * A game screen class that extends the MmgGameScreen base class.
-     * This class is for testing API classes.
-     * Created by Middlemind Games 02/25/2020
-     * 
-     * @author Victor G. Brusca
-     */
     /// <summary>
-    /// 
+    /// A game screen class that extends the MmgGameScreen base class.
+    /// This class is for testing API classes.
+    /// Created by Middlemind Games 02/25/2020
+    ///
+    /// @author Victor G.Brusca
     /// </summary>
     public class ScreenTestMmgRect : MmgGameScreen, GenericEventHandler, MmgEventHandler
     {

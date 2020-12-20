@@ -67,10 +67,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             frames2[2] = frame3;
 
             sprite1 = new MmgSprite(frames1, frame1.GetPosition().Clone());
-            sprite1.SetFrameTime(200l);
+            sprite1.SetFrameTime(200L);
 
             sprite3 = new MmgSprite(frames2, frame1.GetPosition().Clone());
-            sprite3.SetFrameTime(200l);
+            sprite3.SetFrameTime(200L);
 
             Assert.AreEqual(sprite1.GetRotation(), 0.0f, 0.01);
             Assert.AreEqual(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
@@ -81,8 +81,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, sprite1.GetPosition().ApiEquals(frame1.GetPosition()));
             Assert.AreEqual(sprite1.GetIsVisible(), true);
             Assert.AreEqual(sprite1.GetSimpleRendering(), true);
-            Assert.AreEqual(sprite1.GetMsPerFrame(), 100l);
-            Assert.AreEqual(sprite1.GetFrameTime(), 200l);
+            Assert.AreEqual(sprite1.GetMsPerFrame(), 100L);
+            Assert.AreEqual(sprite1.GetFrameTime(), 200L);
 
             sprite2 = (MmgSprite)sprite1.Clone();
 
@@ -126,9 +126,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             Assert.AreEqual(sprite1.GetMsPerFrame(), 500, 0);
 
-            sprite1.SetFrameTime(2000l);
+            sprite1.SetFrameTime(2000L);
 
-            Assert.AreEqual(sprite1.GetFrameTime(), 2000l, 0);
+            Assert.AreEqual(sprite1.GetFrameTime(), 2000L, 0);
 
             sprite1.SetFrameStop(5);
 
@@ -180,10 +180,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             frames2[2] = frame3;
 
             sprite1 = new MmgSprite(frames1, frame1.GetPosition().Clone(), MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 0.0f);
-            sprite1.SetFrameTime(200l);
+            sprite1.SetFrameTime(200L);
 
             sprite3 = new MmgSprite(frames2, frame1.GetPosition().Clone());
-            sprite3.SetFrameTime(200l);
+            sprite3.SetFrameTime(200L);
 
             Assert.AreEqual(sprite1.GetRotation(), 0.0f, 0.01);
             Assert.AreEqual(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
@@ -194,8 +194,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, sprite1.GetPosition().ApiEquals(frame1.GetPosition()));
             Assert.AreEqual(sprite1.GetIsVisible(), true);
             Assert.AreEqual(sprite1.GetSimpleRendering(), true);
-            Assert.AreEqual(sprite1.GetMsPerFrame(), 100l);
-            Assert.AreEqual(sprite1.GetFrameTime(), 200l);
+            Assert.AreEqual(sprite1.GetMsPerFrame(), 100L);
+            Assert.AreEqual(sprite1.GetFrameTime(), 200L);
 
             sprite2 = (MmgSprite)sprite1.Clone();
 
@@ -239,9 +239,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             Assert.AreEqual(sprite1.GetMsPerFrame(), 500, 0);
 
-            sprite1.SetFrameTime(2000l);
+            sprite1.SetFrameTime(2000L);
 
-            Assert.AreEqual(sprite1.GetFrameTime(), 2000l, 0);
+            Assert.AreEqual(sprite1.GetFrameTime(), 2000L, 0);
 
             sprite1.SetFrameStop(5);
 
@@ -293,10 +293,10 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             frames2[2] = frame3;
 
             sprite1 = new MmgSprite(frames1, new MmgRect(0, 0, frame1.GetHeight(), frame1.GetWidth()), new MmgRect(0, 0, frame1.GetHeight(), frame1.GetWidth()), MmgVector2.GetOriginVec(), MmgVector2.GetUnitVec(), 0.0f);
-            sprite1.SetFrameTime(200l);
+            sprite1.SetFrameTime(200L);
 
             sprite3 = new MmgSprite(frames2, frame1.GetPosition().Clone());
-            sprite3.SetFrameTime(200l);
+            sprite3.SetFrameTime(200L);
 
             Assert.AreEqual(sprite1.GetRotation(), 0.0f, 0.01);
             Assert.AreEqual(true, sprite1.GetOrigin().ApiEquals(MmgVector2.GetOriginVec()));
@@ -307,8 +307,8 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             Assert.AreEqual(true, sprite1.GetPosition().ApiEquals(MmgVector2.GetOriginVec()));
             Assert.AreEqual(sprite1.GetIsVisible(), true);
             Assert.AreEqual(sprite1.GetSimpleRendering(), true);
-            Assert.AreEqual(sprite1.GetMsPerFrame(), 100l);
-            Assert.AreEqual(sprite1.GetFrameTime(), 200l);
+            Assert.AreEqual(sprite1.GetMsPerFrame(), 100L);
+            Assert.AreEqual(sprite1.GetFrameTime(), 200L);
 
             sprite2 = (MmgSprite)sprite1.Clone();
 
@@ -352,9 +352,9 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
 
             Assert.AreEqual(sprite1.GetMsPerFrame(), 500, 0);
 
-            sprite1.SetFrameTime(2000l);
+            sprite1.SetFrameTime(2000L);
 
-            Assert.AreEqual(sprite1.GetFrameTime(), 2000l, 0);
+            Assert.AreEqual(sprite1.GetFrameTime(), 2000L, 0);
 
             sprite1.SetFrameStop(5);
 

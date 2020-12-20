@@ -1,5 +1,8 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using net.middlemind.MmgGameApiCs.MmgBase;
+using static net.middlemind.MmgGameApiCs.MmgCore.GamePadInput;
 
 namespace net.middlemind.MmgGameApiCs.MmgCore
 {
@@ -67,12 +70,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// A JInput controller to read gamepad data from.
         /// </summary>
-        //public Controller gamePad = null;
+        public GamePadState gamePad;
 
         /// <summary>
         /// An array of components supported by this gamepad.
         /// </summary>
-        //public Component[] components = null;
+        public Buttons[] components = null;
 
         /// <summary>
         /// An integer representing the index of the gampepad on the host operating system.
@@ -144,6 +147,12 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         private bool btmp;
 
+        //NOTE:
+        /// <summary>
+        /// TODO:
+        /// </summary>
+        public static bool CHECK_BUTTON_INDEXES = false;
+
         /// <summary>
         /// A default constructor for the GpioHub class that checks to see if GPIO is supported on the system.
         /// Creates a default array of 6 GpioPin instances using values from the GameSettings class to set the GPIO pin numbers
@@ -153,20 +162,8 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public GamePadHub(int GamePadIndex)
         {
             gamePadIdx = GamePadIndex;
+            gamePad = GamePad.GetState(Pad2Player(gamePadIdx));
 
-            /*
-            ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
-            if (ca != null && gamePadIdx >= 0 && gamePadIdx < ca.Length)
-            {
-                gamePad = ca[gamePadIdx];
-            }
-            else
-            {
-                gamePad = null;
-            }
-            */
-
-            /*
             gamePadSrc = GameSettings.SRC_GAMEPAD_1;
             gamePadUp = GameSettings.UP_GAMEPAD_1;
             gamePadDown = GameSettings.DOWN_GAMEPAD_1;
@@ -180,7 +177,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             buttons[3] = new GamePadInput(GameSettings.GAMEPAD_1_RIGHT_INDEX, GameSettings.GAMEPAD_1_RIGHT_VALUE_ON, GameSettings.GAMEPAD_1_RIGHT_VALUE_OFF, GamePadButton.BtnRight, GameSettings.GAMEPAD_1_RIGHT_CHECK_PRESS, GameSettings.GAMEPAD_1_RIGHT_CHECK_RELEASE, GameSettings.GAMEPAD_1_RIGHT_CHECK_CLICK);
             buttons[4] = new GamePadInput(GameSettings.GAMEPAD_1_A_INDEX, GameSettings.GAMEPAD_1_A_VALUE_ON, GameSettings.GAMEPAD_1_A_VALUE_OFF, GamePadButton.BtnA, GameSettings.GAMEPAD_1_A_CHECK_PRESS, GameSettings.GAMEPAD_1_A_CHECK_RELEASE, GameSettings.GAMEPAD_1_A_CHECK_CLICK);
             buttons[5] = new GamePadInput(GameSettings.GAMEPAD_1_B_INDEX, GameSettings.GAMEPAD_1_B_VALUE_ON, GameSettings.GAMEPAD_1_B_VALUE_OFF, GamePadButton.BtnB, GameSettings.GAMEPAD_1_B_CHECK_PRESS, GameSettings.GAMEPAD_1_B_CHECK_RELEASE, GameSettings.GAMEPAD_1_B_CHECK_CLICK);
-            */
 
             AddListener();
             Prep();
@@ -196,22 +192,9 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         public GamePadHub(bool player1, int GamePadIndex)
         {
             gamePadIdx = GamePadIndex;
-
-            /*
-            ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
-            if (ca != null && gamePadIdx >= 0 && gamePadIdx < ca.Length)
-            {
-                gamePad = ca[gamePadIdx];
-            }
-            else
-            {
-                gamePad = null;
-            }
-            */
-
+            gamePad = GamePad.GetState(Pad2Player(gamePadIdx));
             buttons = new GamePadInput[6];
 
-            /*
             if (player1)
             {
                 gamePadSrc = GameSettings.SRC_GAMEPAD_1;
@@ -244,7 +227,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 buttons[5] = new GamePadInput(GameSettings.GAMEPAD_2_B_INDEX, GameSettings.GAMEPAD_2_B_VALUE_ON, GameSettings.GAMEPAD_2_B_VALUE_OFF, GamePadButton.BtnB, GameSettings.GAMEPAD_2_B_CHECK_PRESS, GameSettings.GAMEPAD_2_B_CHECK_RELEASE, GameSettings.GAMEPAD_2_B_CHECK_CLICK);
 
             }
-            */
 
             AddListener();
             Prep();
@@ -255,14 +237,55 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="Buttons">An array of 6 GpioPin instances used to set the buttons class field.</param>
         /// <param name="GamePad">TODO: Add comment</param>
-        public GamePadHub(GamePadInput[] Buttons, int GamePadIdx) //Controller GamePad)
+        public GamePadHub(GamePadInput[] Buttons, int GamePadIdx, GamePadState GamePad)
         {
             gamePadIdx = GamePadIdx;
-            //gamePad = GamePad;
+            gamePad = GamePad;
             buttons = Buttons;
 
             AddListener();
             Prep();
+        }
+
+        //NOTE: Monogame specific addition to convert game pad integer indexes to player enumerations.
+        /// <summary>
+        /// TODO:
+        /// </summary>
+        /// <param name="gamePadIdx"></param>
+        /// <returns></returns>
+        public virtual PlayerIndex Pad2Player(int gamePadIdx)
+        {
+            if(gamePadIdx == 0)
+            {
+                return PlayerIndex.One;
+            }
+            else if(gamePadIdx == 1)
+            {
+                return PlayerIndex.Two;
+            }
+            else if(gamePadIdx == 2)
+            {
+                return PlayerIndex.Three;
+            }
+            else if(gamePadIdx == 3)
+            {
+                return PlayerIndex.Four;
+            }
+            else
+            {
+                return PlayerIndex.One;
+            }
+        }
+
+        //NOTE: Monogame specific addition to convert 
+        /// <summary>
+        /// TODO:
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool IsConnected()
+        {
+            gamePad = GamePad.GetState(Pad2Player(gamePadIdx));
+            return gamePad.IsConnected;
         }
 
         /// <summary>
@@ -270,61 +293,32 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         private void AddListener()
         {
-            /*
-            ControllerEnvironment.getDefaultEnvironment().addControllerListener(new ControllerListener() {
-                public override void controllerRemoved(ControllerEvent ev)
-                {
-                    System.out.println("Gamepad removed, running scan to see if input is still valid.");
-                    ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
-                    if (ca != null && gamePadIdx >= 0 && gamePadIdx < ca.length)
-                    {
-                        if (ca[gamePadIdx] != null && ca[gamePadIdx].equals(gamePad) == false)
-                        {
-                            gamePad = ca[gamePadIdx];
-                            gamePadEnabled = false;
-                            Prep();
+            if(IsConnected())
+            {
+                gamePadEnabled = true;
+            }
+            else
+            {
+                gamePadEnabled = false;
+                Prep();
+            }
+        }
 
-                        }
-                        else
-                        {
-                            gamePadEnabled = true;
-                        }
-
-                    }
-                    else
-                    {
-                        gamePadEnabled = false;
-
-                    }
-                }
-
-                public override void controllerAdded(ControllerEvent ev)
-                {
-                    System.out.println("Gamepad added, running scan to see if input is still valid.");
-                    ca = ControllerEnvironment.getDefaultEnvironment().getControllers();
-                    if (ca != null && gamePadIdx >= 0 && gamePadIdx < ca.length)
-                    {
-                        if (ca[gamePadIdx] != null && ca[gamePadIdx].equals(gamePad) == false)
-                        {
-                            gamePad = ca[gamePadIdx];
-                            gamePadEnabled = false;
-                            Prep();
-
-                        }
-                        else
-                        {
-                            gamePadEnabled = true;
-                        }
-
-                    }
-                    else
-                    {
-                        gamePadEnabled = false;
-
-                    }
-                }
-            });
-            */
+        /// <summary>
+        /// TODO:
+        /// </summary>
+        /// <returns></returns>
+        public virtual Buttons[] GetComponents()
+        {
+            gamePad = GamePad.GetState(Pad2Player(gamePadIdx));
+            Buttons[] c = new Buttons[6];
+            c[0] = Buttons.DPadUp;
+            c[1] = Buttons.DPadDown;
+            c[2] = Buttons.DPadLeft;
+            c[3] = Buttons.DPadRight;
+            c[4] = Buttons.A;
+            c[5] = Buttons.B;
+            return c;
         }
 
         /// <summary>
@@ -334,7 +328,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         {
             try
             {
-                /*
                 prepped = false;
                 if (gamePad == null)
                 {
@@ -344,7 +337,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 }
                 else
                 {
-                    components = gamePad.getComponents();
+                    components = GetComponents();
                     if (components == null)
                     {
                         MmgHelper.wr("GamePadHub: Gamepad components is null, disabling gamepad.");
@@ -353,20 +346,22 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                     }
                     else
                     {
-                        for (i = 0; i < LEN; i++)
+                        if (CHECK_BUTTON_INDEXES)
                         {
-                            btn1 = buttons[i];
-                            if (btn1.btnIdx < 0 || btn1.btnIdx >= components.Length)
+                            for (i = 0; i < LEN; i++)
                             {
-                                MmgHelper.wr("GamePadHub: Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");
-                                gamePadEnabled = false;
+                                btn1 = buttons[i];
+                                if (btn1.btnIdx < 0 || btn1.btnIdx >= components.Length)
+                                {
+                                    MmgHelper.wr("GamePadHub: Gamepad button is out of the component range, " + btn1.btnIdx + ", disabling gamepad.");
+                                    gamePadEnabled = false;
+                                }
                             }
                         }
                         gamePadEnabled = true;
 
                     }
                 }
-                */
                 prepped = true;
                 MmgHelper.wr("Gamepad hub prep is complete. State: Prepped: " + prepped + " Enabled: " + gamePadEnabled + "");
 
@@ -759,18 +754,19 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         public virtual void GetState()
         {
-            /*
-            if (gamePadEnabled == true) {
-                btmp = gamePad.poll();
-                if (btmp == true)
+            if (gamePadEnabled == true)
+            {
+                if(IsConnected())
                 {
-                    components = gamePad.getComponents();
+                    if (components == null)
+                    {
+                        components = GetComponents();
+                    }
 
                     for (k = 0; k < LEN; k++)
                     {
                         btn3 = buttons[k];
-
-                        if (components[btn3.btnIdx].getPollData() == btn3.btnOn)
+                        if (gamePad.IsButtonDown(components[btn3.btnIdx]))
                         {
                             btn3.stateTmp = true;
 
@@ -808,7 +804,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
                 }
             }
-            */
         }
     }
 }

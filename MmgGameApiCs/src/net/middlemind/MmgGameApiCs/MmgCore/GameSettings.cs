@@ -106,46 +106,46 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
         //GamePad 1 input settings
         public static bool GAMEPAD_1_ON = true;
-        public static int GAMEPAD_1_INDEX = 2;
+        public static int GAMEPAD_1_INDEX = 0;
         public static bool GAMEPAD_1_THREADED_POLLING = true;
         public static long GAMEPAD_1_POLLING_INTERVAL_MS = 20;
 
-        public static int GAMEPAD_1_UP_INDEX = 15;
-        public static float GAMEPAD_1_UP_VALUE_ON = 0.25f;
+        public static int GAMEPAD_1_UP_INDEX = 0;
+        public static float GAMEPAD_1_UP_VALUE_ON = 1.00f;
         public static float GAMEPAD_1_UP_VALUE_OFF = 0.00f;
         public static bool GAMEPAD_1_UP_CHECK_PRESS = true;
         public static bool GAMEPAD_1_UP_CHECK_RELEASE = true;
         public static bool GAMEPAD_1_UP_CHECK_CLICK = true;
 
-        public static int GAMEPAD_1_DOWN_INDEX = 15;
-        public static float GAMEPAD_1_DOWN_VALUE_ON = 0.75f;
+        public static int GAMEPAD_1_DOWN_INDEX = 1;
+        public static float GAMEPAD_1_DOWN_VALUE_ON = 1.00f;
         public static float GAMEPAD_1_DOWN_VALUE_OFF = 0.00f;
         public static bool GAMEPAD_1_DOWN_CHECK_PRESS = true;
         public static bool GAMEPAD_1_DOWN_CHECK_RELEASE = true;
         public static bool GAMEPAD_1_DOWN_CHECK_CLICK = true;
 
-        public static int GAMEPAD_1_LEFT_INDEX = 15;
+        public static int GAMEPAD_1_LEFT_INDEX = 2;
         public static float GAMEPAD_1_LEFT_VALUE_ON = 1.00f;
         public static float GAMEPAD_1_LEFT_VALUE_OFF = 0.00f;
         public static bool GAMEPAD_1_LEFT_CHECK_PRESS = true;
         public static bool GAMEPAD_1_LEFT_CHECK_RELEASE = true;
         public static bool GAMEPAD_1_LEFT_CHECK_CLICK = true;
 
-        public static int GAMEPAD_1_RIGHT_INDEX = 15;
-        public static float GAMEPAD_1_RIGHT_VALUE_ON = 0.50f;
+        public static int GAMEPAD_1_RIGHT_INDEX = 3;
+        public static float GAMEPAD_1_RIGHT_VALUE_ON = 1.00f;
         public static float GAMEPAD_1_RIGHT_VALUE_OFF = 0.00f;
         public static bool GAMEPAD_1_RIGHT_CHECK_PRESS = true;
         public static bool GAMEPAD_1_RIGHT_CHECK_RELEASE = true;
         public static bool GAMEPAD_1_RIGHT_CHECK_CLICK = true;
 
-        public static int GAMEPAD_1_A_INDEX = 0;
+        public static int GAMEPAD_1_A_INDEX = 4;
         public static float GAMEPAD_1_A_VALUE_ON = 1.00f;
         public static float GAMEPAD_1_A_VALUE_OFF = 0.00f;
         public static bool GAMEPAD_1_A_CHECK_PRESS = true;
         public static bool GAMEPAD_1_A_CHECK_RELEASE = true;
         public static bool GAMEPAD_1_A_CHECK_CLICK = true;
 
-        public static int GAMEPAD_1_B_INDEX = 1;
+        public static int GAMEPAD_1_B_INDEX = 5;
         public static float GAMEPAD_1_B_VALUE_ON = 1.00f;
         public static float GAMEPAD_1_B_VALUE_OFF = 0.00f;
         public static bool GAMEPAD_1_B_CHECK_PRESS = true;
@@ -154,7 +154,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
         //GamePad 2 input settings
         public static bool GAMEPAD_2_ON = true;
-        public static int GAMEPAD_2_INDEX = 0;
+        public static int GAMEPAD_2_INDEX = 1;
         public static bool GAMEPAD_2_THREADED_POLLING = false;
         public static long GAMEPAD_2_POLLING_INTERVAL_MS = 20;
 
