@@ -36,7 +36,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
 
             if (args[0] != null && args[0].ToLower().Equals("controllerreadtest"))
             {
-                //ControllerReadTest.AltMain(nArgs);
+                ControllerReadTest.AltMain(nArgs);
 
             }
             else if (args[0] != null && args[0].ToLower().Equals("mmgtestspace"))
