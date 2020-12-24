@@ -49,6 +49,18 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 MmgApiGame.AltMain(nArgs);
 
             }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter13"))
+            {
+                net.middlemind.PongClone.Chapter13.MmgPongClone.AltMain(nArgs);
+            }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter14"))
+            {
+                net.middlemind.PongClone.Chapter14.MmgPongClone.AltMain(nArgs);
+            }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter15_CompleteGame"))
+            {
+                net.middlemind.PongClone.Chapter15.MmgPongClone.AltMain(nArgs);
+            }
             else
             {
                 MmgTestScreens.AltMain(nArgs);
