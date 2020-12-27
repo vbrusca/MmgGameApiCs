@@ -36,7 +36,6 @@
     <Folder Include="src\net\middlemind\MmgGameApiCs\MmgUnitTests\" />
     <Folder Include="src\net\middlemind\PongClone\" />
     <Folder Include="src\net\middlemind\PongClone\Chapter13\" />
-    <Folder Include="src\net\middlemind\PongClone\Chapter14\" />
     <Folder Include="src\net\middlemind\PongClone\Chapter15_CompleteGame\" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 
-namespace net.middlemind.PongClone.Chapter13
+namespace net.middlemind.PongClone.Chapter14Ver1
 {
     /// <summary>
     /// An application specific extension of the MmgCore API's GamePanel class.
@@ -12,6 +12,10 @@ namespace net.middlemind.PongClone.Chapter13
     /// </summary>
     public class GamePanel : net.middlemind.MmgGameApiCs.MmgCore.GamePanel
     {
+        /// <summary>
+        /// The Screen responsible for drawing the main menu.
+        /// </summary>
+        public new ScreenMainMenu screenMainMenu;
 
         /// <summary>
         /// The basic constructor for this GamePanel extended class.
@@ -29,6 +33,7 @@ namespace net.middlemind.PongClone.Chapter13
             screenSplash.SetGenericEventHandler(this);
             screenLoading.SetGenericEventHandler(this);
             screenLoading.SetSlowDown(500);
+            screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
         }
 
         /// <summary>
@@ -242,6 +247,7 @@ namespace net.middlemind.PongClone.Chapter13
                         DatExternalStrings.LOAD_EXT_STRINGS();
                         SwitchGameState(GameStates.MAIN_MENU);
                     }
+
                 }
                 else if (obj.GetGameState() == GameStates.SPLASH)
                 {
@@ -249,6 +255,7 @@ namespace net.middlemind.PongClone.Chapter13
                     {
                         SwitchGameState(GameStates.LOADING);
                     }
+
                 }
             }
         }

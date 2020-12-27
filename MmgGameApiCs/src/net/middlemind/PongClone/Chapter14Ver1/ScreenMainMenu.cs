@@ -4,7 +4,7 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
-namespace net.middlemind.PongClone.Chapter14
+namespace net.middlemind.PongClone.Chapter14Ver1
 {
     /// <summary>
     /// A game screen object, ScreenMainMenu, that extends the MmgGameScreen base class. 
@@ -60,7 +60,6 @@ namespace net.middlemind.PongClone.Chapter14
             MmgBmp tB = null;
             MmgPen p;
             String key = "";
-            double scale = 1.0;
             String imgId = "";
             String sndId = "";
             MmgBmp lval = null;
@@ -228,7 +227,6 @@ namespace net.middlemind.PongClone.Chapter14
             lval = MmgHelper.GetBasicCachedBmp(imgId);
             menuCursor = lval;
             SetLeftCursor(menuCursor);
-
 
             key = "version";
             if (classConfig.ContainsKey(key))

@@ -2,7 +2,7 @@
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 
-namespace net.middlemind.PongClone.Chapter14
+namespace net.middlemind.PongClone.Chapter14Ver2
 {
     /// <summary>
     /// An application specific extension of the MmgCore API's GamePanel class.
