@@ -4,7 +4,7 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
-namespace net.middlemind.PongClone.Chapter14Ver1
+namespace net.middlemind.PongClone.Chapter14
 {
     /// <summary>
     /// A game screen object, ScreenMainMenu, that extends the MmgGameScreen base class. 
