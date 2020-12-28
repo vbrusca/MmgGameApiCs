@@ -22,7 +22,7 @@ namespace net.middlemind.PongClone.Chapter14Ver2
         private MmgBmp menuStartGame1P;
 
         /// <summary>
-        /// An MmgBmp instance that proveds custom menu items for two player games.
+        /// An MmgBmp instance that provides custom menu items for two player games.
         /// </summary>
         private MmgBmp menuStartGame2P;
 
