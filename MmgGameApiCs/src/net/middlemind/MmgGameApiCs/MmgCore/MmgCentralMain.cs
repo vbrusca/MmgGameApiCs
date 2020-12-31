@@ -61,7 +61,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
             else if (args[0] != null && args[0].ToLower().Equals("chapter15_CompleteGame"))
             {
-                net.middlemind.PongClone.Chapter15.MmgPongClone.AltMain(nArgs);
+                net.middlemind.PongClone.Chapter15_CompleteGame.MmgPongClone.AltMain(nArgs);
 
             }
             else

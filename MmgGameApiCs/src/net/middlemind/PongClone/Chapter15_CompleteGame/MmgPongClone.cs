@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 
-namespace net.middlemind.PongClone.Chapter15
+namespace net.middlemind.PongClone.Chapter15_CompleteGame
 {
     /// <summary>
     /// C# Monogame game that runs the MmgApi. 
