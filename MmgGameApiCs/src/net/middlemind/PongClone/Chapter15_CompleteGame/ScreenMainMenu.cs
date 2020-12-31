@@ -60,7 +60,6 @@ namespace net.middlemind.PongClone.Chapter15
             MmgBmp tB = null;
             MmgPen p;
             String key = "";
-            double scale = 1.0;
             String imgId = "";
             String sndId = "";
             MmgBmp lval = null;
