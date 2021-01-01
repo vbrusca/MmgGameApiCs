@@ -15,7 +15,7 @@ namespace net.middlemind.PongClone.Chapter14
         /// <summary>
         /// The Screen responsible for drawing the main menu.
         /// </summary>
-        public new ScreenMainMenu screenMainMenu;
+        public new net.middlemind.PongClone.Chapter14.ScreenMainMenu screenMainMenu;
 
         /// <summary>
         /// The basic constructor for this GamePanel extended class.

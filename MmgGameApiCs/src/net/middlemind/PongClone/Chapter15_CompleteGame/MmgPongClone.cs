@@ -54,7 +54,7 @@ namespace net.middlemind.PongClone.Chapter15_CompleteGame
         /// <summary>
         /// Base engine config files.
         /// </summary>
-        public static string ENGINE_CONFIG_FILE = "../../../cfg/engine_config.xml";
+        public static string ENGINE_CONFIG_FILE = "../../../cfg/engine_config_mmg_pong_clone.xml";
 
         /// <summary>
         /// A copy of the command line arguments passed to the Java application.
