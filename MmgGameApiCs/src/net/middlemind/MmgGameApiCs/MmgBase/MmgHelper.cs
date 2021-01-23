@@ -979,6 +979,26 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         }
 
         /// <summary>
+        /// A static method used to generate a random integer from the given range.
+        /// </summary>
+        /// <param name="min">An inclusive lower bound.</param>
+        /// <param name="max">An exclusive upper bound.</param>
+        /// <returns>A random value greater than or equal to min and less than max.</returns>
+        public static int GetRandomIntRange(int min, int max)
+        {
+            return rando.Next(max - min) + min;
+        }
+
+        /// <summary>
+        /// A static method that returns the current time in milliseconds. 
+        /// </summary>
+        /// <returns>The current time in milliseconds.</returns>
+        public static long CtMs()
+        {
+            return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        }
+
+        /// <summary>
         /// Centralized logging method for standard out logging.
         /// </summary>
         /// <param name="s">The string to be logged.</param>
