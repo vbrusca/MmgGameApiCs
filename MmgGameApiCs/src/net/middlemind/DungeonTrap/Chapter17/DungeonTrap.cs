@@ -4,17 +4,17 @@ using System.Runtime.InteropServices;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 
-namespace net.middlemind.PongClone.Chapter14
+namespace net.middlemind.DungeonTrap.Chapter17
 {
     /// <summary>
     /// C# Monogame game that runs the MmgApi. 
-    /// STATIC MAIN ENTRY POINT EXAMPLE
-    /// Created by Middlemind Games 08/01/2015
+    /// STATIC MAIN ENTRY POINT
+    /// Created by Middlemind Games 01/31/2021
     ///
     /// @author Victor G.Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-    public static class MmgPongClone
+    public static class DungeonTrap
     {
         /// <summary>
         /// The target window width.
@@ -54,7 +54,7 @@ namespace net.middlemind.PongClone.Chapter14
         /// <summary>
         /// Base engine config files.
         /// </summary>
-        public static string ENGINE_CONFIG_FILE = "../../../cfg/engine_config_mmg_pong_clone.xml";
+        public static string ENGINE_CONFIG_FILE = "../../../cfg/engine_config_mmg_dungeon_trap.xml";
 
         /// <summary>
         /// A copy of the command line arguments passed to the Java application.
@@ -468,7 +468,7 @@ namespace net.middlemind.PongClone.Chapter14
                                 }
                                 else if (ent.from != null && ent.from.Equals("StaticMain") == true)
                                 {
-                                    Type myType = typeof(MmgPongClone);
+                                    Type myType = typeof(DungeonTrap);
                                     FieldInfo[] myFields = myType.GetFields();
 
                                     f = getField(ent.key, myFields);

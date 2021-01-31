@@ -37,6 +37,9 @@
     <Folder Include="src\net\middlemind\PongClone\" />
     <Folder Include="src\net\middlemind\PongClone\Chapter13\" />
     <Folder Include="src\net\middlemind\PongClone\Chapter15_CompleteGame\" />
+    <Folder Include="src\net\middlemind\DungeonTrap\" />
+    <Folder Include="src\net\middlemind\DungeonTrap\Chapter16\" />
+    <Folder Include="src\net\middlemind\DungeonTrap\Chapter17\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" />

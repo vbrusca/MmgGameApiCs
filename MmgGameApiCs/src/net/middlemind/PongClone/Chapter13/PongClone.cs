@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 
-namespace net.middlemind.PongClone.Chapter15_CompleteGame
+namespace net.middlemind.PongClone.Chapter13
 {
     /// <summary>
     /// C# Monogame game that runs the MmgApi. 
@@ -14,7 +14,7 @@ namespace net.middlemind.PongClone.Chapter15_CompleteGame
     /// @author Victor G.Brusca
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-    public static class MmgPongClone
+    public static class PongClone
     {
         /// <summary>
         /// The target window width.
@@ -468,7 +468,7 @@ namespace net.middlemind.PongClone.Chapter15_CompleteGame
                                 }
                                 else if (ent.from != null && ent.from.Equals("StaticMain") == true)
                                 {
-                                    Type myType = typeof(MmgPongClone);
+                                    Type myType = typeof(PongClone);
                                     FieldInfo[] myFields = myType.GetFields();
 
                                     f = getField(ent.key, myFields);

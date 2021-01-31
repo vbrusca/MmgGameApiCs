@@ -1121,7 +1121,7 @@ namespace net.middlemind.PongClone.Chapter15_CompleteGame
         /// <returns>A converted speed that represents the speed per frame of the given input speed.</returns>
         private static int GetSpeedPerFrame(int speed)
         {
-            return (int)(speed / (MmgPongClone.FPS - 4));
+            return (int)(speed / (PongClone.FPS - 4));
         }
 
         /// <summary>

@@ -51,17 +51,27 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             }
             else if (args[0] != null && args[0].ToLower().Equals("chapter13"))
             {
-                net.middlemind.PongClone.Chapter13.MmgPongClone.AltMain(nArgs);
+                net.middlemind.PongClone.Chapter13.PongClone.AltMain(nArgs);
 
             }
             else if (args[0] != null && args[0].ToLower().Equals("chapter14"))
             {
-                net.middlemind.PongClone.Chapter14.MmgPongClone.AltMain(nArgs);
+                net.middlemind.PongClone.Chapter14.PongClone.AltMain(nArgs);
 
             }
             else if (args[0] != null && args[0].ToLower().Equals("chapter15"))
             {
-                net.middlemind.PongClone.Chapter15_CompleteGame.MmgPongClone.AltMain(nArgs);
+                net.middlemind.PongClone.Chapter15_CompleteGame.PongClone.AltMain(nArgs);
+
+            }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter16"))
+            {
+                net.middlemind.DungeonTrap.Chapter16.DungeonTrap.AltMain(nArgs);
+
+            }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter17"))
+            {
+                net.middlemind.DungeonTrap.Chapter17.DungeonTrap.AltMain(nArgs);
 
             }
             else
