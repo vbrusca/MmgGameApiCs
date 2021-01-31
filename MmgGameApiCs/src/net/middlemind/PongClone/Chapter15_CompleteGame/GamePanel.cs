@@ -38,7 +38,6 @@ namespace net.middlemind.PongClone.Chapter15_CompleteGame
         {
             screenSplash.SetGenericEventHandler(this);
             screenLoading.SetGenericEventHandler(this);
-            screenLoading.SetSlowDown(500);
             screenGame = new ScreenGame(GameStates.MAIN_GAME, this);
             screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
         }

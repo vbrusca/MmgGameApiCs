@@ -2,7 +2,7 @@
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 
-namespace net.middlemind.PongClone.Chapter17
+namespace net.middlemind.DungeonTrap.Chapter17
 {
     /// <summary>
     /// An application specific extension of the MmgCore API's GamePanel class.
@@ -15,7 +15,7 @@ namespace net.middlemind.PongClone.Chapter17
         /// <summary>
         /// The Screen responsible for drawing the main menu.
         /// </summary>
-        public new net.middlemind.PongClone.Chapter17.ScreenMainMenu screenMainMenu;
+        public new net.middlemind.DungeonTrap.Chapter17.ScreenMainMenu screenMainMenu;
 
         /// <summary>
         /// The basic constructor for this GamePanel extended class.

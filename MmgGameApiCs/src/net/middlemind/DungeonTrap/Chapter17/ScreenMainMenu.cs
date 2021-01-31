@@ -4,7 +4,7 @@ using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
-namespace net.middlemind.PongClone.Chapter17
+namespace net.middlemind.DungeonTrap.Chapter17
 {
     /// <summary>
     /// A game screen object, ScreenMainMenu, that extends the MmgGameScreen base class. 
@@ -56,6 +56,8 @@ namespace net.middlemind.PongClone.Chapter17
             SetPosition(MmgScreenData.GetPosition());
 
             classConfig = MmgHelper.ReadClassConfigFile(GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_main_menu.txt");
+
+            MmgDebug.wr("ClassConfigFile: " + GameSettings.CLASS_CONFIG_DIR + GameSettings.NAME + "/screen_main_menu.txt");
 
             MmgBmp tB = null;
             MmgPen p;
