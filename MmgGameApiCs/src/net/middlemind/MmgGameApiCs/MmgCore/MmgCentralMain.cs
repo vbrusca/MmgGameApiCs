@@ -59,7 +59,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 net.middlemind.PongClone.Chapter14.PongClone.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chapter15"))
+            else if (args[0] != null && (args[0].ToLower().Equals("chapter15") || args[0] != null && args[0].ToLower().Equals("chapter15_completegame")))
             {
                 net.middlemind.PongClone.Chapter15_CompleteGame.PongClone.AltMain(nArgs);
 
@@ -72,6 +72,21 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             else if (args[0] != null && args[0].ToLower().Equals("chapter17"))
             {
                 net.middlemind.DungeonTrap.Chapter17.DungeonTrap.AltMain(nArgs);
+
+            }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter18"))
+            {
+                net.middlemind.DungeonTrap.Chapter18.DungeonTrap.AltMain(nArgs);
+
+            }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter19"))
+            {
+                net.middlemind.DungeonTrap.Chapter19.DungeonTrap.AltMain(nArgs);
+
+            }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter19_demoscreen"))
+            {
+                net.middlemind.DungeonTrap.Chapter19_DemoScreen.DungeonTrap.AltMain(nArgs);
 
             }
             else

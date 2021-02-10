@@ -13,6 +13,11 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
     public class GamePanel : net.middlemind.MmgGameApiCs.MmgCore.GamePanel
     {
         /// <summary>
+        /// The Screen responsible for drawing the game.
+        /// </summary>
+        public ScreenGame screenGame;
+
+        /// <summary>
         /// The Screen responsible for drawing the main menu.
         /// </summary>
         public new net.middlemind.DungeonTrap.Chapter19_DemoScreen.ScreenMainMenu screenMainMenu;
@@ -32,6 +37,7 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
         {
             screenSplash.SetGenericEventHandler(this);
             screenLoading.SetGenericEventHandler(this);
+            screenGame = new ScreenGame(GameStates.MAIN_GAME, this);
             screenMainMenu = new ScreenMainMenu(GameStates.MAIN_MENU, this);
         }
 
@@ -89,17 +95,17 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
             else if (prevGameState == GameStates.MAIN_GAME_1P || prevGameState == GameStates.MAIN_GAME)
             {
                 MmgHelper.wr("Hiding MAIN GAME 1P screen.");
-                //screenGame.Pause();
-                //screenGame.SetIsVisible(false);
-                //screenGame.UnloadResources();
+                screenGame.Pause();
+                screenGame.SetIsVisible(false);
+                screenGame.UnloadResources();
 
             }
             else if (prevGameState == GameStates.MAIN_GAME_2P)
             {
                 MmgHelper.wr("Hiding MAIN GAME 2P screen.");
-                //screenGame.Pause();
-                //screenGame.SetIsVisible(false);
-                //screenGame.UnloadResources();            
+                screenGame.Pause();
+                screenGame.SetIsVisible(false);
+                screenGame.UnloadResources();
 
             }
 
@@ -142,21 +148,21 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
             else if (gameState == GameStates.MAIN_GAME_1P || gameState == GameStates.MAIN_GAME)
             {
                 MmgHelper.wr("Showing MAIN GAME 1P screen.");
-                //screenGame.SetGameType(GameType.GAME_ONE_PLAYER);
-                //screenGame.LoadResources();
-                //screenGame.UnPause();
-                //screenGame.SetIsVisible(true);
-                //currentScreen = screenGame;
+                screenGame.SetGameType(GameType.GAME_ONE_PLAYER);
+                screenGame.LoadResources();
+                screenGame.UnPause();
+                screenGame.SetIsVisible(true);
+                currentScreen = screenGame;
 
             }
             else if (gameState == GameStates.MAIN_GAME_2P)
             {
                 MmgHelper.wr("Showing MAIN GAME 2P screen.");
-                //screenGame.SetGameType(GameType.GAME_TWO_PLAYER);
-                //screenGame.LoadResources();
-                //screenGame.UnPause();
-                //screenGame.SetIsVisible(true);
-                //currentScreen = screenGame;            
+                screenGame.SetGameType(GameType.GAME_TWO_PLAYER);
+                screenGame.LoadResources();
+                screenGame.UnPause();
+                screenGame.SetIsVisible(true);
+                currentScreen = screenGame;
 
             }
         }
