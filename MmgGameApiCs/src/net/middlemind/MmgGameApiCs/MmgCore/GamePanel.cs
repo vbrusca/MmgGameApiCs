@@ -489,7 +489,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// <summary>
         /// A long value indicating what the target FPS is for the game.
         /// </summary>
-        public static long TARGET_FPS = 16L;
+        public static long TARGET_FPS = 30L;
 
         /// <summary>
         /// Constructor, sets the MainFrame, window dimensions, and position of the main drawing surface.
@@ -517,6 +517,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             MmgHelper.wr("GamePanel: WinHeight: " + WinHeight);
             MmgHelper.wr("GamePanel: GameWidth: " + GameWidth);
             MmgHelper.wr("GamePanel: GameHeight: " + GameHeight);
+            MmgHelper.wr("TargetFPS: GameHeight: " + TARGET_FPS);
 
             myX = X;
             myY = Y;

@@ -12,7 +12,7 @@ namespace net.middlemind.DungeonTrap.Chapter19
     public class MdtObjPushTableLarge : MdtObjPush
     {
         /// <summary>
-        /// A basic constructor for the small table class.
+        /// A basic constructor for the large table class.
         /// </summary>
         /// <param name="Screen">The game's ScreenGame class.</param>
         public MdtObjPushTableLarge(ScreenGame Screen)
@@ -32,7 +32,7 @@ namespace net.middlemind.DungeonTrap.Chapter19
         }
 
         /// <summary>
-        /// A constructor for the small table class that let's you specify the subject.
+        /// A constructor for the large table class that let's you specify the subject.
         /// </summary>
         /// <param name="Subj">The subject of the class.</param>
         /// <param name="SubjBreaks">The subject break animation.</param>

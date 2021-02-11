@@ -49,7 +49,7 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
         /// <summary>
         /// The frame rate for the game, frames per second.
         /// </summary>
-        public static long FPS = 16L;
+        public static long FPS = 30L;
 
         /// <summary>
         /// Base engine config files.

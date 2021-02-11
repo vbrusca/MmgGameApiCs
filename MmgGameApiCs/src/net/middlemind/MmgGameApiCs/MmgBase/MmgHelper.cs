@@ -598,6 +598,10 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             dBmpSet.p.SetGraphics(dBmpSet.graphics);
             dBmpSet.p.SetAdvRenderHints();
             dBmpSet.img = new MmgBmp(dBmpSet.buffImg);
+
+            dBmpSet.graphics.GraphicsDevice.SetRenderTarget(dBmpSet.buffImg);
+            dBmpSet.graphics.GraphicsDevice.Clear(Color.Transparent);
+
             return dBmpSet;
         }
 
