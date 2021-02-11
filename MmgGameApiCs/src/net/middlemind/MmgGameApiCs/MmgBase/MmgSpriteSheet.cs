@@ -110,12 +110,8 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             for (int i = 0; i < frameCount; i++)
             {
                 bmpSet = MmgHelper.CreateDrawableBmpSet(width, height, true);
-
-                //bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)src.GetImage());
                 bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(bmpSet.buffImg);
-                //bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-                //SpriteSortMode.Immediate, BlendState.NonPremultiplied
-                bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
+                bmpSet.p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 bmpSet.p.DrawBmp(src, new MmgRect(posX, 0, height, posX + width), new MmgRect(0, 0, height, width));
                 bmpSet.p.GetGraphics().End();
                 bmpSet.p.GetGraphics().GraphicsDevice.SetRenderTarget(null);

@@ -920,6 +920,9 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
             exit.SetText(file);
             exit.SetMmgColor(MmgColor.GetRed());
             exit.SetPosition((BOARD_WIDTH - exit.GetWidth()) / 2 + MmgHelper.ScaleValue(22), screenPos.GetY() + exit.GetHeight() + MmgHelper.ScaleValue(5));
+
+            //C# Adjustment
+            exit.SetY(exit.GetY() - MmgHelper.ScaleValue(5));
             exit = (MmgFont)MmgHelper.ContainsKeyMmgObjPosition("exitText", exit, classConfig, exit.GetPosition().Clone());
 
             //Load exit text background config
@@ -952,11 +955,17 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
             txtPlayer1 = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer1.SetText("Player1:");
             txtPlayer1.SetPosition(new MmgVector2(MmgHelper.ScaleValue(30), GAME_BOTTOM - MmgHelper.ScaleValue(8)));
+
+            //C# Adjustment
+            txtPlayer1.SetY(txtPlayer1.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer1);
 
             txtPlayer2 = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer2.SetText("Player2:");
             txtPlayer2.SetPosition(new MmgVector2(BOARD_RIGHT - MmgHelper.ScaleValue(250) - txtPlayer2.GetWidth(), GAME_BOTTOM - MmgHelper.ScaleValue(8)));
+
+            //C# Adjustment
+            txtPlayer2.SetY(txtPlayer2.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer2);
 
             gameLogo = MmgHelper.GetBasicCachedBmp("mdt_game_title.png");
@@ -967,21 +976,33 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
             txtLevel = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtLevel.SetText("Level: 00");
             txtLevel.SetPosition(new MmgVector2(BOARD_RIGHT + MmgHelper.ScaleValue(20), gameLogo.GetY() + gameLogo.GetHeight() + MmgHelper.ScaleValue(20)));
+
+            //C# Adjustment
+            txtLevel.SetY(txtLevel.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtLevel);
 
             txtLevelTime = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtLevelTime.SetText("Time: 000");
             txtLevelTime.SetPosition(new MmgVector2(BOARD_RIGHT + MmgHelper.ScaleValue(20), txtLevel.GetY() + txtLevel.GetHeight() + MmgHelper.ScaleValue(10)));
+
+            //C# Adjustment
+            txtLevelTime.SetY(txtLevelTime.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtLevelTime);
 
             txtPlayer1Section = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer1Section.SetText("- Player1 -");
             txtPlayer1Section.SetPosition(new MmgVector2(GAME_RIGHT - txtPlayer1Section.GetWidth() - MmgHelper.ScaleValue(16), txtLevelTime.GetY() + txtLevelTime.GetHeight() + MmgHelper.ScaleValue(20)));
+
+            //C# Adjustment
+            txtPlayer1Section.SetY(txtPlayer1Section.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer1Section);
 
             txtPlayer1Weapon = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer1Weapon.SetText("W:");
             txtPlayer1Weapon.SetPosition(new MmgVector2(BOARD_RIGHT + MmgHelper.ScaleValue(20), txtPlayer1Section.GetY() + txtPlayer1Section.GetHeight() + MmgHelper.ScaleValue(10)));
+
+            //C# Adjustment
+            //txtPlayer1Weapon.SetY(txtPlayer1Weapon.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer1Weapon);
 
             player1WeaponBmp.SetPosition(txtPlayer1Weapon.GetPosition().Clone());
@@ -990,21 +1011,33 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
             txtPlayer1Mod = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer1Mod.SetText("M:");
             txtPlayer1Mod.SetPosition(new MmgVector2(BOARD_RIGHT + MmgHelper.ScaleValue(20), txtPlayer1Weapon.GetY() + txtPlayer1Weapon.GetHeight() + MmgHelper.ScaleValue(10)));
+
+            //C# Adjustment
+            //txtPlayer1Mod.SetY(txtPlayer1Mod.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer1Mod);
 
             txtPlayer1ModTime = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer1ModTime.SetText("MT:");
             txtPlayer1ModTime.SetPosition(new MmgVector2(BOARD_RIGHT + MmgHelper.ScaleValue(20), txtPlayer1Mod.GetY() + txtPlayer1Mod.GetHeight() + MmgHelper.ScaleValue(10)));
+
+            //C# Adjustment
+            txtPlayer1ModTime.SetY(txtPlayer1ModTime.GetY() + MmgHelper.ScaleValue(3));
             AddObj(txtPlayer1ModTime);
 
             txtPlayer2Section = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer2Section.SetText("- Player2 -");
             txtPlayer2Section.SetPosition(new MmgVector2(GAME_RIGHT - txtPlayer2Section.GetWidth() - MmgHelper.ScaleValue(16), txtPlayer1ModTime.GetY() + txtPlayer1ModTime.GetHeight() + MmgHelper.ScaleValue(20)));
+
+            //C# Adjustment
+            txtPlayer2Section.SetY(txtPlayer2Section.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer2Section);
 
             txtPlayer2Weapon = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer2Weapon.SetText("W:");
             txtPlayer2Weapon.SetPosition(new MmgVector2(BOARD_RIGHT + MmgHelper.ScaleValue(20), txtPlayer2Section.GetY() + txtPlayer2Section.GetHeight() + MmgHelper.ScaleValue(10)));
+
+            //C# Adjustment
+            txtPlayer2Weapon.SetY(txtPlayer2Weapon.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer2Weapon);
 
             player2WeaponBmp.SetPosition(txtPlayer2Weapon.GetPosition().Clone());
@@ -1013,11 +1046,17 @@ namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
             txtPlayer2Mod = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer2Mod.SetText("M:");
             txtPlayer2Mod.SetPosition(new MmgVector2(BOARD_RIGHT + MmgHelper.ScaleValue(20), txtPlayer2Weapon.GetY() + txtPlayer2Weapon.GetHeight() + MmgHelper.ScaleValue(10)));
+
+            //C# Adjustment
+            txtPlayer2Mod.SetY(txtPlayer2Mod.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer2Mod);
 
             txtPlayer2ModTime = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer2ModTime.SetText("MT:");
             txtPlayer2ModTime.SetPosition(new MmgVector2(BOARD_RIGHT + MmgHelper.ScaleValue(20), txtPlayer2Mod.GetY() + txtPlayer2Mod.GetHeight() + MmgHelper.ScaleValue(10)));
+
+            //C# Adjustment
+            txtPlayer2ModTime.SetY(txtPlayer2ModTime.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer2ModTime);
 
             //Load number one config
