@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
-namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
+namespace game.jam.DungeonTrap
 {
     /// <summary>
     /// A class that represents an enemy character base.

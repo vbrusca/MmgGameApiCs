@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using net.middlemind.MmgGameApiCs.MmgBase;
 
-namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
+namespace game.jam.DungeonTrap
 {
     /// <summary>
     /// A class representing a character which extends the MdtBase class.

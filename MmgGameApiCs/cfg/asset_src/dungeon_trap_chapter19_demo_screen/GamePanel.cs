@@ -2,7 +2,7 @@
 using net.middlemind.MmgGameApiCs.MmgBase;
 using net.middlemind.MmgGameApiCs.MmgCore;
 
-namespace net.middlemind.DungeonTrap.Chapter20_Phase1
+namespace game.jam.DungeonTrap
 {
     /// <summary>
     /// An application specific extension of the MmgCore API's GamePanel class.
@@ -20,7 +20,7 @@ namespace net.middlemind.DungeonTrap.Chapter20_Phase1
         /// <summary>
         /// The Screen responsible for drawing the main menu.
         /// </summary>
-        public new net.middlemind.DungeonTrap.Chapter20_Phase1.ScreenMainMenu screenMainMenu;
+        public new net.middlemind.DungeonTrap.Chapter19_DemoScreen.ScreenMainMenu screenMainMenu;
 
         /// <summary>
         /// The basic constructor for this GamePanel extended class.

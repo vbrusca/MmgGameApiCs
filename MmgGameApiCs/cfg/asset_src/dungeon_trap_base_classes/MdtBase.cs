@@ -1,7 +1,7 @@
 ﻿using System;
 using net.middlemind.MmgGameApiCs.MmgBase;
 
-namespace net.middlemind.DungeonTrap.Chapter19_DemoScreen
+namespace game.jam.DungeonTrap
 {
     /// <summary>
     /// An MdtBase object that extends the MmgObj class and implements the MdtDesc interface.
