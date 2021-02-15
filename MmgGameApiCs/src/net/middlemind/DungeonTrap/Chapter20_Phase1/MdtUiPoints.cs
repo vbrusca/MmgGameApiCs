@@ -1,4 +1,5 @@
 ﻿using System;
+using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.DungeonTrap.Chapter20_Phase1
 {

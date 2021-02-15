@@ -1,100 +1,63 @@
 ﻿using System;
+using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.DungeonTrap.Chapter20_Phase1
 {
-    /*
-     * A class that represents a UI element, the health bar.
-     * 
-     * @author Victor G. Brusca, Middlemind Games
-     * 09/22/2020
-     */
     /// <summary>
-    /// 
+    /// A class that represents a UI element, the health bar.
+    ///
+    /// @author Victor G.Brusca, Middlemind Games
+    /// 09/22/2020
     /// </summary>
     public class MdtUiHealthBar : MdtBase
     {
-
-        /*
-         * The subject of this UI element.
-         */
         /// <summary>
-        /// 
+        /// The subject of this UI element.
         /// </summary>
         public MmgBmp subj = null;
 
-        /*
-         * The background subject of this UI element.
-         */
         /// <summary>
-        /// 
+        /// The background subject of this UI element.
         /// </summary>
         public MmgBmp subjBack = null;
 
-        /*
-         * A bool flag indicating if the associated character is dead.
-         */
         /// <summary>
-        /// 
+        /// A bool flag indicating if the associated character is dead.
         /// </summary>
         public bool isDead = false;
 
-        /*
-         * The maximum health value.
-         */
         /// <summary>
-        /// 
+        /// The maximum health value.
         /// </summary>
         public int healthMax = 4;
 
-        /*
-         * The current health value.
-         */
         /// <summary>
-        /// 
+        /// The current health value.
         /// </summary>
         public int healthCurrent = 4;
 
-        /*
-         * A private variable used in internal methods.
-         */
         /// <summary>
-        /// 
+        /// A private variable used in internal methods.
         /// </summary>
         private bool lret = false;
 
-        /*
-         * The screen this UI element belongs to.
-         */
         /// <summary>
-        /// 
+        /// The screen this UI element belongs to.
         /// </summary>
         public ScreenGame screen = null;
 
-        /*
-         * The player type this UI health bar is associated with.
-         */
         /// <summary>
-        /// 
+        /// The player type this UI health bar is associated with.
         /// </summary>
         public MdtPlayerType player = MdtPlayerType.NONE;
 
-        /*
-         * The color of the UI health bar.
-         */
         /// <summary>
-        /// 
+        /// The color of the UI health bar.
         /// </summary>
         public MmgColor backColor = null;
 
-        /*
-         * A base constructor that takes no arguments and loads object resources automatically.
-         * 
-         * @param Player
-         * @param Screen
-         * @param BackColor 
-         */
         /// <summary>
-        /// 
+        /// A base constructor that takes no arguments and loads object resources automatically.
         /// </summary>
         /// <param name="Player"></param>
         /// <param name="Screen"></param>
