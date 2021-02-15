@@ -43,6 +43,12 @@
     <Folder Include="src\net\middlemind\DungeonTrap\Chapter18\" />
     <Folder Include="src\net\middlemind\DungeonTrap\Chapter19\" />
     <Folder Include="src\net\middlemind\DungeonTrap\Chapter19_DemoScreen\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_enum_classes\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_resources\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_base_classes\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_level1_classes\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_level2_classes\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_other_classes\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" />
