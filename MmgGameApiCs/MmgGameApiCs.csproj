@@ -49,6 +49,7 @@
     <Folder Include="cfg\asset_src\dungeon_trap_level1_classes\" />
     <Folder Include="cfg\asset_src\dungeon_trap_level2_classes\" />
     <Folder Include="cfg\asset_src\dungeon_trap_other_classes\" />
+    <Folder Include="src\net\middlemind\DungeonTrap\Chapter20_Phase1\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" />
