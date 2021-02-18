@@ -89,6 +89,11 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 net.middlemind.DungeonTrap.Chapter19_DemoScreen.DungeonTrap.AltMain(nArgs);
 
             }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter20_phase1"))
+            {
+                net.middlemind.DungeonTrap.Chapter20_Phase1.DungeonTrap.AltMain(nArgs);
+
+            }
             else
             {
                 MmgTestScreens.AltMain(nArgs);
