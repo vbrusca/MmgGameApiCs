@@ -1572,7 +1572,7 @@ namespace net.middlemind.DungeonTrap.Chapter20_Phase1
             for (int i = 0; i < len; i++)
             {
                 obj = c.GetChildAt(i);
-                if (obj.GetType() == typeof(MdtItemChest) || obj.GetType() == typeof(MdtCharInterWarlock) || obj.GetType() == typeof(MdtCharInterBanshee) || obj.GetType() == typeof(MdtCharInterDemon) || obj.GetType() == typeof(MdtWeapon) || obj.GetType() == typeof(MdtObjPushTableSmall) || obj.GetType() == typeof(MdtObjPushTableLarge) || obj.GetType() == typeof(MdtObjPushBarrel) || obj.GetType() == typeof(MdtItemBomb) || obj.GetType() == typeof(MdtItemCoinBag) || obj.GetType() == typeof(MdtItemPotionGreen) || obj.GetType() == typeof(MdtItemPotionRed) || obj.GetType() == typeof(MdtItemPotionYellow))
+                if (obj is MdtItemChest || obj is MdtCharInterWarlock || obj is MdtCharInterBanshee || obj is MdtCharInterDemon || obj is MdtWeapon || obj is MdtObjPushTableSmall || obj is MdtObjPushTableLarge || obj is MdtObjPushBarrel || obj is MdtItemBomb || obj is MdtItemCoinBag || obj is MdtItemPotionGreen || obj is MdtItemPotionRed || obj is MdtItemPotionYellow)
                 {
                     c.RemoveAt(i);
                     len--;

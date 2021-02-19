@@ -94,6 +94,16 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 net.middlemind.DungeonTrap.Chapter20_Phase1.DungeonTrap.AltMain(nArgs);
 
             }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter20_phase2"))
+            {
+                net.middlemind.DungeonTrap.Chapter20_Phase2.DungeonTrap.AltMain(nArgs);
+
+            }
+            else if (args[0] != null && args[0].ToLower().Equals("chapter20_phase3") || args[0] != null && args[0].ToLower().Equals("chapter20_phase3_completegame"))
+            {
+                net.middlemind.DungeonTrap.Chapter20_Phase3_CompleteGame.DungeonTrap.AltMain(nArgs);
+
+            }
             else
             {
                 MmgTestScreens.AltMain(nArgs);

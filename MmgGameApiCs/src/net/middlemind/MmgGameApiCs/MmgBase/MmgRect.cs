@@ -64,7 +64,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="shiftUpDown">The number of pixels to shift the rectangle i the up, down direction.</param>
         public virtual void ShiftRect(int shiftLeftRight, int shiftUpDown)
         {
-            rect = new Rectangle(rect.X + shiftLeftRight, rect.X + shiftUpDown, rect.Width, rect.Height);
+            rect = new Rectangle(rect.X + shiftLeftRight, rect.Y + shiftUpDown, rect.Width, rect.Height);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>A new rectangle shifted in the X, Y directions by the specified amount.</returns>
         public virtual MmgRect ToShiftedRect(int shiftLeftRight, int shiftUpDown)
         {
-            return new MmgRect(rect.X + shiftLeftRight, rect.X + shiftUpDown, rect.X + shiftLeftRight + rect.Width, rect.Y + shiftUpDown + rect.Height);
+            return new MmgRect(rect.X + shiftLeftRight, rect.Y + shiftUpDown, rect.X + shiftLeftRight + rect.Width, rect.Y + shiftUpDown + rect.Height);
         }
 
         /// <summary>

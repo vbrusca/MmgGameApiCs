@@ -291,6 +291,16 @@ namespace game.jam.DungeonTrap
         public bool playerSnapToFront = false;
 
         /// <summary>
+        /// A UI health bar for the player one health.
+        /// </summary>
+        public MdtUiHealthBar player1HealthBar = null;
+
+        /// <summary>
+        /// A UI health bar for the player two health.
+        /// </summary>
+        public MdtUiHealthBar player2HealthBar = null;
+
+        /// <summary>
         /// An MmgBmp images used to represent the source of a sprite matrix.
         /// </summary>
         private MmgBmp spriteMatrixSrc;
@@ -384,6 +394,16 @@ namespace game.jam.DungeonTrap
         /// The game logo to use on the main menu and game board.
         /// </summary>
         public MmgBmp gameLogo = null;
+
+        /// <summary>
+        /// An array of enemy waves. 
+        /// </summary>
+        private MdtEnemyWave[] waves;
+
+        /// <summary>
+        /// The current enemy wave.
+        /// </summary>
+        private MdtEnemyWave wavesCurrent;
 
         /// <summary>
         /// The first background torch.
@@ -549,6 +569,11 @@ namespace game.jam.DungeonTrap
         /// A bool indicating random level numbers are active.
         /// </summary>
         private bool randomWaves = false;
+
+        /// <summary>
+        /// A sound to play when an enemy character is struck with a weapon.
+        /// </summary>
+        private MmgSound sound1 = null;
 
         /// <summary>
         /// Constructor, sets the game state associated with this screen, and sets
@@ -960,6 +985,15 @@ namespace game.jam.DungeonTrap
             txtPlayer1.SetY(txtPlayer1.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer1);
 
+            player1HealthBar = new MdtUiHealthBar(MdtPlayerType.PLAYER_1, this, MmgColor.GetRed());
+            player1HealthBar.SetPosition(new MmgVector2(txtPlayer1.GetX() + txtPlayer1.GetWidth() + MmgHelper.ScaleValue(5), GAME_BOTTOM - player1HealthBar.GetHeight() - MmgHelper.ScaleValue(5)));
+            AddObj(player1HealthBar);
+
+            txtPlayer1Score = MmgFontData.CreateDefaultBoldMmgFontSm();
+            txtPlayer1Score.SetText("000000");
+            txtPlayer1Score.SetPosition(new MmgVector2(player1HealthBar.GetX() + player1HealthBar.GetWidth() + MmgHelper.ScaleValue(5), GAME_BOTTOM - MmgHelper.ScaleValue(8)));
+            AddObj(txtPlayer1Score);
+
             txtPlayer2 = MmgFontData.CreateDefaultBoldMmgFontSm();
             txtPlayer2.SetText("Player2:");
             txtPlayer2.SetPosition(new MmgVector2(BOARD_RIGHT - MmgHelper.ScaleValue(250) - txtPlayer2.GetWidth(), GAME_BOTTOM - MmgHelper.ScaleValue(8)));
@@ -967,6 +1001,15 @@ namespace game.jam.DungeonTrap
             //C# Adjustment
             txtPlayer2.SetY(txtPlayer2.GetY() - MmgHelper.ScaleValue(3));
             AddObj(txtPlayer2);
+
+            player2HealthBar = new MdtUiHealthBar(MdtPlayerType.PLAYER_2, this, MmgColor.GetBlue());
+            player2HealthBar.SetPosition(new MmgVector2(txtPlayer2.GetX() + txtPlayer2.GetWidth() + MmgHelper.ScaleValue(15), GAME_BOTTOM - player2HealthBar.GetHeight() - MmgHelper.ScaleValue(5)));
+            AddObj(player2HealthBar);
+
+            txtPlayer2Score = MmgFontData.CreateDefaultBoldMmgFontSm();
+            txtPlayer2Score.SetText("000000");
+            txtPlayer2Score.SetPosition(new MmgVector2(player2HealthBar.GetX() + player2HealthBar.GetWidth() + MmgHelper.ScaleValue(5), GAME_BOTTOM - MmgHelper.ScaleValue(8)));
+            AddObj(txtPlayer2Score);
 
             gameLogo = MmgHelper.GetBasicCachedBmp("mdt_game_title.png");
             gameLogo = MmgBmpScaler.ScaleMmgBmp(gameLogo, 0.28, true);
@@ -1418,7 +1461,47 @@ namespace game.jam.DungeonTrap
             txtCancel.SetIsVisible(false);
             AddObj(txtCancel);
 
+            MdtWeaponType[] wps = null;
+            MdtItemType[] itms = null;
+            MdtDoorType[] drs = null;
+            int wLen = WAVE_COUNT;
+            int cnt = 0;
+            waves = new MdtEnemyWave[WAVE_COUNT];
+
+            MmgHelper.wr("Configure enemy waves (" + wLen + ")...");
+            for (int i = 0; i < wLen; i++)
+            {
+                if (i == 0)
+                {
+                    wps = new MdtWeaponType[] { MdtWeaponType.SWORD, MdtWeaponType.SPEAR };
+                    itms = new MdtItemType[] { MdtItemType.COIN_BAG, MdtItemType.POTION_GREEN, MdtItemType.POTION_YELLOW, MdtItemType.POTION_RED };
+                    drs = new MdtDoorType[] { MdtDoorType.TOP_LEFT, MdtDoorType.RIGHT };
+                }
+                else if (i >= 3 && i < 6)
+                {
+                    wps = new MdtWeaponType[] { MdtWeaponType.SWORD, MdtWeaponType.SPEAR, MdtWeaponType.AXE };
+                    itms = new MdtItemType[] { MdtItemType.COIN_BAG, MdtItemType.POTION_GREEN, MdtItemType.POTION_YELLOW, MdtItemType.CHEST };
+                    drs = new MdtDoorType[] { MdtDoorType.TOP_LEFT, MdtDoorType.RIGHT, MdtDoorType.LEFT };
+                }
+                else if (i >= 6 && i < 9)
+                {
+                    wps = new MdtWeaponType[] { MdtWeaponType.SWORD, MdtWeaponType.SPEAR, MdtWeaponType.AXE };
+                    itms = new MdtItemType[] { MdtItemType.COIN_BAG, MdtItemType.POTION_GREEN, MdtItemType.POTION_YELLOW, MdtItemType.CHEST };
+                    drs = new MdtDoorType[] { MdtDoorType.TOP_LEFT, MdtDoorType.TOP_RIGHT, MdtDoorType.RIGHT, MdtDoorType.LEFT };
+                }
+                else if (i >= 9 && i < 12)
+                {
+                    wps = new MdtWeaponType[] { MdtWeaponType.SWORD, MdtWeaponType.SPEAR, MdtWeaponType.AXE, MdtWeaponType.WAND };
+                    itms = new MdtItemType[] { MdtItemType.COIN_BAG, MdtItemType.POTION_GREEN, MdtItemType.POTION_YELLOW, MdtItemType.CHEST, MdtItemType.BOMB };
+                    drs = new MdtDoorType[] { MdtDoorType.TOP_LEFT, MdtDoorType.TOP_RIGHT, MdtDoorType.RIGHT, MdtDoorType.LEFT, MdtDoorType.BOTTOM_LEFT, MdtDoorType.BOTTOM_RIGHT };
+                }
+                cnt = ((i + 1) * 10);
+                waves[i] = new MdtEnemyWave(i, (((i + 2) * 30) * 1000), 0, 0, ((((i + 1) * 30) * 1000) / cnt), ((int)(cnt * 0.10) + 1), ((int)(cnt * 0.20) + 1), cnt, wps, itms, drs, ((i % 3) + 3), ((i % 3) + 6), ((i % 3) + 3), ((i % 3) + 6));
+                MmgHelper.wr("\n" + waves[i]);
+            }
             wavesCurrentIdx = 0;
+
+            sound1 = MmgHelper.GetBasicCachedSound("jump1.wav");
             ready = true;
             pause = false;
         }
@@ -1575,6 +1658,8 @@ namespace game.jam.DungeonTrap
             bgroundPopupSrc = null;
             txtOk = null;
             txtCancel = null;
+            waves = null;
+            wavesCurrent = null;
 
             ClearObjs();
             base.UnloadResources();
@@ -1663,6 +1748,14 @@ namespace game.jam.DungeonTrap
         public bool GetPlayer2Broken()
         {
             return false;
+        }
+
+        private void UpdateResetPlayers()
+        {
+        }
+
+        private void UpdateStartEnemyWave(int waveIdx)
+        {
         }
     }
 }

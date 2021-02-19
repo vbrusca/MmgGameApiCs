@@ -52,6 +52,11 @@
     <Folder Include="src\net\middlemind\DungeonTrap\Chapter20_Phase1\" />
     <Folder Include="cfg\asset_src\dungeon_trap_chapter19_demo_screen\" />
     <Folder Include="cfg\asset_src\dungeon_trap_chapter19_orig_screen\" />
+    <Folder Include="src\net\middlemind\DungeonTrap\Chapter20_Phase2\" />
+    <Folder Include="src\net\middlemind\DungeonTrap\Chapter20_Phase3_CompleteGame\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_chapter20_phase1\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_chapter20_phase2\" />
+    <Folder Include="cfg\asset_src\dungeon_trap_chapter20_phase3\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" />

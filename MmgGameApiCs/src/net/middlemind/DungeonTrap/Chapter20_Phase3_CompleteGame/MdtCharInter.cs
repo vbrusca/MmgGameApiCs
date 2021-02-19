@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using net.middlemind.MmgGameApiCs.MmgBase;
 using static net.middlemind.MmgGameApiCs.MmgCore.GamePanel;
 
-namespace net.middlemind.DungeonTrap.Chapter20_Phase1
+namespace net.middlemind.DungeonTrap.Chapter20_Phase3_CompleteGame
 {
     /// <summary>
     /// A class that represents an enemy character base.
@@ -429,7 +429,7 @@ namespace net.middlemind.DungeonTrap.Chapter20_Phase1
                     {
                         if (GetPlayerType() == MdtPlayerType.ENEMY && GetRand().Next(11) % 2 == 0)
                         {
-                            screen.UpdateGenerateItem(GetX(), GetY());
+                            screen.UpdateGenerateMdtItem(GetX(), GetY());
                         }
                         screen.UpdateRemoveObj(this, brokenBy);
                     }
@@ -727,7 +727,6 @@ namespace net.middlemind.DungeonTrap.Chapter20_Phase1
                             {
                                 if (dir == MmgDir.DIR_BACK)
                                 {
-                                    MmgHelper.wr("DIR_BACK: Subj Start pos: " + subj.ApiToString() + ", " + GetPosition().ApiToString());
                                     if (subj.GetY() - speed >= ScreenGame.BOARD_TOP)
                                     {
                                         current.ShiftRect(0, (speed * -1));
@@ -749,11 +748,9 @@ namespace net.middlemind.DungeonTrap.Chapter20_Phase1
                                     {
                                         SetY(ScreenGame.BOARD_TOP);
                                     }
-                                    MmgHelper.wr("DIR_BACK: Subj End pos: " + subj.ApiToString() + ", " + GetPosition().ApiToString());
                                 }
                                 else if (dir == MmgDir.DIR_FRONT)
                                 {
-                                    MmgHelper.wr("DIR_FRONT: Subj Start pos: " + subj.ApiToString() + ", " + GetPosition().ApiToString());
                                     if (subj.GetY() + subj.GetHeight() + speed <= ScreenGame.BOARD_BOTTOM)
                                     {
                                         current.ShiftRect(0, (speed * 1));
@@ -775,7 +772,6 @@ namespace net.middlemind.DungeonTrap.Chapter20_Phase1
                                     {
                                         SetY(ScreenGame.BOARD_BOTTOM - subj.GetHeight());
                                     }
-                                    MmgHelper.wr("DIR_FRONT: Subj Start pos: " + subj.ApiToString() + ", " + GetPosition().ApiToString());
                                 }
                                 else if (dir == MmgDir.DIR_LEFT)
                                 {
