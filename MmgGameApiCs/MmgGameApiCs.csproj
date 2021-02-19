@@ -106,6 +106,12 @@
     <Compile Remove="cfg\asset_src\dungeon_trap_chapter19_demo_screen\ScreenGame.cs" />
     <Compile Remove="cfg\asset_src\dungeon_trap_chapter19_orig_screen\GamePanel.cs" />
     <Compile Remove="cfg\asset_src\dungeon_trap_chapter19_orig_screen\ScreenGame.cs" />
+    <Compile Remove="cfg\asset_src\dungeon_trap_chapter20_phase3\ScreenGame.cs" />
+    <Compile Remove="cfg\asset_src\dungeon_trap_chapter20_phase2\ScreenGame.cs" />
+    <Compile Remove="cfg\asset_src\dungeon_trap_chapter20_phase1\MdtEnemyWave.cs" />
+    <Compile Remove="cfg\asset_src\dungeon_trap_chapter20_phase1\MdtUiHealthBar.cs" />
+    <Compile Remove="cfg\asset_src\dungeon_trap_chapter20_phase1\MdtUiPoints.cs" />
+    <Compile Remove="cfg\asset_src\dungeon_trap_chapter20_phase1\ScreenGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\net\middlemind\MmgGameApiCs\MmgCore\RunFrameRate.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
@@ -157,5 +163,11 @@
     <Content Include="cfg\asset_src\dungeon_trap_chapter19_demo_screen\ScreenGame.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Content Include="cfg\asset_src\dungeon_trap_chapter19_orig_screen\GamePanel.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Content Include="cfg\asset_src\dungeon_trap_chapter19_orig_screen\ScreenGame.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Content Include="cfg\asset_src\dungeon_trap_chapter20_phase3\ScreenGame.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Content Include="cfg\asset_src\dungeon_trap_chapter20_phase2\ScreenGame.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Content Include="cfg\asset_src\dungeon_trap_chapter20_phase1\MdtEnemyWave.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Content Include="cfg\asset_src\dungeon_trap_chapter20_phase1\MdtUiHealthBar.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Content Include="cfg\asset_src\dungeon_trap_chapter20_phase1\MdtUiPoints.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Content Include="cfg\asset_src\dungeon_trap_chapter20_phase1\ScreenGame.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
 </Project>

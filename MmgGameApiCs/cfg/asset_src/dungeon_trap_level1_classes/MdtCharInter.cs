@@ -733,7 +733,7 @@ namespace game.jam.DungeonTrap
                                         coll = screen.CanMove(current, this);
                                         if (coll == null)
                                         {
-                                            subj.SetY(current.GetTop());
+                                            SetY(current.GetTop());
                                         }
                                         else
                                         {
@@ -746,7 +746,7 @@ namespace game.jam.DungeonTrap
                                     }
                                     else
                                     {
-                                        subj.SetY(ScreenGame.BOARD_TOP);
+                                        SetY(ScreenGame.BOARD_TOP);
                                     }
                                 }
                                 else if (dir == MmgDir.DIR_FRONT)
@@ -757,7 +757,7 @@ namespace game.jam.DungeonTrap
                                         coll = screen.CanMove(current, this);
                                         if (coll == null)
                                         {
-                                            subj.SetY(current.GetTop());
+                                            SetY(current.GetTop());
                                         }
                                         else
                                         {
@@ -770,7 +770,7 @@ namespace game.jam.DungeonTrap
                                     }
                                     else
                                     {
-                                        subj.SetY(ScreenGame.BOARD_BOTTOM - subj.GetHeight());
+                                        SetY(ScreenGame.BOARD_BOTTOM - subj.GetHeight());
                                     }
                                 }
                                 else if (dir == MmgDir.DIR_LEFT)
@@ -781,7 +781,7 @@ namespace game.jam.DungeonTrap
                                         coll = screen.CanMove(current, this);
                                         if (coll == null)
                                         {
-                                            subj.SetX(current.GetLeft());
+                                            SetX(current.GetLeft());
                                         }
                                         else
                                         {
@@ -794,7 +794,7 @@ namespace game.jam.DungeonTrap
                                     }
                                     else
                                     {
-                                        subj.SetX(ScreenGame.BOARD_LEFT);
+                                        SetX(ScreenGame.BOARD_LEFT);
                                     }
                                 }
                                 else if (dir == MmgDir.DIR_RIGHT)
@@ -805,7 +805,7 @@ namespace game.jam.DungeonTrap
                                         coll = screen.CanMove(current, this);
                                         if (coll == null)
                                         {
-                                            subj.SetX(current.GetLeft());
+                                            SetX(current.GetLeft());
                                         }
                                         else
                                         {
@@ -818,7 +818,7 @@ namespace game.jam.DungeonTrap
                                     }
                                     else
                                     {
-                                        subj.SetX(ScreenGame.BOARD_RIGHT - subj.GetWidth());
+                                        SetX(ScreenGame.BOARD_RIGHT - subj.GetWidth());
                                     }
                                 }
                             }
