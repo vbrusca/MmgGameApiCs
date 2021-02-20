@@ -225,7 +225,9 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenRelease");
             if (scrollVert != null)
             {
-                return scrollVert.ProcessScreenClick(v.GetX(), v.GetY());
+                scrollVert.ProcessScreenClick(v.GetX(), v.GetY());
+                isDirty = true;
+                return true;
             }
             return false;
         }
@@ -241,7 +243,9 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             MmgHelper.wr("ScreenTestMmgScrollVert.ProcessScreenRelease");
             if (scrollVert != null)
             {
-                return scrollVert.ProcessScreenClick(x, y);
+                scrollVert.ProcessScreenClick(x, y);
+                isDirty = true;
+                return true;
             }
             return false;
         }

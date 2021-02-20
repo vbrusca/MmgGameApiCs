@@ -740,7 +740,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             if (scrollPaneWidth - viewPortWidth > 0)
             {
                 widthDiff = W - scrollNotchTravelX - scrollBarLeftRightButtonWidth - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth;
-                widthDiffPrct = intervalPrctViewPortX;
+                widthDiffPrct = intervalPrctScrollPaneX;
                 scrollBarHorVisible = true;
             }
             else
@@ -753,7 +753,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             if (scrollPaneHeight - viewPortHeight > 0)
             {
                 heightDiff = H - scrollNotchTravelY - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight;
-                heightDiffPrct = intervalPrctViewPortY;
+                heightDiffPrct = intervalPrctScrollPaneY;
                 scrollBarVertVisible = true;
             }
             else
@@ -1014,7 +1014,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             double intervalPrctViewPortY = (double)intervalY / (double)scrollNotchTravelY;
             //IPT = I / T
             double intervalPrctScrollPaneY = (double)intervalY / (double)scrollPaneTravelY;
-            double currentPrctY = (double)offsetYScrollBarCenterButton / (double)scrollNotchTravelY;
+            double currentPrctY = (double)offsetYScrollPane / (double)scrollPaneTravelY;
 
             int w = viewPortWidth;
             int W = scrollPaneWidth;
@@ -1030,34 +1030,26 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             double intervalPrctViewPortX = (double)intervalX / (double)scrollNotchTravelX;
             //IPT = I / T
             double intervalPrctScrollPaneX = (double)intervalX / (double)scrollPaneTravelX;
-            double currentPrctX = (double)offsetXScrollBarCenterButton / (double)scrollNotchTravelX;
+            double currentPrctX = (double)offsetXScrollPane / (double)scrollPaneTravelX;
 
             if (scrollBarHorVisible && dir == MmgDir.DIR_LEFT)
             {
-                if (offsetXScrollBarCenterButton - intervalX > viewPort.GetX() + scrollBarLeftRightButtonWidth)
+                if (currentPrctX - widthDiffPrct < 0.0)
                 {
-                    if (currentPrctX - widthDiffPrct < 0.0)
-                    {
-                        currentPrctX = 0.0;
-                    }
-                    else
-                    {
-                        currentPrctX -= widthDiffPrct;
-                    }
-
-                    if (currentPrctX >= -0.001 && currentPrctX <= 0.001)
-                    {
-                        currentPrctX = 0.0;
-                    }
-
-                    offsetXScrollBarCenterButton = (int)(currentPrctX * (double)scrollNotchTravelX);
-                    offsetXScrollPane = (int)(currentPrctX * (double)scrollPaneTravelX);
+                    currentPrctX = 0.0;
                 }
                 else
                 {
-                    offsetXScrollBarCenterButton = 0;
-                    offsetXScrollPane = 0;
+                    currentPrctX -= widthDiffPrct;
                 }
+
+                if (currentPrctX >= -0.002 && currentPrctX <= 0.002)
+                {
+                    currentPrctX = 0.0;
+                }
+
+                offsetXScrollBarCenterButton = (int)(currentPrctX * (double)scrollNotchTravelX);
+                offsetXScrollPane = (int)(currentPrctX * (double)scrollPaneTravelX);
 
                 if (clickLeft != null)
                 {
@@ -1066,34 +1058,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 return true;
-
             }
             else if (scrollBarHorVisible && dir == MmgDir.DIR_RIGHT)
             {
-                if (scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton + intervalX < viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth)
+                if (currentPrctX + widthDiffPrct > 1.0)
                 {
-                    if (currentPrctX + widthDiffPrct > 1.0)
-                    {
-                        currentPrctX = 1.0;
-                    }
-                    else
-                    {
-                        currentPrctX += widthDiffPrct;
-                    }
-
-                    if (currentPrctX >= 0.998 && currentPrctX <= 1.001)
-                    {
-                        currentPrctX = 1.0;
-                    }
-
-                    offsetXScrollBarCenterButton = (int)(currentPrctX * (double)scrollNotchTravelX);
-                    offsetXScrollPane = (int)(currentPrctX * (double)scrollPaneTravelX);
+                    currentPrctX = 1.0;
                 }
                 else
                 {
-                    offsetXScrollBarCenterButton = (viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth);
-                    offsetXScrollPane = widthDiff;
+                    currentPrctX += widthDiffPrct;
                 }
+
+                if (currentPrctX >= 0.998 && currentPrctX <= 1.002)
+                {
+                    currentPrctX = 1.0;
+                }
+
+                offsetXScrollBarCenterButton = (int)(currentPrctX * (double)scrollNotchTravelX);
+                offsetXScrollPane = (int)(currentPrctX * (double)scrollPaneTravelX);
 
                 if (clickRight != null)
                 {
@@ -1102,34 +1085,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 return true;
-
             }
             else if (scrollBarVertVisible && dir == MmgDir.DIR_BACK)
             {
-                if (offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight)
+                if (currentPrctY - heightDiffPrct < 0.0)
                 {
-                    if (currentPrctY - heightDiffPrct < 0.0)
-                    {
-                        currentPrctY = 0.0;
-                    }
-                    else
-                    {
-                        currentPrctY -= heightDiffPrct;
-                    }
-
-                    if (currentPrctY >= -0.001 && currentPrctY <= 0.001)
-                    {
-                        currentPrctY = 0.0;
-                    }
-
-                    offsetYScrollBarCenterButton = (int)(currentPrctY * (double)scrollNotchTravelY);
-                    offsetYScrollPane = (int)(currentPrctY * (double)scrollPaneTravelY);
+                    currentPrctY = 0.0;
                 }
                 else
                 {
-                    offsetYScrollBarCenterButton = 0;
-                    offsetYScrollPane = 0;
+                    currentPrctY -= heightDiffPrct;
                 }
+
+                if (currentPrctY >= -0.002 && currentPrctY <= 0.002)
+                {
+                    currentPrctY = 0.0;
+                }
+
+                offsetYScrollBarCenterButton = (int)(currentPrctY * (double)scrollNotchTravelY);
+                offsetYScrollPane = (int)(currentPrctY * (double)scrollPaneTravelY);
 
                 if (clickUp != null)
                 {
@@ -1138,34 +1112,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 return true;
-
             }
             else if (scrollBarVertVisible && dir == MmgDir.DIR_FRONT)
             {
-                if (scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight)
+                if (currentPrctY + heightDiffPrct > 1.0)
                 {
-                    if (currentPrctY + heightDiffPrct > 1.0)
-                    {
-                        currentPrctY = 1.0;
-                    }
-                    else
-                    {
-                        currentPrctY += heightDiffPrct;
-                    }
-
-                    if (currentPrctY >= 0.998 && currentPrctY <= 1.001)
-                    {
-                        currentPrctY = 1.0;
-                    }
-
-                    offsetYScrollBarCenterButton = (int)(currentPrctY * (double)scrollNotchTravelY);
-                    offsetYScrollPane = (int)(currentPrctY * (double)scrollPaneTravelY);
+                    currentPrctY = 1.0;
                 }
                 else
                 {
-                    offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight);
-                    offsetYScrollPane = heightDiff;
+                    currentPrctY += heightDiffPrct;
                 }
+
+                if (currentPrctY >= 0.998 && currentPrctY <= 1.002)
+                {
+                    currentPrctY = 1.0;
+                }
+
+                offsetYScrollBarCenterButton = (int)(currentPrctY * (double)scrollNotchTravelY);
+                offsetYScrollPane = (int)(currentPrctY * (double)scrollPaneTravelY);
 
                 if (clickDown != null)
                 {
@@ -1174,9 +1139,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 return true;
-
             }
-
             return false;
         }
 
@@ -1204,7 +1167,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             double intervalPrctViewPortY = (double)intervalY / (double)scrollNotchTravelY;
             //IPT = I / T
             double intervalPrctScrollPaneY = (double)intervalY / (double)scrollPaneTravelY;
-            double currentPrctY = (double)offsetYScrollBarCenterButton / (double)scrollNotchTravelY;
+            double currentPrctY = (double)offsetYScrollPane / (double)scrollPaneTravelY;
 
             int w = viewPortWidth;
             int W = scrollPaneWidth;
@@ -1220,7 +1183,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             double intervalPrctViewPortX = (double)intervalX / (double)scrollNotchTravelX;
             //IPT = I / T
             double intervalPrctScrollPaneX = (double)intervalX / (double)scrollPaneTravelX;
-            double currentPrctX = (double)offsetXScrollBarCenterButton / (double)scrollNotchTravelX;
+            double currentPrctX = (double)offsetXScrollPane / (double)scrollPaneTravelX;
 
             if (MmgHelper.RectCollision(x, y, viewPortRect))
             {
@@ -1230,34 +1193,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     clickScreen.Fire();
                 }
                 ret = true;
-
             }
             else if (scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarHorLeftButtonRect))
             {
-                if (offsetXScrollBarCenterButton - intervalX > viewPort.GetX() + scrollBarLeftRightButtonWidth)
+                if (currentPrctX - widthDiffPrct < 0.0)
                 {
-                    if (currentPrctX - widthDiffPrct < 0.0)
-                    {
-                        currentPrctX = 0.0;
-                    }
-                    else
-                    {
-                        currentPrctX -= widthDiffPrct;
-                    }
-
-                    if (currentPrctX >= -0.001 && currentPrctX <= 0.001)
-                    {
-                        currentPrctX = 0.0;
-                    }
-
-                    offsetXScrollBarCenterButton = (int)(currentPrctX * (double)scrollNotchTravelX);
-                    offsetXScrollPane = (int)(currentPrctX * (double)scrollPaneTravelX);
+                    currentPrctX = 0.0;
                 }
                 else
                 {
-                    offsetXScrollBarCenterButton = 0;
-                    offsetXScrollPane = 0;
+                    currentPrctX -= widthDiffPrct;
                 }
+
+                if (currentPrctX >= -0.002 && currentPrctX <= 0.002)
+                {
+                    currentPrctX = 0.0;
+                }
+
+                offsetXScrollBarCenterButton = (int)(currentPrctX * (double)scrollNotchTravelX);
+                offsetXScrollPane = (int)(currentPrctX * (double)scrollPaneTravelX);
 
                 if (clickLeft != null)
                 {
@@ -1266,34 +1220,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 ret = true;
-
             }
             else if (scrollBarHorVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarHorRightButtonRect))
             {
-                if (scrollBarLeftRightButtonWidth + offsetXScrollBarCenterButton + intervalX < viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth)
+                if (currentPrctX + widthDiffPrct > 1.0)
                 {
-                    if (currentPrctX + widthDiffPrct > 1.0)
-                    {
-                        currentPrctX = 1.0;
-                    }
-                    else
-                    {
-                        currentPrctX += widthDiffPrct;
-                    }
-
-                    if (currentPrctX >= 0.998 && currentPrctX <= 1.001)
-                    {
-                        currentPrctX = 1.0;
-                    }
-
-                    offsetXScrollBarCenterButton = (int)(currentPrctX * (double)scrollNotchTravelX);
-                    offsetXScrollPane = (int)(currentPrctX * (double)scrollPaneTravelX);
+                    currentPrctX = 1.0;
                 }
                 else
                 {
-                    offsetXScrollBarCenterButton = (viewPort.GetWidth() - scrollBarLeftRightButtonWidth - scrollBarLeftRightButtonWidth - scrollBarHorCenterButtonWidth);
-                    offsetXScrollPane = widthDiff;
+                    currentPrctX += widthDiffPrct;
                 }
+
+                if (currentPrctX >= 0.998 && currentPrctX <= 1.002)
+                {
+                    currentPrctX = 1.0;
+                }
+
+                offsetXScrollBarCenterButton = (int)(currentPrctX * (double)scrollNotchTravelX);
+                offsetXScrollPane = (int)(currentPrctX * (double)scrollPaneTravelX);
 
                 if (clickRight != null)
                 {
@@ -1302,34 +1247,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 ret = true;
-
             }
             else if (scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarVertUpButtonRect))
             {
-                if (offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight)
+                if (currentPrctY - heightDiffPrct < 0.0)
                 {
-                    if (currentPrctY - heightDiffPrct < 0.0)
-                    {
-                        currentPrctY = 0.0;
-                    }
-                    else
-                    {
-                        currentPrctY -= heightDiffPrct;
-                    }
-
-                    if (currentPrctY >= -0.001 && currentPrctY <= 0.001)
-                    {
-                        currentPrctY = 0.0;
-                    }
-
-                    offsetYScrollBarCenterButton = (int)(currentPrctY * (double)scrollNotchTravelY);
-                    offsetYScrollPane = (int)(currentPrctY * (double)scrollPaneTravelY);
+                    currentPrctY = 0.0;
                 }
                 else
                 {
-                    offsetYScrollBarCenterButton = 0;
-                    offsetYScrollPane = 0;
+                    currentPrctY -= heightDiffPrct;
                 }
+
+                if (currentPrctY >= -0.002 && currentPrctY <= 0.002)
+                {
+                    currentPrctY = 0.0;
+                }
+
+                offsetYScrollBarCenterButton = (int)(currentPrctY * (double)scrollNotchTravelY);
+                offsetYScrollPane = (int)(currentPrctY * (double)scrollPaneTravelY);
 
                 if (clickUp != null)
                 {
@@ -1338,34 +1274,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 ret = true;
-
             }
             else if (scrollBarVertVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarVertDownButtonRect))
             {
-                if (scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight)
+                if (currentPrctY + heightDiffPrct > 1.0)
                 {
-                    if (currentPrctY + heightDiffPrct > 1.0)
-                    {
-                        currentPrctY = 1.0;
-                    }
-                    else
-                    {
-                        currentPrctY += heightDiffPrct;
-                    }
-
-                    if (currentPrctY >= 0.998 && currentPrctY <= 1.001)
-                    {
-                        currentPrctY = 1.0;
-                    }
-
-                    offsetYScrollBarCenterButton = (int)(currentPrctY * (double)scrollNotchTravelY);
-                    offsetYScrollPane = (int)(currentPrctY * (double)scrollPaneTravelY);
+                    currentPrctY = 1.0;
                 }
                 else
                 {
-                    offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarVertCenterButtonHeight);
-                    offsetYScrollPane = heightDiff;
+                    currentPrctY += heightDiffPrct;
                 }
+
+                if (currentPrctY >= 0.998 && currentPrctY <= 1.002)
+                {
+                    currentPrctY = 1.0;
+                }
+
+                offsetYScrollBarCenterButton = (int)(currentPrctY * (double)scrollNotchTravelY);
+                offsetYScrollPane = (int)(currentPrctY * (double)scrollPaneTravelY);
 
                 if (clickDown != null)
                 {
@@ -1374,9 +1301,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 ret = true;
-
             }
-
             return ret;
         }
 

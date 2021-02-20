@@ -494,7 +494,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             if (scrollPaneHeight - viewPortHeight > 0)
             {
                 heightDiff = H - scrollNotchTravel;
-                heightDiffPrct = intervalPrctViewPort;
+                heightDiffPrct = intervalPrctScrollPane;
                 scrollBarVisible = true;
             }
             else
@@ -698,30 +698,22 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
             if (scrollBarVisible && dir == MmgDir.DIR_BACK)
             {
-                if (offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight)
+                if (currentPrct - heightDiffPrct < 0.0)
                 {
-                    if (currentPrct - heightDiffPrct < 0.0)
-                    {
-                        currentPrct = 0.0;
-                    }
-                    else
-                    {
-                        currentPrct -= heightDiffPrct;
-                    }
-
-                    if (currentPrct >= -0.001 && currentPrct <= 0.001)
-                    {
-                        currentPrct = 0.0;
-                    }
-
-                    offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
-                    offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+                    currentPrct = 0.0;
                 }
                 else
                 {
-                    offsetYScrollBarCenterButton = 0;
-                    offsetYScrollPane = 0;
+                    currentPrct -= heightDiffPrct;
                 }
+
+                if (currentPrct >= -0.002 && currentPrct <= 0.002)
+                {
+                    currentPrct = 0.0;
+                }
+
+                offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+                offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
 
                 if (clickUp != null)
                 {
@@ -730,34 +722,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 return true;
-
             }
             else if (scrollBarVisible && dir == MmgDir.DIR_FRONT)
             {
-                if (scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight)
+                if (currentPrct + heightDiffPrct > 1.0)
                 {
-                    if (currentPrct + heightDiffPrct > 1.0)
-                    {
-                        currentPrct = 1.0;
-                    }
-                    else
-                    {
-                        currentPrct += heightDiffPrct;
-                    }
-
-                    if (currentPrct >= 0.998 && currentPrct <= 1.001)
-                    {
-                        currentPrct = 1.0;
-                    }
-
-                    offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
-                    offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+                    currentPrct = 1.0;
                 }
                 else
                 {
-                    offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight);
-                    offsetYScrollPane = heightDiff;
+                    currentPrct += heightDiffPrct;
                 }
+
+                if (currentPrct >= 0.998 && currentPrct <= 1.002)
+                {
+                    currentPrct = 1.0;
+                }
+
+                offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+                offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
 
                 if (clickDown != null)
                 {
@@ -766,9 +749,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 return true;
-
             }
-
             return false;
         }
 
@@ -818,34 +799,25 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     clickScreen.Fire();
                 }
                 ret = true;
-
             }
             else if (scrollBarVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarUpButtonRect))
             {
-                if (offsetYScrollBarCenterButton - intervalY > viewPort.GetY() + scrollBarUpDownButtonHeight)
+                if (currentPrct - heightDiffPrct < 0.0)
                 {
-                    if (currentPrct - heightDiffPrct < 0.0)
-                    {
-                        currentPrct = 0.0;
-                    }
-                    else
-                    {
-                        currentPrct -= heightDiffPrct;
-                    }
-
-                    if (currentPrct >= -0.001 && currentPrct <= 0.001)
-                    {
-                        currentPrct = 0.0;
-                    }
-
-                    offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
-                    offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+                    currentPrct = 0.0;
                 }
                 else
                 {
-                    offsetYScrollBarCenterButton = 0;
-                    offsetYScrollPane = 0;
+                    currentPrct -= heightDiffPrct;
                 }
+
+                if (currentPrct >= -0.002 && currentPrct <= 0.002)
+                {
+                    currentPrct = 0.0;
+                }
+
+                offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+                offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
 
                 if (clickUp != null)
                 {
@@ -858,30 +830,22 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             }
             else if (scrollBarVisible && MmgHelper.RectCollision(x - 3, y - 3, 6, 6, scrollBarDownButtonRect))
             {
-                if (scrollBarUpDownButtonHeight + offsetYScrollBarCenterButton + intervalY < viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight)
+                if (currentPrct + heightDiffPrct > 1.0)
                 {
-                    if (currentPrct + heightDiffPrct > 1.0)
-                    {
-                        currentPrct = 1.0;
-                    }
-                    else
-                    {
-                        currentPrct += heightDiffPrct;
-                    }
-
-                    if (currentPrct >= 0.998 && currentPrct <= 1.001)
-                    {
-                        currentPrct = 1.0;
-                    }
-
-                    offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
-                    offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
+                    currentPrct = 1.0;
                 }
                 else
                 {
-                    offsetYScrollBarCenterButton = (viewPort.GetHeight() - scrollBarUpDownButtonHeight - scrollBarUpDownButtonHeight - scrollBarCenterButtonHeight);
-                    offsetYScrollPane = heightDiff;
+                    currentPrct += heightDiffPrct;
                 }
+
+                if (currentPrct >= 0.998 && currentPrct <= 1.002)
+                {
+                    currentPrct = 1.0;
+                }
+
+                offsetYScrollBarCenterButton = (int)(currentPrct * (double)scrollNotchTravel);
+                offsetYScrollPane = (int)(currentPrct * (double)scrollPaneTravel);
 
                 if (clickDown != null)
                 {
@@ -890,9 +854,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
 
                 isDirty = true;
                 ret = true;
-
             }
-
             return ret;
         }
 
@@ -1312,8 +1274,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
                     scrollBarCenterButton.SetPosition(scrollBarCenterButtonRect.GetPosition());
                 }
 
-                updSrcRect = new MmgRect(0, offsetYScrollBarCenterButton, offsetYScrollBarCenterButton + viewPortRect.GetHeight(), viewPortRect.GetWidth());
+                updSrcRect = new MmgRect(offsetYScrollPane, 0, viewPortRect.GetHeight(), offsetYScrollPane + viewPortRect.GetWidth());
                 updDstRect = new MmgRect(0, 0, viewPortRect.GetHeight(), viewPortRect.GetWidth());
+
+                //MmgHelper.wr("Update Source Rect: " + updSrcRect.ApiToString());
+                //MmgHelper.wr("Update Dest Rect: " + updDestRect.ApiToString());                        
 
                 p.GetGraphics().GraphicsDevice.SetRenderTarget((RenderTarget2D)viewPort.GetImage());
                 p.GetGraphics().Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
