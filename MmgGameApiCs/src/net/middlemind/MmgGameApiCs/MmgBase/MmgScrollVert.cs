@@ -1243,7 +1243,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>The Y offset.</returns>
         public virtual int GetOffsetY()
         {
-            return offsetYScrollBarCenterButton;
+            return offsetYScrollPane;
         }
 
         /// <summary>
@@ -1252,7 +1252,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="OffsetY"></param>
         public virtual void SetOffsetY(int OffsetY)
         {
-            offsetYScrollBarCenterButton = OffsetY;
+            offsetYScrollPane = OffsetY;
         }
 
         /// <summary>

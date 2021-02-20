@@ -1233,7 +1233,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <returns>The X offset.</returns>
         public virtual int GetOffsetX()
         {
-            return offsetXScrollBarCenterButton;
+            return offsetXScrollPane;
         }
 
         /// <summary>
@@ -1242,7 +1242,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <param name="OffsetX">The X offset.</param>
         public virtual void SetOffsetX(int OffsetX)
         {
-            offsetXScrollBarCenterButton = OffsetX;
+            offsetXScrollPane = OffsetX;
         }
 
         /// <summary>
