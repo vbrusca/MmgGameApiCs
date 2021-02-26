@@ -119,7 +119,7 @@ namespace net.middlemind.MmgGameApiCs.MmgUnitTests
             hp = true;
             p = null;
             obj1 = new MmgObj();
-            ver = "1.0.6";
+            ver = "1.0.8";
 
             //TEST 1 - Has Parent        
             obj1.SetHasParent(hp);

@@ -40,7 +40,7 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         /// <summary>
         /// The version of this MmgApi. 
         /// </summary>
-        private string version = "1.0.6";
+        private string version = "1.0.8";
 
         /// <summary>
         /// Flag indicating if this MmgObj has a parent container.
@@ -491,6 +491,15 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public virtual bool GetHasParent()
         {
             return hasParent;
+        }
+
+        /// <summary>
+        /// Gets an MmgRect representation of the current object.
+        /// </summary>
+        /// <returns>An MmgRect representation of the current object.</returns>
+        public MmgRect GetCurrentRect()
+        {
+            return new MmgRect(GetX(), GetY(), GetY() + GetHeight(), GetX() + GetWidth());
         }
 
         /// <summary>
