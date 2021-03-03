@@ -4437,7 +4437,7 @@ namespace net.middlemind.DungeonTrap.Chapter20_Phase3_CompleteGame
                         {
                             emn.SetDir(MmgDir.DIR_BACK);
                             emn.SetPosition(doorBotLeftLockIcon.GetPosition().Clone());
-                            emn.SetX(emn.GetY() - adjH);
+                            emn.SetY(emn.GetY() - adjH);
 
                             coll = CanMove(emn.GetRect(), emn);
                             if (coll == null)
@@ -4477,7 +4477,7 @@ namespace net.middlemind.DungeonTrap.Chapter20_Phase3_CompleteGame
                         {
                             emn.SetDir(MmgDir.DIR_BACK);
                             emn.SetPosition(doorBotRightLockIcon.GetPosition().Clone());
-                            emn.SetX(emn.GetY() - adjH);
+                            emn.SetY(emn.GetY() - adjH);
 
                             coll = CanMove(emn.GetRect(), emn);
                             if (coll == null)
