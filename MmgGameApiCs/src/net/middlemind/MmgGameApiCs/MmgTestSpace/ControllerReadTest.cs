@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using net.middlemind.MmgGameApiCs.MmgBase;
 
 namespace net.middlemind.MmgGameApiCs.MmgTestSpace
 {
@@ -75,17 +76,18 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             Dictionary<Buttons, int> componentsByBtn = new Dictionary<Buttons, int>();
             Dictionary<int, Buttons> componentsByIdx = new Dictionary<int, Buttons>();
             List<Buttons> components = new List<Buttons>();
+            GamePad.InitDatabase();
             GamePadCapabilities gamePadCap = GamePad.GetCapabilities(gamePadIdx);
-
-            string ident = gamePadCap.Identifier.ToString();
-            string gamePadStr = gamePadCap.DisplayName.ToString();
-            bool isConnected = gamePadCap.IsConnected;
-            GamePadState gamePadState;
 
             if (gamePadCap.IsConnected == false)
             {
                 return;
             }
+
+            string ident = gamePadCap.Identifier.ToString();
+            string gamePadStr = gamePadCap.DisplayName.ToString();
+            bool isConnected = gamePadCap.IsConnected;
+            GamePadState gamePadState;
 
             if (gamePadCap.HasAButton)
             {
@@ -245,6 +247,23 @@ namespace net.middlemind.MmgGameApiCs.MmgTestSpace
             bool isRelative = false;
             string data = "0";
             bool found = true;
+
+            foreach (Buttons b in components)
+            {
+                componentIdx = componentsByBtn[b];
+                componentStr = b.ToString();
+                isAnalog = false;
+
+                if (componentsByType[b] == ComponentType.ANALOG_BUTTON || componentsByType[b] == ComponentType.ANALOG_SHOULDER || componentsByType[b] == ComponentType.ANALOG_STICK || componentsByType[b] == ComponentType.ANALOG_TRIGGER)
+                {
+                    isAnalog = true;
+                }
+
+                wr("Component " + componentIdx + ": " + componentStr);
+                wr("\t\tIsAnalog: " + isAnalog);
+                wr("\t\tIsRelative: " + isRelative);
+                wr("\t\tData: " + data);
+            }
 
             wr("");
             wr("");
