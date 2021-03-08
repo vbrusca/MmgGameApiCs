@@ -599,8 +599,11 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
             dBmpSet.p.SetAdvRenderHints();
             dBmpSet.img = new MmgBmp(dBmpSet.buffImg);
 
-            dBmpSet.graphics.GraphicsDevice.SetRenderTarget(dBmpSet.buffImg);
-            dBmpSet.graphics.GraphicsDevice.Clear(Color.Transparent);
+            if (alpha)
+            {
+                dBmpSet.graphics.GraphicsDevice.SetRenderTarget(dBmpSet.buffImg);
+                dBmpSet.graphics.GraphicsDevice.Clear(Color.Transparent);
+            }
 
             return dBmpSet;
         }
@@ -618,18 +621,6 @@ namespace net.middlemind.MmgGameApiCs.MmgBase
         public static MmgDrawableBmpSet CreateDrawableBmpSet(int width, int height, bool alpha, MmgColor color)
         {
             MmgDrawableBmpSet dBmpSet = MmgHelper.CreateDrawableBmpSet(width, height, alpha);
-
-            /*
-            Color[] pixels = new Color[dBmpSet.buffImg.Width * dBmpSet.buffImg.Height];
-            dBmpSet.buffImg.GetData<Color>(pixels);
-            int len = pixels.Length;
-            for(int i = 0; i < len; i++)
-            {
-                pixels[i] = color.GetColor();
-            }
-            dBmpSet.buffImg.SetData<Color>(pixels);
-            */
-
             dBmpSet.graphics.GraphicsDevice.SetRenderTarget(dBmpSet.buffImg);
             dBmpSet.graphics.GraphicsDevice.Clear(color.GetColor());
             dBmpSet.graphics.GraphicsDevice.SetRenderTarget(null);
