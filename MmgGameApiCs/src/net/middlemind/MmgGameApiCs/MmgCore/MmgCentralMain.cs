@@ -64,44 +64,44 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
                 net.middlemind.PongClone.Chapter18_CompleteGame.PongClone.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chaptere1"))
+            else if (args[0] != null && args[0].ToLower().Equals("chapter20"))
             {
-                net.middlemind.DungeonTrap.ChapterE1.DungeonTrap.AltMain(nArgs);
+                net.middlemind.DungeonTrap.Chapter20.DungeonTrap.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chaptere2"))
+            else if (args[0] != null && args[0].ToLower().Equals("chapter21"))
             {
-                net.middlemind.DungeonTrap.ChapterE2.DungeonTrap.AltMain(nArgs);
+                net.middlemind.DungeonTrap.Chapter21.DungeonTrap.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chaptere3"))
+            else if (args[0] != null && args[0].ToLower().Equals("chapter22"))
             {
-                net.middlemind.DungeonTrap.ChapterE3.DungeonTrap.AltMain(nArgs);
+                net.middlemind.DungeonTrap.Chapter22.DungeonTrap.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chaptere4"))
+            else if (args[0] != null && args[0].ToLower().Equals("chapter23"))
             {
-                net.middlemind.DungeonTrap.ChapterE4.DungeonTrap.AltMain(nArgs);
+                net.middlemind.DungeonTrap.Chapter23.DungeonTrap.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chaptere4_demoscreen"))
+            else if (args[0] != null && args[0].ToLower().Equals("chapter23_demoscreen"))
             {
-                net.middlemind.DungeonTrap.ChapterE4_DemoScreen.DungeonTrap.AltMain(nArgs);
+                net.middlemind.DungeonTrap.Chapter23_DemoScreen.DungeonTrap.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chaptere5_phase1"))
+            else if (args[0] != null && args[0].ToLower().Equals("chapter24_phase1"))
             {
-                net.middlemind.DungeonTrap.ChapterE5_Phase1.DungeonTrap.AltMain(nArgs);
+                net.middlemind.DungeonTrap.Chapter24_Phase1.DungeonTrap.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chaptere5_phase2"))
+            else if (args[0] != null && args[0].ToLower().Equals("chapter24_phase2"))
             {
-                net.middlemind.DungeonTrap.ChapterE5_Phase2.DungeonTrap.AltMain(nArgs);
+                net.middlemind.DungeonTrap.Chapter24_Phase2.DungeonTrap.AltMain(nArgs);
 
             }
-            else if (args[0] != null && args[0].ToLower().Equals("chaptere5_phase3") || args[0] != null && args[0].ToLower().Equals("chaptere5_phase3_completegame"))
+            else if (args[0] != null && args[0].ToLower().Equals("chapter24_phase3") || args[0] != null && args[0].ToLower().Equals("chapter24_phase3_completegame"))
             {
-                net.middlemind.DungeonTrap.ChapterE5_Phase3_CompleteGame.DungeonTrap.AltMain(nArgs);
+                net.middlemind.DungeonTrap.Chapter24_Phase3_CompleteGame.DungeonTrap.AltMain(nArgs);
 
             }
             else
