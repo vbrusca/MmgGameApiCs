@@ -9,7 +9,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <StartupObject />
+    <StartupObject>net.middlemind.MmgGameApiCs.MmgCore.MmgCentralMain</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <CustomCommands>
