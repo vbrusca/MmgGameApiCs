@@ -573,7 +573,7 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">Event arguments.</param>
-        private void windowClosing(object sender, EventArgs e)
+        public virtual void windowClosing(object sender, EventArgs e)
         {
             try
             {
