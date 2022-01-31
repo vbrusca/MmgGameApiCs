@@ -107,7 +107,6 @@ namespace net.middlemind.MmgGameApiCs.MmgCore
             else
             {
                 MmgTestScreens.AltMain(nArgs);
-
             }
         }
     }
