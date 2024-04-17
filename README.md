@@ -101,7 +101,6 @@ This package represents the application level and really isn’t an SDK API. It 
       <li>MmgContainer</li>
       <li>MmgLabelValuePair</li>
       <li>MmgLoadingBar</li>
-      <li>MmgLoadingBar</li>
       <li>MmgSprite</li>
       <li>MmgDrawableBmpSet</li>
     </ul>
@@ -141,7 +140,6 @@ This package represents the application level and really isn’t an SDK API. It 
       <li>MmgCfgFileEntry</li>
       <li>MmgEvent</li>
       <li>MmgEventHandler</li>
-      <li></li>      
     </ul>
   </li>
 </ul>
