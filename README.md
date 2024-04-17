@@ -1,6 +1,12 @@
 # MmgGameApiCs
 A 2D game API written in C# using the MonoGame XNA engine. Build an entire game right in your IDE in C# with MonoGame. Almost fully compatible at the code level, library code, with the Java version of the game API.
 
+## Errata
+Input key repeat fix for Mac OSX. Prevents keyboard input freeze due to keyboard press and hold.
+<pre>
+defaults write -g ApplePressAndHoldEnabled -bool false
+</pre>
+
 ## Detailed Explantion of the API
 A detailed explanation of the API can be found in this book, although it follows the Java version of the game engine more closely the core API code is almost identicle so you could potentially follow along or gain a lot of knowledge applicable to the C# version of the project.
 <br>
