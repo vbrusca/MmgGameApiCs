@@ -26,13 +26,12 @@ There are also compatible games in this book repo:
 ![Dungeon Trap 1](gh_images/dt_sc1.png)
 <br>
 ![Dungeon Trap 2](gh_images/dt_sc2.png)
-
-### Memory Match
-![Memory Match 1](gh_images/mm_sc1.png)
 <br>
-![Memory Match 2](gh_images/mm_sc2.png)
+![Dungeon Trap 2](gh_images/dt_sc3.png)
 <br>
-![Memory Match 3](gh_images/mm_sc3.png)
+![Dungeon Trap 2](gh_images/dt_sc4.png)
+<br>
+![Dungeon Trap 2](gh_images/dt_sc5.png)
 
 ### Pong Clone
 ![Pong Clone 1](gh_images/pc_sc1.png)
@@ -40,6 +39,8 @@ There are also compatible games in this book repo:
 ![Pong Clone 2](gh_images/pc_sc2.png)
 <br>
 ![Pong Clone 3](gh_images/pc_sc3.png)
+<br>
+![Pong Clone 3](gh_images/pc_sc4.png)
 
 ### Tyre RPG
 ![Tyre RPG 1](gh_images/tyre_cs_sc1.png)
